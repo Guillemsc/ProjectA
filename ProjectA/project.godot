@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Project A"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GodotGTweensContextNode="*res://GTweensGodot/Godot/Source/Contexts/GodotGTweensContextNode.cs"
 
 [dotnet]
 
