@@ -1,0 +1,9 @@
+[submodule "ProjectA/GUtilsGodot"]
+	path = ProjectA/GUtilsGodot
+	url = https://github.com/Guillemsc/GUtilsGodot
+[submodule "ProjectA/GUtils"]
+	path = ProjectA/GUtils
+	url = https://github.com/Guillemsc/GUtils
+[submodule "ProjectA/GTweensGodot"]
+	path = ProjectA/GTweensGodot
+	url = https://github.com/Guillemsc/GTweensGodot
