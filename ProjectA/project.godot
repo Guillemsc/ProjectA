@@ -18,6 +18,21 @@ config/icon="res://icon.svg"
 
 GodotGTweensContextNode="*res://GTweensGodot/Godot/Source/Contexts/GodotGTweensContextNode.cs"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="Project A"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GTestsGodot/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/default_filters/anisotropic_filtering_level=0
+environment/defaults/default_clear_color=Color(0.0627451, 0.145098, 0.156863, 1)

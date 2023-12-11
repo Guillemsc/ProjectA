@@ -1,0 +1,88 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://dpq2ry5qvjkg3"]
+
+[ext_resource type="Texture2D" uid="uid://j8o0nvk7cng0" path="res://Game/Textures/BluePlayer-Idle.png" id="1_ajnda"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fxk8"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(6, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glt8q"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(38, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8e87"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(70, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf77d"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(102, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kr6s"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(134, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr2tr"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(166, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysydl"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(198, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_css8r"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(230, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wug7d"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(262, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfy7l"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(294, 0, 21, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de7uw"]
+atlas = ExtResource("1_ajnda")
+region = Rect2(326, 0, 21, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fxk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glt8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8e87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf77d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kr6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr2tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysydl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_css8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wug7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfy7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de7uw")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 20.0
+}]
