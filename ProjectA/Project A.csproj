@@ -4,12 +4,16 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>ProjectA</RootNamespace>
+    <RootNamespace></RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DefineConstants>GODOT;GODOT_WINDOWS;GODOT_PC;GODOT4;GODOT4_2;GODOT4_2_0;GODOT4_OR_GREATER;GODOT4_0_OR_GREATER;GODOT4_1_OR_GREATER;GODOT4_2_OR_GREATER;GODOT4_2_0_OR_GREATER;TRACE;TOOLS;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" Version="4.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\Scripts\ServicesContext\General\" />
   </ItemGroup>
 </Project>

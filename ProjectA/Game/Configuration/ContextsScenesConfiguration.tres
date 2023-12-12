@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ContextsScenesConfiguration" load_steps=4 format=3 uid="uid://cufvrpuk45yya"]
+
+[ext_resource type="PackedScene" uid="uid://b3td2vlgbqfxy" path="res://Game/Scenes/ServicesContext.tscn" id="1_16alq"]
+[ext_resource type="Script" path="res://Game/Scripts/Contexts/Configuration/ContextsScenesConfiguration.cs" id="1_504ch"]
+[ext_resource type="PackedScene" uid="uid://cw28dufk6rij8" path="res://Game/Scenes/GameContext.tscn" id="1_q05c5"]
+
+[resource]
+script = ExtResource("1_504ch")
+ServicesContextPrefab = ExtResource("1_16alq")
+GameContextPrefab = ExtResource("1_q05c5")
