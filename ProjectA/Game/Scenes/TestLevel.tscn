@@ -43,7 +43,7 @@ animation = &"Idle"
 frame_progress = 0.445055
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -5
+layer = -2
 follow_viewport_scale = -1.245
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]

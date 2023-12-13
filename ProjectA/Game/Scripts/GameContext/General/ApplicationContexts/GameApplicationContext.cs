@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Contexts.Configuration;
+﻿using Game.Contexts.Configuration;
 using Game.GameContext.General.Installers;
 using Game.GameContext.General.Interactors;
 using GUtils.ApplicationContexts.Contexts;
@@ -9,7 +8,7 @@ using GUtils.Services.Locators;
 using GUtilsGodot.Di.Loadables;
 using GUtilsGodot.Roots.Services;
 
-namespace Game.GameContext.General.Contexts;
+namespace Game.GameContext.General.ApplicationContexts;
 
 public sealed class GameApplicationContext : DiApplicationContext<IGameContextInteractor>
 {
