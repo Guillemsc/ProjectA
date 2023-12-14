@@ -3,6 +3,9 @@ using Game.GameContext.General.UseCases;
 using Game.GameContext.Maps.UseCases;
 using Game.GameContext.Players.UseCases;
 using GUtils.Di.Builder;
+using GUtils.Extensions;
+using GUtils.Tasks.Runners;
+using GUtils.Tasks.Trackers;
 
 namespace Game.GameContext.General.Installers;
 
@@ -20,5 +23,10 @@ public static class GameGeneralInstaller
                 c.Resolve<SpawnMapUseCase>(),
                 c.Resolve<SpawnPlayerUseCase>()
             ));
+
+        builder.Bind<IAsyncTaskRunner, AsyncTaskRunner>()
+            .FromFunction(c => new AsyncTaskRunner())
+            .WhenDispose(o => o.CancelForever)
+            .LinkDisposable();
     }
 }

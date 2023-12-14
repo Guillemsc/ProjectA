@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameVisualEffectsConfiguration" load_steps=3 format=3 uid="uid://drbm8j5x1ujwr"]
+
+[ext_resource type="PackedScene" uid="uid://dwir57qg56ye2" path="res://Game/Prefabs/CollectableCollectedVisualEffect.tscn" id="1_ahplu"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/VisualEffects/Configurations/GameVisualEffectsConfiguration.cs" id="1_vhabf"]
+
+[resource]
+script = ExtResource("1_vhabf")
+CollectableCollectedVisualEffectPrefab = ExtResource("1_ahplu")

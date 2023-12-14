@@ -4,10 +4,10 @@ namespace Game.GameContext.General.Datas;
 
 public sealed class GameGeneralViewData
 {
-    public Node PlayerParent { get; }
+    public Node Root { get; }
 
-    public GameGeneralViewData(Node playerParent)
+    public GameGeneralViewData(Node root)
     {
-        PlayerParent = playerParent;
+        Root = root;
     }
 }

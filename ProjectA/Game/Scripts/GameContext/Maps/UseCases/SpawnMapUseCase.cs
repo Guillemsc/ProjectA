@@ -29,7 +29,7 @@ public sealed class SpawnMapUseCase
         PackedScene mapPackedScene = _gameMapsConfiguration.MapsPrefabs![0];
         
         MapView mapView = mapPackedScene!.Instantiate<MapView>();
-        mapView.SetParent(_gameGeneralViewData.PlayerParent);
+        mapView.SetParent(_gameGeneralViewData.Root);
         
         _mapViewData.MapView = mapView;
     }

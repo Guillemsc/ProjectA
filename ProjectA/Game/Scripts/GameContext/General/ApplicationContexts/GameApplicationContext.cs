@@ -6,6 +6,7 @@ using Game.GameContext.General.Installers;
 using Game.GameContext.General.Interactors;
 using Game.GameContext.Maps.Installers;
 using Game.GameContext.Players.Installers;
+using Game.GameContext.VisualEffects.Installers;
 using GUtils.ApplicationContexts.Contexts;
 using GUtils.Di.Contexts;
 using GUtils.Di.Installers;
@@ -35,6 +36,7 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGamePlayers();
                 b.InstallGameMaps();
                 b.InstallGameCollectables();
+                b.InstallGameVisualEffects();
                 
                 b.InstallGameCheats();
             }));

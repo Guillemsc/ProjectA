@@ -95,3 +95,9 @@ one_way_collision = true
 
 [node name="AppleCollectableView" parent="." instance=ExtResource("9_hkfqr")]
 position = Vector2(-208, 64)
+
+[node name="AppleCollectableView2" parent="." instance=ExtResource("9_hkfqr")]
+position = Vector2(-168, 64)
+
+[node name="AppleCollectableView3" parent="." instance=ExtResource("9_hkfqr")]
+position = Vector2(-128, 64)

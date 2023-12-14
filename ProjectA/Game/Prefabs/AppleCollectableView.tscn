@@ -5,6 +5,7 @@
 
 [sub_resource type="Animation" id="Animation_rgx81"]
 resource_name = "Collected"
+length = 0.2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,14 +24,14 @@ tracks/1/path = NodePath(".:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 0),
-"points": PackedFloat32Array(1, 0, 0, 0, 2, 0, -0.00371306, 1.13299, 0.25, 0),
-"times": PackedFloat32Array(0, 0.202841)
+"handle_modes": PackedInt32Array(2, 3, 0),
+"points": PackedFloat32Array(1, 0, 0, 0, 2, 2.11503, -0.0159614, 0, 0.0159614, 0, 0, -0.00371306, 1.13299, 0.25, 0),
+"times": PackedFloat32Array(0, 0.144237, 0.2)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Area2D:monitoring")
+tracks/2/path = NodePath("Area2D:monitorable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {

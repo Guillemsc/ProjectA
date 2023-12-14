@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwir57qg56ye2"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/VisualEffects/Views/AnimatedSprite2DOneShotVisualEffectView.cs" id="1_xfsr0"]
+[ext_resource type="Texture2D" uid="uid://c8wwmdp3xw3g1" path="res://Game/Textures/CollectableCollectedVisualEffect.png" id="2_pym4m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3swqd"]
+atlas = ExtResource("2_pym4m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lmru"]
+atlas = ExtResource("2_pym4m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gexqf"]
+atlas = ExtResource("2_pym4m")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0lga"]
+atlas = ExtResource("2_pym4m")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwwj5"]
+atlas = ExtResource("2_pym4m")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt0bi"]
+atlas = ExtResource("2_pym4m")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xt1eu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3swqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lmru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gexqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0lga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwwj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt0bi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="CollectableCollectedVisualEffect" type="Node2D" node_paths=PackedStringArray("AnimatedSprite2D")]
+script = ExtResource("1_xfsr0")
+AnimatedSprite2D = NodePath("AnimatedSprite2D")
+Animation = "default"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xt1eu")
+frame = 5
+frame_progress = 1.0

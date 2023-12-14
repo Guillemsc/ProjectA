@@ -36,7 +36,7 @@ public sealed class SpawnPlayerUseCase
     public void Execute()
     {
         PlayerView playerView = _gamePlayersConfiguration.PlayerPrefab!.Instantiate<PlayerView>();
-        playerView.SetParent(_gameGeneralViewData.PlayerParent);
+        playerView.SetParent(_gameGeneralViewData.Root);
         
         playerView.LeftWallDetector!.ConnectBodyEntered(_ => _whenPlayerStartedCollisionWithWallUseCase.Execute(HorizontalLocation.Left));
         playerView.RightWallDetector!.ConnectBodyEntered(_ => _whenPlayerStartedCollisionWithWallUseCase.Execute(HorizontalLocation.Right));

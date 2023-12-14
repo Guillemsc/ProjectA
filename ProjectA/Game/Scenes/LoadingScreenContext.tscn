@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://co0otxdxs0i0p"]
+[gd_scene load_steps=6 format=3 uid="uid://co0otxdxs0i0p"]
 
 [ext_resource type="Script" path="res://Game/Scripts/LoadingScreenContext/General/Installers/LoadingScreenContextNodeInstaller.cs" id="1_o8dcv"]
 [ext_resource type="Script" path="res://Game/Scripts/LoadingScreenContext/LoadingScreenUi/Installers/LoadingScreenUiInstaller.cs" id="2_ceb8n"]
@@ -6,31 +6,33 @@
 [sub_resource type="Animation" id="Animation_8rdxo"]
 resource_name = "HideAnimation"
 length = 0.5
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot:modulate:a")
+tracks/0/path = NodePath("Pivot/ColorRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5)
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(110, -423), Vector2(110, -423), Vector2(1442, -40)]
 }
 
 [sub_resource type="Animation" id="Animation_33033"]
 resource_name = "ShowAnimation"
-length = 0.4
-tracks/0/type = "bezier"
+length = 0.3
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot:modulate:a")
+tracks/0/path = NodePath("Pivot/ColorRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(1, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.4)
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1072, -1110), Vector2(110, -423)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rqi8u"]
@@ -38,10 +40,6 @@ _data = {
 "HideAnimation": SubResource("Animation_8rdxo"),
 "ShowAnimation": SubResource("Animation_33033")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_x2n86"]
-font_size = 71
-font_color = Color(0, 0, 0, 1)
 
 [node name="LoadingScreenContext" type="Control" node_paths=PackedStringArray("LoadingScreenUiInstaller")]
 layout_mode = 3
@@ -69,7 +67,6 @@ libraries = {
 }
 
 [node name="Pivot" type="Control" parent="LoadingScreenUi"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,21 +79,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = -423.0
+offset_right = 283.0
+offset_bottom = 393.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" type="Label" parent="LoadingScreenUi/Pivot"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -11.5
-offset_right = 50.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Loading"
-label_settings = SubResource("LabelSettings_x2n86")
+rotation = 0.310669
+color = Color(0, 0, 0, 1)
