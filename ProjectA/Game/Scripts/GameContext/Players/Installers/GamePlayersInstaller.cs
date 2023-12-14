@@ -1,3 +1,4 @@
+using Game.GameContext.Collectables.UseCases;
 using Game.GameContext.General.Datas;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.Players.Datas;
@@ -21,7 +22,8 @@ public static class GamePlayersInstaller
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<GameGeneralViewData>(),
                 c.Resolve<WhenPlayerStartedCollisionWithWallUseCase>(),
-                c.Resolve<WhenPlayerStoppedCollisionWithWallUseCase>()
+                c.Resolve<WhenPlayerStoppedCollisionWithWallUseCase>(),
+                c.Resolve<WhenPlayerStartedCollisionWithInteractionUseCase>()
             ));
 
         builder.Bind<TickPlayerMovementUseCase>()
@@ -46,6 +48,11 @@ public static class GamePlayersInstaller
         builder.Bind<WhenPlayerStoppedCollisionWithWallUseCase>()
             .FromFunction(c => new WhenPlayerStoppedCollisionWithWallUseCase(
                 c.Resolve<PlayerViewData>()
+            ));
+
+        builder.Bind<WhenPlayerStartedCollisionWithInteractionUseCase>()
+            .FromFunction(c => new WhenPlayerStartedCollisionWithInteractionUseCase(
+                c.Resolve<CollectCollectableUseCase>()
             ));
     }
 }

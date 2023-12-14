@@ -10,6 +10,7 @@ public partial class PlayerView : CharacterBody2D
    [Export] public AnimatedSprite2D? AnimatedSprite;
    [Export] public Area2D? LeftWallDetector;
    [Export] public Area2D? RightWallDetector;
+   [Export] public Area2D? InteractionsDetector;
    
    public bool OnAir;
    public PlayerOnAirState OnAirState;

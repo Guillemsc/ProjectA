@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnu7c4diajc4h"]
+[gd_scene load_steps=14 format=3 uid="uid://bnu7c4diajc4h"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_rrdce"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_lji6d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/NineSliceSprite2D.gdshader" id="6_k6xe7"]
 [ext_resource type="Texture2D" uid="uid://dera4463br3yh" path="res://Game/Textures/Platform.png" id="7_8nr4b"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/NineSliceSprites/NineSliceSprite2D.cs" id="8_rglh2"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="9_hkfqr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_lji6d")
@@ -91,3 +92,6 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
 shape = SubResource("RectangleShape2D_mnc5t")
 one_way_collision = true
+
+[node name="AppleCollectableView" parent="." instance=ExtResource("9_hkfqr")]
+position = Vector2(-208, 64)

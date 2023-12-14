@@ -14,13 +14,15 @@ public sealed class SpawnPlayerUseCase
     readonly GameGeneralViewData _gameGeneralViewData;
     readonly WhenPlayerStartedCollisionWithWallUseCase _whenPlayerStartedCollisionWithWallUseCase;
     readonly WhenPlayerStoppedCollisionWithWallUseCase _whenPlayerStoppedCollisionWithWallUseCase;
+    readonly WhenPlayerStartedCollisionWithInteractionUseCase _whenPlayerStartedCollisionWithInteractionUseCase;
 
     public SpawnPlayerUseCase(
         GamePlayersConfiguration gamePlayersConfiguration, 
         PlayerViewData playerViewData, 
         GameGeneralViewData gameGeneralViewData, 
         WhenPlayerStartedCollisionWithWallUseCase whenPlayerStartedCollisionWithWallUseCase,
-        WhenPlayerStoppedCollisionWithWallUseCase whenPlayerStoppedCollisionWithWallUseCase
+        WhenPlayerStoppedCollisionWithWallUseCase whenPlayerStoppedCollisionWithWallUseCase, 
+        WhenPlayerStartedCollisionWithInteractionUseCase whenPlayerStartedCollisionWithInteractionUseCase
         )
     {
         _gamePlayersConfiguration = gamePlayersConfiguration;
@@ -28,6 +30,7 @@ public sealed class SpawnPlayerUseCase
         _gameGeneralViewData = gameGeneralViewData;
         _whenPlayerStartedCollisionWithWallUseCase = whenPlayerStartedCollisionWithWallUseCase;
         _whenPlayerStoppedCollisionWithWallUseCase = whenPlayerStoppedCollisionWithWallUseCase;
+        _whenPlayerStartedCollisionWithInteractionUseCase = whenPlayerStartedCollisionWithInteractionUseCase;
     }
 
     public void Execute()
@@ -40,6 +43,8 @@ public sealed class SpawnPlayerUseCase
         
         playerView.LeftWallDetector!.ConnectBodyExited(_ => _whenPlayerStoppedCollisionWithWallUseCase.Execute());
         playerView.RightWallDetector!.ConnectBodyExited(_ => _whenPlayerStoppedCollisionWithWallUseCase.Execute());
+        
+        playerView.InteractionsDetector!.ConnectAreaEntered(_whenPlayerStartedCollisionWithInteractionUseCase.Execute);
         
         _playerViewData.PlayerView = playerView;
     }

@@ -23,6 +23,7 @@ public partial class MainBootstrap : Bootstrap
     protected override async Task Run(CancellationToken cancellationToken)
     {
         ServiceLocator.Register(ContextsScenesConfiguration);
+        ServiceLocator.Register(GameConfiguration);
         
         DiContext<int> diContext = new DiContext<int>();
         diContext.AddInstaller(new CallbackInstaller(b => b.Bind<int>().FromInstance(1)));
@@ -37,7 +38,7 @@ public partial class MainBootstrap : Bootstrap
         
         await loadingService.New()
             .RunBeforeLoadActionsInstantly()
-            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(GameConfiguration!))
+            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext())
             .Execute(cancellationToken);
     }
 }
