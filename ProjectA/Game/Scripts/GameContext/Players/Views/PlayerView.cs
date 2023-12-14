@@ -1,9 +1,9 @@
-using Game.GameContext.Player.Enums;
+using Game.GameContext.Players.Enums;
 using Godot;
 using GUtils.Directions;
 using GUtils.Locations.Enums;
 
-namespace Game.GameContext.Player.Views;
+namespace Game.GameContext.Players.Views;
 
 public partial class PlayerView : CharacterBody2D
 {

@@ -1,29 +1,29 @@
-using Game.GameContext.Player.Configurations;
-using Game.GameContext.Player.Datas;
-using Game.GameContext.Player.Enums;
-using Game.GameContext.Player.Views;
+using Game.GameContext.Players.Configurations;
+using Game.GameContext.Players.Datas;
+using Game.GameContext.Players.Enums;
+using Game.GameContext.Players.Views;
 using Godot;
 using GUtils.Directions;
 using GUtils.Extensions;
 using GUtils.Time.Services;
 
-namespace Game.GameContext.Player.UseCases;
+namespace Game.GameContext.Players.UseCases;
 
 public sealed class TickPlayerMovementUseCase
 {
     readonly IDeltaTimeService _deltaTimeService;
     readonly PlayerViewData _playerViewData;
-    readonly GamePlayerConfiguration _gamePlayerConfiguration;
+    readonly GamePlayersConfiguration _gamePlayersConfiguration;
     
     public TickPlayerMovementUseCase(
         IDeltaTimeService deltaTimeService, 
         PlayerViewData playerViewData, 
-        GamePlayerConfiguration gamePlayerConfiguration
+        GamePlayersConfiguration gamePlayersConfiguration
         )
     {
         _deltaTimeService = deltaTimeService;
         _playerViewData = playerViewData;
-        _gamePlayerConfiguration = gamePlayerConfiguration;
+        _gamePlayersConfiguration = gamePlayersConfiguration;
     }
 
     public void Execute()
@@ -52,7 +52,7 @@ public sealed class TickPlayerMovementUseCase
     {
         if (playerView.OnWall)
         {
-            newVelocity.Y = Mathf.Min(newVelocity.Y, _gamePlayerConfiguration.VerticalMaxFallSpeedOnWall);
+            newVelocity.Y = Mathf.Min(newVelocity.Y, _gamePlayersConfiguration.VerticalMaxFallSpeedOnWall);
         }
 
         return newVelocity;
@@ -62,7 +62,7 @@ public sealed class TickPlayerMovementUseCase
     {
         if (Input.IsActionJustPressed("ui_accept") && playerView.IsOnFloor())
         {
-            newVelocity.Y = -_gamePlayerConfiguration.JumpVelocity;
+            newVelocity.Y = -_gamePlayersConfiguration.JumpVelocity;
         }
 
         return newVelocity;
@@ -72,11 +72,11 @@ public sealed class TickPlayerMovementUseCase
     {
         if (!playerView.IsOnFloor())
         {
-            newVelocity.Y += _gamePlayerConfiguration.Gravity * delta;
+            newVelocity.Y += _gamePlayersConfiguration.Gravity * delta;
 
             if (newVelocity.Y > 0f)
             {
-                newVelocity.Y = Mathf.Min(newVelocity.Y, _gamePlayerConfiguration.VerticalMaxFallSpeed);
+                newVelocity.Y = Mathf.Min(newVelocity.Y, _gamePlayersConfiguration.VerticalMaxFallSpeed);
             }
         }
 
@@ -101,19 +101,19 @@ public sealed class TickPlayerMovementUseCase
                 newVelocity.X = 0f;
             }
             
-            newVelocity.X += movementDirection.X * _gamePlayerConfiguration.HorizontalAcceleration;
+            newVelocity.X += movementDirection.X * _gamePlayersConfiguration.HorizontalAcceleration;
 
             newVelocity.X = MathExtensions.Clamp(
                 newVelocity.X,
-                -_gamePlayerConfiguration.HorizontalMaxSpeed,
-                _gamePlayerConfiguration.HorizontalMaxSpeed
+                -_gamePlayersConfiguration.HorizontalMaxSpeed,
+                _gamePlayersConfiguration.HorizontalMaxSpeed
             );
             
             playerView.HorizontalDirection = movementDirection.X > 0f ? HorizontalDirection.Right : HorizontalDirection.Left;
         }
         else
         {
-            newVelocity.X = Mathf.MoveToward(playerView.Velocity.X, 0, _gamePlayerConfiguration.HorizontalDeceleration);
+            newVelocity.X = Mathf.MoveToward(playerView.Velocity.X, 0, _gamePlayersConfiguration.HorizontalDeceleration);
         }
         
         playerView.MovingHorizontally = newVelocity.X != 0f;

@@ -1,12 +1,12 @@
-using Game.GameContext.Player.Datas;
-using Game.GameContext.Player.Enums;
-using Game.GameContext.Player.Views;
+using Game.GameContext.Players.Datas;
+using Game.GameContext.Players.Enums;
+using Game.GameContext.Players.Views;
 using Godot;
 using GUtils.Directions;
 using GUtils.Locations.Enums;
 using GUtilsGodot.Extensions;
 
-namespace Game.GameContext.Player.UseCases;
+namespace Game.GameContext.Players.UseCases;
 
 public sealed class TickPlayerAnimationsUseCase
 {

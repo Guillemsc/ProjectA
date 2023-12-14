@@ -1,9 +1,9 @@
 using Godot;
 
-namespace Game.GameContext.Player.Configurations;
+namespace Game.GameContext.Players.Configurations;
 
 [GlobalClass]
-public partial class GamePlayerConfiguration : Resource
+public partial class GamePlayersConfiguration : Resource
 {
     [Export] public PackedScene? PlayerPrefab;
     [Export] public float HorizontalAcceleration = 300.0f;

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://lj2wrinijtow"]
 
-[ext_resource type="Shader" path="res://Game/Shaders/BackgroundScroll.gdshader" id="1_rlnhv"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="1_rlnhv"]
 [ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="2_dx54d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwok3"]

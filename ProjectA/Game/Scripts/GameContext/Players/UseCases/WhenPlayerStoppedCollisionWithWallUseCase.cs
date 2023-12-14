@@ -1,7 +1,7 @@
-using Game.GameContext.Player.Datas;
-using Game.GameContext.Player.Views;
+using Game.GameContext.Players.Datas;
+using Game.GameContext.Players.Views;
 
-namespace Game.GameContext.Player.UseCases;
+namespace Game.GameContext.Players.UseCases;
 
 public sealed class WhenPlayerStoppedCollisionWithWallUseCase
 {

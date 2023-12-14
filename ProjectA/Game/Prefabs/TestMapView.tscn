@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnu7c4diajc4h"]
+[gd_scene load_steps=13 format=3 uid="uid://bnu7c4diajc4h"]
 
-[ext_resource type="Shader" path="res://Game/Shaders/BackgroundScroll.gdshader" id="1_ws5u5"]
-[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="2_rvw1c"]
-[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="3_52mr2"]
-[ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="4_40q4c"]
-[ext_resource type="Texture2D" uid="uid://dera4463br3yh" path="res://Game/Textures/Platform.png" id="5_q5wqv"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_rrdce"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_lji6d"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="3_cdfd8"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="4_rroov"]
+[ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="5_7nybk"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/NineSliceSprite2D.gdshader" id="6_k6xe7"]
+[ext_resource type="Texture2D" uid="uid://dera4463br3yh" path="res://Game/Textures/Platform.png" id="7_8nr4b"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/NineSliceSprites/NineSliceSprite2D.cs" id="8_rglh2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
-shader = ExtResource("1_ws5u5")
+shader = ExtResource("2_lji6d")
 shader_parameter/tilingScale = 1.341
 shader_parameter/movementX = 0.0
 shader_parameter/movementY = -1.0
@@ -16,10 +19,19 @@ shader_parameter/movementSpeed = 0.2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5fp1"]
 size = Vector2(25.5, 25.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vv412"]
+shader = ExtResource("6_k6xe7")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/right = 3
+shader_parameter/top = 3
+shader_parameter/left = 3
+shader_parameter/bottom = 3
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnc5t"]
-size = Vector2(40, 5)
+size = Vector2(48, 5)
 
 [node name="TestLevel" type="Node2D"]
+script = ExtResource("1_rrdce")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.03, 2.03)
@@ -27,10 +39,10 @@ zoom = Vector2(2.03, 2.03)
 [node name="MapBackground" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_bx5qr")
 scale = Vector2(8.297, 4.596)
-texture = ExtResource("2_rvw1c")
+texture = ExtResource("3_cdfd8")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("3_52mr2")
+tile_set = ExtResource("4_rroov")
 format = 2
 layer_0/name = "Background"
 layer_0/z_index = 2
@@ -60,21 +72,22 @@ collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_40q4c")
+texture = ExtResource("5_7nybk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_q5fp1")
 
 [node name="Platform" type="Node2D" parent="."]
-position = Vector2(-224, 88)
+position = Vector2(-217, 88)
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform"]
-texture = ExtResource("5_q5wqv")
+material = SubResource("ShaderMaterial_vv412")
+texture = ExtResource("7_8nr4b")
+script = ExtResource("8_rglh2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Platform"]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
-position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_mnc5t")
 one_way_collision = true

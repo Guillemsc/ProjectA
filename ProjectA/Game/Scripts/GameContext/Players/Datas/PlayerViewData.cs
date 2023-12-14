@@ -1,7 +1,7 @@
-using Game.GameContext.Player.Views;
+using Game.GameContext.Players.Views;
 using GUtils.Optionals;
 
-namespace Game.GameContext.Player.Datas;
+namespace Game.GameContext.Players.Datas;
 
 public sealed class PlayerViewData
 {

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bf02loyc8lc37"]
 
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Player/Views/PlayerView.cs" id="1_2yg5e"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Players/Views/PlayerView.cs" id="1_77eti"]
 [ext_resource type="SpriteFrames" uid="uid://dpq2ry5qvjkg3" path="res://Game/SpriteFrames/PlayerSpriteFrames.tres" id="1_rg7cu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxlxg"]
@@ -12,7 +12,7 @@ size = Vector2(11.5, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("AnimatedSprite", "LeftWallDetector", "RightWallDetector")]
 collision_mask = 6
-script = ExtResource("1_2yg5e")
+script = ExtResource("1_77eti")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 LeftWallDetector = NodePath("LeftWallDetector")
 RightWallDetector = NodePath("RightWallDetector")

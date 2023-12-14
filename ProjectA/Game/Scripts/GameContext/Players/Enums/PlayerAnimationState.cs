@@ -1,4 +1,4 @@
-namespace Game.GameContext.Player.Enums;
+namespace Game.GameContext.Players.Enums;
 
 public enum PlayerAnimationState
 {

@@ -1,5 +1,6 @@
 using Game.GameContext.General.Configurations;
-using Game.GameContext.Player.Configurations;
+using Game.GameContext.Maps.Configurations;
+using Game.GameContext.Players.Configurations;
 using GUtils.Di.Builder;
 
 namespace Game.GameContext.General.Installers;
@@ -9,6 +10,7 @@ public static class GameGeneralConfigurationsInstaller
     public static void InstallGameGeneralConfigurations(this IDiContainerBuilder builder, GameConfiguration gameConfiguration)
     {
         builder.Bind<GameConfiguration>().FromInstance(gameConfiguration);
-        builder.Bind<GamePlayerConfiguration>().FromInstance(gameConfiguration.PlayerConfiguration!);
+        builder.Bind<GamePlayersConfiguration>().FromInstance(gameConfiguration.PlayersConfiguration!);
+        builder.Bind<GameMapsConfiguration>().FromInstance(gameConfiguration.MapsConfiguration!);
     }
 }

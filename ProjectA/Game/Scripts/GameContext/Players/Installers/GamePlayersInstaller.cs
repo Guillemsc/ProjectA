@@ -1,23 +1,23 @@
 using Game.GameContext.General.Datas;
-using Game.GameContext.Player.Configurations;
-using Game.GameContext.Player.Datas;
-using Game.GameContext.Player.UseCases;
+using Game.GameContext.Players.Configurations;
+using Game.GameContext.Players.Datas;
+using Game.GameContext.Players.UseCases;
 using GUtils.Di.Builder;
 using GUtils.Tick.Enums;
 using GUtils.Tick.Extensions;
 using GUtils.Time.Services;
 
-namespace Game.GameContext.Player.Installers;
+namespace Game.GameContext.Players.Installers;
 
-public static class GamePlayerInstaller
+public static class GamePlayersInstaller
 {
-    public static void InstallGamePlayer(this IDiContainerBuilder builder)
+    public static void InstallGamePlayers(this IDiContainerBuilder builder)
     {
         builder.Bind<PlayerViewData>().FromNew();
 
         builder.Bind<SpawnPlayerUseCase>()
             .FromFunction(c => new SpawnPlayerUseCase(
-                c.Resolve<GamePlayerConfiguration>(),
+                c.Resolve<GamePlayersConfiguration>(),
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<GameGeneralViewData>(),
                 c.Resolve<WhenPlayerStartedCollisionWithWallUseCase>(),
@@ -28,7 +28,7 @@ public static class GamePlayerInstaller
             .FromFunction(c => new TickPlayerMovementUseCase(
                 c.Resolve<IDeltaTimeService>(),
                 c.Resolve<PlayerViewData>(),
-                c.Resolve<GamePlayerConfiguration>()
+                c.Resolve<GamePlayersConfiguration>()
             ))
             .LinkToTickablesService(o => o.Execute, TickType.PhysicsUpdate);
 

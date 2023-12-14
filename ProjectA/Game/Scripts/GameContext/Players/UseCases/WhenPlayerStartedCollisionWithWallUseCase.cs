@@ -1,8 +1,8 @@
-using Game.GameContext.Player.Datas;
-using Game.GameContext.Player.Views;
+using Game.GameContext.Players.Datas;
+using Game.GameContext.Players.Views;
 using GUtils.Locations.Enums;
 
-namespace Game.GameContext.Player.UseCases;
+namespace Game.GameContext.Players.UseCases;
 
 public sealed class WhenPlayerStartedCollisionWithWallUseCase
 {
