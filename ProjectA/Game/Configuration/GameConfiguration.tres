@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameConfiguration" load_steps=3 format=3 uid="uid://772xfftx0442"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/General/Configurations/GameConfiguration.cs" id="1_i7tyk"]
+[ext_resource type="Resource" uid="uid://km42g1dfkneh" path="res://Game/Configuration/GamePlayerConfiguration.tres" id="1_jg5a6"]
+
+[resource]
+script = ExtResource("1_i7tyk")
+PlayerConfiguration = ExtResource("1_jg5a6")

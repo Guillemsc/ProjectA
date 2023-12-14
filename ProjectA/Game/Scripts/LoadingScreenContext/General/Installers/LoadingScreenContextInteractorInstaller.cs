@@ -3,7 +3,7 @@ using GUtils.Di.Builder;
 
 namespace Game.LoadingScreenContext.General.Installers;
 
-public static class LoadingContextInteractorInstaller
+public static class LoadingScreenContextInteractorInstaller
 {
     public static void InstallLoadingScreenGeneralInteractor(this IDiContainerBuilder builder)
     {

@@ -2,9 +2,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Game.Contexts.Configuration;
 using Game.GameContext.General.ApplicationContexts;
+using Game.GameContext.General.Configurations;
 using Game.LoadingScreenContext.General.ApplicationContexts;
 using Godot;
-using GUtils.ApplicationContexts.Services;
 using GUtils.Di.Contexts;
 using GUtils.Di.Installers;
 using GUtils.Loading.Extensions;
@@ -18,6 +18,7 @@ namespace Game.Bootstraps;
 public partial class MainBootstrap : Bootstrap
 {
     [Export] public ContextsScenesConfiguration? ContextsScenesConfiguration;
+    [Export] public GameConfiguration? GameConfiguration;
     
     protected override async Task Run(CancellationToken cancellationToken)
     {
@@ -25,7 +26,7 @@ public partial class MainBootstrap : Bootstrap
         
         DiContext<int> diContext = new DiContext<int>();
         diContext.AddInstaller(new CallbackInstaller(b => b.Bind<int>().FromInstance(1)));
-        diContext.AddInstallerLoadable(new PackedSceneNodeInstallerLoadable(ContextsScenesConfiguration!.ServicesContextPrefab, this));
+        diContext.AddInstallerLoadable(new PackedSceneNodeInstallerLoadable(ContextsScenesConfiguration!.ServicesContextPrefab!, this));
         diContext.Install();
 
         ILoadingService loadingService = ServiceLocator.Get<ILoadingService>();
@@ -36,7 +37,7 @@ public partial class MainBootstrap : Bootstrap
         
         await loadingService.New()
             .RunBeforeLoadActionsInstantly()
-            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext())
+            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(GameConfiguration!))
             .Execute(cancellationToken);
     }
 }

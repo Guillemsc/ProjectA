@@ -13,7 +13,7 @@ config_version=5
 config/name="Project A"
 run/main_scene="res://Game/Scenes/Bootstrap.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Misc/icon.svg"
 
 [autoload]
 
@@ -31,6 +31,12 @@ project/assembly_name="Project A"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GTestsGodot/plugin.cfg")
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Walls"
+2d_physics/layer_3="OneWayPlatforms"
 
 [rendering]
 

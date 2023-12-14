@@ -7,10 +7,10 @@ namespace Game.LoadingScreenContext.General.Installers;
 
 public partial class LoadingScreenContextNodeInstaller : NodeInstaller
 {
-    [Export] public LoadingScreenUiInstaller LoadingScreenUiInstaller;
+    [Export] public LoadingScreenUiInstaller? LoadingScreenUiInstaller;
     
     public sealed override void Install(IDiContainerBuilder builder)
     {
-        builder.Install(LoadingScreenUiInstaller);
+        builder.Install(LoadingScreenUiInstaller!);
     }
 }

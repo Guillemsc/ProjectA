@@ -5,7 +5,7 @@ using GUtilsGodot.UiStack.Services;
 
 namespace Game.LoadingScreenContext.General.Installers;
 
-public static class LoadingScreenServicesInstaller
+public static class LoadingScreenGeneralServicesInstaller
 {
     public static void InstallLoadingScreenGeneralServices(this IDiContainerBuilder builder)
     {

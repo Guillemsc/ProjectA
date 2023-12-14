@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://04tnx5uuko4j"]
+[gd_scene load_steps=4 format=3 uid="uid://04tnx5uuko4j"]
 
 [ext_resource type="Script" path="res://Game/Scripts/Bootstraps/MainBootstrap.cs" id="1_t65tc"]
 [ext_resource type="Resource" uid="uid://cufvrpuk45yya" path="res://Game/Configuration/ContextsScenesConfiguration.tres" id="2_cnsuc"]
+[ext_resource type="Resource" uid="uid://772xfftx0442" path="res://Game/Configuration/GameConfiguration.tres" id="3_lqi20"]
 
 [node name="Bootstrap" type="Node2D"]
 script = ExtResource("1_t65tc")
 ContextsScenesConfiguration = ExtResource("2_cnsuc")
+GameConfiguration = ExtResource("3_lqi20")

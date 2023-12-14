@@ -3,8 +3,12 @@ using GUtils.ApplicationContexts.Services;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
 using GUtils.Services.Extensions;
+using GUtils.Tick.Services;
+using GUtils.Time.Services;
 using GUtilsGodot.Di.Installers;
 using GUtilsGodot.Roots.Services;
+using GUtilsGodot.Tick.Services;
+using GUtilsGodot.Time.Services;
 using GUtilsGodot.UiFrame.Services;
 using GUtilsGodot.UiStack.Services;
 
@@ -12,6 +16,8 @@ namespace Game.ServicesContext.General.Installers;
 
 public partial class ServicesContextNodeInstaller : NodeInstaller
 {
+    [Export] public TickablesServiceNode? TickablesService;
+    [Export] public DeltaTimeServiceNode? DeltaTimeService;
     [Export] public UiFrameService? UiFrameService;
     
     public override void Install(IDiContainerBuilder builder)
@@ -24,6 +30,14 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
             .FromFunction(c => new ApplicationContextService())
             .LinkToServiceLocator();
 
+        builder.Bind<ITickablesService>()
+            .FromInstance(TickablesService!)
+            .LinkToServiceLocator();
+        
+        builder.Bind<IDeltaTimeService>()
+            .FromInstance(DeltaTimeService!)
+            .LinkToServiceLocator();
+        
         builder.Bind<IUiFrameService>()
             .FromInstance(UiFrameService!)
             .LinkToServiceLocator();;

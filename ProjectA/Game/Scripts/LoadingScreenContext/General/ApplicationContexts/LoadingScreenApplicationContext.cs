@@ -17,7 +17,7 @@ public sealed class LoadingScreenApplicationContext : DiApplicationContext<ILoad
         ContextsScenesConfiguration contextsScenesConfiguration = ServiceLocator.Get<ContextsScenesConfiguration>();
         IRootNodeService rootNodeService = ServiceLocator.Get<IRootNodeService>();
         
-        context.AddInstallerLoadable(new PackedSceneNodeInstallerLoadable(contextsScenesConfiguration.LoadingScreenContextPrefab, rootNodeService.Root));
+        context.AddInstallerLoadable(new PackedSceneNodeInstallerLoadable(contextsScenesConfiguration.LoadingScreenContextPrefab!, rootNodeService.Root));
         
         context.AddInstaller(new CallbackInstaller(
             b =>
