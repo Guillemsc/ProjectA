@@ -26,6 +26,11 @@ public static class GamePlayersInstaller
                 c.Resolve<WhenPlayerStartedCollisionWithInteractionUseCase>()
             ));
 
+        builder.Bind<SetPlayerMovementEnabledUseCase>()
+            .FromFunction(c => new SetPlayerMovementEnabledUseCase(
+                c.Resolve<PlayerViewData>()
+            ));
+        
         builder.Bind<TickPlayerMovementUseCase>()
             .FromFunction(c => new TickPlayerMovementUseCase(
                 c.Resolve<IDeltaTimeService>(),
@@ -34,8 +39,8 @@ public static class GamePlayersInstaller
             ))
             .LinkToTickablesService(o => o.Execute, TickType.PhysicsUpdate);
 
-        builder.Bind<TickPlayerAnimationsUseCase>()
-            .FromFunction(c => new TickPlayerAnimationsUseCase(
+        builder.Bind<TickPlayerFlipStateUseCase>()
+            .FromFunction(c => new TickPlayerFlipStateUseCase(
                 c.Resolve<PlayerViewData>()
             ))
             .LinkToTickablesService(o => o.Execute);

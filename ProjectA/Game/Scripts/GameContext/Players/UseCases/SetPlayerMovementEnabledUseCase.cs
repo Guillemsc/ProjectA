@@ -1,19 +1,20 @@
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Views;
-using GUtils.Locations.Enums;
 
 namespace Game.GameContext.Players.UseCases;
 
-public sealed class WhenPlayerStartedCollisionWithWallUseCase
+public sealed class SetPlayerMovementEnabledUseCase
 {
     readonly PlayerViewData _playerViewData;
 
-    public WhenPlayerStartedCollisionWithWallUseCase(PlayerViewData playerViewData)
+    public SetPlayerMovementEnabledUseCase(
+        PlayerViewData playerViewData
+        )
     {
         _playerViewData = playerViewData;
     }
 
-    public void Execute(HorizontalLocation location)
+    public void Execute(bool enabled)
     {
         bool hasPlayer = _playerViewData.PlayerView.TryGet(out PlayerView playerView);
 
@@ -22,7 +23,6 @@ public sealed class WhenPlayerStartedCollisionWithWallUseCase
             return;
         }
 
-        playerView.AnimationPlayer!.OnWall = true;
-        playerView.AnimationPlayer.OnWallLocation = location;
+        playerView.CanMove = enabled;
     }
 }

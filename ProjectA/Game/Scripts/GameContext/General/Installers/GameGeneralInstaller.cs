@@ -15,13 +15,19 @@ public static class GameGeneralInstaller
     {
         builder.Bind<IGameContextInteractor>()
             .FromFunction(c => new GameContextInteractor(
-                c.Resolve<GameLoadUseCase>()
+                c.Resolve<GameLoadUseCase>(),
+                c.Resolve<GameStartUseCase>()
             ));
 
         builder.Bind<GameLoadUseCase>()
             .FromFunction(c => new GameLoadUseCase(
                 c.Resolve<SpawnMapUseCase>(),
                 c.Resolve<SpawnPlayerUseCase>()
+            ));
+
+        builder.Bind<GameStartUseCase>()
+            .FromFunction(c => new GameStartUseCase(
+                c.Resolve<SetPlayerMovementEnabledUseCase>()
             ));
 
         builder.Bind<IAsyncTaskRunner, AsyncTaskRunner>()

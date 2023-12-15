@@ -21,6 +21,6 @@ public sealed class WhenPlayerStoppedCollisionWithWallUseCase
             return;
         }
 
-        playerView.OnWall = false;
+        playerView.AnimationPlayer!.OnWall = false;
     }
 }

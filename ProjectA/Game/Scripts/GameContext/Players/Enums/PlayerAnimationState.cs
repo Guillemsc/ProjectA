@@ -5,6 +5,7 @@ public enum PlayerAnimationState
     Idle,
     Run,
     Jump,
+    DoubleJump,
     Fall,
     Wall,
 }

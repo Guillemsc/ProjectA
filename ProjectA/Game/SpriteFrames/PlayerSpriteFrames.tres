@@ -1,10 +1,35 @@
-[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://dpq2ry5qvjkg3"]
+[gd_resource type="SpriteFrames" load_steps=43 format=3 uid="uid://dpq2ry5qvjkg3"]
 
+[ext_resource type="Texture2D" uid="uid://b8vqgg3hc7viq" path="res://Game/Textures/BluePlayer-DoubleJump.png" id="1_2ht4o"]
 [ext_resource type="Texture2D" uid="uid://j8o0nvk7cng0" path="res://Game/Textures/BluePlayer-Idle.png" id="1_ajnda"]
 [ext_resource type="Texture2D" uid="uid://b4adhk1je82ji" path="res://Game/Textures/BluePlayer-Fall.png" id="1_wjioa"]
 [ext_resource type="Texture2D" uid="uid://d08x2d04x41m0" path="res://Game/Textures/BluePlayer-Run.png" id="2_0b27c"]
 [ext_resource type="Texture2D" uid="uid://dgeb70oyl7hlw" path="res://Game/Textures/BluePlayer-Jump.png" id="3_6qq1f"]
 [ext_resource type="Texture2D" uid="uid://dumm2cc7obtsm" path="res://Game/Textures/BluePlayer-Wall.png" id="5_26ogd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qknx1"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e52r"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g60a5"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hlwd"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gace"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khphu"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1mqd7"]
 atlas = ExtResource("1_wjioa")
@@ -128,6 +153,29 @@ region = Rect2(128, 3, 32, 28)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qknx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e52r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g60a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hlwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gace")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khphu")
+}],
+"loop": false,
+"name": &"DoubleJump",
+"speed": 20.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1mqd7")
