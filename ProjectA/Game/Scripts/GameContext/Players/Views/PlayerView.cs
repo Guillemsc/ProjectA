@@ -1,14 +1,14 @@
-using Game.GameContext.Players.Enums;
+using Game.GameContext.Players.AnimationGraphPlayers;
 using Godot;
-using GUtils.Directions;
-using GUtils.Locations.Enums;
+using GUtilsGodot.CharacterBody2Ds.Callbacks;
 
 namespace Game.GameContext.Players.Views;
 
 public partial class PlayerView : CharacterBody2D
 {
+   [Export] public CharacterBody2DCollisionCallbacks? CharacterBody2DCollisionCallbacks;
    [Export] public AnimatedSprite2D? AnimatedSprite;
-   [Export] public AnimationGraphPlayers.PlayerAnimationGraphPlayerNode? AnimationPlayer;
+   [Export] public PlayerAnimationGraphPlayerNode? AnimationPlayer;
    [Export] public Area2D? LeftWallDetector;
    [Export] public Area2D? RightWallDetector;
    [Export] public Area2D? InteractionsDetector;

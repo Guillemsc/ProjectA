@@ -1,4 +1,5 @@
 using Game.GameContext.Collectables.UseCases;
+using Game.GameContext.Crates.UseCases;
 using Game.GameContext.General.Datas;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.Players.Datas;
@@ -15,6 +16,7 @@ public static class GamePlayersInstaller
     public static void InstallGamePlayers(this IDiContainerBuilder builder)
     {
         builder.Bind<PlayerViewData>().FromNew();
+        builder.Bind<PlayerCollidingNodesData>().FromNew();
 
         builder.Bind<SpawnPlayerUseCase>()
             .FromFunction(c => new SpawnPlayerUseCase(
@@ -23,7 +25,8 @@ public static class GamePlayersInstaller
                 c.Resolve<GameGeneralViewData>(),
                 c.Resolve<WhenPlayerStartedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStoppedCollisionWithWallUseCase>(),
-                c.Resolve<WhenPlayerStartedCollisionWithInteractionUseCase>()
+                c.Resolve<WhenPlayerStartedInteractionCollisionWithAreaUseCase>(),
+                c.Resolve<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()
             ));
 
         builder.Bind<SetPlayerMovementEnabledUseCase>()
@@ -55,9 +58,14 @@ public static class GamePlayersInstaller
                 c.Resolve<PlayerViewData>()
             ));
 
-        builder.Bind<WhenPlayerStartedCollisionWithInteractionUseCase>()
-            .FromFunction(c => new WhenPlayerStartedCollisionWithInteractionUseCase(
+        builder.Bind<WhenPlayerStartedInteractionCollisionWithAreaUseCase>()
+            .FromFunction(c => new WhenPlayerStartedInteractionCollisionWithAreaUseCase(
                 c.Resolve<CollectCollectableUseCase>()
+            ));
+
+        builder.Bind<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()
+            .FromFunction(c => new WhenPlayerStartedInteractionCollisionWithBodyUseCase(
+                c.Resolve<WhenPlayerCollidedWithCrateUseCase>()
             ));
     }
 }

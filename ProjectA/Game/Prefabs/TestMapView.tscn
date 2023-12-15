@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dera4463br3yh" path="res://Game/Textures/Platform.png" id="7_8nr4b"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/NineSliceSprites/NineSliceSprite2D.cs" id="8_rglh2"]
 [ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="9_hkfqr"]
+[ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/CrateView.tscn" id="10_psi8n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_lji6d")
@@ -30,8 +31,6 @@ shader_parameter/bottom = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnc5t"]
 size = Vector2(48, 5)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_he5rq"]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_rrdce")
@@ -70,6 +69,7 @@ grow_vertical = 2
 color = Color(0.129412, 0.121569, 0.188235, 1)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(146, 0)
 collision_layer = 2
 collision_mask = 2
 
@@ -104,8 +104,7 @@ position = Vector2(-168, 64)
 [node name="AppleCollectableView3" parent="." instance=ExtResource("9_hkfqr")]
 position = Vector2(-128, 64)
 
-[node name="CrateView" type="Node2D" parent="."]
-position = Vector2(-64, 0)
+[node name="CrateView" parent="." instance=ExtResource("10_psi8n")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CrateView"]
-sprite_frames = SubResource("SpriteFrames_he5rq")
+[node name="CrateView2" parent="." instance=ExtResource("10_psi8n")]
+position = Vector2(4, 5)

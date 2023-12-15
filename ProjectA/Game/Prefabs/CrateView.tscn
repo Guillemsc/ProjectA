@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://xytolcxvv17g"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Crates/Views/CrateView.cs" id="1_ulhai"]
+[ext_resource type="Texture2D" uid="uid://c5r26uqbqqoqq" path="res://Game/Textures/Crate-Idle.png" id="2_g7v4m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnnwn"]
+atlas = ExtResource("2_g7v4m")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_he5rq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnnwn")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia58x"]
+
+[node name="CrateView" type="Node2D" node_paths=PackedStringArray("StaticBody2D")]
+position = Vector2(-38, 54)
+script = ExtResource("1_ulhai")
+StaticBody2D = NodePath("")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_he5rq")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ia58x")
