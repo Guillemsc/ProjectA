@@ -28,15 +28,27 @@ public sealed class WhenPlayerCollidedWithCrateUseCase
         bool onTop = collisionNormal is { X: 0f, Y: < 0f };
         bool onBottom = collisionNormal is { X: 0f, Y: > 0f };
 
+        bool shouldBreak = false;
+        
         if (onTop)
         {
             Vector2 newVelocity = playerView.Velocity;
             newVelocity.Y = -crateView.BounceStrenght;
             playerView.Velocity = newVelocity;
+
+            crateView.AnimationPlayer!.NeedsToPlayHit = true;
+            shouldBreak = true;
         }
         else if(onBottom)
         {
-            GD.Print("Bottom");
+            crateView.AnimationPlayer!.NeedsToPlayHit = true;
+            shouldBreak = true;
+        }
+
+        if (shouldBreak)
+        {
+            crateView.AnimationPlayer!.Broken = true;
+            crateView.AnimationPlayer.SpawnContents += () => GD.Print("Spawn!");
         }
     }
 }

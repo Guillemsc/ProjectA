@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d22jb7encgi8w"]
+[gd_scene load_steps=25 format=3 uid="uid://d22jb7encgi8w"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Collectables/Views/CollectableView.cs" id="1_xx3xp"]
 [ext_resource type="Texture2D" uid="uid://dfynku7528r3n" path="res://Game/Textures/Apple-Idle.png" id="2_vtf7d"]
@@ -173,10 +173,15 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_01uwb"]
-size = Vector2(17, 17)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thc0k"]
+size = Vector2(16, 17)
 
-[node name="AppleCollectableView" type="Node2D" node_paths=PackedStringArray("AnimationPlayer")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01uwb"]
+size = Vector2(16, 17)
+
+[node name="AppleCollectableView" type="RigidBody2D" node_paths=PackedStringArray("AnimationPlayer")]
+lock_rotation = true
+freeze = true
 script = ExtResource("1_xx3xp")
 AnimationPlayer = NodePath("AnimationPlayer")
 
@@ -192,10 +197,14 @@ animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.672132
 
+[node name="MapCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_thc0k")
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="PlayerCollision" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_01uwb")

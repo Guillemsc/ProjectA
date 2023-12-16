@@ -1,7 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://xytolcxvv17g"]
+[gd_scene load_steps=19 format=3 uid="uid://xytolcxvv17g"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Crates/Views/CrateView.cs" id="1_ulhai"]
 [ext_resource type="Texture2D" uid="uid://c5r26uqbqqoqq" path="res://Game/Textures/Crate-Idle.png" id="2_g7v4m"]
+[ext_resource type="Texture2D" uid="uid://clw46s8lyh5iw" path="res://Game/Textures/Crate-Hit.png" id="2_s50rd"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Crates/AnimationGraphPlayers/CrateAnimationGraphPlayer.cs" id="3_fk5m4"]
+[ext_resource type="Texture2D" uid="uid://bur3mjdu323yf" path="res://Game/Textures/Crate-Break.png" id="5_o7fay"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nqr6"]
+atlas = ExtResource("2_s50rd")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13usd"]
+atlas = ExtResource("2_s50rd")
+region = Rect2(28, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u02i"]
+atlas = ExtResource("2_s50rd")
+region = Rect2(56, 0, 28, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tnnwn"]
 atlas = ExtResource("2_g7v4m")
@@ -11,6 +26,20 @@ region = Rect2(0, 0, 28, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13usd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u02i")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tnnwn")
 }],
 "loop": false,
@@ -18,20 +47,302 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="Animation" id="Animation_3qyba"]
+resource_name = "Broken"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DestroyedPieces:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DestroyedPieces:process_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DestroyedPieces/CratePiece1")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(-20, -60)],
+"method": &"apply_central_impulse"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DestroyedPieces/CratePiece2")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(20, -60)],
+"method": &"apply_central_impulse"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DestroyedPieces/CratePiece3")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(-30, -50)],
+"method": &"apply_central_impulse"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DestroyedPieces/CratePiece4")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [Vector2(30, -50)],
+"method": &"apply_central_impulse"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DestroyedPieces:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.2, 2.3, 2.35),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(0.00392157, 0.00392157, 0.00392157, 0), Color(1, 1, 1, 1), Color(0.00392157, 0.00392157, 0.00392157, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w6jxl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DestroyedPieces:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DestroyedPieces:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ms662"]
+_data = {
+"Broken": SubResource("Animation_3qyba"),
+"RESET": SubResource("Animation_w6jxl")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ia58x"]
 
-[node name="CrateView" type="Node2D" node_paths=PackedStringArray("StaticBody2D")]
-position = Vector2(-38, 54)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh5hj"]
+size = Vector2(9, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmh8b"]
+size = Vector2(11, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmvuo"]
+size = Vector2(12, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8j6y"]
+size = Vector2(8, 9)
+
+[node name="CrateView" type="Node2D" node_paths=PackedStringArray("AnimationPlayer")]
 script = ExtResource("1_ulhai")
-StaticBody2D = NodePath("")
+AnimationPlayer = NodePath("AnimationGraphPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_he5rq")
 animation = &"Idle"
 autoplay = "Idle"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ms662")
+}
+
+[node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D", "AnimationPlayer")]
+script = ExtResource("3_fk5m4")
+AnimatedSprite2D = NodePath("../AnimatedSprite2D")
+AnimationPlayer = NodePath("../AnimationPlayer")
+
 [node name="Area2D" type="StaticBody2D" parent="."]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_ia58x")
+
+[node name="DestroyedPieces" type="CanvasModulate" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(0, -1)
+
+[node name="CratePiece1" type="RigidBody2D" parent="DestroyedPieces"]
+position = Vector2(-6, -4)
+collision_layer = 16
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedPieces/CratePiece1"]
+texture = ExtResource("5_o7fay")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedPieces/CratePiece1"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_nh5hj")
+
+[node name="CratePiece2" type="RigidBody2D" parent="DestroyedPieces"]
+position = Vector2(4, -4)
+collision_layer = 16
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedPieces/CratePiece2"]
+texture = ExtResource("5_o7fay")
+hframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedPieces/CratePiece2"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_bmh8b")
+
+[node name="CratePiece3" type="RigidBody2D" parent="DestroyedPieces"]
+position = Vector2(-5, 7)
+collision_layer = 16
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedPieces/CratePiece3"]
+texture = ExtResource("5_o7fay")
+hframes = 4
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedPieces/CratePiece3"]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_nmvuo")
+
+[node name="CratePiece4" type="RigidBody2D" parent="DestroyedPieces"]
+position = Vector2(6, 7)
+collision_layer = 16
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="DestroyedPieces/CratePiece4"]
+texture = ExtResource("5_o7fay")
+hframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyedPieces/CratePiece4"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_a8j6y")

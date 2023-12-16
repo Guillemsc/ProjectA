@@ -107,4 +107,4 @@ position = Vector2(-128, 64)
 [node name="CrateView" parent="." instance=ExtResource("10_psi8n")]
 
 [node name="CrateView2" parent="." instance=ExtResource("10_psi8n")]
-position = Vector2(4, 5)
+position = Vector2(-38, 54)
