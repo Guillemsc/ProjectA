@@ -4,17 +4,17 @@ namespace Game.GameContext.General.UseCases;
 
 public sealed class GameStartUseCase
 {
-    readonly SetPlayerMovementEnabledUseCase _setPlayerMovementEnabledUseCase;
+    readonly StartPlayerUseCase _startPlayerUseCase;
 
     public GameStartUseCase(
-        SetPlayerMovementEnabledUseCase setPlayerMovementEnabledUseCase
+        StartPlayerUseCase startPlayerUseCase
         )
     {
-        _setPlayerMovementEnabledUseCase = setPlayerMovementEnabledUseCase;
+        _startPlayerUseCase = startPlayerUseCase;
     }
 
     public void Execute()
     {
-        _setPlayerMovementEnabledUseCase.Execute(true);
+        _startPlayerUseCase.Execute(true);
     }
 }

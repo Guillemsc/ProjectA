@@ -7,6 +7,8 @@ using Game.GameContext.General.Installers;
 using Game.GameContext.General.Interactors;
 using Game.GameContext.Maps.Installers;
 using Game.GameContext.Players.Installers;
+using Game.GameContext.Trampolines.Installers;
+using Game.GameContext.VelocityBoosters.Installers;
 using Game.GameContext.VisualEffects.Installers;
 using GUtils.ApplicationContexts.Contexts;
 using GUtils.Di.Contexts;
@@ -39,6 +41,8 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGameCollectables();
                 b.InstallGameVisualEffects();
                 b.InstallGameCrates();
+                b.InstallGameTrampolines();
+                b.InstallGameVelocityBoosters();
                 
                 b.InstallGameCheats();
             }));

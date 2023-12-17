@@ -39,6 +39,11 @@ public sealed class TickPlayerMovementUseCase
         {
             return;
         }
+
+        if (!playerView.CanUpdateMovement)
+        {
+            return;
+        }
         
         float delta = _deltaTimeService.PhysicsDeltaTime;
         
@@ -150,37 +155,46 @@ public sealed class TickPlayerMovementUseCase
         Vector2 movementDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
         bool thereWasHorizontalMovement = movementDirection.X != 0f && playerView.CanMove;
-        
+
+        float velocityToAdd = 0f;
+
         if (thereWasHorizontalMovement)
         {
             bool changedDirection =
                 playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Right && movementDirection.X < 0f
-                || playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Left && movementDirection.X > 0f;
+                || playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Left &&
+                movementDirection.X > 0f;
 
-            if (changedDirection)
-            {
-                newVelocity.X = 0f;
-            }
-            
-            newVelocity.X += movementDirection.X * _gamePlayersConfiguration.HorizontalAcceleration;
+            velocityToAdd = movementDirection.X * _gamePlayersConfiguration.HorizontalAcceleration;
+            float finalVelocity = newVelocity.X + velocityToAdd;
 
             float horizontalMaxSpeed = playerView.IsOnFloor()
                 ? _gamePlayersConfiguration.HorizontalMaxSpeed
                 : _gamePlayersConfiguration.HorizontalMaxSpeedOnAir;
 
-            newVelocity.X = MathExtensions.Clamp(
-                newVelocity.X,
-                -horizontalMaxSpeed,
-                horizontalMaxSpeed
-            );
-            
-            playerView.AnimationPlayer!.HorizontalDirection = movementDirection.X > 0f ? HorizontalDirection.Right : HorizontalDirection.Left;
+            if (Mathf.Abs(finalVelocity) > horizontalMaxSpeed)
+            {
+                velocityToAdd = movementDirection.X * Mathf.Max(0, horizontalMaxSpeed - Mathf.Abs(newVelocity.X));
+            }
+
+            if (changedDirection && Mathf.Abs(finalVelocity) < horizontalMaxSpeed)
+            {
+                newVelocity.X = 0f;
+            }
+
+            playerView.AnimationPlayer!.HorizontalDirection =
+                movementDirection.X > 0f ? HorizontalDirection.Right : HorizontalDirection.Left;
         }
-        else
+
+        if (velocityToAdd == 0)
         {
             newVelocity.X = Mathf.MoveToward(newVelocity.X, 0, _gamePlayersConfiguration.HorizontalDeceleration);
         }
-        
+        else
+        {
+            newVelocity.X += velocityToAdd;
+        }
+
         playerView.AnimationPlayer!.MovingHorizontally = newVelocity.X != 0f;
 
         return newVelocity;

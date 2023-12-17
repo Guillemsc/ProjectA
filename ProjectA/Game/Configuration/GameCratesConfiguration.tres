@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GameCratesConfiguration" load_steps=2 format=3 uid="uid://bclswhke5mjgn"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Crates/Configurations/GameCratesConfiguration.cs" id="1_yajin"]
+
+[resource]
+script = ExtResource("1_yajin")

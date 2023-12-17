@@ -1,6 +1,10 @@
+using System;
 using Game.GameContext.Collectables.UseCases;
 using Game.GameContext.Collectables.Views;
-using Game.GameContext.Crates.Views;
+using Game.GameContext.Trampolines.UseCases;
+using Game.GameContext.Trampolines.Views;
+using Game.GameContext.VelocityBoosters.UseCases;
+using Game.GameContext.VelocityBoosters.Views;
 using Godot;
 using GUtils.Optionals;
 using GUtilsGodot.Extensions;
@@ -9,33 +13,41 @@ namespace Game.GameContext.Players.UseCases;
 
 public sealed class WhenPlayerStartedInteractionCollisionWithAreaUseCase
 {
-    readonly CollectCollectableUseCase _collectCollectableUseCase;
+    readonly WhenPlayerCollidedWithCollectableUseCase _whenPlayerCollidedWithCollectableUseCase;
+    readonly WhenPlayerCollidedWithTrampolineUseCase _whenPlayerCollidedWithTrampolineUseCase;
+    readonly WhenPlayerCollidedWithVelocityBoosterUseCase _whenPlayerCollidedWithVelocityBoosterUseCase;
 
     public WhenPlayerStartedInteractionCollisionWithAreaUseCase(
-        CollectCollectableUseCase collectCollectableUseCase
+        WhenPlayerCollidedWithCollectableUseCase whenPlayerCollidedWithCollectableUseCase, 
+        WhenPlayerCollidedWithTrampolineUseCase whenPlayerCollidedWithTrampolineUseCase,
+        WhenPlayerCollidedWithVelocityBoosterUseCase whenPlayerCollidedWithVelocityBoosterUseCase
         )
     {
-        _collectCollectableUseCase = collectCollectableUseCase;
+        _whenPlayerCollidedWithCollectableUseCase = whenPlayerCollidedWithCollectableUseCase;
+        _whenPlayerCollidedWithTrampolineUseCase = whenPlayerCollidedWithTrampolineUseCase;
+        _whenPlayerCollidedWithVelocityBoosterUseCase = whenPlayerCollidedWithVelocityBoosterUseCase;
     }
 
     public void Execute(Area2D area2D)
     {
-        Optional<CollectableView> optionalCollectableView = area2D.GetNodeOnParentHierarchy<CollectableView>();
+        if(TryGetAndRun<CollectableView>(area2D, _whenPlayerCollidedWithCollectableUseCase.Execute)) return;
+        if(TryGetAndRun<TrampolineView>(area2D, _whenPlayerCollidedWithTrampolineUseCase.Execute)) return;
+        if(TryGetAndRun<VelocityBoosterView>(area2D, _whenPlayerCollidedWithVelocityBoosterUseCase.Execute)) return;
+    }
 
-        bool hasCollectableView = optionalCollectableView.TryGet(out CollectableView collectableView);
+    bool TryGetAndRun<T>(Area2D area2D, Action<T> action) where T : Node
+    {
+        Optional<T> optionalNode = area2D.GetNodeOnParentHierarchy<T>();
 
-        if (hasCollectableView)
+        bool hasCollectableView = optionalNode.TryGet(out T node);
+
+        if (!hasCollectableView)
         {
-            _collectCollectableUseCase.Execute(collectableView);
+            return false;
         }
         
-        Optional<CrateView> optionalCrateView = area2D.GetNodeOnParentHierarchy<CrateView>();
+        action.Invoke(node);
 
-        bool hasCrateView = optionalCrateView.TryGet(out CrateView crateView);
-
-        if (hasCrateView)
-        {
-            GD.Print("Crate!");
-        }
+        return true;
     }
 }

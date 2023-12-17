@@ -9,12 +9,12 @@ using GUtilsGodot.Extensions;
 
 namespace Game.GameContext.Collectables.UseCases;
 
-public sealed class CollectCollectableUseCase
+public sealed class WhenPlayerCollidedWithCollectableUseCase
 {
     readonly IAsyncTaskRunner _asyncTaskRunner;
     readonly PlayOneShotVisualEffectUseCase _playOneShotVisualEffectUseCase;
 
-    public CollectCollectableUseCase(
+    public WhenPlayerCollidedWithCollectableUseCase(
         IAsyncTaskRunner asyncTaskRunner,
         PlayOneShotVisualEffectUseCase playOneShotVisualEffectUseCase
         )

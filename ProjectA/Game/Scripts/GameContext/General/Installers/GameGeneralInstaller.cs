@@ -4,6 +4,7 @@ using Game.GameContext.Maps.UseCases;
 using Game.GameContext.Players.UseCases;
 using GUtils.Di.Builder;
 using GUtils.Extensions;
+using GUtils.Randomization.Generators;
 using GUtils.Tasks.Runners;
 using GUtils.Tasks.Trackers;
 
@@ -27,12 +28,15 @@ public static class GameGeneralInstaller
 
         builder.Bind<GameStartUseCase>()
             .FromFunction(c => new GameStartUseCase(
-                c.Resolve<SetPlayerMovementEnabledUseCase>()
+                c.Resolve<StartPlayerUseCase>()
             ));
 
         builder.Bind<IAsyncTaskRunner, AsyncTaskRunner>()
             .FromFunction(c => new AsyncTaskRunner())
             .WhenDispose(o => o.CancelForever)
             .LinkDisposable();
+
+        builder.Bind<IRandomGenerator>()
+            .FromInstance(new SeedRandomGenerator(0));
     }
 }

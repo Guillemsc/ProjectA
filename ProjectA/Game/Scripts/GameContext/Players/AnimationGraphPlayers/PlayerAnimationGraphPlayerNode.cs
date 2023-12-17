@@ -54,7 +54,7 @@ public partial class PlayerAnimationGraphPlayerNode : AnimationGraphPlayerNode
             AnimatedSprite2D!,
             PlayerAnimationState.Wall.ToString()
         ));
-
+        
         AnimationGraphConnection idleToRun = idle.ConnectToUnsafe(run);
         idleToRun.Conditions.Add(new CallbackPredicate(() => MovingHorizontally));
         idleToRun.Conditions.Add(new CallbackPredicate(() => !OnAir));
@@ -151,7 +151,7 @@ public partial class PlayerAnimationGraphPlayerNode : AnimationGraphPlayerNode
         wallToJump.Conditions.Add(new CallbackPredicate(() => !OnWall));
         wallToJump.Conditions.Add(new CallbackPredicate(() => OnAir));
         
-        AnimationGraphPlayer animationGraphPlayer = new AnimationGraphPlayer(idle);
+        AnimationGraphPlayer animationGraphPlayer = new AnimationGraphPlayer(fall);
 
         return animationGraphPlayer;
     }

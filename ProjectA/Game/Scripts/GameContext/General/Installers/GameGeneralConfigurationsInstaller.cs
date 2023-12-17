@@ -1,3 +1,5 @@
+using Game.GameContext.Collectables.Configurations;
+using Game.GameContext.Crates.Configurations;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Configurations;
 using Game.GameContext.Players.Configurations;
@@ -14,5 +16,7 @@ public static class GameGeneralConfigurationsInstaller
         builder.Bind<GamePlayersConfiguration>().FromInstance(gameConfiguration.PlayersConfiguration!);
         builder.Bind<GameMapsConfiguration>().FromInstance(gameConfiguration.MapsConfiguration!);
         builder.Bind<GameVisualEffectsConfiguration>().FromInstance(gameConfiguration.VisualEffectsConfiguration!);
+        builder.Bind<GameCollectablesConfiguration>().FromInstance(gameConfiguration.CollectablesConfiguration!);
+        builder.Bind<GameCratesConfiguration>().FromInstance(gameConfiguration.CratesConfiguration!);
     }
 }

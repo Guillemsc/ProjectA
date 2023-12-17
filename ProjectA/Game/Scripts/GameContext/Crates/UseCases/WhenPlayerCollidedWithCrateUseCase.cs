@@ -8,10 +8,15 @@ namespace Game.GameContext.Crates.UseCases;
 public sealed class WhenPlayerCollidedWithCrateUseCase
 {
     readonly PlayerViewData _playerViewData;
-
-    public WhenPlayerCollidedWithCrateUseCase(PlayerViewData playerViewData)
+    readonly SpawnFruitCollectablesWhenCrateHitUseCase _spawnFruitCollectablesWhenCrateHitUseCase;
+    
+    public WhenPlayerCollidedWithCrateUseCase(
+        PlayerViewData playerViewData, 
+        SpawnFruitCollectablesWhenCrateHitUseCase spawnFruitCollectablesWhenCrateHitUseCase
+        )
     {
         _playerViewData = playerViewData;
+        _spawnFruitCollectablesWhenCrateHitUseCase = spawnFruitCollectablesWhenCrateHitUseCase;
     }
 
     public void Execute(CrateView crateView, KinematicCollision2D kinematicCollision2D)
@@ -28,7 +33,7 @@ public sealed class WhenPlayerCollidedWithCrateUseCase
         bool onTop = collisionNormal is { X: 0f, Y: < 0f };
         bool onBottom = collisionNormal is { X: 0f, Y: > 0f };
 
-        bool shouldBreak = false;
+        bool isHit = false;
         
         if (onTop)
         {
@@ -37,18 +42,34 @@ public sealed class WhenPlayerCollidedWithCrateUseCase
             playerView.Velocity = newVelocity;
 
             crateView.AnimationPlayer!.NeedsToPlayHit = true;
-            shouldBreak = true;
+            isHit = true;
         }
         else if(onBottom)
         {
             crateView.AnimationPlayer!.NeedsToPlayHit = true;
-            shouldBreak = true;
+            isHit = true;
         }
 
-        if (shouldBreak)
+        if (!isHit)
+        {
+            return;
+        }
+
+        crateView.HitsCount += 1;
+
+        bool shouldBeDestroyed = crateView.HitsCount >= crateView.HitsToDestroy;
+
+        if (!shouldBeDestroyed)
+        {
+            _spawnFruitCollectablesWhenCrateHitUseCase.Execute(crateView, crateView.FruitsPerHit);
+        }
+        else
         {
             crateView.AnimationPlayer!.Broken = true;
-            crateView.AnimationPlayer.SpawnContents += () => GD.Print("Spawn!");
+            crateView.AnimationPlayer.SpawnContents += () =>
+            {
+                _spawnFruitCollectablesWhenCrateHitUseCase.Execute(crateView, crateView.FruitsWhenDestroyed);
+            }; 
         }
     }
 }

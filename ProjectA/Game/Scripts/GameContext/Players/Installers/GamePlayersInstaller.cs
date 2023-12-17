@@ -4,7 +4,10 @@ using Game.GameContext.General.Datas;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.UseCases;
+using Game.GameContext.Trampolines.UseCases;
+using Game.GameContext.VelocityBoosters.UseCases;
 using GUtils.Di.Builder;
+using GUtils.Tasks.Runners;
 using GUtils.Tick.Enums;
 using GUtils.Tick.Extensions;
 using GUtils.Time.Services;
@@ -29,9 +32,10 @@ public static class GamePlayersInstaller
                 c.Resolve<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()
             ));
 
-        builder.Bind<SetPlayerMovementEnabledUseCase>()
-            .FromFunction(c => new SetPlayerMovementEnabledUseCase(
-                c.Resolve<PlayerViewData>()
+        builder.Bind<StartPlayerUseCase>()
+            .FromFunction(c => new StartPlayerUseCase(
+                c.Resolve<PlayerViewData>(),
+                c.Resolve<IAsyncTaskRunner>()
             ));
         
         builder.Bind<TickPlayerMovementUseCase>()
@@ -60,7 +64,9 @@ public static class GamePlayersInstaller
 
         builder.Bind<WhenPlayerStartedInteractionCollisionWithAreaUseCase>()
             .FromFunction(c => new WhenPlayerStartedInteractionCollisionWithAreaUseCase(
-                c.Resolve<CollectCollectableUseCase>()
+                c.Resolve<WhenPlayerCollidedWithCollectableUseCase>(),
+                c.Resolve<WhenPlayerCollidedWithTrampolineUseCase>(),
+                c.Resolve<WhenPlayerCollidedWithVelocityBoosterUseCase>()
             ));
 
         builder.Bind<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()

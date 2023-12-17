@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnu7c4diajc4h"]
+[gd_scene load_steps=17 format=3 uid="uid://bnu7c4diajc4h"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_rrdce"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_lji6d"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://GUtilsGodot/Source/NineSliceSprites/NineSliceSprite2D.cs" id="8_rglh2"]
 [ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="9_hkfqr"]
 [ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/CrateView.tscn" id="10_psi8n"]
+[ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/TrampolineView.tscn" id="11_84evq"]
+[ext_resource type="PackedScene" uid="uid://cjmhkolmgxq53" path="res://Game/Prefabs/VelocityBoosterView.tscn" id="12_aagrt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_lji6d")
@@ -40,6 +42,7 @@ zoom = Vector2(2.03, 2.03)
 
 [node name="MapBackground" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_bx5qr")
+position = Vector2(4, 4)
 scale = Vector2(8.297, 4.596)
 texture = ExtResource("3_cdfd8")
 
@@ -69,7 +72,7 @@ grow_vertical = 2
 color = Color(0.129412, 0.121569, 0.188235, 1)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(146, 0)
+position = Vector2(227, 115)
 collision_layer = 2
 collision_mask = 2
 
@@ -105,6 +108,30 @@ position = Vector2(-168, 64)
 position = Vector2(-128, 64)
 
 [node name="CrateView" parent="." instance=ExtResource("10_psi8n")]
+position = Vector2(-38, -9)
+HitsToDestroy = 3
+FruitsPerHit = 1
 
 [node name="CrateView2" parent="." instance=ExtResource("10_psi8n")]
 position = Vector2(-38, 54)
+
+[node name="CrateView3" parent="." instance=ExtResource("10_psi8n")]
+position = Vector2(40, 86)
+
+[node name="CrateView4" parent="." instance=ExtResource("10_psi8n")]
+position = Vector2(94, 86)
+
+[node name="CrateView5" parent="." instance=ExtResource("10_psi8n")]
+position = Vector2(-121, -26)
+
+[node name="TrampolineView" parent="." instance=ExtResource("11_84evq")]
+position = Vector2(162, 114)
+
+[node name="VelocityBoosterView" parent="." instance=ExtResource("12_aagrt")]
+position = Vector2(132, 113)
+BoostStrenght = 500.0
+
+[node name="VelocityBoosterView2" parent="." instance=ExtResource("12_aagrt")]
+position = Vector2(132, 49)
+rotation = -0.872665
+BoostStrenght = 500.0

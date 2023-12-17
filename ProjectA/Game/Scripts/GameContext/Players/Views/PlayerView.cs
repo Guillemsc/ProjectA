@@ -13,6 +13,7 @@ public partial class PlayerView : CharacterBody2D
    [Export] public Area2D? RightWallDetector;
    [Export] public Area2D? InteractionsDetector;
 
+   public bool CanUpdateMovement;
    public bool CanMove;
    public bool CanJump;
    public bool CanDoubleJump;
