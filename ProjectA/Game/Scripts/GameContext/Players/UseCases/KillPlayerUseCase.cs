@@ -46,10 +46,10 @@ public sealed class KillPlayerUseCase
             {
                 Vector2 previousPosition = playerView.PreviousPositions[0];
                 Vector2 commingDirection = (previousPosition - playerView.GlobalPosition).Normalized();
-                Vector2 finalPosition = playerView.GlobalPosition + commingDirection * 50;
+                Vector2 finalPosition = playerView.GlobalPosition + commingDirection * 40;
             
                 await playerView.TweenGlobalPosition(finalPosition, 0.5f)
-                    .SetEasing(Easing.InOutCubic)
+                    .SetEasing(Easing.OutCubic)
                     .PlayAsync(cancellationToken);
             }
 

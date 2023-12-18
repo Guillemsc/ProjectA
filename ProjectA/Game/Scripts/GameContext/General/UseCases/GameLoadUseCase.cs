@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Maps.UseCases;
 using Game.GameContext.Players.UseCases;
 
@@ -9,20 +10,26 @@ public sealed class GameLoadUseCase
 {
     readonly SpawnMapUseCase _spawnMapUseCase;
     readonly SpawnPlayerUseCase _spawnPlayerUseCase;
+    readonly SetupCameraUseCase _setupCameraUseCase;
+    readonly SetPlayerAsCameraTargetUseCase _setPlayerAsCameraTargetUseCase;
 
     public GameLoadUseCase(
         SpawnMapUseCase spawnMapUseCase,
-        SpawnPlayerUseCase spawnPlayerUseCase
-        )
+        SpawnPlayerUseCase spawnPlayerUseCase, 
+        SetupCameraUseCase setupCameraUseCase,
+        SetPlayerAsCameraTargetUseCase setPlayerAsCameraTargetUseCase)
     {
         _spawnMapUseCase = spawnMapUseCase;
         _spawnPlayerUseCase = spawnPlayerUseCase;
+        _setPlayerAsCameraTargetUseCase = setPlayerAsCameraTargetUseCase;
+        _setupCameraUseCase = setupCameraUseCase;
     }
 
-    public Task Execute(CancellationToken cancellationToken)
+    public async Task Execute(CancellationToken cancellationToken)
     {
-        _spawnMapUseCase.Execute();
+        await _spawnMapUseCase.Execute();
         _spawnPlayerUseCase.Execute();
-        return Task.CompletedTask;
+        _setupCameraUseCase.Execute();
+        _setPlayerAsCameraTargetUseCase.Execute();
     }
 }

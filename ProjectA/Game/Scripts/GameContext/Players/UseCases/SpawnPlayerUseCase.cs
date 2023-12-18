@@ -1,36 +1,46 @@
+using Game.GameContext.Connections.UseCases;
+using Game.GameContext.Connections.Views;
+using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Datas;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Views;
 using Godot;
 using GUtils.Locations.Enums;
+using GUtils.Optionals;
 using GUtilsGodot.Extensions;
 
 namespace Game.GameContext.Players.UseCases;
 
 public sealed class SpawnPlayerUseCase
 {
+    readonly GameApplicationContextConfiguration _contextConfiguration;
     readonly GamePlayersConfiguration _gamePlayersConfiguration;
     readonly PlayerViewData _playerViewData;
     readonly GameGeneralViewData _gameGeneralViewData;
+    readonly GetConnectionWithIdUseCase _getConnectionWithIdUseCase;
     readonly WhenPlayerStartedCollisionWithWallUseCase _whenPlayerStartedCollisionWithWallUseCase;
     readonly WhenPlayerStoppedCollisionWithWallUseCase _whenPlayerStoppedCollisionWithWallUseCase;
     readonly WhenPlayerStartedInteractionCollisionWithAreaUseCase _whenPlayerStartedInteractionCollisionWithAreaUseCase;
     readonly WhenPlayerStartedInteractionCollisionWithBodyUseCase _whenPlayerStartedInteractionCollisionWithBodyUseCase;
 
     public SpawnPlayerUseCase(
+        GameApplicationContextConfiguration contextConfiguration,
         GamePlayersConfiguration gamePlayersConfiguration, 
         PlayerViewData playerViewData, 
         GameGeneralViewData gameGeneralViewData, 
+        GetConnectionWithIdUseCase getConnectionWithIdUseCase,
         WhenPlayerStartedCollisionWithWallUseCase whenPlayerStartedCollisionWithWallUseCase,
         WhenPlayerStoppedCollisionWithWallUseCase whenPlayerStoppedCollisionWithWallUseCase, 
         WhenPlayerStartedInteractionCollisionWithAreaUseCase whenPlayerStartedInteractionCollisionWithAreaUseCase,
         WhenPlayerStartedInteractionCollisionWithBodyUseCase whenPlayerStartedInteractionCollisionWithBodyUseCase
         )
     {
+        _contextConfiguration = contextConfiguration;
         _gamePlayersConfiguration = gamePlayersConfiguration;
         _playerViewData = playerViewData;
         _gameGeneralViewData = gameGeneralViewData;
+        _getConnectionWithIdUseCase = getConnectionWithIdUseCase;
         _whenPlayerStartedCollisionWithWallUseCase = whenPlayerStartedCollisionWithWallUseCase;
         _whenPlayerStoppedCollisionWithWallUseCase = whenPlayerStoppedCollisionWithWallUseCase;
         _whenPlayerStartedInteractionCollisionWithAreaUseCase = whenPlayerStartedInteractionCollisionWithAreaUseCase;
@@ -43,6 +53,17 @@ public sealed class SpawnPlayerUseCase
         playerView.SetParent(_gameGeneralViewData.Root);
         playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Disabled;
         playerView.AnimatedSprite!.Visible = false;
+
+        Optional<ConnectionView> optionalConnectionView = _getConnectionWithIdUseCase.Execute(
+            _contextConfiguration.SpawnId
+        );
+
+        bool hasConnectionView = optionalConnectionView.TryGet(out ConnectionView connectionView);
+
+        if (hasConnectionView)
+        {
+            playerView.GlobalPosition = connectionView.GlobalPosition;
+        }
         
         playerView.LeftWallDetector!.ConnectBodyEntered(_ => _whenPlayerStartedCollisionWithWallUseCase.Execute(HorizontalLocation.Left));
         playerView.RightWallDetector!.ConnectBodyEntered(_ => _whenPlayerStartedCollisionWithWallUseCase.Execute(HorizontalLocation.Right));

@@ -1,6 +1,9 @@
 ﻿using Game.Contexts.Configuration;
+using Game.GameContext.Areas.Installers;
+using Game.GameContext.Cameras.Installers;
 using Game.GameContext.Cheats.Installers;
 using Game.GameContext.Collectables.Installers;
+using Game.GameContext.Connections.Installers;
 using Game.GameContext.Crates.Installers;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Installers;
@@ -22,6 +25,13 @@ namespace Game.GameContext.General.ApplicationContexts;
 
 public sealed class GameApplicationContext : DiApplicationContext<IGameContextInteractor>
 {
+    readonly GameApplicationContextConfiguration _contextConfiguration;
+
+    public GameApplicationContext(GameApplicationContextConfiguration contextConfiguration)
+    {
+        _contextConfiguration = contextConfiguration;
+    }
+
     protected override void Install(IDiContext<IGameContextInteractor> context)
     {
         ContextsScenesConfiguration contextsScenesConfiguration = ServiceLocator.Get<ContextsScenesConfiguration>();
@@ -33,12 +43,15 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
         context.AddInstaller(new CallbackInstaller(
             b =>
             {
-                b.InstallGameGeneralConfigurations(gameConfiguration);
+                b.InstallGameGeneralConfigurations(_contextConfiguration, gameConfiguration);
                 b.InstallGameGeneralServices();
                 b.InstallGameGeneral();
                 
+                b.InstallGameCameras();
                 b.InstallGamePlayers();
                 b.InstallGameMaps();
+                b.InstallGameAreas();
+                b.InstallGameConnections();
                 b.InstallGameCollectables();
                 b.InstallGameVisualEffects();
                 b.InstallGameCrates();

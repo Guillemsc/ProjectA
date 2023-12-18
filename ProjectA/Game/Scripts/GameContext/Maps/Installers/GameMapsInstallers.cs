@@ -1,5 +1,5 @@
+using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Datas;
-using Game.GameContext.Maps.Configurations;
 using Game.GameContext.Maps.Datas;
 using Game.GameContext.Maps.UseCases;
 using GUtils.Di.Builder;
@@ -14,7 +14,7 @@ public static class GameMapsInstallers
 
         builder.Bind<SpawnMapUseCase>()
             .FromFunction(c => new SpawnMapUseCase(
-                c.Resolve<GameMapsConfiguration>(),
+                c.Resolve<GameApplicationContextConfiguration>(),
                 c.Resolve<MapViewData>(),
                 c.Resolve<GameGeneralViewData>()
             ));

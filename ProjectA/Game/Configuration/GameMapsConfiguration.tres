@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="GameMapsConfiguration" load_steps=3 format=3 uid="uid://65ru2gqwh41d"]
+[gd_resource type="Resource" script_class="GameMapsConfiguration" load_steps=2 format=3 uid="uid://65ru2gqwh41d"]
 
-[ext_resource type="PackedScene" uid="uid://bnu7c4diajc4h" path="res://Game/Prefabs/TestMapView.tscn" id="1_5cq1b"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Configurations/GameMapsConfiguration.cs" id="1_42wxd"]
 
 [resource]
 script = ExtResource("1_42wxd")
-MapsPrefabs = Array[PackedScene]([ExtResource("1_5cq1b")])
+TestMap = "res://Game/Prefabs/Map1View.tscn"

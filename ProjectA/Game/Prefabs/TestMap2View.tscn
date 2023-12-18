@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8dxkf1gsihj1"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_x1oi8"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="2_buf2w"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="3_5ji65"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="4_cy3ro"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="4_qbuci"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="5_4l07j"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="6_gc4sy"]
+[ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/CrateView.tscn" id="12_hmvkn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
+shader = ExtResource("4_qbuci")
+shader_parameter/tilingScale = 1.341
+shader_parameter/movementX = 0.0
+shader_parameter/movementY = -1.0
+shader_parameter/movementSpeed = 0.2
+
+[node name="TestLevel2" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+script = ExtResource("1_x1oi8")
+AreaViews = [NodePath("AreaView")]
+ConnectionViews = [NodePath("ConnectionView")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+follow_viewport_scale = -1.245
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = -5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.121569, 0.188235, 1)
+
+[node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
+position = Vector2(41, 79)
+script = ExtResource("2_buf2w")
+Bounds = NodePath("Bounds")
+CameraZoom = 4.0
+
+[node name="Bounds" type="Node2D" parent="AreaView"]
+z_index = 3
+script = ExtResource("3_5ji65")
+Size = Vector2(200.415, 131.615)
+
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
+position = Vector2(48, 9)
+script = ExtResource("4_cy3ro")
+Bounds = NodePath("Bounds")
+Map = "res://Game/Prefabs/TestMapView.tscn"
+SpawnId = "test"
+
+[node name="Bounds" type="Node2D" parent="ConnectionView"]
+z_index = 3
+script = ExtResource("3_5ji65")
+Size = Vector2(31, 15)
+DebugColor = Color(0, 0.560784, 0.87451, 1)
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bx5qr")
+position = Vector2(36.5, 72.5)
+scale = Vector2(3.32812, 2.23437)
+texture = ExtResource("5_4l07j")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("6_gc4sy")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = 2
+layer_0/tile_data = PackedInt32Array(655355, 65536, 5, 655356, 65536, 5, 655359, 65536, 5, 589824, 65536, 5, 589831, 65536, 5, 589832, 65536, 5, 589833, 65536, 5, 589819, 65536, 5, 589820, 262144, 1342177281, 589823, 65536, 805306370, 524288, 65536, 805306370, 524289, 65536, 805306370, 524290, 65536, 805306370, 524291, 65536, 805306370, 524294, 65536, 805306370, 524295, 65536, 805306370, 524296, 262144, 1, 524297, 65536, 5, 589821, 65536, 805306370, 589822, 65536, 805306370, 131080, 0, 1, 196616, 0, 1, 131081, 65536, 5, 196617, 65536, 5, 65531, 65536, 5, 131067, 65536, 5, 196603, 65536, 5, 262139, 65536, 5, 327675, 65536, 5, 393211, 65536, 5, 458747, 65536, 5, 524283, 65536, 5, 65532, 65536, 5, 131068, 262144, 805306369, 196604, 131072, 1, 262140, 131072, 1, 327676, 131072, 1, 393212, 131072, 1, 458748, 131072, 1, 524284, 131072, 1, 65533, 65536, 5, 131069, 65536, 2, 65534, 65536, 5, 131070, 65536, 2, 65535, 65536, 5, 131071, 65536, 2, 0, 65536, 5, 65536, 65536, 2, 1, 131072, 1, 65537, 131072, 2, 4, 0, 1, 65540, 0, 2, 524292, 65536, 805306370, 5, 65536, 5, 65541, 65536, 2, 524293, 65536, 805306370, 6, 65536, 5, 65542, 65536, 2, 7, 65536, 5, 65543, 65536, 2, 8, 65536, 5, 65544, 262144, 1610612737, 262152, 0, 1, 327688, 0, 1, 393224, 0, 1, 458760, 0, 1, 9, 65536, 5, 65545, 65536, 5, 262153, 65536, 5, 327689, 65536, 5, 393225, 65536, 5, 458761, 65536, 5, 655357, 65536, 5, 655358, 65536, 5, 589825, 65536, 5, 589826, 65536, 5, 589827, 65536, 5, 589828, 65536, 5, 589829, 65536, 5, 589830, 65536, 5)
+layer_1/name = "Content-2"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array(393217, 458752, 0, 458753, 458752, 1, 524289, 458752, 2, 393218, 458752, 0, 458754, 458752, 1, 524290, 458752, 2, 393219, 524288, 0, 458755, 524288, 1, 524291, 524288, 2, 524284, 524288, 0, 589820, 458752, 1, 589821, 458752, 1, 524285, 458752, 1, 524286, 458752, 1, 589822, 458752, 2, 524287, 458752, 1, 589823, 458752, 2, 458752, 458752, 1, 524288, 458752, 2, 393214, 458752, 1, 458750, 458752, 1, 393215, 458752, 1, 458751, 458752, 1, 327680, 524288, 1, 393216, 589824, 1, 327677, 393216, 0, 327678, 458752, 0, 327679, 458752, 0, 262144, 524288, 0)
+layer_2/name = "Content-1"
+layer_2/tile_data = PackedInt32Array(393213, 393216, 1, 458749, 655360, 1, 524285, 524288, 2, 458748, 393216, 0)
+
+[node name="CrateView2" parent="." instance=ExtResource("12_hmvkn")]
+position = Vector2(-38, 54)
+
+[node name="CrateView3" parent="." instance=ExtResource("12_hmvkn")]
+position = Vector2(40, 86)
+
+[node name="CrateView4" parent="." instance=ExtResource("12_hmvkn")]
+position = Vector2(94, 118)

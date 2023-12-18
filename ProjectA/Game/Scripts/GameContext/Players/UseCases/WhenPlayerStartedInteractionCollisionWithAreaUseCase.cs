@@ -1,6 +1,8 @@
 using System;
 using Game.GameContext.Collectables.UseCases;
 using Game.GameContext.Collectables.Views;
+using Game.GameContext.Connections.UseCases;
+using Game.GameContext.Connections.Views;
 using Game.GameContext.PlayerKillers.Interfaces;
 using Game.GameContext.PlayerKillers.UseCases;
 using Game.GameContext.Trampolines.UseCases;

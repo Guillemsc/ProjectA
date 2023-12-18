@@ -1,4 +1,5 @@
 using Game.GameContext.Cheats.UseCases;
+using Game.GameContext.General.Configurations;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
 using GUtils.Tick.Extensions;
@@ -17,7 +18,8 @@ public static class GameCheatsInstaller
 
         builder.Bind<RestartCheatUseCase>()
             .FromFunction(c => new RestartCheatUseCase(
-                c.Resolve<ILoadingService>()
+                c.Resolve<ILoadingService>(),
+                c.Resolve<GameApplicationContextConfiguration>()
             ));
     }
 }

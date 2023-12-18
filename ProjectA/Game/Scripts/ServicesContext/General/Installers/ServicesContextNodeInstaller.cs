@@ -5,6 +5,7 @@ using GUtils.Loading.Services;
 using GUtils.Services.Extensions;
 using GUtils.Tick.Services;
 using GUtils.Time.Services;
+using GUtilsGodot.Cameras.Services;
 using GUtilsGodot.Di.Installers;
 using GUtilsGodot.Roots.Services;
 using GUtilsGodot.Tick.Services;
@@ -18,6 +19,7 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
 {
     [Export] public TickablesServiceNode? TickablesService;
     [Export] public DeltaTimeServiceNode? DeltaTimeService;
+    [Export] public Cameras2dServiceNode? Cameras2dService;
     [Export] public UiFrameService? UiFrameService;
     
     public override void Install(IDiContainerBuilder builder)
@@ -36,6 +38,10 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
         
         builder.Bind<IDeltaTimeService>()
             .FromInstance(DeltaTimeService!)
+            .LinkToServiceLocator();
+        
+        builder.Bind<ICameras2dService>()
+            .FromInstance(Cameras2dService!)
             .LinkToServiceLocator();
         
         builder.Bind<IUiFrameService>()

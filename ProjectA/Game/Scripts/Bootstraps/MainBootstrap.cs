@@ -35,10 +35,13 @@ public partial class MainBootstrap : Bootstrap
         await loadingService.New()
             .EnqueueLoadAndStartApplicationContext(new LoadingScreenApplicationContext())
             .Execute(cancellationToken);
+
+        string testMap = GameConfiguration!.MapsConfiguration!.TestMap!;
+        GameApplicationContextConfiguration contextConfiguration = new(testMap, string.Empty);
         
         await loadingService.New()
             .RunBeforeLoadActionsInstantly()
-            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext())
+            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(contextConfiguration))
             .Execute(cancellationToken);
     }
 }

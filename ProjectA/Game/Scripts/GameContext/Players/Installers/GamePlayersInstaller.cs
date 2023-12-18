@@ -1,5 +1,7 @@
 using Game.GameContext.Collectables.UseCases;
+using Game.GameContext.Connections.UseCases;
 using Game.GameContext.Crates.UseCases;
+using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Datas;
 using Game.GameContext.PlayerKillers.UseCases;
 using Game.GameContext.Players.Configurations;
@@ -24,9 +26,11 @@ public static class GamePlayersInstaller
 
         builder.Bind<SpawnPlayerUseCase>()
             .FromFunction(c => new SpawnPlayerUseCase(
+                c.Resolve<GameApplicationContextConfiguration>(),
                 c.Resolve<GamePlayersConfiguration>(),
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<GameGeneralViewData>(),
+                c.Resolve<GetConnectionWithIdUseCase>(),
                 c.Resolve<WhenPlayerStartedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStoppedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStartedInteractionCollisionWithAreaUseCase>(),
@@ -43,6 +47,11 @@ public static class GamePlayersInstaller
             .FromFunction(c => new KillPlayerUseCase(
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<IAsyncTaskRunner>()
+            ));
+
+        builder.Bind<FreezePlayerUseCase>()
+            .FromFunction(c => new FreezePlayerUseCase(
+                c.Resolve<PlayerViewData>()
             ));
         
         builder.Bind<TickPlayerMovementUseCase>()

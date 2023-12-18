@@ -1,4 +1,5 @@
-﻿using Game.GameContext.General.Interactors;
+﻿using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.General.Interactors;
 using Game.GameContext.General.UseCases;
 using Game.GameContext.Maps.UseCases;
 using Game.GameContext.Players.UseCases;
@@ -24,7 +25,9 @@ public static class GameGeneralInstaller
         builder.Bind<GameLoadUseCase>()
             .FromFunction(c => new GameLoadUseCase(
                 c.Resolve<SpawnMapUseCase>(),
-                c.Resolve<SpawnPlayerUseCase>()
+                c.Resolve<SpawnPlayerUseCase>(),
+                c.Resolve<SetupCameraUseCase>(),
+                c.Resolve<SetPlayerAsCameraTargetUseCase>()
             ));
 
         builder.Bind<GameStartUseCase>()
