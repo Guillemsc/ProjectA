@@ -6,6 +6,7 @@ using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Installers;
 using Game.GameContext.General.Interactors;
 using Game.GameContext.Maps.Installers;
+using Game.GameContext.PlayerKillers.Installers;
 using Game.GameContext.Players.Installers;
 using Game.GameContext.Trampolines.Installers;
 using Game.GameContext.VelocityBoosters.Installers;
@@ -43,6 +44,7 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGameCrates();
                 b.InstallGameTrampolines();
                 b.InstallGameVelocityBoosters();
+                b.InstallGamePlayerKillers();
                 
                 b.InstallGameCheats();
             }));

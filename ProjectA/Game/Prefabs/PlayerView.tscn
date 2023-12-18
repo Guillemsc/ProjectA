@@ -31,7 +31,9 @@ CharacterBody2D = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_rg7cu")
-animation = &"Idle"
+animation = &"Disappear"
+frame = 1
+frame_progress = 0.436224
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
 script = ExtResource("3_yhug4")

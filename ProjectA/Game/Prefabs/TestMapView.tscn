@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnu7c4diajc4h"]
+[gd_scene load_steps=18 format=3 uid="uid://bnu7c4diajc4h"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_rrdce"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_lji6d"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/CrateView.tscn" id="10_psi8n"]
 [ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/TrampolineView.tscn" id="11_84evq"]
 [ext_resource type="PackedScene" uid="uid://cjmhkolmgxq53" path="res://Game/Prefabs/VelocityBoosterView.tscn" id="12_aagrt"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/SpikesView.tscn" id="13_3l5jh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_lji6d")
@@ -133,5 +134,23 @@ BoostStrenght = 500.0
 
 [node name="VelocityBoosterView2" parent="." instance=ExtResource("12_aagrt")]
 position = Vector2(132, 49)
-rotation = -0.872665
-BoostStrenght = 500.0
+rotation = 1.0472
+
+[node name="SpikesView" parent="." instance=ExtResource("13_3l5jh")]
+position = Vector2(-117, 120)
+
+[node name="SpikesView2" parent="." instance=ExtResource("13_3l5jh")]
+position = Vector2(216, 22)
+rotation = -1.5708
+
+[node name="SpikesView3" parent="." instance=ExtResource("13_3l5jh")]
+position = Vector2(216, 7)
+rotation = -1.5708
+
+[node name="SpikesView4" parent="." instance=ExtResource("13_3l5jh")]
+position = Vector2(216, -8)
+rotation = -1.5708
+
+[node name="SpikesView5" parent="." instance=ExtResource("13_3l5jh")]
+position = Vector2(216, -23)
+rotation = -1.5708

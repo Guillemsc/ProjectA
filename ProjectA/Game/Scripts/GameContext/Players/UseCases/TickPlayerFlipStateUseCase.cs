@@ -25,6 +25,11 @@ public sealed class TickPlayerFlipStateUseCase
         {
             return;
         }
+        
+        if (!playerView.CanUpdateMovement)
+        {
+            return;
+        }
 
         bool flip = playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Left;
 

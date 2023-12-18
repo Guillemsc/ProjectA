@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg30wb7pqfbb"
-path="res://.godot/imported/Player-Desappear.png-d717988e953e7c5a47e81ccedcf50372.ctex"
+uid="uid://b5a6lmm2jq6on"
+path="res://.godot/imported/Spikes.png-e8c5077ae37c80069adb5747a0f62f58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Textures/Player-Desappear.png"
-dest_files=["res://.godot/imported/Player-Desappear.png-d717988e953e7c5a47e81ccedcf50372.ctex"]
+source_file="res://Game/Textures/Spikes.png"
+dest_files=["res://.godot/imported/Spikes.png-e8c5077ae37c80069adb5747a0f62f58.ctex"]
 
 [params]
 

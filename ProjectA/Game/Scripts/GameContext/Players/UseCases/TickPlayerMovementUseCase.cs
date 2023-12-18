@@ -17,18 +17,21 @@ public sealed class TickPlayerMovementUseCase
     readonly IDeltaTimeService _deltaTimeService;
     readonly PlayerViewData _playerViewData;
     readonly GamePlayersConfiguration _gamePlayersConfiguration;
+    readonly StorePlayerPreviousPositionUseCase _storePlayerPreviousPositionUseCase;
 
     readonly ITimer _jumpResetTimer = new StopwatchTimer();
     
     public TickPlayerMovementUseCase(
         IDeltaTimeService deltaTimeService, 
         PlayerViewData playerViewData, 
-        GamePlayersConfiguration gamePlayersConfiguration
+        GamePlayersConfiguration gamePlayersConfiguration, 
+        StorePlayerPreviousPositionUseCase storePlayerPreviousPositionUseCase
         )
     {
         _deltaTimeService = deltaTimeService;
         _playerViewData = playerViewData;
         _gamePlayersConfiguration = gamePlayersConfiguration;
+        _storePlayerPreviousPositionUseCase = storePlayerPreviousPositionUseCase;
     }
 
     public void Execute()
@@ -58,6 +61,8 @@ public sealed class TickPlayerMovementUseCase
 
         playerView.Velocity = newVelocity + playerView.UncontrolledSpeed;
         playerView.MoveAndSlide();
+        
+        _storePlayerPreviousPositionUseCase.Execute(playerView);
     }
 
     void HandleUncontrolledSpeed(PlayerView playerView)

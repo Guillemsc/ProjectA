@@ -4,17 +4,17 @@ namespace Game.GameContext.General.UseCases;
 
 public sealed class GameStartUseCase
 {
-    readonly StartPlayerUseCase _startPlayerUseCase;
+    readonly AppearPlayerUseCase _appearPlayerUseCase;
 
     public GameStartUseCase(
-        StartPlayerUseCase startPlayerUseCase
+        AppearPlayerUseCase appearPlayerUseCase
         )
     {
-        _startPlayerUseCase = startPlayerUseCase;
+        _appearPlayerUseCase = appearPlayerUseCase;
     }
 
     public void Execute()
     {
-        _startPlayerUseCase.Execute(true);
+        _appearPlayerUseCase.Execute();
     }
 }

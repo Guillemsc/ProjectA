@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpywsfib8moqs"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Spikes/Views/SpikesView.cs" id="1_2fwkq"]
+[ext_resource type="Texture2D" uid="uid://b5a6lmm2jq6on" path="res://Game/Textures/Spikes.png" id="2_dy4ia"]
+
+[node name="SpikesView" type="Node2D"]
+script = ExtResource("1_2fwkq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dy4ia")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(7, 8, 3.5, 1, -0.5, 6, -4.5, 1, -8, 8)

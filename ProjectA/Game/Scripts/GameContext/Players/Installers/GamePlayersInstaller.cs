@@ -1,6 +1,7 @@
 using Game.GameContext.Collectables.UseCases;
 using Game.GameContext.Crates.UseCases;
 using Game.GameContext.General.Datas;
+using Game.GameContext.PlayerKillers.UseCases;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.UseCases;
@@ -32,8 +33,14 @@ public static class GamePlayersInstaller
                 c.Resolve<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()
             ));
 
-        builder.Bind<StartPlayerUseCase>()
-            .FromFunction(c => new StartPlayerUseCase(
+        builder.Bind<AppearPlayerUseCase>()
+            .FromFunction(c => new AppearPlayerUseCase(
+                c.Resolve<PlayerViewData>(),
+                c.Resolve<IAsyncTaskRunner>()
+            ));
+
+        builder.Bind<KillPlayerUseCase>()
+            .FromFunction(c => new KillPlayerUseCase(
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<IAsyncTaskRunner>()
             ));
@@ -42,7 +49,8 @@ public static class GamePlayersInstaller
             .FromFunction(c => new TickPlayerMovementUseCase(
                 c.Resolve<IDeltaTimeService>(),
                 c.Resolve<PlayerViewData>(),
-                c.Resolve<GamePlayersConfiguration>()
+                c.Resolve<GamePlayersConfiguration>(),
+                c.Resolve<StorePlayerPreviousPositionUseCase>()
             ))
             .LinkToTickablesService(o => o.Execute, TickType.PhysicsUpdate);
 
@@ -52,6 +60,9 @@ public static class GamePlayersInstaller
             ))
             .LinkToTickablesService(o => o.Execute);
 
+        builder.Bind<StorePlayerPreviousPositionUseCase>()
+            .FromFunction(c => new StorePlayerPreviousPositionUseCase());
+        
         builder.Bind<WhenPlayerStartedCollisionWithWallUseCase>()
             .FromFunction(c => new WhenPlayerStartedCollisionWithWallUseCase(
                 c.Resolve<PlayerViewData>()
@@ -66,7 +77,8 @@ public static class GamePlayersInstaller
             .FromFunction(c => new WhenPlayerStartedInteractionCollisionWithAreaUseCase(
                 c.Resolve<WhenPlayerCollidedWithCollectableUseCase>(),
                 c.Resolve<WhenPlayerCollidedWithTrampolineUseCase>(),
-                c.Resolve<WhenPlayerCollidedWithVelocityBoosterUseCase>()
+                c.Resolve<WhenPlayerCollidedWithVelocityBoosterUseCase>(),
+                c.Resolve<WhenPlayerCollidedWithPlayerKillerUseCase>()
             ));
 
         builder.Bind<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()

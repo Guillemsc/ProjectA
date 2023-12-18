@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.GameContext.Players.AnimationGraphPlayers;
 using Godot;
 using GUtilsGodot.CharacterBody2Ds.Callbacks;
@@ -19,4 +20,6 @@ public partial class PlayerView : CharacterBody2D
    public bool CanDoubleJump;
    
    public Vector2 UncontrolledSpeed = Vector2.Zero;
+
+   public List<Vector2> PreviousPositions = new();
 }
