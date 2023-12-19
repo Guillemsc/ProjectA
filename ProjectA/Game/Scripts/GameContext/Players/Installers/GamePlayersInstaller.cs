@@ -9,6 +9,7 @@ using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.UseCases;
 using Game.GameContext.Trampolines.UseCases;
 using Game.GameContext.VelocityBoosters.UseCases;
+using Godot;
 using GUtils.Di.Builder;
 using GUtils.Tasks.Runners;
 using GUtils.Tick.Enums;
@@ -58,8 +59,7 @@ public static class GamePlayersInstaller
 
         builder.Bind<KillPlayerUseCase>()
             .FromFunction(c => new KillPlayerUseCase(
-                c.Resolve<PlayerViewData>(),
-                c.Resolve<IAsyncTaskRunner>()
+                c.Resolve<PlayerViewData>()
             ));
 
         builder.Bind<FreezePlayerUseCase>()

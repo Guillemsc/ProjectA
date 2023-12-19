@@ -5,15 +5,15 @@ namespace Game.GameContext.PlayerKillers.UseCases;
 
 public sealed class WhenPlayerCollidedWithPlayerKillerUseCase
 {
-    readonly KillPlayerUseCase _killPlayerUseCase;
+    readonly KillPlayerAndReloadUseCase _killPlayerAndReloadUseCase;
 
-    public WhenPlayerCollidedWithPlayerKillerUseCase(KillPlayerUseCase killPlayerUseCase)
+    public WhenPlayerCollidedWithPlayerKillerUseCase(KillPlayerAndReloadUseCase killPlayerAndReloadUseCase)
     {
-        _killPlayerUseCase = killPlayerUseCase;
+        _killPlayerAndReloadUseCase = killPlayerAndReloadUseCase;
     }
 
     public void Execute(IPlayerKillerView playerKillerView)
     {
-        _killPlayerUseCase.Execute();
+        _killPlayerAndReloadUseCase.Execute();
     }
 }

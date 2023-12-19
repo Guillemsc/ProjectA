@@ -7,6 +7,7 @@ using Game.LoadingScreenContext.General.ApplicationContexts;
 using Godot;
 using GUtils.Di.Contexts;
 using GUtils.Di.Installers;
+using GUtils.Directions;
 using GUtils.Loading.Extensions;
 using GUtils.Loading.Services;
 using GUtils.Services.Locators;
@@ -36,8 +37,12 @@ public partial class MainBootstrap : Bootstrap
             .EnqueueLoadAndStartApplicationContext(new LoadingScreenApplicationContext())
             .Execute(cancellationToken);
 
-        string testMap = GameConfiguration!.MapsConfiguration!.TestMap!;
-        GameApplicationContextConfiguration contextConfiguration = new(testMap, string.Empty, true);
+        GameApplicationContextConfiguration contextConfiguration = new(
+            GameConfiguration!.MapsConfiguration!.TestMap!,
+            string.Empty,
+            true,
+            HorizontalDirection.Right
+        );
         
         await loadingService.New()
             .RunBeforeLoadActionsInstantly()

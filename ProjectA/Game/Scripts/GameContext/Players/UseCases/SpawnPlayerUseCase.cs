@@ -51,9 +51,11 @@ public sealed class SpawnPlayerUseCase
     {
         PlayerView playerView = _gamePlayersConfiguration.PlayerPrefab!.Instantiate<PlayerView>();
         playerView.SetParent(_gameGeneralViewData.Root);
-        playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Disabled;
+        
         playerView.AnimatedSprite!.Visible = !_contextConfiguration.PlayerAppears;
-
+        playerView.AnimationPlayer!.HorizontalDirection = _contextConfiguration.PlayerDirection;
+        playerView.CanUpdateMovement = !_contextConfiguration.PlayerAppears;
+        
         Optional<ConnectionView> optionalConnectionView = _getConnectionWithIdUseCase.Execute(
             _contextConfiguration.SpawnId
         );

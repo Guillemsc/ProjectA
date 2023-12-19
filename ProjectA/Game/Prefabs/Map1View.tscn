@@ -42,7 +42,7 @@ texture = ExtResource("6_mguel")
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 script = ExtResource("2_3tlgg")
 Bounds = NodePath("Bounds")
-CameraZoom = 3.0
+CameraZoom = 2.7
 
 [node name="Bounds" type="Node2D" parent="AreaView"]
 z_index = 3

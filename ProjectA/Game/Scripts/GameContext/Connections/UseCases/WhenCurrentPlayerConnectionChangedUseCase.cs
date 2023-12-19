@@ -2,10 +2,13 @@ using Game.GameContext.Connections.Datas;
 using Game.GameContext.Connections.Views;
 using Game.GameContext.General.ApplicationContexts;
 using Game.GameContext.General.Configurations;
+using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.UseCases;
+using Game.GameContext.Players.Views;
 using Game.ServicesContext.LoadingScreen.Enums;
 using Game.ServicesContext.LoadingScreen.Services;
 using Godot;
+using GUtils.Directions;
 using GUtils.Loading.Extensions;
 using GUtils.Loading.Services;
 
@@ -16,29 +19,43 @@ public sealed class WhenCurrentPlayerConnectionChangedUseCase
     readonly GameApplicationContextConfiguration _contextConfiguration;
     readonly ILoadingService _loadingService;
     readonly ILoadingScreenService _loadingScreenService;
-    readonly ConnectionsData _connectionsData;
+    readonly PlayerViewData _playerViewData;
     readonly FreezePlayerUseCase _freezePlayerUseCase;
 
     public WhenCurrentPlayerConnectionChangedUseCase(
         GameApplicationContextConfiguration contextConfiguration,
         ILoadingService loadingService, 
         ILoadingScreenService loadingScreenService,
-        ConnectionsData connectionsData,
+        PlayerViewData playerViewData,
         FreezePlayerUseCase freezePlayerUseCase
         )
     {
         _contextConfiguration = contextConfiguration;
         _loadingService = loadingService;
         _loadingScreenService = loadingScreenService;
-        _connectionsData = connectionsData;
+        _playerViewData = playerViewData;
         _freezePlayerUseCase = freezePlayerUseCase;
     }
 
     public void Execute(ConnectionView connectionView)
     {
-        _freezePlayerUseCase.Execute();
+        HorizontalDirection playerDirection = HorizontalDirection.Right;
         
-        GameApplicationContextConfiguration contextConfiguration = new(connectionView.Map!, connectionView.SpawnId!, false);
+        bool hasPlayer = _playerViewData.PlayerView.TryGet(out PlayerView playerView);
+
+        if (hasPlayer)
+        {
+            playerDirection = playerView.AnimationPlayer!.HorizontalDirection;
+        }
+        
+        _freezePlayerUseCase.Execute();
+
+        GameApplicationContextConfiguration contextConfiguration = new(
+            connectionView.Map!,
+            connectionView.SpawnId!,
+            false,
+            playerDirection
+        );
 
         _loadingScreenService.LoadingScreenToUse = LoadingScreenType.MapTransition;
         

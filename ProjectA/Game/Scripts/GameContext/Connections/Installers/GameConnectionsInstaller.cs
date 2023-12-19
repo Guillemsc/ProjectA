@@ -41,7 +41,7 @@ public static class GameConnectionsInstaller
                 c.Resolve<GameApplicationContextConfiguration>(),
                 c.Resolve<ILoadingService>(),
                 c.Resolve<ILoadingScreenService>(),
-                c.Resolve<ConnectionsData>(),
+                c.Resolve<PlayerViewData>(),
                 c.Resolve<FreezePlayerUseCase>()
             ));
     }
