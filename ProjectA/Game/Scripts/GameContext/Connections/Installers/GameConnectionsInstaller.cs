@@ -4,6 +4,7 @@ using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Datas;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.UseCases;
+using Game.ServicesContext.LoadingScreen.Services;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
 using GUtils.Tick.Extensions;
@@ -39,6 +40,7 @@ public static class GameConnectionsInstaller
             .FromFunction(c => new WhenCurrentPlayerConnectionChangedUseCase(
                 c.Resolve<GameApplicationContextConfiguration>(),
                 c.Resolve<ILoadingService>(),
+                c.Resolve<ILoadingScreenService>(),
                 c.Resolve<ConnectionsData>(),
                 c.Resolve<FreezePlayerUseCase>()
             ));

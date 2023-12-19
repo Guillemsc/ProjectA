@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using Game.ServicesContext.LoadingScreen.Services;
+using Godot;
 using GUtils.ApplicationContexts.Services;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
@@ -56,6 +57,10 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
         
         builder.Bind<IRootNodeService>()
             .FromFunction(c => new RootNodeService(GetParent()))
-            .LinkToServiceLocator();;
+            .LinkToServiceLocator();
+
+        builder.Bind<ILoadingScreenService>()
+            .FromFunction(c => new LoadingScreenService())
+            .LinkToServiceLocator();
     }
 }

@@ -1,3 +1,4 @@
+using Game.ServicesContext.LoadingScreen.Services;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
 using GUtils.Services.Extensions;
@@ -17,5 +18,6 @@ public static class GameGeneralServicesInstaller
         builder.Bind<ITickablesService>().FromServiceLocator();
         builder.Bind<IDeltaTimeService>().FromServiceLocator();
         builder.Bind<ICameras2dService>().FromServiceLocator();
+        builder.Bind<ILoadingScreenService>().FromServiceLocator();
     }
 }

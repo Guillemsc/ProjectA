@@ -33,5 +33,7 @@ public sealed class SetPlayerAsCameraTargetUseCase
         
         FollowTargetCamera2dBehaviour followTarget = _cameras2dService.GetBehaviour<FollowTargetCamera2dBehaviour>().UnsafeGet();
         followTarget.SetTarget(playerView);
+        
+        _cameras2dService.InvalidateState();
     }
 }

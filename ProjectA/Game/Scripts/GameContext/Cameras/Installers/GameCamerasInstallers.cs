@@ -1,3 +1,4 @@
+using Game.GameContext.Areas.UseCases;
 using Game.GameContext.Cameras.Configurations;
 using Game.GameContext.Cameras.Datas;
 using Game.GameContext.Cameras.UseCases;
@@ -26,6 +27,12 @@ public static class GameCamerasInstallers
             ))
             .WhenDispose(o => o.Execute)
             .NonLazy();
+
+        builder.Bind<SetInitialCameraAreaUseCase>()
+            .FromFunction(c => new SetInitialCameraAreaUseCase(
+                c.Resolve<GetCurrentPlayerAreaUseCase>(),
+                c.Resolve<SetCameraAreaUseCase>()
+            ));
         
         builder.Bind<SetPlayerAsCameraTargetUseCase>()
             .FromFunction(c => new SetPlayerAsCameraTargetUseCase(

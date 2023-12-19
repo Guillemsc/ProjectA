@@ -8,4 +8,5 @@ public partial class ConnectionView : Node2D
     [Export] public Rect2dNode? Bounds;
     [Export(PropertyHint.File, "*.tscn,*.scn")] public string? Map;
     [Export] public string? SpawnId;
+    [Export] public Node2D? SpawnPosition;
 }

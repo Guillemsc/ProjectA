@@ -27,12 +27,13 @@ public static class GameGeneralInstaller
                 c.Resolve<SpawnMapUseCase>(),
                 c.Resolve<SpawnPlayerUseCase>(),
                 c.Resolve<SetupCameraUseCase>(),
+                c.Resolve<SetInitialCameraAreaUseCase>(),
                 c.Resolve<SetPlayerAsCameraTargetUseCase>()
             ));
 
         builder.Bind<GameStartUseCase>()
             .FromFunction(c => new GameStartUseCase(
-                c.Resolve<AppearPlayerUseCase>()
+                c.Resolve<StartPlayerUseCase>()
             ));
 
         builder.InstallAsyncTaskRunner();

@@ -37,10 +37,23 @@ public static class GamePlayersInstaller
                 c.Resolve<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()
             ));
 
+        builder.Bind<EnablePlayerUseCase>()
+            .FromFunction(c => new EnablePlayerUseCase(
+                c.Resolve<PlayerViewData>()
+            ));
+        
         builder.Bind<AppearPlayerUseCase>()
             .FromFunction(c => new AppearPlayerUseCase(
                 c.Resolve<PlayerViewData>(),
-                c.Resolve<IAsyncTaskRunner>()
+                c.Resolve<IAsyncTaskRunner>(),
+                c.Resolve<EnablePlayerUseCase>()
+            ));
+
+        builder.Bind<StartPlayerUseCase>()
+            .FromFunction(c => new StartPlayerUseCase(
+                c.Resolve<GameApplicationContextConfiguration>(),
+                c.Resolve<AppearPlayerUseCase>(),
+                c.Resolve<EnablePlayerUseCase>()
             ));
 
         builder.Bind<KillPlayerUseCase>()

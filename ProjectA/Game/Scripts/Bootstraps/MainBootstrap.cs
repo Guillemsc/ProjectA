@@ -37,7 +37,7 @@ public partial class MainBootstrap : Bootstrap
             .Execute(cancellationToken);
 
         string testMap = GameConfiguration!.MapsConfiguration!.TestMap!;
-        GameApplicationContextConfiguration contextConfiguration = new(testMap, string.Empty);
+        GameApplicationContextConfiguration contextConfiguration = new(testMap, string.Empty, true);
         
         await loadingService.New()
             .RunBeforeLoadActionsInstantly()

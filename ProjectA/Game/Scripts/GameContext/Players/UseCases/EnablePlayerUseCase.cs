@@ -4,11 +4,11 @@ using Godot;
 
 namespace Game.GameContext.Players.UseCases;
 
-public sealed class FreezePlayerUseCase
+public sealed class EnablePlayerUseCase
 {
     readonly PlayerViewData _playerViewData;
 
-    public FreezePlayerUseCase(PlayerViewData playerViewData)
+    public EnablePlayerUseCase(PlayerViewData playerViewData)
     {
         _playerViewData = playerViewData;
     }
@@ -22,9 +22,8 @@ public sealed class FreezePlayerUseCase
             return;
         }
         
-        playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Disabled;
-        playerView.AnimatedSprite!.ProcessMode = Node.ProcessModeEnum.Disabled;
-        playerView.CanUpdateMovement = false;
-        playerView.CanMove = false;
+        playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Inherit;
+        playerView.CanUpdateMovement = true;
+        playerView.CanMove = true;
     }
 }

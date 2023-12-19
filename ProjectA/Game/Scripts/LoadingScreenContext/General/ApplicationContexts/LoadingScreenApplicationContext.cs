@@ -22,8 +22,8 @@ public sealed class LoadingScreenApplicationContext : DiApplicationContext<ILoad
         context.AddInstaller(new CallbackInstaller(
             b =>
             {
-                b.InstallLoadingScreenGeneralInteractor();
                 b.InstallLoadingScreenGeneralServices();
+                b.InstallLoadingScreenGeneral();
             }
         ));
     }

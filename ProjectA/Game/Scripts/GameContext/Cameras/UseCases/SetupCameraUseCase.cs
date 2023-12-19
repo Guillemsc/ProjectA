@@ -40,6 +40,8 @@ public sealed class SetupCameraUseCase
         followTargetCamera2dBehaviour.AddPositionProcessors(boundsPosition2dProcessor);
         _cameraBehavioursData.BoundsProcessor = boundsPosition2dProcessor;
         
-        _cameras2dService.MainCamera.SetZoom(1);
+        BoundsConfinementCamera2dBehaviour boundsConfinementCamera2dBehaviour = new();
+        _cameras2dService.AddBehaviour(boundsConfinementCamera2dBehaviour);
+        _cameraBehavioursData.BoundsConfinement = boundsConfinementCamera2dBehaviour;
     }
 }

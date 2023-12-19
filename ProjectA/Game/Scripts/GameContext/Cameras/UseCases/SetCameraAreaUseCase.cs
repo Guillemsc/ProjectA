@@ -28,5 +28,8 @@ public sealed class SetCameraAreaUseCase
 
         BoundsPosition2dProcessor boundsPosition2dProcessor = _cameraBehavioursData.BoundsProcessor.UnsafeGet();
         boundsPosition2dProcessor.SetBounds(areaView.Bounds!);
+        
+        BoundsConfinementCamera2dBehaviour boundsConfinementCamera2dBehaviour = _cameraBehavioursData.BoundsConfinement.UnsafeGet();
+        boundsConfinementCamera2dBehaviour.SetBounds(areaView.Bounds!);
     }
 }

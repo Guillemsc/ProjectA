@@ -1,3 +1,4 @@
+using Game.ServicesContext.LoadingScreen.Services;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
 using GUtils.Services.Extensions;
@@ -11,5 +12,6 @@ public static class LoadingScreenGeneralServicesInstaller
     {
         builder.Bind<IUiStackService>().FromServiceLocator();
         builder.Bind<ILoadingService>().FromServiceLocator();
+        builder.Bind<ILoadingScreenService>().FromServiceLocator();
     }
 }

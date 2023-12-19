@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=3 uid="uid://cu27rqj360o60"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_uye37"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="2_3tlgg"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="3_dhbwq"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="5_n0lgg"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="6_mguel"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="7_3yi5n"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="9_toraq"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="12_unf0n"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/SpikesView.tscn" id="16_lyrd1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
+shader = ExtResource("5_n0lgg")
+shader_parameter/tilingScale = 1.341
+shader_parameter/movementX = 0.0
+shader_parameter/movementY = -1.0
+shader_parameter/movementSpeed = 0.2
+
+[node name="Map2View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+script = ExtResource("1_uye37")
+AreaViews = [NodePath("AreaView")]
+ConnectionViews = [NodePath("ConnectionView")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+follow_viewport_scale = -1.245
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = -5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.121569, 0.188235, 1)
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bx5qr")
+position = Vector2(153, -42.5179)
+scale = Vector2(7.65625, 3.98493)
+texture = ExtResource("6_mguel")
+
+[node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
+script = ExtResource("2_3tlgg")
+Bounds = NodePath("Bounds")
+CameraZoom = 3.0
+
+[node name="Bounds" type="Node2D" parent="AreaView"]
+z_index = 3
+position = Vector2(151, -41)
+script = ExtResource("3_dhbwq")
+Size = Vector2(470, 264)
+
+[node name="SpikesView" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(57, 72)
+
+[node name="SpikesView2" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(73, 72)
+
+[node name="SpikesView3" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(89, 72)
+
+[node name="SpikesView4" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(105, 72)
+
+[node name="SpikesView6" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(233, 8)
+
+[node name="SpikesView7" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(249, 8)
+
+[node name="SpikesView8" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(265, 8)
+
+[node name="SpikesView9" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(281, 8)
+
+[node name="SpikesView10" parent="AreaView" instance=ExtResource("16_lyrd1")]
+position = Vector2(297, 8)
+
+[node name="AppleCollectableView" parent="AreaView" instance=ExtResource("12_unf0n")]
+position = Vector2(24, 12)
+
+[node name="AppleCollectableView2" parent="AreaView" instance=ExtResource("12_unf0n")]
+position = Vector2(139, -32)
+
+[node name="AppleCollectableView5" parent="AreaView" instance=ExtResource("12_unf0n")]
+position = Vector2(194, -106)
+
+[node name="AppleCollectableView4" parent="AreaView" instance=ExtResource("12_unf0n")]
+position = Vector2(312, -94)
+
+[node name="AppleCollectableView6" parent="AreaView" instance=ExtResource("12_unf0n")]
+position = Vector2(32, -100)
+
+[node name="AppleCollectableView3" parent="AreaView" instance=ExtResource("12_unf0n")]
+position = Vector2(32, -125)
+
+[node name="AppleCollectableView7" parent="AreaView" instance=ExtResource("12_unf0n")]
+position = Vector2(32, -75)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("7_3yi5n")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = 2
+layer_0/tile_data = PackedInt32Array(131072, 65536, 4, 131073, 65536, 4, -327680, 131072, 6, -393216, 131072, 5, -458752, 131072, 5, -524288, 131072, 5, -589824, 131072, 5, -655360, 196608, 1342177285, -655359, 65536, 2, -655358, 65536, 2, -655357, 262144, 1610612737, -589821, 0, 1, -524285, 0, 2, -524284, 65536, 2, -524283, 131072, 2, -589819, 131072, 1, -655355, 196608, 0, -655354, 65536, 2, -655352, 65536, 2, -655351, 196608, 1342177284, -589815, 0, 5, -524279, 0, 5, -458743, 0, 6, -655353, 65536, 2, 131074, 131072, 4, 196610, 131072, 5, 262146, 131072, 5, 327682, 196608, 5, 327683, 65536, 0, 327684, 65536, 0, 327685, 65536, 0, 327686, 65536, 0, 327687, 196608, 1610612741, -65527, 65536, 4, -524289, 65536, 1, -458753, 65536, 1, -393217, 65536, 1, -589828, 65536, 1, -524292, 65536, 1, -458756, 65536, 1, -393220, 65536, 1, -589827, 65536, 1, -589826, 65536, 1, -589825, 65536, 1, -655364, 65536, 1, -720887, 65536, 1, -720888, 65536, 1, -720889, 65536, 1, -720890, 65536, 1, -720891, 65536, 1, -720892, 65536, 1, -720893, 65536, 1, -720894, 65536, 1, -720895, 65536, 1, -720896, 65536, 1, -655361, 65536, 1, -655362, 65536, 1, -655363, 65536, 1, -524290, 65536, 1, -458754, 65536, 1, -393218, 65536, 1, -524291, 65536, 1, -458755, 65536, 1, -393219, 65536, 1, 327676, 65536, 1, 327677, 65536, 1, 327678, 65536, 1, 196608, 65536, 1, 196609, 65536, 1, 262145, 65536, 1, 327681, 65536, 1, 327680, 65536, 1, 393215, 65536, 1, 393214, 65536, 1, 393213, 65536, 1, 393212, 65536, 1, 327679, 65536, 1, 262144, 65536, 1, 458748, 65536, 5, 458749, 65536, 1, 458750, 65536, 1, 458751, 65536, 1, 393216, 65536, 1, 393217, 65536, 1, 393218, 65536, 1, 393219, 65536, 1, 393220, 65536, 1, 393221, 65536, 1, 393222, 65536, 1, 393223, 65536, 1, 393224, 65536, 1, 393225, 65536, 1, 393226, 65536, 1, 393227, 65536, 1, 9, 65536, 1, 65545, 65536, 1, 131081, 65536, 1, 196617, 65536, 1, 262153, 65536, 1, 327689, 65536, 1, 393228, 65536, 1, 393229, 65536, 1, 393230, 65536, 1, 393231, 65536, 1, 393232, 65536, 1, -655356, 65536, 1, -589820, 65536, 1, -65529, 0, 4, 7, 0, 5, 65543, 0, 5, 131079, 0, 5, 196615, 0, 5, 262151, 0, 5, 327688, 65536, 1, 262152, 65536, 1, 196616, 65536, 1, 131080, 65536, 1, 65544, 65536, 1, 8, 65536, 1, -65528, 65536, 4, -65525, 65536, 1, 11, 65536, 1, 65547, 65536, 1, 131083, 65536, 1, 196619, 65536, 1, 262155, 65536, 1, -65524, 65536, 1, 12, 65536, 1, 65548, 65536, 1, 131084, 65536, 1, 196620, 65536, 1, 262156, 65536, 1, 131085, 65536, 1, 196621, 65536, 1, 262157, 65536, 1, 131086, 65536, 1, 196622, 65536, 1, 262158, 65536, 1, 131087, 65536, 1, 196623, 65536, 1, 262159, 65536, 1, 131088, 65536, 1, 196624, 65536, 1, 262160, 65536, 1, 131089, 65536, 1, 196625, 65536, 1, 262161, 65536, 1, -262126, 0, 2, 65554, 65536, 0, 131090, 65536, 1, 196626, 65536, 1, 262162, 65536, 1, -262125, 262144, 4, -196589, 0, 5, -131053, 0, 5, -65517, 0, 5, 19, 0, 5, 65555, 196608, 805306372, 131091, 65536, 1, 196627, 65536, 1, 262163, 65536, 1, 65556, 65536, 1, 131092, 65536, 1, 196628, 65536, 1, 262164, 65536, 1, 65557, 65536, 1, 131093, 65536, 1, 196629, 65536, 1, 262165, 65536, 1, -131061, 65536, 4, -131060, 65536, 4, -131059, 131072, 4, -65523, 131072, 5, 13, 131072, 5, 65549, 196608, 5, 65550, 65536, 0, 65551, 65536, 0, 65552, 65536, 0, 65553, 65536, 0, -327662, 0, 0, -327661, 65536, 0, 65558, 65536, 1, 131094, 65536, 1, 196630, 65536, 1, 262166, 65536, 1, -786421, 65536, 1, -720885, 65536, 1, -655349, 65536, 1, -589813, 65536, 6, -786420, 65536, 1, -720884, 65536, 1, -655348, 65536, 1, -589812, 65536, 6, -786419, 65536, 1, -720883, 262144, 805306373, -655347, 131072, 5, -589811, 131072, 6, -786418, 65536, 1, -720882, 65536, 6, -786417, 65536, 1, -720881, 65536, 6, -786416, 65536, 1, -720880, 65536, 6, -786415, 65536, 1, -720879, 65536, 6, -786414, 65536, 1, -720878, 65536, 6, -786413, 65536, 1, -720877, 65536, 6, -851957, 65536, 1, -851956, 65536, 1, -851955, 65536, 1, -851954, 65536, 1, -851953, 65536, 1, -851952, 65536, 1, -851951, 65536, 1, -851950, 65536, 1, -851949, 65536, 1, -131062, 0, 4, -65526, 196608, 1879048196, 10, 65536, 1, 65546, 65536, 1, 131082, 65536, 1, 196618, 65536, 1, 262154, 65536, 1, 327690, 65536, 1, 327691, 65536, 1, 327692, 65536, 1, 327693, 65536, 1, 327694, 65536, 1, 327695, 65536, 1, 327703, 65536, 1, 327702, 65536, 1, 327701, 65536, 1, 327700, 65536, 1, 327699, 65536, 1, 327698, 65536, 1, 327697, 65536, 1, 327696, 65536, 1, -458742, 131072, 6, -524278, 131072, 5, -589814, 196608, 4, -655350, 65536, 1, -720886, 65536, 1, -327658, 65536, 0, -262122, 65536, 1, -196586, 65536, 1, -131050, 65536, 1, -65514, 262144, 805306369, 22, 65536, 1, -851946, 65536, 1, -786410, 65536, 1, -720874, 262144, 4, -655338, 0, 2, -917481, 131072, 1, -851945, 131072, 1, -786409, 131072, 1, -720873, 131072, 1, -655337, 131072, 2, -327657, 65536, 0, -262121, 65536, 1, -196585, 65536, 1, -131049, 65536, 1, -65513, 65536, 2, 23, 65536, 1, -327656, 131072, 0, -262120, 131072, 1, -196584, 131072, 1, -131048, 131072, 1, -65512, 131072, 2, 24, 65536, 1, -262124, 65536, 1, -262123, 65536, 1, -196587, 65536, 1, -131051, 65536, 1, -65515, 65536, 1, 21, 65536, 1, 20, 65536, 1, -65516, 65536, 1, -131052, 65536, 1, -196588, 65536, 1, -327660, 65536, 0, -327659, 65536, 0, -720876, 65536, 6, -720875, 65536, 6, 65559, 65536, 1, 65560, 65536, 1, 131096, 65536, 1, 196632, 65536, 1, 262168, 65536, 1, 327704, 65536, 1, 262167, 65536, 1, 196631, 65536, 1, 131095, 65536, 1, -327684, 65536, 1, -262148, 65536, 6, 196604, 65536, 4, 262140, 65536, 1, -327683, 65536, 1, -262147, 65536, 6, 196605, 65536, 4, 262141, 65536, 1, -327686, 65536, 1, -262150, 65536, 6, 196602, 65536, 4, 262138, 65536, 1, -327685, 65536, 1, -262149, 65536, 6, 196603, 65536, 4, 262139, 65536, 1, -327682, 65536, 1, -327681, 65536, 1, 262143, 65536, 1, 262142, 65536, 1, 196606, 65536, 4, 196607, 65536, 4, -262146, 65536, 6, -262145, 65536, 6, -393221, 65536, 5, -458757, 65536, 5, -524293, 65536, 5, -589829, 65536, 5, -655365, 65536, 5, -393222, 65536, 5, -458758, 65536, 5, -524294, 65536, 5, -589830, 65536, 5, -655366, 65536, 5, 458747, 65536, 5, 458746, 65536, 5, 393210, 65536, 5, 327674, 65536, 5, 393211, 65536, 5, 327675, 65536, 5)
+layer_1/name = "Content-2"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Content-1"
+layer_2/tile_data = PackedInt32Array()
+
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+position = Vector2(-89, -16)
+script = ExtResource("9_toraq")
+Bounds = NodePath("Bounds")
+Map = "res://Game/Prefabs/Map1View.tscn"
+SpawnId = "in"
+SpawnPosition = NodePath("SpawnPosition")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView"]
+z_index = 3
+script = ExtResource("3_dhbwq")
+Size = Vector2(10, 100)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
+position = Vector2(15, 33)

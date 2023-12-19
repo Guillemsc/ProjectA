@@ -13,14 +13,17 @@ public sealed class AppearPlayerUseCase
 {
     readonly PlayerViewData _playerViewData;
     readonly IAsyncTaskRunner _asyncTaskRunner;
+    readonly EnablePlayerUseCase _enablePlayerUseCase;
 
     public AppearPlayerUseCase(
         PlayerViewData playerViewData,
-        IAsyncTaskRunner asyncTaskRunner
+        IAsyncTaskRunner asyncTaskRunner,
+        EnablePlayerUseCase enablePlayerUseCase
     )
     {
         _playerViewData = playerViewData;
         _asyncTaskRunner = asyncTaskRunner;
+        _enablePlayerUseCase = enablePlayerUseCase;
     }
 
     public void Execute()
@@ -39,9 +42,7 @@ public sealed class AppearPlayerUseCase
             
             await playerView.AnimatedSprite!.AwaitCompletition(cancellationToken);
             
-            playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Inherit;
-            playerView.CanUpdateMovement = true;
-            playerView.CanMove = true;
+            _enablePlayerUseCase.Execute();
         }
 
         _asyncTaskRunner.Run(PlayAnimation);

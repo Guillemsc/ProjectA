@@ -52,7 +52,7 @@ public sealed class SpawnPlayerUseCase
         PlayerView playerView = _gamePlayersConfiguration.PlayerPrefab!.Instantiate<PlayerView>();
         playerView.SetParent(_gameGeneralViewData.Root);
         playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Disabled;
-        playerView.AnimatedSprite!.Visible = false;
+        playerView.AnimatedSprite!.Visible = !_contextConfiguration.PlayerAppears;
 
         Optional<ConnectionView> optionalConnectionView = _getConnectionWithIdUseCase.Execute(
             _contextConfiguration.SpawnId
@@ -62,7 +62,7 @@ public sealed class SpawnPlayerUseCase
 
         if (hasConnectionView)
         {
-            playerView.GlobalPosition = connectionView.GlobalPosition;
+            playerView.GlobalPosition = connectionView.SpawnPosition!.GlobalPosition;
         }
         
         playerView.LeftWallDetector!.ConnectBodyEntered(_ => _whenPlayerStartedCollisionWithWallUseCase.Execute(HorizontalLocation.Left));
