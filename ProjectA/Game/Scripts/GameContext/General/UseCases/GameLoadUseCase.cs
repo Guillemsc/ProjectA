@@ -11,6 +11,7 @@ public sealed class GameLoadUseCase
     readonly SpawnMapUseCase _spawnMapUseCase;
     readonly SpawnPlayerUseCase _spawnPlayerUseCase;
     readonly SetupCameraUseCase _setupCameraUseCase;
+    readonly SetCameraMapBoundsUseCase _setCameraMapBoundsUseCase;
     readonly SetInitialCameraAreaUseCase _setInitialCameraAreaUseCase;
     readonly SetPlayerAsCameraTargetUseCase _setPlayerAsCameraTargetUseCase;
 
@@ -18,15 +19,17 @@ public sealed class GameLoadUseCase
         SpawnMapUseCase spawnMapUseCase,
         SpawnPlayerUseCase spawnPlayerUseCase, 
         SetupCameraUseCase setupCameraUseCase,
+        SetCameraMapBoundsUseCase setCameraMapBoundsUseCase,
         SetInitialCameraAreaUseCase setInitialCameraAreaUseCase,
         SetPlayerAsCameraTargetUseCase setPlayerAsCameraTargetUseCase
         )
     {
         _spawnMapUseCase = spawnMapUseCase;
         _spawnPlayerUseCase = spawnPlayerUseCase;
+        _setupCameraUseCase = setupCameraUseCase;
+        _setCameraMapBoundsUseCase = setCameraMapBoundsUseCase;
         _setPlayerAsCameraTargetUseCase = setPlayerAsCameraTargetUseCase;
         _setInitialCameraAreaUseCase = setInitialCameraAreaUseCase;
-        _setupCameraUseCase = setupCameraUseCase;
     }
 
     public async Task Execute(CancellationToken cancellationToken)
@@ -34,6 +37,7 @@ public sealed class GameLoadUseCase
         await _spawnMapUseCase.Execute();
         _spawnPlayerUseCase.Execute();
         _setupCameraUseCase.Execute();
+        _setCameraMapBoundsUseCase.Execute();
         _setInitialCameraAreaUseCase.Execute();
         _setPlayerAsCameraTargetUseCase.Execute();
     }

@@ -27,6 +27,7 @@ public static class GameGeneralInstaller
                 c.Resolve<SpawnMapUseCase>(),
                 c.Resolve<SpawnPlayerUseCase>(),
                 c.Resolve<SetupCameraUseCase>(),
+                c.Resolve<SetCameraMapBoundsUseCase>(),
                 c.Resolve<SetInitialCameraAreaUseCase>(),
                 c.Resolve<SetPlayerAsCameraTargetUseCase>()
             ));

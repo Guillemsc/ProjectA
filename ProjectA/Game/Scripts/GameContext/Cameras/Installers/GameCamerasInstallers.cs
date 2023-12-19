@@ -2,6 +2,7 @@ using Game.GameContext.Areas.UseCases;
 using Game.GameContext.Cameras.Configurations;
 using Game.GameContext.Cameras.Datas;
 using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.Maps.Datas;
 using Game.GameContext.Players.Datas;
 using GUtils.Di.Builder;
 using GUtilsGodot.Cameras.Services;
@@ -32,6 +33,12 @@ public static class GameCamerasInstallers
             .FromFunction(c => new SetInitialCameraAreaUseCase(
                 c.Resolve<GetCurrentPlayerAreaUseCase>(),
                 c.Resolve<SetCameraAreaUseCase>()
+            ));
+
+        builder.Bind<SetCameraMapBoundsUseCase>()
+            .FromFunction(c => new SetCameraMapBoundsUseCase(
+                c.Resolve<CameraBehavioursData>(),
+                c.Resolve<MapViewData>()
             ));
         
         builder.Bind<SetPlayerAsCameraTargetUseCase>()

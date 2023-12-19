@@ -122,6 +122,10 @@ public partial class PlayerAnimationGraphPlayerNode : AnimationGraphPlayerNode
         doubleJumpToIdle.Conditions.Add(new CallbackPredicate(() => !MovingHorizontally));
         doubleJumpToIdle.Conditions.Add(new CallbackPredicate(() => !OnAir));
         
+        AnimationGraphConnection doubleJumpToRun = doubleJump.ConnectToUnsafe(run);
+        doubleJumpToRun.Conditions.Add(new CallbackPredicate(() => MovingHorizontally));
+        doubleJumpToRun.Conditions.Add(new CallbackPredicate(() => !OnAir));
+        
         AnimationGraphConnection fallToIdle = fall.ConnectToUnsafe(idle);
         fallToIdle.Conditions.Add(new CallbackPredicate(() => !MovingHorizontally));
         fallToIdle.Conditions.Add(new CallbackPredicate(() => !OnAir));

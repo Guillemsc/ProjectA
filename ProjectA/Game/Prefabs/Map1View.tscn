@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch63tbkd35fj2"]
+[gd_scene load_steps=10 format=3 uid="uid://ch63tbkd35fj2"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_uye37"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="2_3tlgg"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="3_dhbwq"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="5_n0lgg"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="6_3utqj"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="6_lhcfy"]
 [ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="6_mguel"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="7_3yi5n"]
@@ -50,12 +51,15 @@ position = Vector2(198, -58)
 script = ExtResource("3_dhbwq")
 Size = Vector2(555, 224)
 
+[node name="AppleCollectableView" parent="AreaView" instance=ExtResource("6_3utqj")]
+position = Vector2(272, -13)
+
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
 position = Vector2(479, -73)
 script = ExtResource("6_lhcfy")
 Bounds = NodePath("Bounds")
 Map = "res://Game/Prefabs/Map2View.tscn"
-SpawnId = "in"
+SpawnId = "1-2"
 SpawnPosition = NodePath("SpawnPosition")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]

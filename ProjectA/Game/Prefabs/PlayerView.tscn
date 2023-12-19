@@ -15,7 +15,6 @@ size = Vector2(8.5, 1)
 size = Vector2(16, 26)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CharacterBody2DCollisionCallbacks", "AnimatedSprite", "AnimationPlayer", "LeftWallDetector", "RightWallDetector", "InteractionsDetector")]
-z_index = 5
 position = Vector2(3, 1)
 collision_mask = 6
 script = ExtResource("1_77eti")
@@ -32,7 +31,7 @@ CharacterBody2D = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_rg7cu")
-animation = &"Idle"
+animation = &"Run"
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
 script = ExtResource("3_yhug4")
