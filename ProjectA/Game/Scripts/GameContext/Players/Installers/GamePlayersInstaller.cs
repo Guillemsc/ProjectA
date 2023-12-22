@@ -33,7 +33,7 @@ public static class GamePlayersInstaller
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<GameGeneralViewData>(),
                 c.Resolve<CanPlayerPlayAppearAnimationUseCase>(),
-                c.Resolve<GetConnectionWithIdUseCase>(),
+                c.Resolve<GetConnectionWithIdOrFirstUseCase>(),
                 c.Resolve<WhenPlayerStartedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStoppedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStartedInteractionCollisionWithAreaUseCase>(),

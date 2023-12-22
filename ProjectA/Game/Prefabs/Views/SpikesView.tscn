@@ -15,4 +15,4 @@ collision_layer = 2
 monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(7, 8, 3.5, 1, -0.5, 6, -4.5, 1, -8, 8)
+polygon = PackedVector2Array(7, 8, 3.5, 3, -0.5, 6, -4.5, 3, -8, 8)

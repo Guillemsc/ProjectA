@@ -19,7 +19,7 @@ public sealed class SpawnPlayerUseCase
     readonly PlayerViewData _playerViewData;
     readonly GameGeneralViewData _gameGeneralViewData;
     readonly CanPlayerPlayAppearAnimationUseCase _canPlayerPlayAppearAnimationUseCase;
-    readonly GetConnectionWithIdUseCase _getConnectionWithIdUseCase;
+    readonly GetConnectionWithIdOrFirstUseCase _getConnectionWithIdOrFirstUseCase;
     readonly WhenPlayerStartedCollisionWithWallUseCase _whenPlayerStartedCollisionWithWallUseCase;
     readonly WhenPlayerStoppedCollisionWithWallUseCase _whenPlayerStoppedCollisionWithWallUseCase;
     readonly WhenPlayerStartedInteractionCollisionWithAreaUseCase _whenPlayerStartedInteractionCollisionWithAreaUseCase;
@@ -31,7 +31,7 @@ public sealed class SpawnPlayerUseCase
         PlayerViewData playerViewData, 
         GameGeneralViewData gameGeneralViewData, 
         CanPlayerPlayAppearAnimationUseCase canPlayerPlayAppearAnimationUseCase,
-        GetConnectionWithIdUseCase getConnectionWithIdUseCase,
+        GetConnectionWithIdOrFirstUseCase getConnectionWithIdOrFirstUseCase,
         WhenPlayerStartedCollisionWithWallUseCase whenPlayerStartedCollisionWithWallUseCase,
         WhenPlayerStoppedCollisionWithWallUseCase whenPlayerStoppedCollisionWithWallUseCase, 
         WhenPlayerStartedInteractionCollisionWithAreaUseCase whenPlayerStartedInteractionCollisionWithAreaUseCase,
@@ -43,7 +43,7 @@ public sealed class SpawnPlayerUseCase
         _playerViewData = playerViewData;
         _gameGeneralViewData = gameGeneralViewData;
         _canPlayerPlayAppearAnimationUseCase = canPlayerPlayAppearAnimationUseCase;
-        _getConnectionWithIdUseCase = getConnectionWithIdUseCase;
+        _getConnectionWithIdOrFirstUseCase = getConnectionWithIdOrFirstUseCase;
         _whenPlayerStartedCollisionWithWallUseCase = whenPlayerStartedCollisionWithWallUseCase;
         _whenPlayerStoppedCollisionWithWallUseCase = whenPlayerStoppedCollisionWithWallUseCase;
         _whenPlayerStartedInteractionCollisionWithAreaUseCase = whenPlayerStartedInteractionCollisionWithAreaUseCase;
@@ -61,7 +61,7 @@ public sealed class SpawnPlayerUseCase
         playerView.AnimatedSprite!.Visible = !playerAppears;
         playerView.CanUpdateMovement = !playerAppears;
         
-        Optional<ConnectionView> optionalConnectionView = _getConnectionWithIdUseCase.Execute(
+        Optional<ConnectionView> optionalConnectionView = _getConnectionWithIdOrFirstUseCase.Execute(
             _contextConfiguration.SpawnId
         );
 

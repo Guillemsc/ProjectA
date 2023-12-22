@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_c0g0v")
-FollowTargetSpeed = 5.0
+FollowTargetSpeed = 2.0
 FollowZoomSpeed = 5.0

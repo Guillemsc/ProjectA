@@ -20,7 +20,7 @@ shader_parameter/movementSpeed = 0.2
 [node name="Mapb18ca3d8View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_n7egg")
 AreaViews = [NodePath("AreaView")]
-ConnectionViews = [NodePath("ConnectionView")]
+ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -2
@@ -95,6 +95,23 @@ DebugColor = Color(0, 0.568627, 0.839216, 1)
 
 [node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
 position = Vector2(15, 33)
+
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+position = Vector2(616, -69)
+script = ExtResource("8_4hg3i")
+Bounds = NodePath("Bounds")
+Map = "res://Game/Prefabs/Maps/fb581aceMapView.tscn"
+SpawnId = "711aeafd-c913-495b-864e-9977bb68120a"
+SpawnPosition = NodePath("SpawnPosition")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView2"]
+z_index = 3
+script = ExtResource("5_r7lnc")
+Size = Vector2(10, 100)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView2"]
+position = Vector2(-15, 5)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("9_nlo2n")

@@ -17,8 +17,8 @@ public static class GameConnectionsInstaller
     {
         builder.Bind<ConnectionsData>().FromNew();
         
-        builder.Bind<GetConnectionWithIdUseCase>()
-            .FromFunction(c => new GetConnectionWithIdUseCase(
+        builder.Bind<GetConnectionWithIdOrFirstUseCase>()
+            .FromFunction(c => new GetConnectionWithIdOrFirstUseCase(
                 c.Resolve<MapViewData>()
             ));
 

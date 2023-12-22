@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_42wxd")
-TestMap = "res://Game/Prefabs/Maps/IntroMapView.tscn"
+TestMap = "res://Game/Prefabs/Maps/fb581aceMapView.tscn"

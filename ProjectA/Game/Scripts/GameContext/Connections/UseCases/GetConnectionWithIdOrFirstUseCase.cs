@@ -5,11 +5,11 @@ using GUtils.Optionals;
 
 namespace Game.GameContext.Connections.UseCases;
 
-public sealed class GetConnectionWithIdUseCase
+public sealed class GetConnectionWithIdOrFirstUseCase
 {
     readonly MapViewData _mapViewData;
 
-    public GetConnectionWithIdUseCase(
+    public GetConnectionWithIdOrFirstUseCase(
         MapViewData mapViewData
         )
     {
@@ -33,6 +33,11 @@ public sealed class GetConnectionWithIdUseCase
             {
                 return connectionView;
             }
+        }
+        
+        foreach (ConnectionView connectionView in mapView.ConnectionViews!)
+        {
+            return connectionView;
         }
         
         return Optional<ConnectionView>.None;
