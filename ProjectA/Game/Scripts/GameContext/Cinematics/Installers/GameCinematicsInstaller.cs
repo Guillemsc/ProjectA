@@ -29,8 +29,13 @@ public static class GameCinematicsInstaller
                 c.Resolve<AwaitUntilPlayerIsOnTheGroundUseCase>()
             ));
 
-        builder.Bind<TryPlayMapOptionalStartingCinematicUseCase>()
-            .FromFunction(c => new TryPlayMapOptionalStartingCinematicUseCase(
+        builder.Bind<HasStartingMapCinematicUseCase>()
+            .FromFunction(c => new HasStartingMapCinematicUseCase(
+                c.Resolve<MapViewData>()
+            ));
+        
+        builder.Bind<TryPlayStartingMapCinematicUseCase>()
+            .FromFunction(c => new TryPlayStartingMapCinematicUseCase(
                 c.Resolve<MapViewData>(),
                 c.Resolve<PlayCinematicUseCase>()
             ));

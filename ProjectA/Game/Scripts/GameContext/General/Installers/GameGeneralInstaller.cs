@@ -1,4 +1,5 @@
 ﻿using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.Cinematics.UseCases;
 using Game.GameContext.General.Interactors;
 using Game.GameContext.General.UseCases;
 using Game.GameContext.Maps.UseCases;
@@ -34,7 +35,8 @@ public static class GameGeneralInstaller
 
         builder.Bind<GameStartUseCase>()
             .FromFunction(c => new GameStartUseCase(
-                c.Resolve<StartPlayerUseCase>()
+                c.Resolve<StartPlayerUseCase>(),
+                c.Resolve<TryPlayStartingMapCinematicUseCase>()
             ));
 
         builder.InstallAsyncTaskRunner();

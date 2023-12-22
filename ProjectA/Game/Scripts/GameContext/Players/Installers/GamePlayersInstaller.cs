@@ -32,6 +32,7 @@ public static class GamePlayersInstaller
                 c.Resolve<GamePlayersConfiguration>(),
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<GameGeneralViewData>(),
+                c.Resolve<CanPlayerPlayAppearAnimationUseCase>(),
                 c.Resolve<GetConnectionWithIdUseCase>(),
                 c.Resolve<WhenPlayerStartedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStoppedCollisionWithWallUseCase>(),
@@ -43,6 +44,12 @@ public static class GamePlayersInstaller
             .FromFunction(c => new EnablePlayerUseCase(
                 c.Resolve<PlayerViewData>()
             ));
+
+        builder.Bind<CanPlayerPlayAppearAnimationUseCase>()
+            .FromFunction(c => new CanPlayerPlayAppearAnimationUseCase(
+                c.Resolve<GameApplicationContextConfiguration>(),
+                c.Resolve<HasStartingMapCinematicUseCase>()
+            ));
         
         builder.Bind<AppearPlayerUseCase>()
             .FromFunction(c => new AppearPlayerUseCase(
@@ -53,9 +60,9 @@ public static class GamePlayersInstaller
 
         builder.Bind<StartPlayerUseCase>()
             .FromFunction(c => new StartPlayerUseCase(
-                c.Resolve<GameApplicationContextConfiguration>(),
                 c.Resolve<AppearPlayerUseCase>(),
-                c.Resolve<EnablePlayerUseCase>()
+                c.Resolve<EnablePlayerUseCase>(),
+                c.Resolve<CanPlayerPlayAppearAnimationUseCase>()
             ));
 
         builder.Bind<KillPlayerUseCase>()

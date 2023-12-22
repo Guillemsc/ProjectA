@@ -1,27 +1,27 @@
-using Game.GameContext.General.Configurations;
-
 namespace Game.GameContext.Players.UseCases;
 
 public sealed class StartPlayerUseCase
 {
-    readonly GameApplicationContextConfiguration _gameApplicationContextConfiguration;
     readonly AppearPlayerUseCase _appearPlayerUseCase;
     readonly EnablePlayerUseCase _enablePlayerUseCase;
+    readonly CanPlayerPlayAppearAnimationUseCase _canPlayerPlayAppearAnimationUseCase;
 
     public StartPlayerUseCase(
-        GameApplicationContextConfiguration gameApplicationContextConfiguration,
         AppearPlayerUseCase appearPlayerUseCase, 
-        EnablePlayerUseCase enablePlayerUseCase
+        EnablePlayerUseCase enablePlayerUseCase,
+        CanPlayerPlayAppearAnimationUseCase canPlayerPlayAppearAnimationUseCase
         )
     {
-        _gameApplicationContextConfiguration = gameApplicationContextConfiguration;
         _appearPlayerUseCase = appearPlayerUseCase;
         _enablePlayerUseCase = enablePlayerUseCase;
+        _canPlayerPlayAppearAnimationUseCase = canPlayerPlayAppearAnimationUseCase;
     }
 
     public void Execute()
     {
-        if (_gameApplicationContextConfiguration.PlayerAppears)
+        bool shouldAppear = _canPlayerPlayAppearAnimationUseCase.Execute();
+        
+        if (shouldAppear)
         {
             _appearPlayerUseCase.Execute();
         }

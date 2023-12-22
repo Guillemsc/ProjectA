@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdf7ml70y4jua"]
+[gd_scene load_steps=11 format=3 uid="uid://cdf7ml70y4jua"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_livoh"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_phk75"]
@@ -8,8 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/AppleCollectableView.tscn" id="6_upueu"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="7_fbsrl"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_hwa8f"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Views/CinematicTriggerView.cs" id="9_80fx3"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/TestCinematicView.cs" id="10_0ubi6"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/IntroCinematicView.cs" id="9_asdl5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_phk75")
@@ -18,13 +17,11 @@ shader_parameter/movementX = 0.0
 shader_parameter/movementY = -1.0
 shader_parameter/movementSpeed = 0.2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dx87"]
-size = Vector2(60, 60)
-
-[node name="Map1View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+[node name="IntroMapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews", "OptionalStartingCinematic")]
 script = ExtResource("1_livoh")
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView")]
+OptionalStartingCinematic = NodePath("CinematicView")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -2
@@ -87,18 +84,6 @@ layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
 
-[node name="CinematicTriggerView" type="Area2D" parent="." node_paths=PackedStringArray("CinematicView")]
-position = Vector2(70, 0)
-collision_layer = 2
-script = ExtResource("9_80fx3")
-CinematicView = NodePath("../CinematicView")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CinematicTriggerView"]
-shape = SubResource("RectangleShape2D_4dx87")
-debug_color = Color(0, 0.631373, 0.443137, 0.419608)
-
 [node name="CinematicView" type="Node2D" parent="."]
 position = Vector2(101, 0)
-script = ExtResource("10_0ubi6")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CinematicView"]
+script = ExtResource("9_asdl5")

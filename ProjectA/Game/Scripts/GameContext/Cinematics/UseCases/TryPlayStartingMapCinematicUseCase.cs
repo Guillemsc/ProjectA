@@ -3,12 +3,12 @@ using Game.GameContext.Maps.Views;
 
 namespace Game.GameContext.Cinematics.UseCases;
 
-public sealed class TryPlayMapOptionalStartingCinematicUseCase
+public sealed class TryPlayStartingMapCinematicUseCase
 {
     readonly MapViewData _mapViewData;
     readonly PlayCinematicUseCase _playCinematicUseCase;
 
-    public TryPlayMapOptionalStartingCinematicUseCase(
+    public TryPlayStartingMapCinematicUseCase(
         MapViewData mapViewData,
         PlayCinematicUseCase playCinematicUseCase
         )

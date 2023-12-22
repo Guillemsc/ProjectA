@@ -18,6 +18,7 @@ public sealed class SpawnPlayerUseCase
     readonly GamePlayersConfiguration _gamePlayersConfiguration;
     readonly PlayerViewData _playerViewData;
     readonly GameGeneralViewData _gameGeneralViewData;
+    readonly CanPlayerPlayAppearAnimationUseCase _canPlayerPlayAppearAnimationUseCase;
     readonly GetConnectionWithIdUseCase _getConnectionWithIdUseCase;
     readonly WhenPlayerStartedCollisionWithWallUseCase _whenPlayerStartedCollisionWithWallUseCase;
     readonly WhenPlayerStoppedCollisionWithWallUseCase _whenPlayerStoppedCollisionWithWallUseCase;
@@ -29,6 +30,7 @@ public sealed class SpawnPlayerUseCase
         GamePlayersConfiguration gamePlayersConfiguration, 
         PlayerViewData playerViewData, 
         GameGeneralViewData gameGeneralViewData, 
+        CanPlayerPlayAppearAnimationUseCase canPlayerPlayAppearAnimationUseCase,
         GetConnectionWithIdUseCase getConnectionWithIdUseCase,
         WhenPlayerStartedCollisionWithWallUseCase whenPlayerStartedCollisionWithWallUseCase,
         WhenPlayerStoppedCollisionWithWallUseCase whenPlayerStoppedCollisionWithWallUseCase, 
@@ -40,6 +42,7 @@ public sealed class SpawnPlayerUseCase
         _gamePlayersConfiguration = gamePlayersConfiguration;
         _playerViewData = playerViewData;
         _gameGeneralViewData = gameGeneralViewData;
+        _canPlayerPlayAppearAnimationUseCase = canPlayerPlayAppearAnimationUseCase;
         _getConnectionWithIdUseCase = getConnectionWithIdUseCase;
         _whenPlayerStartedCollisionWithWallUseCase = whenPlayerStartedCollisionWithWallUseCase;
         _whenPlayerStoppedCollisionWithWallUseCase = whenPlayerStoppedCollisionWithWallUseCase;
@@ -51,10 +54,12 @@ public sealed class SpawnPlayerUseCase
     {
         PlayerView playerView = _gamePlayersConfiguration.PlayerPrefab!.Instantiate<PlayerView>();
         playerView.SetParent(_gameGeneralViewData.Root);
+
+        bool playerAppears = _canPlayerPlayAppearAnimationUseCase.Execute();
         
-        playerView.AnimatedSprite!.Visible = !_contextConfiguration.PlayerAppears;
         playerView.AnimationPlayer!.HorizontalDirection = _contextConfiguration.PlayerDirection;
-        playerView.CanUpdateMovement = !_contextConfiguration.PlayerAppears;
+        playerView.AnimatedSprite!.Visible = !playerAppears;
+        playerView.CanUpdateMovement = !playerAppears;
         
         Optional<ConnectionView> optionalConnectionView = _getConnectionWithIdUseCase.Execute(
             _contextConfiguration.SpawnId
