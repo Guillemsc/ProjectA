@@ -48,6 +48,8 @@ public sealed class PlayOneShotVisualEffectUseCase
 
             await effectView.Play(cancellationToken);
             
+            if(cancellationToken.IsCancellationRequested) return;
+            
             effectView.QueueFree();
         }
 

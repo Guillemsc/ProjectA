@@ -1,23 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch63tbkd35fj2"]
+[gd_scene load_steps=13 format=3 uid="uid://cdf7ml70y4jua"]
 
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_uye37"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="2_3tlgg"]
-[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="3_dhbwq"]
-[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="5_n0lgg"]
-[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="6_3utqj"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="6_lhcfy"]
-[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="6_mguel"]
-[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="7_3yi5n"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_livoh"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_phk75"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="3_yrhvw"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_6bhn4"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_fnfny"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/AppleCollectableView.tscn" id="6_upueu"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="7_fbsrl"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_hwa8f"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Views/CinematicTriggerView.cs" id="9_80fx3"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/TestCinematicView.cs" id="10_0ubi6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
-shader = ExtResource("5_n0lgg")
+shader = ExtResource("2_phk75")
 shader_parameter/tilingScale = 1.341
 shader_parameter/movementX = 0.0
 shader_parameter/movementY = -1.0
 shader_parameter/movementSpeed = 0.2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dx87"]
+size = Vector2(60, 60)
+
 [node name="Map1View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
-script = ExtResource("1_uye37")
+script = ExtResource("1_livoh")
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView")]
 
@@ -38,33 +43,32 @@ color = Color(0.129412, 0.121569, 0.188235, 1)
 material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(199, -42.5179)
 scale = Vector2(8.65625, 3.98493)
-texture = ExtResource("6_mguel")
+texture = ExtResource("3_yrhvw")
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
-script = ExtResource("2_3tlgg")
+script = ExtResource("4_6bhn4")
 Bounds = NodePath("Bounds")
 CameraZoom = 2.7
 
 [node name="Bounds" type="Node2D" parent="AreaView"]
 z_index = 3
 position = Vector2(198, -58)
-script = ExtResource("3_dhbwq")
+script = ExtResource("5_fnfny")
 Size = Vector2(555, 224)
 
-[node name="AppleCollectableView" parent="AreaView" instance=ExtResource("6_3utqj")]
+[node name="AppleCollectableView" parent="AreaView" instance=ExtResource("6_upueu")]
 position = Vector2(272, -13)
 
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
 position = Vector2(479, -73)
-script = ExtResource("6_lhcfy")
+script = ExtResource("7_fbsrl")
 Bounds = NodePath("Bounds")
-Map = "res://Game/Prefabs/Map2View.tscn"
 SpawnId = "1-2"
 SpawnPosition = NodePath("SpawnPosition")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]
 position = Vector2(1, -7)
-script = ExtResource("3_dhbwq")
+script = ExtResource("5_fnfny")
 Size = Vector2(10, 100)
 DebugColor = Color(0, 0.54902, 0.921569, 1)
 
@@ -72,7 +76,7 @@ DebugColor = Color(0, 0.54902, 0.921569, 1)
 position = Vector2(-14, 25)
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("7_3yi5n")
+tile_set = ExtResource("8_hwa8f")
 format = 2
 layer_0/name = "Background"
 layer_0/z_index = 2
@@ -82,3 +86,19 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
+
+[node name="CinematicTriggerView" type="Area2D" parent="." node_paths=PackedStringArray("CinematicView")]
+position = Vector2(70, 0)
+collision_layer = 2
+script = ExtResource("9_80fx3")
+CinematicView = NodePath("../CinematicView")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CinematicTriggerView"]
+shape = SubResource("RectangleShape2D_4dx87")
+debug_color = Color(0, 0.631373, 0.443137, 0.419608)
+
+[node name="CinematicView" type="Node2D" parent="."]
+position = Vector2(101, 0)
+script = ExtResource("10_0ubi6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CinematicView"]

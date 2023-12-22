@@ -1,4 +1,6 @@
 using System;
+using Game.GameContext.Cinematics.UseCases;
+using Game.GameContext.Cinematics.Views;
 using Game.GameContext.Collectables.UseCases;
 using Game.GameContext.Collectables.Views;
 using Game.GameContext.Connections.UseCases;
@@ -20,19 +22,22 @@ public sealed class WhenPlayerStartedInteractionCollisionWithAreaUseCase
     readonly WhenPlayerCollidedWithCollectableUseCase _whenPlayerCollidedWithCollectableUseCase;
     readonly WhenPlayerCollidedWithTrampolineUseCase _whenPlayerCollidedWithTrampolineUseCase;
     readonly WhenPlayerCollidedWithVelocityBoosterUseCase _whenPlayerCollidedWithVelocityBoosterUseCase;
-    readonly WhenPlayerCollidedWithPlayerKillerUseCase _playerCollidedWithPlayerKillerUseCase;
+    readonly WhenPlayerCollidedWithPlayerKillerUseCase _whenPlayerCollidedWithPlayerKillerUseCase;
+    readonly WhenPlayerCollidedWithCinematicTriggerUseCase _whenPlayerCollidedWithCinematicTriggerUseCase;
 
     public WhenPlayerStartedInteractionCollisionWithAreaUseCase(
         WhenPlayerCollidedWithCollectableUseCase whenPlayerCollidedWithCollectableUseCase, 
         WhenPlayerCollidedWithTrampolineUseCase whenPlayerCollidedWithTrampolineUseCase,
         WhenPlayerCollidedWithVelocityBoosterUseCase whenPlayerCollidedWithVelocityBoosterUseCase,
-        WhenPlayerCollidedWithPlayerKillerUseCase playerCollidedWithPlayerKillerUseCase
+        WhenPlayerCollidedWithPlayerKillerUseCase whenPlayerCollidedWithPlayerKillerUseCase,
+        WhenPlayerCollidedWithCinematicTriggerUseCase whenPlayerCollidedWithCinematicTriggerUseCase
         )
     {
         _whenPlayerCollidedWithCollectableUseCase = whenPlayerCollidedWithCollectableUseCase;
         _whenPlayerCollidedWithTrampolineUseCase = whenPlayerCollidedWithTrampolineUseCase;
         _whenPlayerCollidedWithVelocityBoosterUseCase = whenPlayerCollidedWithVelocityBoosterUseCase;
-        _playerCollidedWithPlayerKillerUseCase = playerCollidedWithPlayerKillerUseCase;
+        _whenPlayerCollidedWithPlayerKillerUseCase = whenPlayerCollidedWithPlayerKillerUseCase;
+        _whenPlayerCollidedWithCinematicTriggerUseCase = whenPlayerCollidedWithCinematicTriggerUseCase;
     }
 
     public void Execute(Area2D area2D)
@@ -40,7 +45,8 @@ public sealed class WhenPlayerStartedInteractionCollisionWithAreaUseCase
         if(TryGetAndRun<CollectableView>(area2D, _whenPlayerCollidedWithCollectableUseCase.Execute)) return;
         if(TryGetAndRun<TrampolineView>(area2D, _whenPlayerCollidedWithTrampolineUseCase.Execute)) return;
         if(TryGetAndRun<VelocityBoosterView>(area2D, _whenPlayerCollidedWithVelocityBoosterUseCase.Execute)) return;
-        if(TryGetAndRun<IPlayerKillerView>(area2D, _playerCollidedWithPlayerKillerUseCase.Execute)) return;
+        if(TryGetAndRun<IPlayerKillerView>(area2D, _whenPlayerCollidedWithPlayerKillerUseCase.Execute)) return;
+        if(TryGetAndRun<CinematicTriggerView>(area2D, _whenPlayerCollidedWithCinematicTriggerUseCase.Execute)) return;
     }
 
     bool TryGetAndRun<T>(Area2D area2D, Action<T> action) 

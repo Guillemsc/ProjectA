@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c86hqdek27h7d"]
+
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/NineSliceSprite2D.gdshader" id="1_oscin"]
+[ext_resource type="Texture2D" uid="uid://dera4463br3yh" path="res://Game/Textures/Platform.png" id="2_koo07"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/NineSliceSprites/NineSliceSprite2D.cs" id="3_qyl2h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vv412"]
+shader = ExtResource("1_oscin")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/right = 3
+shader_parameter/top = 3
+shader_parameter/left = 3
+shader_parameter/bottom = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnc5t"]
+size = Vector2(48, 5)
+
+[node name="PlatformView" type="Node2D"]
+position = Vector2(-217, 88)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vv412")
+texture = ExtResource("2_koo07")
+script = ExtResource("3_qyl2h")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_mnc5t")
+one_way_collision = true

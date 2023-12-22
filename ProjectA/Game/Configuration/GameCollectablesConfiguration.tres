@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GameCollectablesConfiguration" load_steps=3 format=3 uid="uid://dbwfljal22msr"]
 
-[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="1_deayn"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/AppleCollectableView.tscn" id="1_deayn"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Collectables/Configurations/GameCollectablesConfiguration.cs" id="1_hsang"]
 
 [resource]

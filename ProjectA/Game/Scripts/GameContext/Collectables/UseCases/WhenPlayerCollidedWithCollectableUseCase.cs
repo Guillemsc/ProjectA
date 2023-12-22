@@ -29,6 +29,8 @@ public sealed class WhenPlayerCollidedWithCollectableUseCase
         {
             collectableView.AnimationPlayer!.Play(CollectableAnimationState.Collected);
             await collectableView.AnimationPlayer!.AwaitCompletition(cancellationToken);
+            
+            if(cancellationToken.IsCancellationRequested) return;
 
             _playOneShotVisualEffectUseCase.Execute(
                 OneShotVisualEffectType.CollectableCollected,

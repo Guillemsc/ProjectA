@@ -45,6 +45,7 @@ public sealed class TickPlayerMovementUseCase
 
         if (!playerView.CanUpdateMovement)
         {
+            playerView.Velocity = Vector2.Zero;
             return;
         }
         

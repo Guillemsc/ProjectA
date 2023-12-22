@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0ajai5npkpdk"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/PlayerKillers/Views/TriggerPlayerKillerView.cs" id="1_e0hkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vacwt"]
+size = Vector2(58, 8)
+
+[node name="TriggerPlayerKillerView" type="Area2D"]
+position = Vector2(80, 50)
+collision_layer = 2
+script = ExtResource("1_e0hkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vacwt")
+debug_color = Color(0.960784, 0, 0.513726, 0.419608)

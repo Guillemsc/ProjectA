@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bf02loyc8lc37"]
 
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Players/Views/PlayerView.cs" id="1_77eti"]
-[ext_resource type="SpriteFrames" uid="uid://dpq2ry5qvjkg3" path="res://Game/SpriteFrames/PlayerSpriteFrames.tres" id="1_rg7cu"]
-[ext_resource type="Script" path="res://GUtilsGodot/Source/CharacterBody2Ds/Callbacks/CharacterBody2DCollisionCallbacks.cs" id="2_vvhqd"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Players/AnimationGraphPlayers/PlayerAnimationGraphPlayerNode.cs" id="3_yhug4"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Players/Views/PlayerView.cs" id="1_6jkvy"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/CharacterBody2Ds/Callbacks/CharacterBody2DCollisionCallbacks.cs" id="2_ciyrb"]
+[ext_resource type="SpriteFrames" uid="uid://dpq2ry5qvjkg3" path="res://Game/SpriteFrames/PlayerSpriteFrames.tres" id="3_8aajx"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Players/AnimationGraphPlayers/PlayerAnimationGraphPlayerNode.cs" id="4_803if"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si2w1"]
 size = Vector2(16, 26)
@@ -17,7 +17,7 @@ size = Vector2(16, 26)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CharacterBody2DCollisionCallbacks", "AnimatedSprite", "AnimationPlayer", "LeftWallDetector", "RightWallDetector", "InteractionsDetector")]
 position = Vector2(3, 1)
 collision_mask = 6
-script = ExtResource("1_77eti")
+script = ExtResource("1_6jkvy")
 CharacterBody2DCollisionCallbacks = NodePath("CharacterBody2DCollisionCallbacks")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 AnimationPlayer = NodePath("AnimationGraphPlayer")
@@ -26,15 +26,15 @@ RightWallDetector = NodePath("RightWallDetector")
 InteractionsDetector = NodePath("InteractionsDetector")
 
 [node name="CharacterBody2DCollisionCallbacks" type="Node2D" parent="." node_paths=PackedStringArray("CharacterBody2D")]
-script = ExtResource("2_vvhqd")
+script = ExtResource("2_ciyrb")
 CharacterBody2D = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("1_rg7cu")
+sprite_frames = ExtResource("3_8aajx")
 animation = &"Run"
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
-script = ExtResource("3_yhug4")
+script = ExtResource("4_803if")
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

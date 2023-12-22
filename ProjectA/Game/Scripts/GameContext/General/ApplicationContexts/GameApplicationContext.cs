@@ -2,6 +2,7 @@
 using Game.GameContext.Areas.Installers;
 using Game.GameContext.Cameras.Installers;
 using Game.GameContext.Cheats.Installers;
+using Game.GameContext.Cinematics.Installers;
 using Game.GameContext.Collectables.Installers;
 using Game.GameContext.Connections.Installers;
 using Game.GameContext.Crates.Installers;
@@ -58,6 +59,7 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGameTrampolines();
                 b.InstallGameVelocityBoosters();
                 b.InstallGamePlayerKillers();
+                b.InstallGameCinematics();
                 
                 b.InstallGameCheats();
             }));

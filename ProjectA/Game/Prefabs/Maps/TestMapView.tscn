@@ -1,24 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://bnu7c4diajc4h"]
+[gd_scene load_steps=17 format=3 uid="uid://bnu7c4diajc4h"]
 
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_rrdce"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="2_508ou"]
-[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="2_k0mks"]
-[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_lji6d"]
-[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="3_cdfd8"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="4_7pm0o"]
-[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="4_rroov"]
-[ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="5_7nybk"]
-[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/NineSliceSprite2D.gdshader" id="6_k6xe7"]
-[ext_resource type="Texture2D" uid="uid://dera4463br3yh" path="res://Game/Textures/Platform.png" id="7_8nr4b"]
-[ext_resource type="Script" path="res://GUtilsGodot/Source/NineSliceSprites/NineSliceSprite2D.cs" id="8_rglh2"]
-[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="9_hkfqr"]
-[ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/CrateView.tscn" id="10_psi8n"]
-[ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/TrampolineView.tscn" id="11_84evq"]
-[ext_resource type="PackedScene" uid="uid://cjmhkolmgxq53" path="res://Game/Prefabs/VelocityBoosterView.tscn" id="12_aagrt"]
-[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/SpikesView.tscn" id="13_3l5jh"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_bmsji"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="2_488y7"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="3_yiydy"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="4_58lx6"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="5_ngpry"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="6_8bc0e"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="7_yhlv5"]
+[ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="8_fh565"]
+[ext_resource type="PackedScene" uid="uid://c86hqdek27h7d" path="res://Game/Prefabs/Views/PlatformView.tscn" id="9_ml6br"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/AppleCollectableView.tscn" id="10_1hf2i"]
+[ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/Views/CrateView.tscn" id="11_typ2k"]
+[ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/Views/TrampolineView.tscn" id="12_4vj36"]
+[ext_resource type="PackedScene" uid="uid://cjmhkolmgxq53" path="res://Game/Prefabs/Views/VelocityBoosterView.tscn" id="13_yt23w"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/Views/SpikesView.tscn" id="14_lrv6x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
-shader = ExtResource("2_lji6d")
+shader = ExtResource("5_ngpry")
 shader_parameter/tilingScale = 1.341
 shader_parameter/movementX = 0.0
 shader_parameter/movementY = -1.0
@@ -27,19 +25,8 @@ shader_parameter/movementSpeed = 0.2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5fp1"]
 size = Vector2(25.5, 25.5)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vv412"]
-shader = ExtResource("6_k6xe7")
-shader_parameter/scale = Vector2(1, 1)
-shader_parameter/right = 3
-shader_parameter/top = 3
-shader_parameter/left = 3
-shader_parameter/bottom = 3
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnc5t"]
-size = Vector2(48, 5)
-
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
-script = ExtResource("1_rrdce")
+script = ExtResource("1_bmsji")
 AreaViews = [NodePath("AreaView"), NodePath("AreaView2"), NodePath("AreaView3"), NodePath("AreaView4")]
 ConnectionViews = [NodePath("ConnectionView")]
 
@@ -57,58 +44,57 @@ grow_vertical = 2
 color = Color(0.129412, 0.121569, 0.188235, 1)
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
-script = ExtResource("2_508ou")
+script = ExtResource("2_488y7")
 Bounds = NodePath("Bounds")
 
 [node name="Bounds" type="Node2D" parent="AreaView"]
 z_index = 3
-script = ExtResource("2_k0mks")
+script = ExtResource("3_yiydy")
 Size = Vector2(520, 290)
 
 [node name="AreaView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
-script = ExtResource("2_508ou")
+script = ExtResource("2_488y7")
 Bounds = NodePath("Bounds")
 CameraZoom = 4.0
 
 [node name="Bounds" type="Node2D" parent="AreaView2"]
 z_index = 3
 position = Vector2(368, 64)
-script = ExtResource("2_k0mks")
+script = ExtResource("3_yiydy")
 Size = Vector2(200.415, 162)
 
 [node name="AreaView3" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 position = Vector2(72, 240)
-script = ExtResource("2_508ou")
+script = ExtResource("2_488y7")
 Bounds = NodePath("Bounds")
 CameraZoom = 4.0
 
 [node name="Bounds" type="Node2D" parent="AreaView3"]
 z_index = 3
-script = ExtResource("2_k0mks")
+script = ExtResource("3_yiydy")
 Size = Vector2(200.415, 131.615)
 
 [node name="AreaView4" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 position = Vector2(-360, 41)
-script = ExtResource("2_508ou")
+script = ExtResource("2_488y7")
 Bounds = NodePath("Bounds")
 CameraZoom = 3.0
 
 [node name="Bounds" type="Node2D" parent="AreaView4"]
 z_index = 3
 position = Vector2(-70, 23)
-script = ExtResource("2_k0mks")
+script = ExtResource("3_yiydy")
 Size = Vector2(330, 170)
 
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 position = Vector2(435, 90)
-script = ExtResource("4_7pm0o")
+script = ExtResource("4_58lx6")
 Bounds = NodePath("Bounds")
-Map = "res://Game/Prefabs/TestMap2View.tscn"
 SpawnId = "test"
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]
 z_index = 1
-script = ExtResource("2_k0mks")
+script = ExtResource("3_yiydy")
 Size = Vector2(20, 20)
 DebugColor = Color(0, 0.560784, 0.87451, 1)
 
@@ -116,10 +102,10 @@ DebugColor = Color(0, 0.560784, 0.87451, 1)
 material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(-64.4996, 79.964)
 scale = Vector2(16.4844, 6.96987)
-texture = ExtResource("3_cdfd8")
+texture = ExtResource("6_8bc0e")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("4_rroov")
+tile_set = ExtResource("7_yhlv5")
 format = 2
 layer_0/name = "Background"
 layer_0/z_index = 2
@@ -137,78 +123,65 @@ collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="GodotCube"]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("5_7nybk")
+texture = ExtResource("8_fh565")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GodotCube"]
 shape = SubResource("RectangleShape2D_q5fp1")
 
-[node name="Platform" type="Node2D" parent="."]
-position = Vector2(-217, 88)
+[node name="PlatformView" parent="." instance=ExtResource("9_ml6br")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Platform"]
-material = SubResource("ShaderMaterial_vv412")
-texture = ExtResource("7_8nr4b")
-script = ExtResource("8_rglh2")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Platform"]
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
-shape = SubResource("RectangleShape2D_mnc5t")
-one_way_collision = true
-
-[node name="AppleCollectableView" parent="." instance=ExtResource("9_hkfqr")]
+[node name="AppleCollectableView" parent="." instance=ExtResource("10_1hf2i")]
 position = Vector2(-208, 64)
 
-[node name="AppleCollectableView2" parent="." instance=ExtResource("9_hkfqr")]
+[node name="AppleCollectableView2" parent="." instance=ExtResource("10_1hf2i")]
 position = Vector2(-168, 64)
 
-[node name="AppleCollectableView3" parent="." instance=ExtResource("9_hkfqr")]
+[node name="AppleCollectableView3" parent="." instance=ExtResource("10_1hf2i")]
 position = Vector2(-128, 64)
 
-[node name="CrateView" parent="." instance=ExtResource("10_psi8n")]
+[node name="CrateView" parent="." instance=ExtResource("11_typ2k")]
 position = Vector2(-38, -9)
 HitsToDestroy = 3
 FruitsPerHit = 1
 
-[node name="CrateView2" parent="." instance=ExtResource("10_psi8n")]
+[node name="CrateView2" parent="." instance=ExtResource("11_typ2k")]
 position = Vector2(-38, 54)
 
-[node name="CrateView3" parent="." instance=ExtResource("10_psi8n")]
+[node name="CrateView3" parent="." instance=ExtResource("11_typ2k")]
 position = Vector2(40, 86)
 
-[node name="CrateView4" parent="." instance=ExtResource("10_psi8n")]
+[node name="CrateView4" parent="." instance=ExtResource("11_typ2k")]
 position = Vector2(94, 86)
 
-[node name="CrateView5" parent="." instance=ExtResource("10_psi8n")]
+[node name="CrateView5" parent="." instance=ExtResource("11_typ2k")]
 position = Vector2(-121, -26)
 
-[node name="TrampolineView" parent="." instance=ExtResource("11_84evq")]
+[node name="TrampolineView" parent="." instance=ExtResource("12_4vj36")]
 position = Vector2(162, 114)
 
-[node name="VelocityBoosterView" parent="." instance=ExtResource("12_aagrt")]
+[node name="VelocityBoosterView" parent="." instance=ExtResource("13_yt23w")]
 position = Vector2(107, 42)
 BoostStrenght = 500.0
 
-[node name="VelocityBoosterView2" parent="." instance=ExtResource("12_aagrt")]
+[node name="VelocityBoosterView2" parent="." instance=ExtResource("13_yt23w")]
 position = Vector2(107, 2)
 rotation = 1.0472
 
-[node name="SpikesView" parent="." instance=ExtResource("13_3l5jh")]
+[node name="SpikesView" parent="." instance=ExtResource("14_lrv6x")]
 position = Vector2(-117, 120)
 
-[node name="SpikesView2" parent="." instance=ExtResource("13_3l5jh")]
+[node name="SpikesView2" parent="." instance=ExtResource("14_lrv6x")]
 position = Vector2(216, 22)
 rotation = -1.5708
 
-[node name="SpikesView3" parent="." instance=ExtResource("13_3l5jh")]
+[node name="SpikesView3" parent="." instance=ExtResource("14_lrv6x")]
 position = Vector2(216, 7)
 rotation = -1.5708
 
-[node name="SpikesView4" parent="." instance=ExtResource("13_3l5jh")]
+[node name="SpikesView4" parent="." instance=ExtResource("14_lrv6x")]
 position = Vector2(216, -8)
 rotation = -1.5708
 
-[node name="SpikesView5" parent="." instance=ExtResource("13_3l5jh")]
+[node name="SpikesView5" parent="." instance=ExtResource("14_lrv6x")]
 position = Vector2(216, -23)
 rotation = -1.5708

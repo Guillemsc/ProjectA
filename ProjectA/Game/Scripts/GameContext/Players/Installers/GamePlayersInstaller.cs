@@ -1,3 +1,4 @@
+using Game.GameContext.Cinematics.UseCases;
 using Game.GameContext.Collectables.UseCases;
 using Game.GameContext.Connections.UseCases;
 using Game.GameContext.Crates.UseCases;
@@ -100,7 +101,8 @@ public static class GamePlayersInstaller
                 c.Resolve<WhenPlayerCollidedWithCollectableUseCase>(),
                 c.Resolve<WhenPlayerCollidedWithTrampolineUseCase>(),
                 c.Resolve<WhenPlayerCollidedWithVelocityBoosterUseCase>(),
-                c.Resolve<WhenPlayerCollidedWithPlayerKillerUseCase>()
+                c.Resolve<WhenPlayerCollidedWithPlayerKillerUseCase>(),
+                c.Resolve<WhenPlayerCollidedWithCinematicTriggerUseCase>()
             ));
 
         builder.Bind<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()

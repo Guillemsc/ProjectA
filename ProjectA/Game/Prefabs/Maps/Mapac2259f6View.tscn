@@ -1,24 +1,24 @@
 [gd_scene load_steps=11 format=3 uid="uid://cu27rqj360o60"]
 
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_57ggg"]
-[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_4vhg5"]
-[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="3_2k2ve"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_ui82w"]
-[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_cfgr5"]
-[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/SpikesView.tscn" id="6_mjgin"]
-[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/AppleCollectableView.tscn" id="7_0vml4"]
-[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_vfqx5"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="9_ikk86"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_4mghb"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_dgt4x"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="3_r70sp"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_qsdlv"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_wunq1"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/Views/SpikesView.tscn" id="6_1g4e6"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/AppleCollectableView.tscn" id="7_vw8ks"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_7oq2s"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_pchk4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
-shader = ExtResource("2_4vhg5")
+shader = ExtResource("2_dgt4x")
 shader_parameter/tilingScale = 1.341
 shader_parameter/movementX = 0.0
 shader_parameter/movementY = -1.0
 shader_parameter/movementSpeed = 0.2
 
-[node name="Map2View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
-script = ExtResource("1_57ggg")
+[node name="Mapac2259f6View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+script = ExtResource("1_4mghb")
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
@@ -39,78 +39,78 @@ color = Color(0.129412, 0.121569, 0.188235, 1)
 material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(153, -42.5179)
 scale = Vector2(7.65625, 3.98493)
-texture = ExtResource("3_2k2ve")
+texture = ExtResource("3_r70sp")
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
-script = ExtResource("4_ui82w")
+script = ExtResource("4_qsdlv")
 Bounds = NodePath("Bounds")
 CameraZoom = 2.7
 
 [node name="Bounds" type="Node2D" parent="AreaView"]
 z_index = 3
 position = Vector2(151, -41)
-script = ExtResource("5_cfgr5")
+script = ExtResource("5_wunq1")
 Size = Vector2(470, 264)
 
-[node name="SpikesView" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(57, 72)
 
-[node name="SpikesView2" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView2" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(73, 72)
 
-[node name="SpikesView3" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView3" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(89, 72)
 
-[node name="SpikesView4" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView4" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(105, 72)
 
-[node name="SpikesView6" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView6" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(233, 8)
 
-[node name="SpikesView7" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView7" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(249, 8)
 
-[node name="SpikesView8" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView8" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(265, 8)
 
-[node name="SpikesView9" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView9" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(281, 8)
 
-[node name="SpikesView10" parent="AreaView" instance=ExtResource("6_mjgin")]
+[node name="SpikesView10" parent="AreaView" instance=ExtResource("6_1g4e6")]
 position = Vector2(297, 8)
 
-[node name="AppleCollectableView" parent="AreaView" instance=ExtResource("7_0vml4")]
+[node name="AppleCollectableView" parent="AreaView" instance=ExtResource("7_vw8ks")]
 position = Vector2(24, 12)
 
-[node name="AppleCollectableView2" parent="AreaView" instance=ExtResource("7_0vml4")]
+[node name="AppleCollectableView2" parent="AreaView" instance=ExtResource("7_vw8ks")]
 position = Vector2(139, -32)
 
-[node name="AppleCollectableView5" parent="AreaView" instance=ExtResource("7_0vml4")]
+[node name="AppleCollectableView5" parent="AreaView" instance=ExtResource("7_vw8ks")]
 position = Vector2(194, -106)
 
-[node name="AppleCollectableView4" parent="AreaView" instance=ExtResource("7_0vml4")]
+[node name="AppleCollectableView4" parent="AreaView" instance=ExtResource("7_vw8ks")]
 position = Vector2(312, -94)
 
-[node name="AppleCollectableView6" parent="AreaView" instance=ExtResource("7_0vml4")]
+[node name="AppleCollectableView6" parent="AreaView" instance=ExtResource("7_vw8ks")]
 position = Vector2(32, -100)
 
-[node name="AppleCollectableView3" parent="AreaView" instance=ExtResource("7_0vml4")]
+[node name="AppleCollectableView3" parent="AreaView" instance=ExtResource("7_vw8ks")]
 position = Vector2(32, -125)
 
-[node name="AppleCollectableView7" parent="AreaView" instance=ExtResource("7_0vml4")]
+[node name="AppleCollectableView7" parent="AreaView" instance=ExtResource("7_vw8ks")]
 position = Vector2(32, -75)
 
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
 position = Vector2(-89, -16)
-script = ExtResource("9_ikk86")
+script = ExtResource("8_7oq2s")
 Bounds = NodePath("Bounds")
-Map = "res://Game/Prefabs/Map1View.tscn"
-SpawnId = "1-2"
+Map = "res://Game/Prefabs/Maps/Map9f258048View.tscn"
+SpawnId = "8104745a-c967-4019-9127-fdb05f0fef46"
 SpawnPosition = NodePath("SpawnPosition")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]
 z_index = 3
-script = ExtResource("5_cfgr5")
+script = ExtResource("5_wunq1")
 Size = Vector2(10, 100)
 DebugColor = Color(0, 0.568627, 0.839216, 1)
 
@@ -119,15 +119,15 @@ position = Vector2(15, 33)
 
 [node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
 position = Vector2(389, -117)
-script = ExtResource("9_ikk86")
+script = ExtResource("8_7oq2s")
 Bounds = NodePath("Bounds")
-Map = "res://Game/Prefabs/Map3View.tscn"
-SpawnId = "2-3"
+Map = "res://Game/Prefabs/Maps/Mapb18ca3d8View.tscn"
+SpawnId = "4a93fddb-4962-4573-9559-cd028a8b7e17"
 SpawnPosition = NodePath("SpawnPosition")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView2"]
 z_index = 3
-script = ExtResource("5_cfgr5")
+script = ExtResource("5_wunq1")
 Size = Vector2(10, 100)
 DebugColor = Color(0, 0.568627, 0.839216, 1)
 
@@ -135,7 +135,7 @@ DebugColor = Color(0, 0.568627, 0.839216, 1)
 position = Vector2(-12, 24)
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("8_vfqx5")
+tile_set = ExtResource("9_pchk4")
 format = 2
 layer_0/name = "Background"
 layer_0/z_index = 2
