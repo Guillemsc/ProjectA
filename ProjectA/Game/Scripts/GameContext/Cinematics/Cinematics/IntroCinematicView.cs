@@ -4,6 +4,7 @@ using Game.GameContext.Cinematics.Contexts;
 using Game.GameContext.Cinematics.Views;
 using Game.GameContext.Players.Enums;
 using Game.GameContext.Players.Views;
+using Godot;
 using GTweens.Builders;
 using GTweens.Easings;
 using GTweens.Tweens;
@@ -14,6 +15,13 @@ namespace Game.GameContext.Cinematics.Cinematics;
 
 public partial class IntroCinematicView : CinematicView
 {
+    [Export] public Node2D? PositionBeforeJump;
+    [Export] public float WalkTowardsJumpDuration = 1f;
+    
+    [Export] public Node2D? JumpHeightPosition;
+    [Export] public Node2D? JumpFallPosition;
+    [Export] public Node2D? FallHeightPosition;
+    
     public override async Task PlayCinematic(CinematicsContext cinematicsContext, CancellationToken cancellationToken)
     {
         await cinematicsContext.CinematicsMethods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
@@ -23,19 +31,30 @@ public partial class IntroCinematicView : CinematicView
         playerView.CanUpdateMovement = false;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Disabled;
         playerView.AnimatedSprite!.Play(PlayerAnimationState.Idle);
-
-        float newPosition = playerView.GlobalPosition.X - 50;
         
         GTweenSequenceBuilder sequenceBuilder = GTweenSequenceBuilder.New();
-        
+
         sequenceBuilder.AppendTime(1f)
-            .AppendCallback(() => playerView.AnimatedSprite!.FlipH = true)
+            .AppendCallback(() => playerView.AnimatedSprite!.FlipH = false)
             .AppendTime(1f)
             .AppendCallback(() => playerView.AnimatedSprite!.Play(PlayerAnimationState.Run))
-            .Append(playerView.TweenPositionX(newPosition, 1f).SetEasing(Easing.Linear))
+            .Append(playerView.TweenGlobalPositionX(PositionBeforeJump!.GlobalPosition.X, WalkTowardsJumpDuration)
+                .SetEasing(Easing.Linear))
             .AppendCallback(() => playerView.AnimatedSprite!.Play(PlayerAnimationState.Idle))
+            .AppendTime(0.5f)
+            .AppendCallback(() => playerView.AnimatedSprite!.FlipH = true)
+            .AppendTime(0.5f)
+            .AppendCallback(() => playerView.AnimatedSprite!.FlipH = false)
+            .Append(playerView.TweenGlobalPositionX(JumpFallPosition!.GlobalPosition.X, 1f).SetEasing(Easing.OutQuad))
+            .JoinSequence(s => s
+                .Append(playerView.TweenGlobalPositionY(JumpHeightPosition!.GlobalPosition.Y, 0.5f)
+                    .SetEasing(Easing.OutQuad))
+                .JoinCallback(() => playerView.AnimatedSprite!.Play(PlayerAnimationState.Jump))
+                .Append(playerView.TweenGlobalPositionY(FallHeightPosition!.GlobalPosition.Y, 0.5f)
+                    .SetEasing(Easing.InQuad))
+                .JoinCallback(() => playerView.AnimatedSprite!.Play(PlayerAnimationState.Fall))
+            )
             .AppendTime(1f);
-
         GTween tween = sequenceBuilder.Build();
         
         await tween.PlayAsync(cancellationToken);
