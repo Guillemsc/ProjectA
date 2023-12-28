@@ -1,5 +1,6 @@
 using Game.GameContext.Letters.UseCases;
 using Game.GameContext.LetterUi.Interactors;
+using Game.GameContext.Players.Datas;
 using GUtils.Di.Builder;
 using GUtils.Tasks.Runners;
 
@@ -13,6 +14,7 @@ public static class GameLettersInstaller
             .FromFunction(c => new ShowLetterUseCase(
                 c.Resolve<IAsyncTaskRunner>(),
                 c.Resolve<ILetterUiInteractor>(),
+                c.Resolve<PlayerViewData>(),
                 c.Resolve<AwaitLetterContinueInputUseCase>()
             ));
         
