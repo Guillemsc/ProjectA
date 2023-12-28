@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=71 format=3 uid="uid://dpq2ry5qvjkg3"]
+[gd_resource type="SpriteFrames" load_steps=73 format=3 uid="uid://dpq2ry5qvjkg3"]
 
 [ext_resource type="Texture2D" uid="uid://b8vqgg3hc7viq" path="res://Game/Textures/BluePlayer-DoubleJump.png" id="1_2ht4o"]
 [ext_resource type="Texture2D" uid="uid://duacavfbx6j4g" path="res://Game/Textures/Player-Appear.png" id="1_805f5"]
@@ -65,29 +65,37 @@ region = Rect2(480, 0, 96, 96)
 atlas = ExtResource("2_itpdw")
 region = Rect2(576, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qknx1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qqy6"]
 atlas = ExtResource("1_2ht4o")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1e52r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i06r7"]
 atlas = ExtResource("1_2ht4o")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g60a5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8em3j"]
 atlas = ExtResource("1_2ht4o")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3hlwd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ja0c"]
 atlas = ExtResource("1_2ht4o")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2gace"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjqhw"]
 atlas = ExtResource("1_2ht4o")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_khphu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj66s"]
 atlas = ExtResource("1_2ht4o")
 region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6gdr"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p05wx"]
+atlas = ExtResource("1_2ht4o")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1mqd7"]
 atlas = ExtResource("1_wjioa")
@@ -313,22 +321,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qknx1")
+"texture": SubResource("AtlasTexture_4qqy6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1e52r")
+"texture": SubResource("AtlasTexture_i06r7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g60a5")
+"texture": SubResource("AtlasTexture_8em3j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3hlwd")
+"texture": SubResource("AtlasTexture_6ja0c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2gace")
+"texture": SubResource("AtlasTexture_gjqhw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_khphu")
+"texture": SubResource("AtlasTexture_fj66s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6gdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p05wx")
 }],
 "loop": false,
 "name": &"DoubleJump",

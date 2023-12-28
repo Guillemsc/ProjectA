@@ -7,7 +7,7 @@ using GUtilsGodot.Visibility.Visibles;
 
 namespace Game.LoadingScreenContext.LoadingScreenUi.Installers;
 
-public partial class LoadingScreenUiInstaller : NodeInstaller
+public partial class LoadingScreenUiInstaller : ControlInstaller
 {
     [Export] public AnimationPlayer? AnimationPlayer;
     

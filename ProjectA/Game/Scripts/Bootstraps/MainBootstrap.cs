@@ -4,6 +4,7 @@ using Game.Contexts.Configuration;
 using Game.GameContext.General.ApplicationContexts;
 using Game.GameContext.General.Configurations;
 using Game.LoadingScreenContext.General.ApplicationContexts;
+using Game.MetaContext.General.ApplicationContexts;
 using Godot;
 using GUtils.Di.Contexts;
 using GUtils.Di.Installers;
@@ -37,16 +38,20 @@ public partial class MainBootstrap : Bootstrap
             .EnqueueLoadAndStartApplicationContext(new LoadingScreenApplicationContext())
             .Execute(cancellationToken);
 
-        GameApplicationContextConfiguration contextConfiguration = new(
-            GameConfiguration!.MapsConfiguration!.TestMap!,
-            string.Empty,
-            true,
-            HorizontalDirection.Right
-        );
-        
         await loadingService.New()
-            .RunBeforeLoadActionsInstantly()
-            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(contextConfiguration))
+            .EnqueueLoadAndStartApplicationContext(new MetaApplicationContext())
             .Execute(cancellationToken);
+
+        // GameApplicationContextConfiguration contextConfiguration = new(
+        //     GameConfiguration!.MapsConfiguration!.TestMap!,
+        //     string.Empty,
+        //     true,
+        //     HorizontalDirection.Right
+        // );
+        //
+        // await loadingService.New()
+        //     .RunBeforeLoadActionsInstantly()
+        //     .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(contextConfiguration))
+        //     .Execute(cancellationToken);
     }
 }

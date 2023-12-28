@@ -90,7 +90,7 @@ position = Vector2(152, -72)
 position = Vector2(168, -72)
 
 [node name="CrateView" parent="AreaView" instance=ExtResource("8_qernr")]
-position = Vector2(84, -69)
+position = Vector2(84, -65)
 FruitsWhenDestroyed = 0
 
 [node name="SpikesView10" parent="AreaView" instance=ExtResource("7_0g4jy")]

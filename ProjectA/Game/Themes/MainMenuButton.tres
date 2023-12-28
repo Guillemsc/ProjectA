@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cl4my3r76dq3q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0fvvv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wm3t8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njkyl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glycq"]
+
+[resource]
+Button/font_sizes/font_size = 45
+Button/styles/focus = SubResource("StyleBoxEmpty_0fvvv")
+Button/styles/hover = SubResource("StyleBoxEmpty_wm3t8")
+Button/styles/normal = SubResource("StyleBoxEmpty_njkyl")
+Button/styles/pressed = SubResource("StyleBoxEmpty_glycq")

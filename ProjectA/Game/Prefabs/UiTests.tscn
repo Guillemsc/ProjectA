@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cxyha04a1f7go"]
+
+[node name="UiTests" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 359.0
+offset_bottom = 144.0
+text = "Juan"
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 906.0
+offset_bottom = 384.0
+mouse_filter = 2
+
+[node name="Button2" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 2.0
+offset_right = 759.0
+offset_bottom = 146.0
+text = "Juan"

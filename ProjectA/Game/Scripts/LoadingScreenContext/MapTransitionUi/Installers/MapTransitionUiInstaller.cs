@@ -7,7 +7,7 @@ using GUtilsGodot.UiStack.Extensions;
 
 namespace Game.LoadingScreenContext.MapTransitionUi.Installers;
 
-public partial class MapTransitionUiInstaller : NodeInstaller
+public partial class MapTransitionUiInstaller : ControlInstaller
 {
     [Export] public Control? Pivot;
     [Export] public Control? Panel;

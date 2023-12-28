@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://3p3jswov5lyh"]
+
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/DoodleEffect.gdshader" id="1_dmw8u"]
+[ext_resource type="Texture2D" uid="uid://c641twpmbvt1o" path="res://Game/Textures/Logos/SuperTinyLogo.png" id="2_0j31o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4clx"]
+shader = ExtResource("1_dmw8u")
+shader_parameter/distortion_strengh = 25.0
+shader_parameter/snap_strengh = 0.5
+
+[node name="BlobTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_l4clx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 491.0
+offset_top = 232.0
+offset_right = -20.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("2_0j31o")
