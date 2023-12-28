@@ -9,7 +9,7 @@
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="7_yhlv5"]
 [ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="8_fh565"]
 [ext_resource type="PackedScene" uid="uid://c86hqdek27h7d" path="res://Game/Prefabs/Views/PlatformView.tscn" id="9_ml6br"]
-[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/AppleCollectableView.tscn" id="10_1hf2i"]
+[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/LetterCollectableView.tscn" id="10_1hf2i"]
 [ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/Views/CrateView.tscn" id="11_typ2k"]
 [ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/Views/TrampolineView.tscn" id="12_4vj36"]
 [ext_resource type="PackedScene" uid="uid://cjmhkolmgxq53" path="res://Game/Prefabs/Views/VelocityBoosterView.tscn" id="13_yt23w"]

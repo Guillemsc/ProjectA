@@ -10,6 +10,7 @@ using Game.GameContext.Dialogues.Installers;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Installers;
 using Game.GameContext.General.Interactors;
+using Game.GameContext.Letters.Installers;
 using Game.GameContext.Maps.Installers;
 using Game.GameContext.PlayerKillers.Installers;
 using Game.GameContext.Players.Installers;
@@ -62,6 +63,7 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGamePlayerKillers();
                 b.InstallGameCinematics();
                 b.InstallGameDialogues();
+                b.InstallGameLetters();
                 
                 b.InstallGameCheats();
             }));

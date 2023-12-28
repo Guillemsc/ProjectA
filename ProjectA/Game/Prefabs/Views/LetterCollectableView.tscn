@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://d22jb7encgi8w"]
+[gd_scene load_steps=27 format=3 uid="uid://d22jb7encgi8w"]
 
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Collectables/Views/CollectableView.cs" id="1_4ro8x"]
-[ext_resource type="Texture2D" uid="uid://bkn25yl587ybv" path="res://Game/Textures/Leter-Idle.png" id="3_qfudm"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Letters/Views/LetterCollectableView.cs" id="1_f2x0e"]
+[ext_resource type="Resource" uid="uid://clq7wsmpiuf4e" path="res://Game/Configuration/TestLetterConfiguration.tres" id="2_hdjj6"]
+[ext_resource type="Texture2D" uid="uid://bkn25yl587ybv" path="res://Game/Textures/Leter-Idle.png" id="3_55fmd"]
 
 [sub_resource type="Animation" id="Animation_rgx81"]
 resource_name = "Collected"
@@ -75,71 +76,71 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkylx"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5h18b"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ogul"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgl6u"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgepc"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kudll"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g00lq"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2xmu"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5ruj"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k05uk"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhxvm"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17p33"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8f3go"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rssgb"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1hfow"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlsl2"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(480, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_efuoc"]
-atlas = ExtResource("3_qfudm")
+atlas = ExtResource("3_55fmd")
 region = Rect2(512, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f0xag"]
@@ -207,14 +208,15 @@ size = Vector2(16, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01uwb"]
 size = Vector2(16, 17)
 
-[node name="AppleCollectableView" type="RigidBody2D" node_paths=PackedStringArray("AnimationPlayer")]
+[node name="LetterCollectableView" type="RigidBody2D" node_paths=PackedStringArray("AnimationPlayer")]
 z_index = 3
 collision_layer = 16
 collision_mask = 2
 can_sleep = false
 lock_rotation = true
 freeze = true
-script = ExtResource("1_4ro8x")
+script = ExtResource("1_f2x0e")
+LetterConfiguration = ExtResource("2_hdjj6")
 AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

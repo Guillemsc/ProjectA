@@ -4,6 +4,7 @@ using Game.GameContext.DialogueUi.Interactors;
 using Game.GameContext.DialogueUi.UseCases;
 using Godot;
 using GUtils.Di.Builder;
+using GUtils.Extensions;
 using GUtilsGodot.Di.Installers;
 
 namespace Game.GameContext.DialogueUi.Installers;
@@ -39,7 +40,7 @@ public partial class GameDialogueUiInstaller : ControlInstaller
                 AnimationPlayer!,
                 c.Resolve<ClearTextUseCase>()
             ))
-            .WhenInit(o => o.Execute(false, true, CancellationToken.None))
+            .WhenInit(o => o.Execute(false, true, CancellationToken.None).RunAsync())
             .NonLazy();
 
         builder.Bind<ClearTextUseCase>()

@@ -1,6 +1,7 @@
 using Game.GameContext.Collectables.Configurations;
 using Game.GameContext.Collectables.Datas;
 using Game.GameContext.Collectables.UseCases;
+using Game.GameContext.Letters.UseCases;
 using Game.GameContext.Maps.Datas;
 using Game.GameContext.VisualEffects.UseCases;
 using GUtils.Di.Builder;
@@ -26,7 +27,8 @@ public static class GameCollectablesInstaller
         builder.Bind<WhenPlayerCollidedWithCollectableUseCase>()
             .FromFunction(c => new WhenPlayerCollidedWithCollectableUseCase(
                 c.Resolve<IAsyncTaskRunner>(),
-                c.Resolve<PlayOneShotVisualEffectUseCase>()
+                c.Resolve<PlayOneShotVisualEffectUseCase>(),
+                c.Resolve<ShowLetterUseCase>()
             ));
 
         builder.Bind<SpawnRandomFruitCollectableUseCase>()
