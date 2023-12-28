@@ -1,5 +1,6 @@
 ﻿using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Cinematics.UseCases;
+using Game.GameContext.GameUi.UseCases;
 using Game.GameContext.General.Interactors;
 using Game.GameContext.General.UseCases;
 using Game.GameContext.Maps.UseCases;
@@ -30,7 +31,8 @@ public static class GameGeneralInstaller
                 c.Resolve<SetupCameraUseCase>(),
                 c.Resolve<SetCameraMapBoundsUseCase>(),
                 c.Resolve<SetInitialCameraAreaUseCase>(),
-                c.Resolve<SetPlayerAsCameraTargetUseCase>()
+                c.Resolve<SetPlayerAsCameraTargetUseCase>(),
+                c.Resolve<ShowGameUiUseCase>()
             ));
 
         builder.Bind<GameStartUseCase>()

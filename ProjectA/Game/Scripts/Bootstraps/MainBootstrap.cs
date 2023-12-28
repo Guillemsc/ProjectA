@@ -1,14 +1,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Game.Contexts.Configuration;
-using Game.GameContext.General.ApplicationContexts;
 using Game.GameContext.General.Configurations;
 using Game.LoadingScreenContext.General.ApplicationContexts;
 using Game.MetaContext.General.ApplicationContexts;
 using Godot;
 using GUtils.Di.Contexts;
 using GUtils.Di.Installers;
-using GUtils.Directions;
 using GUtils.Loading.Extensions;
 using GUtils.Loading.Services;
 using GUtils.Services.Locators;

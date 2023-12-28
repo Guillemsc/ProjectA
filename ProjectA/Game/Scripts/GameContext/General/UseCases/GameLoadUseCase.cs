@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.GameUi.UseCases;
 using Game.GameContext.Maps.UseCases;
 using Game.GameContext.Players.UseCases;
 
@@ -14,6 +15,7 @@ public sealed class GameLoadUseCase
     readonly SetCameraMapBoundsUseCase _setCameraMapBoundsUseCase;
     readonly SetInitialCameraAreaUseCase _setInitialCameraAreaUseCase;
     readonly SetPlayerAsCameraTargetUseCase _setPlayerAsCameraTargetUseCase;
+    readonly ShowGameUiUseCase _showGameUiUseCase;
 
     public GameLoadUseCase(
         SpawnMapUseCase spawnMapUseCase,
@@ -21,7 +23,8 @@ public sealed class GameLoadUseCase
         SetupCameraUseCase setupCameraUseCase,
         SetCameraMapBoundsUseCase setCameraMapBoundsUseCase,
         SetInitialCameraAreaUseCase setInitialCameraAreaUseCase,
-        SetPlayerAsCameraTargetUseCase setPlayerAsCameraTargetUseCase
+        SetPlayerAsCameraTargetUseCase setPlayerAsCameraTargetUseCase, 
+        ShowGameUiUseCase showGameUiUseCase
         )
     {
         _spawnMapUseCase = spawnMapUseCase;
@@ -29,6 +32,7 @@ public sealed class GameLoadUseCase
         _setupCameraUseCase = setupCameraUseCase;
         _setCameraMapBoundsUseCase = setCameraMapBoundsUseCase;
         _setPlayerAsCameraTargetUseCase = setPlayerAsCameraTargetUseCase;
+        _showGameUiUseCase = showGameUiUseCase;
         _setInitialCameraAreaUseCase = setInitialCameraAreaUseCase;
     }
 
@@ -40,5 +44,6 @@ public sealed class GameLoadUseCase
         _setCameraMapBoundsUseCase.Execute();
         _setInitialCameraAreaUseCase.Execute();
         _setPlayerAsCameraTargetUseCase.Execute();
+        _showGameUiUseCase.Execute();
     }
 }

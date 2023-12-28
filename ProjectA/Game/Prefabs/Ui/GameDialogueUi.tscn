@@ -1,0 +1,222 @@
+[gd_scene load_steps=9 format=3 uid="uid://bi27mfqtopojb"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/DialogueUi/Installers/GameDialogueUiInstaller.cs" id="1_keb57"]
+[ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="2_4fvet"]
+[ext_resource type="Texture2D" uid="uid://cei6myda3ubmm" path="res://Game/Textures/DialogueArrowIcon.png" id="3_mityy"]
+
+[sub_resource type="Animation" id="Animation_1t8o4"]
+resource_name = "Hide"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Container:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_pjmqf"]
+resource_name = "Show"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Container:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0v5be"]
+_data = {
+"Hide": SubResource("Animation_1t8o4"),
+"Show": SubResource("Animation_pjmqf")
+}
+
+[sub_resource type="Animation" id="Animation_1ym8c"]
+resource_name = "Idle"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogueShownIndicatorControl:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.7, 0.9, 1.7, 1.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e3rtb"]
+_data = {
+"Idle": SubResource("Animation_1ym8c")
+}
+
+[node name="GameDialogueUi" type="Control" node_paths=PackedStringArray("AnimationPlayer", "DialogueLabel", "DialogueShownIndicatorControl", "DialogueShownIndicatorAnimationPlayer", "DialoguePositionControl", "LeftDialoguePosition", "RightDialoguePosition", "LeftPortraitImage", "RightPortraitImage")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_keb57")
+AnimationPlayer = NodePath("AnimationPlayer")
+DialogueLabel = NodePath("Pivot/Container/Dialogue/DialogueVerticalContainer/DialogueLabel2")
+DialogueShownIndicatorControl = NodePath("Pivot/Container/Dialogue/DialogueShownIndicator")
+DialogueShownIndicatorAnimationPlayer = NodePath("Pivot/Container/Dialogue/DialogueShownIndicator/DialogueShownIndicatorAnimationPlayer")
+DialogueDurationPerWord = 0.02
+DialoguePositionControl = NodePath("Pivot/Container/Dialogue")
+LeftDialoguePosition = NodePath("Pivot/Container/LeftDialoguePosition")
+RightDialoguePosition = NodePath("Pivot/Container/RightDialoguePosition")
+LeftPortraitImage = NodePath("Pivot/Container/LeftPortraitImage")
+RightPortraitImage = NodePath("Pivot/Container/RightPortraitImage")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0v5be")
+}
+
+[node name="Pivot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Container" type="Control" parent="Pivot"]
+anchors_preset = 0
+offset_left = 97.0
+offset_top = 15.0
+offset_right = 1187.0
+offset_bottom = 192.0
+pivot_offset = Vector2(545, 88.5)
+
+[node name="BackgroundImage" type="ColorRect" parent="Pivot/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.686275)
+
+[node name="Dialogue" type="Control" parent="Pivot/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 24.0
+offset_right = -185.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueVerticalContainer" type="VBoxContainer" parent="Pivot/Container/Dialogue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_right = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="DialogueLabel2" type="RichTextLabel" parent="Pivot/Container/Dialogue/DialogueVerticalContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center] This is a very long dialogue, I hope this works now because it's pretty stuppid"
+fit_content = true
+visible_characters_behavior = 1
+
+[node name="DialogueShownIndicator" type="Control" parent="Pivot/Container/Dialogue"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -11.0
+offset_right = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="DialogueShownIndicatorAnimationPlayer" type="AnimationPlayer" parent="Pivot/Container/Dialogue/DialogueShownIndicator"]
+libraries = {
+"": SubResource("AnimationLibrary_e3rtb")
+}
+
+[node name="DialogueShownIndicatorControl" type="TextureRect" parent="Pivot/Container/Dialogue/DialogueShownIndicator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+offset_bottom = 4.99999
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mityy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftDialoguePosition" type="Control" parent="Pivot/Container"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 189.0
+offset_top = -64.5
+offset_right = 189.0
+offset_bottom = -64.5
+grow_vertical = 2
+
+[node name="RightDialoguePosition" type="Control" parent="Pivot/Container"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = -64.5
+offset_right = 27.0
+offset_bottom = -64.5
+grow_vertical = 2
+
+[node name="LeftPortraitImage" type="TextureRect" parent="Pivot/Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -75.5
+offset_right = 162.0
+offset_bottom = 69.5
+grow_vertical = 2
+texture = ExtResource("2_4fvet")
+
+[node name="RightPortraitImage" type="TextureRect" parent="Pivot/Container"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -73.5
+offset_right = -21.0
+offset_bottom = 71.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_4fvet")
+stretch_mode = 5

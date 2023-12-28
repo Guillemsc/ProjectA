@@ -1,6 +1,7 @@
 using Game.GameContext.Cameras.Configurations;
 using Game.GameContext.Collectables.Configurations;
 using Game.GameContext.Crates.Configurations;
+using Game.GameContext.Dialogues.Configurations;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Configurations;
 using Game.GameContext.Players.Configurations;
@@ -25,5 +26,6 @@ public static class GameGeneralConfigurationsInstaller
         builder.Bind<GameVisualEffectsConfiguration>().FromInstance(gameConfiguration.VisualEffectsConfiguration!);
         builder.Bind<GameCollectablesConfiguration>().FromInstance(gameConfiguration.CollectablesConfiguration!);
         builder.Bind<GameCratesConfiguration>().FromInstance(gameConfiguration.CratesConfiguration!);
+        builder.Bind<GameDialoguesConfiguration>().FromInstance(gameConfiguration.DialoguesConfiguration!);
     }
 }

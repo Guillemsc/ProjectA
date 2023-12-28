@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameDialoguesConfiguration" load_steps=3 format=3 uid="uid://c8g00v75oi7hs"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/GameDialoguesConfiguration.cs" id="1_3qee2"]
+[ext_resource type="Resource" uid="uid://beae10amts6ct" path="res://Game/Configuration/TestDialogueConfiguration.tres" id="1_nvia6"]
+
+[resource]
+script = ExtResource("1_3qee2")
+Test = ExtResource("1_nvia6")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckb0ipdxiv05k"]
 
 [ext_resource type="Script" path="res://Game/Scripts/MetaContext/General/Installers/MetaContextNodeInstaller.cs" id="1_1w2n2"]
-[ext_resource type="PackedScene" uid="uid://cfb5huburyoj1" path="res://Game/Prefabs/Ui/BackgroundUi.tscn" id="2_e8w8n"]
-[ext_resource type="PackedScene" uid="uid://dq3548sahtpts" path="res://Game/Prefabs/Ui/IntroUi.tscn" id="2_lvmbx"]
-[ext_resource type="PackedScene" uid="uid://bc1hagdlwsale" path="res://Game/Prefabs/Ui/MainMenuUi.tscn" id="3_l4yfk"]
+[ext_resource type="PackedScene" uid="uid://cfb5huburyoj1" path="res://Game/Prefabs/Ui/MetaBackgroundUi.tscn" id="2_oq2wp"]
+[ext_resource type="PackedScene" uid="uid://dq3548sahtpts" path="res://Game/Prefabs/Ui/MetaIntroUi.tscn" id="3_i12va"]
+[ext_resource type="PackedScene" uid="uid://bc1hagdlwsale" path="res://Game/Prefabs/Ui/MetaMainMenuUi.tscn" id="4_j4xrx"]
 
 [node name="MetaContext" type="CanvasLayer" node_paths=PackedStringArray("BackgroundUi", "IntroUi", "MainMenuUi")]
 script = ExtResource("1_1w2n2")
@@ -11,8 +11,8 @@ BackgroundUi = NodePath("BackgroundUi")
 IntroUi = NodePath("IntroUi")
 MainMenuUi = NodePath("MainMenuUi")
 
-[node name="BackgroundUi" parent="." instance=ExtResource("2_e8w8n")]
+[node name="BackgroundUi" parent="." instance=ExtResource("2_oq2wp")]
 
-[node name="IntroUi" parent="." instance=ExtResource("2_lvmbx")]
+[node name="IntroUi" parent="." instance=ExtResource("3_i12va")]
 
-[node name="MainMenuUi" parent="." instance=ExtResource("3_l4yfk")]
+[node name="MainMenuUi" parent="." instance=ExtResource("4_j4xrx")]

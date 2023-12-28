@@ -1,5 +1,7 @@
 using Game.GameContext.Cinematics.Datas;
 using Game.GameContext.Cinematics.UseCases;
+using Game.GameContext.Dialogues.UseCases;
+using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Datas;
 using Game.GameContext.Players.Datas;
 using GUtils.Di.Builder;
@@ -13,7 +15,8 @@ public static class GameCinematicsInstaller
     {
         builder.Bind<CinematicsMethods>()
             .FromFunction(c => new CinematicsMethods(
-                c.Resolve<AwaitUntilPlayerIsOnTheGroundUseCase>()
+                c.Resolve<AwaitUntilPlayerIsOnTheGroundUseCase>(),
+                c.Resolve<PlayDialogueUseCase>()
             ));
         
         builder.Bind<WhenPlayerCollidedWithCinematicTriggerUseCase>()
@@ -23,10 +26,10 @@ public static class GameCinematicsInstaller
 
         builder.Bind<PlayCinematicUseCase>()
             .FromFunction(c => new PlayCinematicUseCase(
+                c.Resolve<GameConfiguration>(),
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<CinematicsMethods>(),
-                c.Resolve<IAsyncTaskRunner>(),
-                c.Resolve<AwaitUntilPlayerIsOnTheGroundUseCase>()
+                c.Resolve<IAsyncTaskRunner>()
             ));
 
         builder.Bind<HasStartingMapCinematicUseCase>()

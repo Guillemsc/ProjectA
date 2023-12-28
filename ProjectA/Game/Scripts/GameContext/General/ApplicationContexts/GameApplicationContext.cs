@@ -6,6 +6,7 @@ using Game.GameContext.Cinematics.Installers;
 using Game.GameContext.Collectables.Installers;
 using Game.GameContext.Connections.Installers;
 using Game.GameContext.Crates.Installers;
+using Game.GameContext.Dialogues.Installers;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Installers;
 using Game.GameContext.General.Interactors;
@@ -60,6 +61,7 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGameVelocityBoosters();
                 b.InstallGamePlayerKillers();
                 b.InstallGameCinematics();
+                b.InstallGameDialogues();
                 
                 b.InstallGameCheats();
             }));

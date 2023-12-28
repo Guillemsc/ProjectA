@@ -1,3 +1,4 @@
+using Game.GameContext.DialogueUi.Interactors;
 using Godot;
 
 namespace Game.GameContext.Cheats.UseCases;
@@ -5,10 +6,12 @@ namespace Game.GameContext.Cheats.UseCases;
 public sealed class TickCheatsInputUseCase
 {
     readonly RestartCheatUseCase _restartCheatUseCase;
+    readonly IDialogueUiInteractor _dialogueUiInteractor;
 
-    public TickCheatsInputUseCase(RestartCheatUseCase restartCheatUseCase)
+    public TickCheatsInputUseCase(RestartCheatUseCase restartCheatUseCase, IDialogueUiInteractor dialogueUiInteractor)
     {
         _restartCheatUseCase = restartCheatUseCase;
+        _dialogueUiInteractor = dialogueUiInteractor;
     }
 
     public void Execute()

@@ -31,9 +31,8 @@ CharacterBody2D = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("3_8aajx")
-animation = &"DoubleJump"
-frame = 7
-frame_progress = 1.0
+animation = &"Idle"
+frame_progress = 0.568418
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
 script = ExtResource("4_803if")

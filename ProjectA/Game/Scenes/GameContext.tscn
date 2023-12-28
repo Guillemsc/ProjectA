@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw28dufk6rij8"]
+[gd_scene load_steps=4 format=3 uid="uid://cw28dufk6rij8"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/General/Installers/GameContextNodeInstaller.cs" id="1_exok8"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/GameUi/Installers/GameUiInstaller.cs" id="2_qywnc"]
+[ext_resource type="PackedScene" uid="uid://bi27mfqtopojb" path="res://Game/Prefabs/Ui/GameDialogueUi.tscn" id="3_45nbi"]
 
-[node name="GameContext" type="Node2D"]
+[node name="GameContext" type="Node2D" node_paths=PackedStringArray("GameUi")]
 script = ExtResource("1_exok8")
+GameUi = NodePath("CanvasLayer/GameUi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUi" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DialogueUi")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qywnc")
+DialogueUi = NodePath("GameDialogueUi")
+
+[node name="GameDialogueUi" parent="CanvasLayer/GameUi" instance=ExtResource("3_45nbi")]
+layout_mode = 1

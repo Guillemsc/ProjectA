@@ -31,6 +31,11 @@ public partial class IntroCinematicView : CinematicView
         playerView.CanUpdateMovement = false;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Disabled;
         playerView.AnimatedSprite!.Play(PlayerAnimationState.Idle);
+
+        await cinematicsContext.CinematicsMethods.PlayDialogueUseCase.Execute(
+            cinematicsContext.GameConfiguration.DialoguesConfiguration!.Test!,
+            cancellationToken
+        );
         
         GTweenSequenceBuilder sequenceBuilder = GTweenSequenceBuilder.New();
 
@@ -54,7 +59,8 @@ public partial class IntroCinematicView : CinematicView
                     .SetEasing(Easing.InQuad))
                 .JoinCallback(() => playerView.AnimatedSprite!.Play(PlayerAnimationState.Fall))
             )
-            .AppendTime(1f);
+            .AppendTime(0.5f);
+        
         GTween tween = sequenceBuilder.Build();
         
         await tween.PlayAsync(cancellationToken);

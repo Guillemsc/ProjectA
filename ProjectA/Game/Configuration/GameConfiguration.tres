@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameConfiguration" load_steps=8 format=3 uid="uid://772xfftx0442"]
+[gd_resource type="Resource" script_class="GameConfiguration" load_steps=9 format=3 uid="uid://772xfftx0442"]
 
 [ext_resource type="Resource" uid="uid://dbwfljal22msr" path="res://Game/Configuration/GameCollectablesConfiguration.tres" id="1_1r7kj"]
 [ext_resource type="Resource" uid="uid://btlwmvi8u0lar" path="res://Game/Configuration/GameCamerasConfiguration.tres" id="1_4i5m3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://65ru2gqwh41d" path="res://Game/Configuration/GameMapsConfiguration.tres" id="1_x5hje"]
 [ext_resource type="Resource" uid="uid://bclswhke5mjgn" path="res://Game/Configuration/GameCratesConfiguration.tres" id="2_if4vl"]
 [ext_resource type="Resource" uid="uid://drbm8j5x1ujwr" path="res://Game/Configuration/GameVisualEffectsConfiguration.tres" id="3_gb31t"]
+[ext_resource type="Resource" uid="uid://c8g00v75oi7hs" path="res://Game/Configuration/GameDialoguesConfiguration.tres" id="4_v0yn5"]
 
 [resource]
 script = ExtResource("1_i7tyk")
@@ -16,3 +17,4 @@ CamerasConfiguration = ExtResource("1_4i5m3")
 VisualEffectsConfiguration = ExtResource("3_gb31t")
 CollectablesConfiguration = ExtResource("1_1r7kj")
 CratesConfiguration = ExtResource("2_if4vl")
+DialoguesConfiguration = ExtResource("4_v0yn5")

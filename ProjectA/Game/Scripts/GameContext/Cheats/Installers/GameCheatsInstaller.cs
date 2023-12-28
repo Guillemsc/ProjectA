@@ -1,4 +1,5 @@
 using Game.GameContext.Cheats.UseCases;
+using Game.GameContext.DialogueUi.Interactors;
 using Game.GameContext.General.Configurations;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
@@ -12,7 +13,8 @@ public static class GameCheatsInstaller
     {
         builder.Bind<TickCheatsInputUseCase>()
             .FromFunction(c => new TickCheatsInputUseCase(
-                c.Resolve<RestartCheatUseCase>()
+                c.Resolve<RestartCheatUseCase>(),
+                c.Resolve<IDialogueUiInteractor>()
                 ))
             .LinkToTickablesService(o => o.Execute);
 
