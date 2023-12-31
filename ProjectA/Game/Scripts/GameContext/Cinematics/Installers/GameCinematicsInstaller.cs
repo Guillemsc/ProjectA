@@ -13,6 +13,8 @@ public static class GameCinematicsInstaller
 {
     public static void InstallGameCinematics(this IDiContainerBuilder builder)
     {
+        builder.Bind<CurrentCinematicData>().FromNew();
+        
         builder.Bind<CinematicsMethods>()
             .FromFunction(c => new CinematicsMethods(
                 c.Resolve<AwaitUntilPlayerIsOnTheGroundUseCase>(),
@@ -26,10 +28,16 @@ public static class GameCinematicsInstaller
 
         builder.Bind<PlayCinematicUseCase>()
             .FromFunction(c => new PlayCinematicUseCase(
+                c.Resolve<CurrentCinematicData>(),
                 c.Resolve<GameConfiguration>(),
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<CinematicsMethods>(),
                 c.Resolve<IAsyncTaskRunner>()
+            ));
+
+        builder.Bind<SkipCurrentCinematicUseCase>()
+            .FromFunction(c => new SkipCurrentCinematicUseCase(
+                c.Resolve<CurrentCinematicData>()
             ));
 
         builder.Bind<HasStartingMapCinematicUseCase>()

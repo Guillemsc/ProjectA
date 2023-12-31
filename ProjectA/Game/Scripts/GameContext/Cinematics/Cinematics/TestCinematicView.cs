@@ -14,7 +14,11 @@ namespace Game.GameContext.Cinematics.Cinematics;
 
 public partial class TestCinematicView : CinematicView
 {
-    public override async Task PlayCinematic(CinematicsContext cinematicsContext, CancellationToken cancellationToken)
+    public override async Task PlayCinematic(
+        CinematicsContext cinematicsContext, 
+        CancellationToken skipToken,
+        CancellationToken cancellationToken
+        )
     {
         await cinematicsContext.CinematicsMethods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
         

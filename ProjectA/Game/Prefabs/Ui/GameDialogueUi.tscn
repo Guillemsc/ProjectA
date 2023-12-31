@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bi27mfqtopojb"]
+[gd_scene load_steps=10 format=3 uid="uid://bi27mfqtopojb"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/DialogueUi/Installers/GameDialogueUiInstaller.cs" id="1_keb57"]
 [ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="2_4fvet"]
+[ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimationPlayer.cs" id="2_i4be5"]
 [ext_resource type="Texture2D" uid="uid://cei6myda3ubmm" path="res://Game/Textures/DialogueArrowIcon.png" id="3_mityy"]
 
 [sub_resource type="Animation" id="Animation_1t8o4"]
@@ -84,6 +85,7 @@ RightPortraitImage = NodePath("Pivot/Container/RightPortraitImage")
 libraries = {
 "": SubResource("AnimationLibrary_0v5be")
 }
+script = ExtResource("2_i4be5")
 
 [node name="Pivot" type="Control" parent="."]
 layout_mode = 1
@@ -97,6 +99,7 @@ offset_left = 97.0
 offset_top = 15.0
 offset_right = 1187.0
 offset_bottom = 192.0
+scale = Vector2(1, 1e-05)
 pivot_offset = Vector2(545, 88.5)
 
 [node name="BackgroundImage" type="ColorRect" parent="Pivot/Container"]

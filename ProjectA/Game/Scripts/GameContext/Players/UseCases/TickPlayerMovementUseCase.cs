@@ -2,6 +2,7 @@ using Game.GameContext.Players.Configurations;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Enums;
 using Game.GameContext.Players.Views;
+using Game.ServicesContext.Time.Services;
 using Godot;
 using GUtils.Directions;
 using GUtils.Extensions;
@@ -14,7 +15,7 @@ namespace Game.GameContext.Players.UseCases;
 
 public sealed class TickPlayerMovementUseCase
 {
-    readonly IDeltaTimeService _deltaTimeService;
+    readonly IGameTimesService _gameTimesService;
     readonly PlayerViewData _playerViewData;
     readonly GamePlayersConfiguration _gamePlayersConfiguration;
     readonly StorePlayerPreviousPositionUseCase _storePlayerPreviousPositionUseCase;
@@ -22,13 +23,13 @@ public sealed class TickPlayerMovementUseCase
     readonly ITimer _jumpResetTimer = new StopwatchTimer();
     
     public TickPlayerMovementUseCase(
-        IDeltaTimeService deltaTimeService, 
+        IGameTimesService gameTimesService, 
         PlayerViewData playerViewData, 
         GamePlayersConfiguration gamePlayersConfiguration, 
         StorePlayerPreviousPositionUseCase storePlayerPreviousPositionUseCase
         )
     {
-        _deltaTimeService = deltaTimeService;
+        _gameTimesService = gameTimesService;
         _playerViewData = playerViewData;
         _gamePlayersConfiguration = gamePlayersConfiguration;
         _storePlayerPreviousPositionUseCase = storePlayerPreviousPositionUseCase;
@@ -49,37 +50,32 @@ public sealed class TickPlayerMovementUseCase
             return;
         }
         
-        float delta = _deltaTimeService.PhysicsDeltaTime;
+        float delta = _gameTimesService.PhysicsTimeContext.DeltaTime;
         
         Vector2 newVelocity = playerView.Velocity;
         
         newVelocity = HandleGravity(playerView, newVelocity, delta);
-        newVelocity = HandleWall(playerView, newVelocity);
-        newVelocity = HandleJump(playerView, newVelocity);
-        newVelocity = HandleHorizontalMovement(playerView, newVelocity);
+        newVelocity = HandleWall(playerView, newVelocity, delta);
+        newVelocity = HandleJump(playerView, newVelocity, delta);
+        newVelocity = HandleHorizontalMovement(playerView, newVelocity, delta);
         
-        HandleUncontrolledSpeed(playerView);
+        HandleUncontrolledSpeed(playerView, delta);
 
-        playerView.Velocity = newVelocity + playerView.UncontrolledSpeed;
+        Vector2 deltaNewVelocity = (newVelocity + playerView.UncontrolledSpeed) * delta;
+        
+        playerView.Velocity = deltaNewVelocity / 0.01666f;
         playerView.MoveAndSlide();
         
         _storePlayerPreviousPositionUseCase.Execute(playerView);
     }
 
-    void HandleUncontrolledSpeed(PlayerView playerView)
+    Vector2 HandleWall(PlayerView playerView, Vector2 newVelocity, float delta)
     {
-        playerView.UncontrolledSpeed.X = Mathf.MoveToward(
-            playerView.UncontrolledSpeed.X,
-            0,
-            _gamePlayersConfiguration.HorizontalDeceleration
-        );
-    }
-
-    Vector2 HandleWall(PlayerView playerView, Vector2 newVelocity)
-    {
+        float deltaVerticalMaxFallSpeedOnWall = _gamePlayersConfiguration.VerticalMaxFallSpeedOnWall * delta;
+        
         if (playerView.AnimationPlayer!.OnWall && !playerView.IsOnFloor())
         {
-            newVelocity.Y = Mathf.Min(newVelocity.Y, _gamePlayersConfiguration.VerticalMaxFallSpeedOnWall);
+            newVelocity.Y = Mathf.Min(newVelocity.Y, deltaVerticalMaxFallSpeedOnWall);
 
             ResetJumps(playerView);
         }
@@ -87,7 +83,7 @@ public sealed class TickPlayerMovementUseCase
         return newVelocity;
     }
 
-    Vector2 HandleJump(PlayerView playerView, Vector2 newVelocity)
+    Vector2 HandleJump(PlayerView playerView, Vector2 newVelocity, float delta)
     {
         if (playerView.IsOnFloor())
         {
@@ -119,17 +115,19 @@ public sealed class TickPlayerMovementUseCase
 
         if (performJump)
         {
-            newVelocity.Y = -_gamePlayersConfiguration.JumpVelocity;
+            float deltaJumpVelocity = _gamePlayersConfiguration.JumpVelocity * delta;
+            
+            newVelocity.Y = -deltaJumpVelocity;
 
             bool needsToAddSideUncontrolledSpeedWhenOnWall = playerView.AnimationPlayer!.OnWall && !playerView.IsOnFloor();
             
             if (needsToAddSideUncontrolledSpeedWhenOnWall)
             {
                 float wallForceDirection = -playerView.AnimationPlayer!.OnWallLocation.Direction();
-                
+  
                 playerView.UncontrolledSpeed.X += (
                     wallForceDirection *
-                    _gamePlayersConfiguration.JumpVelocity *
+                    deltaJumpVelocity *
                     _gamePlayersConfiguration.UncontrolledHorizontalJumpVelocityMultiplier
                 );
             }
@@ -142,7 +140,9 @@ public sealed class TickPlayerMovementUseCase
     {
         if (!playerView.IsOnFloor())
         {
-            newVelocity.Y += _gamePlayersConfiguration.Gravity * delta;
+            float deltaGravity = _gamePlayersConfiguration.Gravity * delta;
+            
+            newVelocity.Y += deltaGravity;
 
             if (newVelocity.Y > 0f)
             {
@@ -156,7 +156,7 @@ public sealed class TickPlayerMovementUseCase
         return newVelocity;
     }
 
-    Vector2 HandleHorizontalMovement(PlayerView playerView, Vector2 newVelocity)
+    Vector2 HandleHorizontalMovement(PlayerView playerView, Vector2 newVelocity, float delta)
     {
         Vector2 movementDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
@@ -171,7 +171,9 @@ public sealed class TickPlayerMovementUseCase
                 || playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Left &&
                 movementDirection.X > 0f;
 
-            velocityToAdd = movementDirection.X * _gamePlayersConfiguration.HorizontalAcceleration;
+            float deltaHorizontalAcceleration = _gamePlayersConfiguration.HorizontalAcceleration * delta;
+            
+            velocityToAdd = movementDirection.X * deltaHorizontalAcceleration;
             float finalVelocity = newVelocity.X + velocityToAdd;
 
             float horizontalMaxSpeed = playerView.IsOnFloor()
@@ -194,7 +196,8 @@ public sealed class TickPlayerMovementUseCase
 
         if (velocityToAdd == 0)
         {
-            newVelocity.X = Mathf.MoveToward(newVelocity.X, 0, _gamePlayersConfiguration.HorizontalDeceleration);
+            float deltaHorizontalDeceleration = _gamePlayersConfiguration.HorizontalDeceleration * delta;
+            newVelocity.X = Mathf.MoveToward(newVelocity.X, 0, deltaHorizontalDeceleration);
         }
         else
         {
@@ -204,6 +207,17 @@ public sealed class TickPlayerMovementUseCase
         playerView.AnimationPlayer!.MovingHorizontally = newVelocity.X != 0f;
 
         return newVelocity;
+    }
+    
+    void HandleUncontrolledSpeed(PlayerView playerView, float delta)
+    {
+        float deltaHorizontalDeceleration = _gamePlayersConfiguration.HorizontalDeceleration * delta;
+        
+        playerView.UncontrolledSpeed.X = Mathf.MoveToward(
+            playerView.UncontrolledSpeed.X,
+            0,
+            deltaHorizontalDeceleration
+        );
     }
 
     void ResetJumps(PlayerView playerView)

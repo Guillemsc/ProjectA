@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjmhkolmgxq53"]
+[gd_scene load_steps=22 format=3 uid="uid://cjmhkolmgxq53"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/VelocityBoosters/Views/VelocityBoosterView.cs" id="1_d0lok"]
 [ext_resource type="Texture2D" uid="uid://b8slb7hvsk1bv" path="res://Game/Textures/VelocityBooster-Collected.png" id="2_snui4"]
 [ext_resource type="Texture2D" uid="uid://cqeblwqrt8wea" path="res://Game/Textures/VelocityBooster-Idle.png" id="3_lmg5r"]
+[ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="4_a5toy"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/VelocityBoosters/AnimationGraphPlayers/VelocityBoosterAnimationGraphPlayer.cs" id="4_qw0v8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_prn66"]
@@ -127,6 +128,7 @@ Area2D = NodePath("Area2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nk5te")
 animation = &"Idle"
+script = ExtResource("4_a5toy")
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
 script = ExtResource("4_qw0v8")

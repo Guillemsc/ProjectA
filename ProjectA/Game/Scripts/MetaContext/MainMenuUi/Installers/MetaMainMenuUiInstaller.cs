@@ -27,8 +27,8 @@ public partial class MetaMainMenuUiInstaller : Control, IInstaller
                 this
             );
 
-        builder.Bind<PlayButtonPressedUseCase>()
-            .FromFunction(c => new PlayButtonPressedUseCase(
+        builder.Bind<WhenPlayButtonPressedUseCase>()
+            .FromFunction(c => new WhenPlayButtonPressedUseCase(
                 c.Resolve<ILoadingService>(),
                 c.Resolve<IUiStackService>(),
                 c.Resolve<GameConfiguration>(),

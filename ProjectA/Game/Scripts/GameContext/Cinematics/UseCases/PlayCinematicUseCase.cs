@@ -14,18 +14,21 @@ namespace Game.GameContext.Cinematics.UseCases;
 
 public sealed class PlayCinematicUseCase
 {
+    readonly CurrentCinematicData _currentCinematicData;
     readonly GameConfiguration _gameConfiguration;
     readonly PlayerViewData _playerViewData;
     readonly CinematicsMethods _cinematicsMethods;
     readonly IAsyncTaskRunner _asyncTaskRunner;
 
     public PlayCinematicUseCase(
+        CurrentCinematicData currentCinematicData,
         GameConfiguration gameConfiguration,
         PlayerViewData playerViewData, 
         CinematicsMethods cinematicsMethods,
         IAsyncTaskRunner asyncTaskRunner
         )
     {
+        _currentCinematicData = currentCinematicData;
         _gameConfiguration = gameConfiguration;
         _playerViewData = playerViewData;
         _cinematicsMethods = cinematicsMethods;
@@ -34,6 +37,11 @@ public sealed class PlayCinematicUseCase
 
     public void Execute(ICinematic cinematic)
     {
+        if (_currentCinematicData.CurrentCinematicSkipTokenSource != null)
+        {
+            return;
+        }
+        
         bool hasPlayer = _playerViewData.PlayerView.TryGet(out PlayerView playerView);
         
         if(!hasPlayer)
@@ -57,8 +65,17 @@ public sealed class PlayCinematicUseCase
             playerView.InteractionsDetector!.ProcessMode = Node.ProcessModeEnum.Disabled;
             
             if(cancellationToken.IsCancellationRequested) return;
+
+            _currentCinematicData.CurrentCinematicSkipTokenSource = new CancellationTokenSource();
+
+            await cinematic.PlayCinematic(
+                cinematicsContext,
+                _currentCinematicData.CurrentCinematicSkipTokenSource.Token,
+                cancellationToken
+            );
             
-            await cinematic.PlayCinematic(cinematicsContext, cancellationToken);
+            _currentCinematicData.CurrentCinematicSkipTokenSource.Dispose();
+            _currentCinematicData.CurrentCinematicSkipTokenSource = null;
             
             if(cancellationToken.IsCancellationRequested) return;
             

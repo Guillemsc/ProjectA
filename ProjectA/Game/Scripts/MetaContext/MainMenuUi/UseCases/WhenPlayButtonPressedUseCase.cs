@@ -10,14 +10,14 @@ using GUtilsGodot.UiStack.Services;
 
 namespace Game.MetaContext.MainMenuUi.UseCases;
 
-public sealed class PlayButtonPressedUseCase : IExecutable
+public sealed class WhenPlayButtonPressedUseCase : IExecutable
 {
     readonly ILoadingService _loadingService;
     readonly IUiStackService _uiStackService;
     readonly GameConfiguration _gameConfiguration;
     readonly IMainMenuUiInteractor _mainMenuUiInteractor;
 
-    public PlayButtonPressedUseCase(
+    public WhenPlayButtonPressedUseCase(
         ILoadingService loadingService, 
         IUiStackService uiStackService,
         GameConfiguration gameConfiguration, 

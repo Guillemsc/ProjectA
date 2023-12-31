@@ -15,6 +15,7 @@ public static class GameCollectablesInstaller
     public static void InstallGameCollectables(this IDiContainerBuilder builder)
     {
         builder.Bind<CollectablesPrefabsData>().FromNew();
+        builder.Bind<CollectablesLinksData>().FromNew();
 
         builder.Bind<RegisterCollectablesPrefabsUseCase>()
             .FromFunction(c => new RegisterCollectablesPrefabsUseCase(
@@ -24,11 +25,19 @@ public static class GameCollectablesInstaller
             .WhenInit(o => o.Execute)
             .NonLazy();
 
+        builder.Bind<LinkCollectableTypesWithActionUseCase>()
+            .FromFunction(c => new LinkCollectableTypesWithActionUseCase(
+                c.Resolve<CollectablesLinksData>(),
+                c.Resolve<WhenLetterCollectableCollectedUseCase>()
+            ))
+            .WhenInit(o => o.Execute)
+            .NonLazy();
+
         builder.Bind<WhenPlayerCollidedWithCollectableUseCase>()
             .FromFunction(c => new WhenPlayerCollidedWithCollectableUseCase(
                 c.Resolve<IAsyncTaskRunner>(),
-                c.Resolve<PlayOneShotVisualEffectUseCase>(),
-                c.Resolve<ShowLetterUseCase>()
+                c.Resolve<CollectablesLinksData>(),
+                c.Resolve<PlayOneShotVisualEffectUseCase>()
             ));
 
         builder.Bind<SpawnRandomFruitCollectableUseCase>()

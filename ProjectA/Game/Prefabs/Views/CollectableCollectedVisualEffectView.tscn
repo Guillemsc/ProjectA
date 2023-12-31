@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwir57qg56ye2"]
+[gd_scene load_steps=11 format=3 uid="uid://dwir57qg56ye2"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/VisualEffects/Views/AnimatedSprite2DOneShotVisualEffectView.cs" id="1_qfeuj"]
 [ext_resource type="Texture2D" uid="uid://c8wwmdp3xw3g1" path="res://Game/Textures/CollectableCollectedVisualEffect.png" id="2_n0pmj"]
+[ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="3_vpdcy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3swqd"]
 atlas = ExtResource("2_n0pmj")
@@ -62,3 +63,4 @@ Animation = "default"
 sprite_frames = SubResource("SpriteFrames_xt1eu")
 frame = 5
 frame_progress = 1.0
+script = ExtResource("3_vpdcy")

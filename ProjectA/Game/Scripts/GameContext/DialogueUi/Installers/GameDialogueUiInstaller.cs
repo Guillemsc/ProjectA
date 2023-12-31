@@ -2,6 +2,7 @@ using System.Threading;
 using Game.GameContext.DialogueUi.Data;
 using Game.GameContext.DialogueUi.Interactors;
 using Game.GameContext.DialogueUi.UseCases;
+using Game.ServicesContext.Time.Services;
 using Godot;
 using GUtils.Di.Builder;
 using GUtils.Extensions;
@@ -51,6 +52,7 @@ public partial class GameDialogueUiInstaller : ControlInstaller
 
         builder.Bind<ShowTextUseCase>()
             .FromFunction(c => new ShowTextUseCase(
+                c.Resolve<IGameTimesService>(),
                 c.Resolve<DialogueUiTweensData>(),
                 DialogueLabel!,
                 DialogueShownIndicatorControl!,

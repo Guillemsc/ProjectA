@@ -1,5 +1,6 @@
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Views;
+using Game.ServicesContext.Time.Services;
 using Godot;
 using GUtils.Directions;
 using GUtils.Locations.Enums;
@@ -8,12 +9,15 @@ namespace Game.GameContext.Players.UseCases;
 
 public sealed class TickPlayerFlipStateUseCase
 {
+    readonly IGameTimesService _gameTimesService;
     readonly PlayerViewData _playerViewData;
-
+    
     public TickPlayerFlipStateUseCase(
+        IGameTimesService gameTimesService,
         PlayerViewData playerViewData
         )
     {
+        _gameTimesService = gameTimesService;
         _playerViewData = playerViewData;
     }
 
@@ -22,6 +26,11 @@ public sealed class TickPlayerFlipStateUseCase
         bool hasPlayer = _playerViewData.PlayerView.TryGet(out PlayerView playerView);
 
         if (!hasPlayer)
+        {
+            return;
+        }
+
+        if (_gameTimesService.PhysicsTimeContext.TimeScale == 0f)
         {
             return;
         }

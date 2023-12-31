@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d08x2d04x41m0"
-path="res://.godot/imported/BluePlayer-Run.png-38a1ca3f6ff2f1c0234eba1944233342.ctex"
+uid="uid://dguwjpaiduyk8"
+path="res://.godot/imported/Pineapple-Idle.png-29f20724a71a0e5a8336813b6195314b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Textures/BluePlayer-Run.png"
-dest_files=["res://.godot/imported/BluePlayer-Run.png-38a1ca3f6ff2f1c0234eba1944233342.ctex"]
+source_file="res://Game/Textures/Pineapple-Idle.png"
+dest_files=["res://.godot/imported/Pineapple-Idle.png-29f20724a71a0e5a8336813b6195314b.ctex"]
 
 [params]
 

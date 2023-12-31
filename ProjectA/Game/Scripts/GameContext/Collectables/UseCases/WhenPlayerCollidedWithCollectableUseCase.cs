@@ -1,5 +1,7 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Game.GameContext.Collectables.Datas;
 using Game.GameContext.Collectables.Enums;
 using Game.GameContext.Collectables.Views;
 using Game.GameContext.Letters.UseCases;
@@ -14,22 +16,34 @@ namespace Game.GameContext.Collectables.UseCases;
 public sealed class WhenPlayerCollidedWithCollectableUseCase
 {
     readonly IAsyncTaskRunner _asyncTaskRunner;
+    readonly CollectablesLinksData _collectablesLinksData;
     readonly PlayOneShotVisualEffectUseCase _playOneShotVisualEffectUseCase;
-    readonly ShowLetterUseCase _showLetterUseCase;
 
     public WhenPlayerCollidedWithCollectableUseCase(
         IAsyncTaskRunner asyncTaskRunner,
-        PlayOneShotVisualEffectUseCase playOneShotVisualEffectUseCase, 
-        ShowLetterUseCase showLetterUseCase
+        CollectablesLinksData collectablesLinksData,
+        PlayOneShotVisualEffectUseCase playOneShotVisualEffectUseCase
         )
     {
         _asyncTaskRunner = asyncTaskRunner;
+        _collectablesLinksData = collectablesLinksData;
         _playOneShotVisualEffectUseCase = playOneShotVisualEffectUseCase;
-        _showLetterUseCase = showLetterUseCase;
     }
 
     public void Execute(CollectableView collectableView)
     {
+        Type actualType = collectableView.GetType();
+
+        bool typeFound = _collectablesLinksData.CollectableTypeByAction.TryGetValue(
+            actualType,
+            out Action<CollectableView>? action
+        );
+
+        if (typeFound)
+        {
+            action?.Invoke(collectableView);
+        }
+        
         async Task Run(CancellationToken cancellationToken)
         {
             collectableView.AnimationPlayer!.Play(CollectableAnimationState.Collected);
@@ -41,11 +55,6 @@ public sealed class WhenPlayerCollidedWithCollectableUseCase
                 OneShotVisualEffectType.CollectableCollected,
                 collectableView.GlobalPosition
             );
-
-            if (collectableView is LetterCollectableView letterCollectableView)
-            {
-                _showLetterUseCase.Execute(letterCollectableView.LetterConfiguration!);
-            }
         }
 
         _asyncTaskRunner.Run(Run);

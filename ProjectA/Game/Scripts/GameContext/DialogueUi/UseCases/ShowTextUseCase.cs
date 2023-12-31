@@ -1,6 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.DialogueUi.Data;
+using Game.ServicesContext.Time.Services;
+using Game.ServicesContext.Time.Tweens.Extensions;
 using Godot;
 using GTweens.Builders;
 using GTweens.Easings;
@@ -12,6 +14,7 @@ namespace Game.GameContext.DialogueUi.UseCases;
 
 public sealed class ShowTextUseCase
 {
+    readonly IGameTimesService _gameTimesService;
     readonly DialogueUiTweensData _dialogueUiTweensData;
     readonly RichTextLabel _dialogueLabel;
     readonly Control _dialogueShownIndicatorControl;
@@ -19,13 +22,14 @@ public sealed class ShowTextUseCase
     readonly float _dialogueDurationPerWord;
 
     public ShowTextUseCase(
+        IGameTimesService gameTimesService,
         DialogueUiTweensData dialogueUiTweensData,
         RichTextLabel dialogueLabel, 
         Control dialogueShownIndicatorControl, 
         AnimationPlayer dialogueShownIndicatorAnimationPlayer, 
-        float dialogueDurationPerWord
-        )
+        float dialogueDurationPerWord)
     {
+        _gameTimesService = gameTimesService;
         _dialogueUiTweensData = dialogueUiTweensData;
         _dialogueLabel = dialogueLabel;
         _dialogueShownIndicatorControl = dialogueShownIndicatorControl;
@@ -51,6 +55,8 @@ public sealed class ShowTextUseCase
                 _dialogueShownIndicatorAnimationPlayer.Play("Idle");
             })
             .Build();
+        
+        _dialogueUiTweensData.CurrentDialogueTween.LinkTweenToGameTime(_gameTimesService.TimeContext);
 
         return _dialogueUiTweensData.CurrentDialogueTween.PlayAsync(cancellationToken);
     }

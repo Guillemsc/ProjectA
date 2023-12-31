@@ -1,13 +1,13 @@
 [gd_resource type="SpriteFrames" load_steps=73 format=3 uid="uid://dpq2ry5qvjkg3"]
 
-[ext_resource type="Texture2D" uid="uid://b8vqgg3hc7viq" path="res://Game/Textures/BluePlayer-DoubleJump.png" id="1_2ht4o"]
+[ext_resource type="Texture2D" uid="uid://b8vqgg3hc7viq" path="res://Game/Textures/Player/BluePlayer-DoubleJump.png" id="1_2ht4o"]
 [ext_resource type="Texture2D" uid="uid://duacavfbx6j4g" path="res://Game/Textures/Player-Appear.png" id="1_805f5"]
-[ext_resource type="Texture2D" uid="uid://j8o0nvk7cng0" path="res://Game/Textures/BluePlayer-Idle.png" id="1_ajnda"]
-[ext_resource type="Texture2D" uid="uid://b4adhk1je82ji" path="res://Game/Textures/BluePlayer-Fall.png" id="1_wjioa"]
-[ext_resource type="Texture2D" uid="uid://d08x2d04x41m0" path="res://Game/Textures/BluePlayer-Run.png" id="2_0b27c"]
+[ext_resource type="Texture2D" uid="uid://j8o0nvk7cng0" path="res://Game/Textures/Player/BluePlayer-Idle.png" id="1_ajnda"]
+[ext_resource type="Texture2D" uid="uid://b4adhk1je82ji" path="res://Game/Textures/Player/BluePlayer-Fall.png" id="1_wjioa"]
+[ext_resource type="Texture2D" uid="uid://d08x2d04x41m0" path="res://Game/Textures/Player/BluePlayer-Run.png" id="2_0b27c"]
 [ext_resource type="Texture2D" uid="uid://cg30wb7pqfbb" path="res://Game/Textures/Player-Disappear.png" id="2_itpdw"]
-[ext_resource type="Texture2D" uid="uid://dgeb70oyl7hlw" path="res://Game/Textures/BluePlayer-Jump.png" id="3_6qq1f"]
-[ext_resource type="Texture2D" uid="uid://dumm2cc7obtsm" path="res://Game/Textures/BluePlayer-Wall.png" id="5_26ogd"]
+[ext_resource type="Texture2D" uid="uid://dgeb70oyl7hlw" path="res://Game/Textures/Player/BluePlayer-Jump.png" id="3_6qq1f"]
+[ext_resource type="Texture2D" uid="uid://dumm2cc7obtsm" path="res://Game/Textures/Player/BluePlayer-Wall.png" id="5_26ogd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtrc6"]
 atlas = ExtResource("1_805f5")

@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3td2vlgbqfxy"]
+[gd_scene load_steps=7 format=3 uid="uid://b3td2vlgbqfxy"]
 
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/General/Installers/ServicesContextNodeInstaller.cs" id="1_xfwga"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Tick/Services/TickablesServiceNode.cs" id="2_7s3yh"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/UiFrame/Services/UiFrameService.cs" id="2_pnkxa"]
-[ext_resource type="Script" path="res://GUtilsGodot/Source/Time/Services/DeltaTimeServiceNode.cs" id="3_dvsh6"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Time/TimeContexts/GodotTimeContext.cs" id="3_72553"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Time/TimeContexts/GodotPhysicsTimeContext.cs" id="4_3hm3x"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Cameras/Services/Cameras2dServiceNode.cs" id="5_cddpm"]
 
-[node name="ServicesContext" type="Node2D" node_paths=PackedStringArray("TickablesService", "DeltaTimeService", "Cameras2dService", "UiFrameService")]
+[node name="ServicesContext" type="Node2D" node_paths=PackedStringArray("TickablesService", "TimeContext", "PhysicsTimeContext", "Cameras2dService", "UiFrameService")]
 script = ExtResource("1_xfwga")
 TickablesService = NodePath("TickablesService")
-DeltaTimeService = NodePath("DeltaTimeService")
+TimeContext = NodePath("TimeContext")
+PhysicsTimeContext = NodePath("PhysicsTimeContext")
 Cameras2dService = NodePath("CameraService")
 UiFrameService = NodePath("UiFrameService")
 
@@ -29,8 +31,11 @@ color = Color(0, 0, 0, 1)
 [node name="TickablesService" type="Node2D" parent="."]
 script = ExtResource("2_7s3yh")
 
-[node name="DeltaTimeService" type="Node2D" parent="."]
-script = ExtResource("3_dvsh6")
+[node name="TimeContext" type="Node2D" parent="."]
+script = ExtResource("3_72553")
+
+[node name="PhysicsTimeContext" type="Node2D" parent="."]
+script = ExtResource("4_3hm3x")
 
 [node name="CameraService" type="Node2D" parent="." node_paths=PackedStringArray("Camera2D")]
 script = ExtResource("5_cddpm")

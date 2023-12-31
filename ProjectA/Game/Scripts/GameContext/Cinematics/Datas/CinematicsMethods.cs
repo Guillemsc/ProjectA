@@ -15,5 +15,6 @@ public sealed class CinematicsMethods
     {
         AwaitUntilPlayerIsOnTheGroundUseCase = awaitUntilPlayerIsOnTheGroundUseCase;
         PlayDialogueUseCase = playDialogueUseCase;
+
     }
 }

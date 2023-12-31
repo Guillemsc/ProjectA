@@ -2,7 +2,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.Dialogues.Configurations;
 using Game.GameContext.DialogueUi.Interactors;
-using GUtils.Locations.Enums;
 
 namespace Game.GameContext.Dialogues.UseCases;
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j8o0nvk7cng0"
-path="res://.godot/imported/BluePlayer-Idle.png-44bad75598be69bae2fbdab7bed5fc28.ctex"
+uid="uid://b4adhk1je82ji"
+path="res://.godot/imported/BluePlayer-Fall.png-104ffa3bee292ac589e29cb99f12d584.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Textures/BluePlayer-Idle.png"
-dest_files=["res://.godot/imported/BluePlayer-Idle.png-44bad75598be69bae2fbdab7bed5fc28.ctex"]
+source_file="res://Game/Textures/Player/BluePlayer-Fall.png"
+dest_files=["res://.godot/imported/BluePlayer-Fall.png-104ffa3bee292ac589e29cb99f12d584.ctex"]
 
 [params]
 

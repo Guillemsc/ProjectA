@@ -7,11 +7,13 @@ using Game.GameContext.Collectables.Installers;
 using Game.GameContext.Connections.Installers;
 using Game.GameContext.Crates.Installers;
 using Game.GameContext.Dialogues.Installers;
+using Game.GameContext.Fruits.Installers;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Installers;
 using Game.GameContext.General.Interactors;
 using Game.GameContext.Letters.Installers;
 using Game.GameContext.Maps.Installers;
+using Game.GameContext.Pause.Installers;
 using Game.GameContext.PlayerKillers.Installers;
 using Game.GameContext.Players.Installers;
 using Game.GameContext.Trampolines.Installers;
@@ -61,9 +63,11 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGameTrampolines();
                 b.InstallGameVelocityBoosters();
                 b.InstallGamePlayerKillers();
+                b.InstallGameFruits();
                 b.InstallGameCinematics();
                 b.InstallGameDialogues();
                 b.InstallGameLetters();
+                b.InstallGamePause();
                 
                 b.InstallGameCheats();
             }));

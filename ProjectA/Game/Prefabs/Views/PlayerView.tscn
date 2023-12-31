@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf02loyc8lc37"]
+[gd_scene load_steps=9 format=3 uid="uid://bf02loyc8lc37"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Players/Views/PlayerView.cs" id="1_6jkvy"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/CharacterBody2Ds/Callbacks/CharacterBody2DCollisionCallbacks.cs" id="2_ciyrb"]
 [ext_resource type="SpriteFrames" uid="uid://dpq2ry5qvjkg3" path="res://Game/SpriteFrames/PlayerSpriteFrames.tres" id="3_8aajx"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Players/AnimationGraphPlayers/PlayerAnimationGraphPlayerNode.cs" id="4_803if"]
+[ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="4_ov08i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si2w1"]
 size = Vector2(16, 26)
@@ -33,6 +34,7 @@ CharacterBody2D = NodePath("..")
 sprite_frames = ExtResource("3_8aajx")
 animation = &"Idle"
 frame_progress = 0.568418
+script = ExtResource("4_ov08i")
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
 script = ExtResource("4_803if")

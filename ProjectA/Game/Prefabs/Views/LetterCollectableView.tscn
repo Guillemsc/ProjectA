@@ -1,8 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://d22jb7encgi8w"]
+[gd_scene load_steps=29 format=3 uid="uid://d22jb7encgi8w"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Letters/Views/LetterCollectableView.cs" id="1_f2x0e"]
 [ext_resource type="Resource" uid="uid://clq7wsmpiuf4e" path="res://Game/Configuration/TestLetterConfiguration.tres" id="2_hdjj6"]
 [ext_resource type="Texture2D" uid="uid://bkn25yl587ybv" path="res://Game/Textures/Leter-Idle.png" id="3_55fmd"]
+[ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimationPlayer.cs" id="3_aaaw6"]
+[ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="5_jk5hj"]
 
 [sub_resource type="Animation" id="Animation_rgx81"]
 resource_name = "Collected"
@@ -223,6 +225,7 @@ AnimationPlayer = NodePath("AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_8ned1")
 }
+script = ExtResource("3_aaaw6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -230,6 +233,7 @@ sprite_frames = SubResource("SpriteFrames_f0xag")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.672132
+script = ExtResource("5_jk5hj")
 
 [node name="MapCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)

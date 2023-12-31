@@ -19,7 +19,7 @@ shader_parameter/movementSpeed = 0.2
 [node name="IntroMapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews", "OptionalStartingCinematic")]
 script = ExtResource("1_livoh")
 AreaViews = [NodePath("AreaView")]
-ConnectionViews = [NodePath("ConnectionView")]
+ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 OptionalStartingCinematic = NodePath("CinematicView")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -54,21 +54,34 @@ Size = Vector2(555, 224)
 
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
 z_index = 3
-position = Vector2(470, -15)
+position = Vector2(0, 14)
+script = ExtResource("7_fbsrl")
+Bounds = NodePath("Bounds")
+SpawnPosition = NodePath("SpawnPosition")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView"]
+script = ExtResource("5_fnfny")
+Size = Vector2(0, 0)
+DebugColor = Color(0, 0.54902, 0.921569, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
+
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+z_index = 3
+position = Vector2(271, 129)
 script = ExtResource("7_fbsrl")
 Bounds = NodePath("Bounds")
 Map = "res://Game/Prefabs/Maps/9f258048MapView.tscn"
 SpawnId = "b5d60859-df84-42dd-bb31-f3232330c4ba"
 SpawnPosition = NodePath("SpawnPosition")
 
-[node name="Bounds" type="Node2D" parent="ConnectionView"]
-position = Vector2(-198, 153)
+[node name="Bounds" type="Node2D" parent="ConnectionView2"]
 script = ExtResource("5_fnfny")
 Size = Vector2(40, 10)
 DebugColor = Color(0, 0.54902, 0.921569, 1)
 
-[node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
-position = Vector2(-14, 25)
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView2"]
+position = Vector2(0, -9)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("8_hwa8f")

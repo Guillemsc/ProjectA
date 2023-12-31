@@ -10,6 +10,7 @@ using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.UseCases;
 using Game.GameContext.Trampolines.UseCases;
 using Game.GameContext.VelocityBoosters.UseCases;
+using Game.ServicesContext.Time.Services;
 using Godot;
 using GUtils.Di.Builder;
 using GUtils.Tasks.Runners;
@@ -77,7 +78,7 @@ public static class GamePlayersInstaller
         
         builder.Bind<TickPlayerMovementUseCase>()
             .FromFunction(c => new TickPlayerMovementUseCase(
-                c.Resolve<IDeltaTimeService>(),
+                c.Resolve<IGameTimesService>(),
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<GamePlayersConfiguration>(),
                 c.Resolve<StorePlayerPreviousPositionUseCase>()
@@ -86,6 +87,7 @@ public static class GamePlayersInstaller
 
         builder.Bind<TickPlayerFlipStateUseCase>()
             .FromFunction(c => new TickPlayerFlipStateUseCase(
+                c.Resolve<IGameTimesService>(),
                 c.Resolve<PlayerViewData>()
             ))
             .LinkToTickablesService(o => o.Execute);

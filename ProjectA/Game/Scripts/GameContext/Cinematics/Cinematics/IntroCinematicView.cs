@@ -22,7 +22,11 @@ public partial class IntroCinematicView : CinematicView
     [Export] public Node2D? JumpFallPosition;
     [Export] public Node2D? FallHeightPosition;
     
-    public override async Task PlayCinematic(CinematicsContext cinematicsContext, CancellationToken cancellationToken)
+    public override async Task PlayCinematic(
+        CinematicsContext cinematicsContext, 
+        CancellationToken skipToken,
+        CancellationToken cancellationToken
+        )
     {
         await cinematicsContext.CinematicsMethods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
         
@@ -31,9 +35,10 @@ public partial class IntroCinematicView : CinematicView
         playerView.CanUpdateMovement = false;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Disabled;
         playerView.AnimatedSprite!.Play(PlayerAnimationState.Idle);
-
+        
         await cinematicsContext.CinematicsMethods.PlayDialogueUseCase.Execute(
             cinematicsContext.GameConfiguration.DialoguesConfiguration!.Test!,
+            skipToken,
             cancellationToken
         );
         
@@ -62,6 +67,8 @@ public partial class IntroCinematicView : CinematicView
             .AppendTime(0.5f);
         
         GTween tween = sequenceBuilder.Build();
+
+        skipToken.Register(tween.Complete);
         
         await tween.PlayAsync(cancellationToken);
         

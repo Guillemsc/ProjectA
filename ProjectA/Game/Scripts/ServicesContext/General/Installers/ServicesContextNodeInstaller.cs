@@ -1,16 +1,16 @@
 ﻿using Game.ServicesContext.LoadingScreen.Services;
+using Game.ServicesContext.Time.Services;
 using Godot;
 using GUtils.ApplicationContexts.Services;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
 using GUtils.Services.Extensions;
 using GUtils.Tick.Services;
-using GUtils.Time.Services;
 using GUtilsGodot.Cameras.Services;
 using GUtilsGodot.Di.Installers;
 using GUtilsGodot.Roots.Services;
 using GUtilsGodot.Tick.Services;
-using GUtilsGodot.Time.Services;
+using GUtilsGodot.Time.TimeContexts;
 using GUtilsGodot.UiFrame.Services;
 using GUtilsGodot.UiStack.Services;
 
@@ -19,7 +19,8 @@ namespace Game.ServicesContext.General.Installers;
 public partial class ServicesContextNodeInstaller : NodeInstaller
 {
     [Export] public TickablesServiceNode? TickablesService;
-    [Export] public DeltaTimeServiceNode? DeltaTimeService;
+    [Export] public GodotTimeContext? TimeContext;
+    [Export] public GodotPhysicsTimeContext? PhysicsTimeContext;
     [Export] public Cameras2dServiceNode? Cameras2dService;
     [Export] public UiFrameService? UiFrameService;
     
@@ -37,8 +38,8 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
             .FromInstance(TickablesService!)
             .LinkToServiceLocator();
         
-        builder.Bind<IDeltaTimeService>()
-            .FromInstance(DeltaTimeService!)
+        builder.Bind<IGameTimesService>()
+            .FromInstance(new GameTimesService(TimeContext!, PhysicsTimeContext!))
             .LinkToServiceLocator();
         
         builder.Bind<ICameras2dService>()
