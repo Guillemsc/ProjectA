@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=73 format=3 uid="uid://dpq2ry5qvjkg3"]
+[gd_resource type="SpriteFrames" load_steps=75 format=3 uid="uid://dpq2ry5qvjkg3"]
 
 [ext_resource type="Texture2D" uid="uid://b8vqgg3hc7viq" path="res://Game/Textures/Player/Player-DoubleJump.png" id="1_2ht4o"]
 [ext_resource type="Texture2D" uid="uid://duacavfbx6j4g" path="res://Game/Textures/Player-Appear.png" id="1_805f5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cg30wb7pqfbb" path="res://Game/Textures/Player-Disappear.png" id="2_itpdw"]
 [ext_resource type="Texture2D" uid="uid://dgeb70oyl7hlw" path="res://Game/Textures/Player/Player-Jump.png" id="3_6qq1f"]
 [ext_resource type="Texture2D" uid="uid://dumm2cc7obtsm" path="res://Game/Textures/Player/Player-Wall.png" id="5_26ogd"]
+[ext_resource type="Texture2D" uid="uid://bnslh1yp7buof" path="res://Game/Textures/Player/Player-Sit.png" id="8_56ml1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtrc6"]
 atlas = ExtResource("1_805f5")
@@ -245,6 +246,10 @@ region = Rect2(288, 0, 32, 32)
 atlas = ExtResource("2_0b27c")
 region = Rect2(320, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib8l5"]
+atlas = ExtResource("8_56ml1")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_t18lh"]
 atlas = ExtResource("5_26ogd")
 region = Rect2(0, 3, 32, 28)
@@ -392,7 +397,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 20.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -478,6 +483,14 @@ animations = [{
 "loop": true,
 "name": &"Run",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib8l5")
+}],
+"loop": true,
+"name": &"Sit",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://08m8n338msfx"
+path="res://.godot/imported/Please Dont Leave.ogg-365e0fc4ff1dfc25732f7ceb9dddf774.oggvorbisstr"
+
+[deps]
+
+source_file="res://Game/Audio/Inspiration/Please Dont Leave.ogg"
+dest_files=["res://.godot/imported/Please Dont Leave.ogg-365e0fc4ff1dfc25732f7ceb9dddf774.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

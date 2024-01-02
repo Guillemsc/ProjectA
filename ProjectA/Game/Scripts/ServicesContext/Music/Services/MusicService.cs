@@ -11,7 +11,7 @@ public partial class MusicService : Node, IMusicService
 {
     [Export] public AudioStreamPlayer2D? AudioStreamPlayer;
     
-    public void Play(AudioStream audioStream, MusicFadeDuration duration = MusicFadeDuration.Medium)
+    public void Play(AudioStream audioStream, float volume = 0, MusicFadeDuration duration = MusicFadeDuration.Medium)
     {
         float durationSeconds = GetDuration(duration);
         
@@ -29,7 +29,7 @@ public partial class MusicService : Node, IMusicService
             AudioStreamPlayer.Play();
         });
         
-        builder.Append(AudioStreamPlayer.TweenVolumeDb(0f, durationSeconds).SetEasing(Easing.OutQuad));
+        builder.Append(AudioStreamPlayer.TweenVolumeDb(volume, durationSeconds).SetEasing(Easing.OutQuad));
 
         GTween tween = builder.Build();
         

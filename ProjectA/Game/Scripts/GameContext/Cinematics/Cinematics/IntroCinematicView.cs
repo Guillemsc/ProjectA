@@ -18,6 +18,7 @@ public partial class IntroCinematicView : CinematicView
 {
     [Export] public SomeoneNpcView? SomeoneNpcView;
 
+    [Export] public AnimationPlayer? AnimationPlayer;
     [Export] public AudioStream? AudioStream;
     
     [Export] public Node2D? PositionBeforeJump;
@@ -33,17 +34,18 @@ public partial class IntroCinematicView : CinematicView
         CancellationToken cancellationToken
         )
     {
-        context.Services.MusicService.Play(AudioStream!);
+        context.Services.MusicService.Play(AudioStream!, -10);
+        
+        PlayerView playerView = context.PlayerView;
         
         SomeoneNpcView!.AnimatedSprite!.FlipH = true;
         
-        await context.Methods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
-        
-        PlayerView playerView = context.PlayerView;
-
         playerView.CanUpdateMovement = false;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Disabled;
-        playerView.AnimatedSprite!.Play(PlayerAnimationState.Idle);
+        playerView.AnimatedSprite!.Play(PlayerAnimationState.Sit);
+        playerView.SetPositionY(11);
+        
+        await AnimationPlayer!.PlayAndAwaitCompletition("Intro", skipToken, cancellationToken);
         
         await context.Methods.PlayDialogueUseCase.Execute(
             context.GameConfiguration.DialoguesConfiguration!.Test!,
@@ -54,6 +56,8 @@ public partial class IntroCinematicView : CinematicView
         GTweenSequenceBuilder sequenceBuilder = GTweenSequenceBuilder.New();
 
         sequenceBuilder.AppendTime(1f)
+            .AppendCallback(() => playerView.AnimatedSprite!.Play(PlayerAnimationState.Idle))
+            .Append(playerView.TweenGlobalPositionY(17, 0.1f))
             .AppendCallback(() => playerView.AnimatedSprite!.FlipH = false)
             .AppendTime(1f)
             .AppendCallback(() => playerView.AnimatedSprite!.Play(PlayerAnimationState.Run))

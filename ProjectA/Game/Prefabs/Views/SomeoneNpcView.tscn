@@ -86,7 +86,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 20.0
+"speed": 15.0
 }]
 
 [node name="SomeoneView" type="Node2D" node_paths=PackedStringArray("AnimatedSprite")]
@@ -95,6 +95,7 @@ script = ExtResource("1_xrr21")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_rui3y")
 animation = &"Idle"
 autoplay = "Idle"
