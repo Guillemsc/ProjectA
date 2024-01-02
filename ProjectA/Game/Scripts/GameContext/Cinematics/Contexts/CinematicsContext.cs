@@ -8,16 +8,19 @@ public sealed class CinematicsContext
 {
     public PlayerView PlayerView { get; }
     public GameConfiguration GameConfiguration { get; }
-    public CinematicsMethods CinematicsMethods { get; }
+    public CinematicsMethods Methods { get; }
+    public CinematicsServices Services { get; }
     
     public CinematicsContext(
         PlayerView playerView,
         GameConfiguration gameConfiguration,
-        CinematicsMethods cinematicsMethods
+        CinematicsMethods methods, 
+        CinematicsServices services
         )
     {
         PlayerView = playerView;
         GameConfiguration = gameConfiguration;
-        CinematicsMethods = cinematicsMethods;
+        Methods = methods;
+        Services = services;
     }
 }

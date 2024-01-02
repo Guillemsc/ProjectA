@@ -7,21 +7,25 @@
 script = ExtResource("1_v7l1w")
 Text = "Hey there, have you heard about the new dialogue system I'm testing?"
 PortraitLocation = 0
+Speaker = 0
 
 [sub_resource type="Resource" id="Resource_mr0i1"]
 script = ExtResource("1_v7l1w")
 Text = "Not really, how is it going?"
 PortraitLocation = 1
+Speaker = 1
 
 [sub_resource type="Resource" id="Resource_phk1y"]
 script = ExtResource("1_v7l1w")
 Text = "Yeah, initiated a conversation with a shopkeeper, and he actually bargained back. Realistic vibe!"
 PortraitLocation = 0
+Speaker = 0
 
 [sub_resource type="Resource" id="Resource_bcr0w"]
 script = ExtResource("1_v7l1w")
 Text = "Wow, that's next-level gaming. Makes the whole world feel alive."
 PortraitLocation = 1
+Speaker = 1
 
 [resource]
 script = ExtResource("1_j84nk")

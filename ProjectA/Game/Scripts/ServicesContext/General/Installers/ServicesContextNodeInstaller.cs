@@ -1,4 +1,5 @@
 ﻿using Game.ServicesContext.LoadingScreen.Services;
+using Game.ServicesContext.Music.Services;
 using Game.ServicesContext.Time.Services;
 using Godot;
 using GUtils.ApplicationContexts.Services;
@@ -21,6 +22,7 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
     [Export] public TickablesServiceNode? TickablesService;
     [Export] public GodotTimeContext? TimeContext;
     [Export] public GodotPhysicsTimeContext? PhysicsTimeContext;
+    [Export] public MusicService? MusicService;
     [Export] public Cameras2dServiceNode? Cameras2dService;
     [Export] public UiFrameService? UiFrameService;
     
@@ -62,6 +64,10 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
 
         builder.Bind<ILoadingScreenService>()
             .FromFunction(c => new LoadingScreenService())
+            .LinkToServiceLocator();
+
+        builder.Bind<IMusicService>()
+            .FromInstance(MusicService!)
             .LinkToServiceLocator();
     }
 }

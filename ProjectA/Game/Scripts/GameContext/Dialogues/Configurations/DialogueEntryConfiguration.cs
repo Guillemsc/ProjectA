@@ -1,3 +1,4 @@
+using Game.GameContext.Dialogues.Enums;
 using Godot;
 using GUtils.Locations.Enums;
 
@@ -8,5 +9,6 @@ public partial class DialogueEntryConfiguration : Resource
 {
     [Export(PropertyHint.MultilineText)] public string? Text = "Placeholder";
     [Export] public HorizontalLocation PortraitLocation = HorizontalLocation.Left;
+    [Export] public DialogueSpeaker Speaker;
 
 }

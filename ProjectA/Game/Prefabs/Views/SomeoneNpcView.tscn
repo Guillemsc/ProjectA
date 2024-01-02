@@ -1,0 +1,101 @@
+[gd_scene load_steps=16 format=3 uid="uid://cd3mdu6bgkny1"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Npcs/Views/SomeoneNpcView.cs" id="1_xrr21"]
+[ext_resource type="Texture2D" uid="uid://dppdtvr5rowb8" path="res://Game/Textures/Someone/Someone-Idle.png" id="2_j4e61"]
+[ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="4_b67ay"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8nx3"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wua7v"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x7em"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grpkm"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr7x5"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lhik"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61ch5"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n65r"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w2rr"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwjns"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11wfh"]
+atlas = ExtResource("2_j4e61")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rui3y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8nx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wua7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x7em")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grpkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr7x5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lhik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61ch5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n65r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w2rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwjns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11wfh")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 20.0
+}]
+
+[node name="SomeoneView" type="Node2D" node_paths=PackedStringArray("AnimatedSprite")]
+position = Vector2(3, 1)
+script = ExtResource("1_xrr21")
+AnimatedSprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rui3y")
+animation = &"Idle"
+autoplay = "Idle"
+script = ExtResource("4_b67ay")

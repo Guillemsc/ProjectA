@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d08x2d04x41m0"
-path="res://.godot/imported/BluePlayer-Run.png-118d1a6041f6cba8387a811bee39c28d.ctex"
+uid="uid://b8vqgg3hc7viq"
+path="res://.godot/imported/Player-DoubleJump.png-de45e5f6ba76f33cb4e440e289c34b0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Textures/Player/BluePlayer-Run.png"
-dest_files=["res://.godot/imported/BluePlayer-Run.png-118d1a6041f6cba8387a811bee39c28d.ctex"]
+source_file="res://Game/Textures/Player/Player-DoubleJump.png"
+dest_files=["res://.godot/imported/Player-DoubleJump.png-de45e5f6ba76f33cb4e440e289c34b0a.ctex"]
 
 [params]
 

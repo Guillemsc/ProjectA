@@ -6,4 +6,5 @@ namespace Game.GameContext.Dialogues.Configurations;
 public partial class GameDialoguesConfiguration : Resource
 {
     [Export] public DialogueConfiguration? Test;
+    [Export] public DialogueSpeakerConfiguration[]? SpeakersConfigurations;
 }

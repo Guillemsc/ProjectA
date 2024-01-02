@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.DialogueUi.UseCases;
+using Godot;
 using GUtils.Locations.Enums;
 
 namespace Game.GameContext.DialogueUi.Interactors;
@@ -28,6 +29,6 @@ public sealed class DialogueUiInteractor : IDialogueUiInteractor
     public Task ShowText(string text, CancellationToken cancellationToken)
         => _showTextUseCase.Execute(text, cancellationToken);
     
-    public void SetupDialogue(HorizontalLocation portraitLocation)
-        => _setupDialogueUseCase.Execute(portraitLocation);
+    public void SetupDialogue(HorizontalLocation portraitLocation, Texture2D portraitTexture)
+        => _setupDialogueUseCase.Execute(portraitLocation, portraitTexture);
 }

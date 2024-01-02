@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.Cinematics.Contexts;
 using Game.GameContext.Cinematics.Views;
+using Game.GameContext.Npcs.Views;
 using Game.GameContext.Players.Enums;
 using Game.GameContext.Players.Views;
 using Godot;
@@ -15,6 +16,10 @@ namespace Game.GameContext.Cinematics.Cinematics;
 
 public partial class IntroCinematicView : CinematicView
 {
+    [Export] public SomeoneNpcView? SomeoneNpcView;
+
+    [Export] public AudioStream? AudioStream;
+    
     [Export] public Node2D? PositionBeforeJump;
     [Export] public float WalkTowardsJumpDuration = 1f;
     
@@ -23,21 +28,25 @@ public partial class IntroCinematicView : CinematicView
     [Export] public Node2D? FallHeightPosition;
     
     public override async Task PlayCinematic(
-        CinematicsContext cinematicsContext, 
+        CinematicsContext context, 
         CancellationToken skipToken,
         CancellationToken cancellationToken
         )
     {
-        await cinematicsContext.CinematicsMethods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
+        context.Services.MusicService.Play(AudioStream!);
         
-        PlayerView playerView = cinematicsContext.PlayerView;
+        SomeoneNpcView!.AnimatedSprite!.FlipH = true;
+        
+        await context.Methods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
+        
+        PlayerView playerView = context.PlayerView;
 
         playerView.CanUpdateMovement = false;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Disabled;
         playerView.AnimatedSprite!.Play(PlayerAnimationState.Idle);
         
-        await cinematicsContext.CinematicsMethods.PlayDialogueUseCase.Execute(
-            cinematicsContext.GameConfiguration.DialoguesConfiguration!.Test!,
+        await context.Methods.PlayDialogueUseCase.Execute(
+            context.GameConfiguration.DialoguesConfiguration!.Test!,
             skipToken,
             cancellationToken
         );
@@ -71,6 +80,8 @@ public partial class IntroCinematicView : CinematicView
         skipToken.Register(tween.Complete);
         
         await tween.PlayAsync(cancellationToken);
+        
+        context.Services.MusicService.Stop();
         
         playerView.CanUpdateMovement = true;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Inherit;

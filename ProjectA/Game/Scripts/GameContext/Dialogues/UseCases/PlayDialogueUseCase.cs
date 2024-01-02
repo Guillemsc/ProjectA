@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Game.GameContext.Dialogues.Configurations;
 using Game.GameContext.Dialogues.Datas;
 using Game.GameContext.DialogueUi.Interactors;
+using GUtils.Optionals;
 
 namespace Game.GameContext.Dialogues.UseCases;
 
@@ -12,18 +13,21 @@ public sealed class PlayDialogueUseCase
     readonly CurrentDialogueData _currentDialogueData;
     readonly PlayDialogueEntryUseCase _playDialogueEntryUseCase;
     readonly AwaitDialogueContinueInputUseCase _awaitDialogueContinueInputUseCase;
+    readonly GetDialogueSpeakerConfigurationUseCase _getDialogueSpeakerConfigurationUseCase;
 
     public PlayDialogueUseCase(
         IDialogueUiInteractor dialogueUiInteractor,
         CurrentDialogueData currentDialogueData,
         PlayDialogueEntryUseCase playDialogueEntryUseCase, 
-        AwaitDialogueContinueInputUseCase awaitDialogueContinueInputUseCase
+        AwaitDialogueContinueInputUseCase awaitDialogueContinueInputUseCase, 
+        GetDialogueSpeakerConfigurationUseCase getDialogueSpeakerConfigurationUseCase
         )
     {
         _dialogueUiInteractor = dialogueUiInteractor;
         _currentDialogueData = currentDialogueData;
         _playDialogueEntryUseCase = playDialogueEntryUseCase;
         _awaitDialogueContinueInputUseCase = awaitDialogueContinueInputUseCase;
+        _getDialogueSpeakerConfigurationUseCase = getDialogueSpeakerConfigurationUseCase;
     }
 
     public async Task Execute(
@@ -57,8 +61,21 @@ public sealed class PlayDialogueUseCase
                 await _dialogueUiInteractor.SetVisible(false, false, allCancellationToken);
                 
                 if (allCancellationToken.IsCancellationRequested) break;
+
+                Optional<DialogueSpeakerConfiguration> optionalSpeakerConfiguration =
+                    _getDialogueSpeakerConfigurationUseCase.Execute(
+                        dialogueEntry.Speaker
+                    );
+
+                bool hasSpeakerConfiguration =
+                    optionalSpeakerConfiguration.TryGet(out DialogueSpeakerConfiguration speakerConfiguration);
+
+                if (!hasSpeakerConfiguration)
+                {
+                    continue;
+                }
                 
-                _dialogueUiInteractor.SetupDialogue(dialogueEntry.PortraitLocation);
+                _dialogueUiInteractor.SetupDialogue(dialogueEntry.PortraitLocation, speakerConfiguration.PortraitTexture!);
                 await _dialogueUiInteractor.SetVisible(true, false, allCancellationToken);
                 
                 if (allCancellationToken.IsCancellationRequested) break;

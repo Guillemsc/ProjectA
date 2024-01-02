@@ -16,6 +16,7 @@ public sealed class PlayCinematicUseCase
 {
     readonly CurrentCinematicData _currentCinematicData;
     readonly GameConfiguration _gameConfiguration;
+    readonly CinematicsServices _cinematicsServices;
     readonly PlayerViewData _playerViewData;
     readonly CinematicsMethods _cinematicsMethods;
     readonly IAsyncTaskRunner _asyncTaskRunner;
@@ -23,6 +24,7 @@ public sealed class PlayCinematicUseCase
     public PlayCinematicUseCase(
         CurrentCinematicData currentCinematicData,
         GameConfiguration gameConfiguration,
+        CinematicsServices cinematicsServices,
         PlayerViewData playerViewData, 
         CinematicsMethods cinematicsMethods,
         IAsyncTaskRunner asyncTaskRunner
@@ -30,6 +32,7 @@ public sealed class PlayCinematicUseCase
     {
         _currentCinematicData = currentCinematicData;
         _gameConfiguration = gameConfiguration;
+        _cinematicsServices = cinematicsServices;
         _playerViewData = playerViewData;
         _cinematicsMethods = cinematicsMethods;
         _asyncTaskRunner = asyncTaskRunner;
@@ -52,7 +55,8 @@ public sealed class PlayCinematicUseCase
         CinematicsContext cinematicsContext = new(
             playerView,
             _gameConfiguration,
-            _cinematicsMethods
+            _cinematicsMethods,
+            _cinematicsServices
         );
 
         async Task Play(CancellationToken cancellationToken)

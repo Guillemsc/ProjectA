@@ -4,6 +4,7 @@ using Game.GameContext.Dialogues.UseCases;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Datas;
 using Game.GameContext.Players.Datas;
+using Game.ServicesContext.Music.Services;
 using GUtils.Di.Builder;
 using GUtils.Tasks.Runners;
 
@@ -14,6 +15,11 @@ public static class GameCinematicsInstaller
     public static void InstallGameCinematics(this IDiContainerBuilder builder)
     {
         builder.Bind<CurrentCinematicData>().FromNew();
+
+        builder.Bind<CinematicsServices>()
+            .FromFunction(c => new CinematicsServices(
+                c.Resolve<IMusicService>()
+            ));
         
         builder.Bind<CinematicsMethods>()
             .FromFunction(c => new CinematicsMethods(
@@ -30,6 +36,7 @@ public static class GameCinematicsInstaller
             .FromFunction(c => new PlayCinematicUseCase(
                 c.Resolve<CurrentCinematicData>(),
                 c.Resolve<GameConfiguration>(),
+                c.Resolve<CinematicsServices>(),
                 c.Resolve<PlayerViewData>(),
                 c.Resolve<CinematicsMethods>(),
                 c.Resolve<IAsyncTaskRunner>()

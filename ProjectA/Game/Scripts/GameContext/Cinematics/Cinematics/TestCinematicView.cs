@@ -15,14 +15,14 @@ namespace Game.GameContext.Cinematics.Cinematics;
 public partial class TestCinematicView : CinematicView
 {
     public override async Task PlayCinematic(
-        CinematicsContext cinematicsContext, 
+        CinematicsContext context, 
         CancellationToken skipToken,
         CancellationToken cancellationToken
         )
     {
-        await cinematicsContext.CinematicsMethods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
+        await context.Methods.AwaitUntilPlayerIsOnTheGroundUseCase.Execute(cancellationToken);
         
-        PlayerView playerView = cinematicsContext.PlayerView;
+        PlayerView playerView = context.PlayerView;
 
         playerView.CanUpdateMovement = false;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Disabled;

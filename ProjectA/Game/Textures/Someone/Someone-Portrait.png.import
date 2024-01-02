@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4adhk1je82ji"
-path="res://.godot/imported/BluePlayer-Fall.png-104ffa3bee292ac589e29cb99f12d584.ctex"
+uid="uid://cx5fefpj6cgli"
+path="res://.godot/imported/Someone-Portrait.png-70a8568521bf5ea1a67c5f8ad420a0de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Textures/Player/BluePlayer-Fall.png"
-dest_files=["res://.godot/imported/BluePlayer-Fall.png-104ffa3bee292ac589e29cb99f12d584.ctex"]
+source_file="res://Game/Textures/Someone/Someone-Portrait.png"
+dest_files=["res://.godot/imported/Someone-Portrait.png-70a8568521bf5ea1a67c5f8ad420a0de.ctex"]
 
 [params]
 

@@ -26,7 +26,7 @@ public sealed class SetupDialogueUseCase
         _rightPortraitImage = rightPortraitImage;
     }
 
-    public void Execute(HorizontalLocation portraitLocation)
+    public void Execute(HorizontalLocation portraitLocation, Texture2D portraitTexture)
     {
         Vector2 position = portraitLocation == HorizontalLocation.Left
             ? _leftDialoguePosition.GlobalPosition
@@ -39,5 +39,7 @@ public sealed class SetupDialogueUseCase
 
         portraitToShow.Visible = true;
         portraitToHide.Visible = false;
+
+        portraitToShow.Texture = portraitTexture;
     }
 }

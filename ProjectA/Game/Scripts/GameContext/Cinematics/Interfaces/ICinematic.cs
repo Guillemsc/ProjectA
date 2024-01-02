@@ -7,7 +7,7 @@ namespace Game.GameContext.Cinematics.Interfaces;
 public interface ICinematic
 {
     Task PlayCinematic(
-        CinematicsContext cinematicsContext, 
+        CinematicsContext context, 
         CancellationToken skipToken,
         CancellationToken cancellationToken
         );

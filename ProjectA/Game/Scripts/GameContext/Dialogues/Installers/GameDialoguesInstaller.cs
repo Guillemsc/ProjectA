@@ -1,3 +1,4 @@
+using Game.GameContext.Dialogues.Configurations;
 using Game.GameContext.Dialogues.Datas;
 using Game.GameContext.Dialogues.UseCases;
 using Game.GameContext.DialogueUi.Interactors;
@@ -16,7 +17,8 @@ public static class GameDialoguesInstaller
                 c.Resolve<IDialogueUiInteractor>(),
                 c.Resolve<CurrentDialogueData>(),
                 c.Resolve<PlayDialogueEntryUseCase>(),
-                c.Resolve<AwaitDialogueContinueInputUseCase>()
+                c.Resolve<AwaitDialogueContinueInputUseCase>(),
+                c.Resolve<GetDialogueSpeakerConfigurationUseCase>()
             ));
 
         builder.Bind<PlayDialogueEntryUseCase>()
@@ -26,5 +28,10 @@ public static class GameDialoguesInstaller
 
         builder.Bind<AwaitDialogueContinueInputUseCase>()
             .FromFunction(c => new AwaitDialogueContinueInputUseCase());
+
+        builder.Bind<GetDialogueSpeakerConfigurationUseCase>()
+            .FromFunction(c => new GetDialogueSpeakerConfigurationUseCase(
+                c.Resolve<GameDialoguesConfiguration>()
+            ));
     }
 }

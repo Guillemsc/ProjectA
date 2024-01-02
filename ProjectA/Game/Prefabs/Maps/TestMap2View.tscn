@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="3_p8u37"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="4_h55k1"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="5_4lu8y"]
-[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Brown.png" id="6_xojd2"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="6_xojd2"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="7_3igmg"]
 [ext_resource type="PackedScene" uid="uid://xytolcxvv17g" path="res://Game/Prefabs/Views/CrateView.tscn" id="8_we507"]
 

@@ -15,7 +15,7 @@ size = Vector2(8.5, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kaeu7"]
 size = Vector2(16, 26)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CharacterBody2DCollisionCallbacks", "AnimatedSprite", "AnimationPlayer", "LeftWallDetector", "RightWallDetector", "InteractionsDetector")]
+[node name="PlayerView" type="CharacterBody2D" node_paths=PackedStringArray("CharacterBody2DCollisionCallbacks", "AnimatedSprite", "AnimationPlayer", "LeftWallDetector", "RightWallDetector", "InteractionsDetector")]
 position = Vector2(3, 1)
 collision_mask = 6
 script = ExtResource("1_6jkvy")

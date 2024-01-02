@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b67m6hbs2gmco"
+path="res://.godot/imported/Think Of Me Once In A While Take Care.ogg-416bf9cfaffae1946d6683e093f10c7f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Game/Audio/Inspiration/Think Of Me Once In A While Take Care.ogg"
+dest_files=["res://.godot/imported/Think Of Me Once In A While Take Care.ogg-416bf9cfaffae1946d6683e093f10c7f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

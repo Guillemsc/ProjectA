@@ -99,7 +99,6 @@ offset_left = 97.0
 offset_top = 15.0
 offset_right = 1187.0
 offset_bottom = 192.0
-scale = Vector2(1, 1e-05)
 pivot_offset = Vector2(545, 88.5)
 
 [node name="BackgroundImage" type="ColorRect" parent="Pivot/Container"]
@@ -207,6 +206,7 @@ offset_right = 162.0
 offset_bottom = 69.5
 grow_vertical = 2
 texture = ExtResource("2_4fvet")
+stretch_mode = 5
 
 [node name="RightPortraitImage" type="TextureRect" parent="Pivot/Container"]
 layout_mode = 1
@@ -223,3 +223,4 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("2_4fvet")
 stretch_mode = 5
+flip_h = true
