@@ -10,4 +10,6 @@ public interface IDialogueUiInteractor : IVisible
 {
     void SetupDialogue(HorizontalLocation portraitLocation, Texture2D portraitTexture);
     Task ShowText(string text, CancellationToken cancellationToken);
+    bool IsShowingText();
+    void CompleteTextShowing();
 }

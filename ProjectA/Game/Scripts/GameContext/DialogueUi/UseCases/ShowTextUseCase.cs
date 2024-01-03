@@ -16,6 +16,7 @@ public sealed class ShowTextUseCase
 {
     readonly IGameTimesService _gameTimesService;
     readonly DialogueUiTweensData _dialogueUiTweensData;
+    readonly DialoguePlayingData _dialoguePlayingData;
     readonly RichTextLabel _dialogueLabel;
     readonly Control _dialogueShownIndicatorControl;
     readonly AnimationPlayer _dialogueShownIndicatorAnimationPlayer;
@@ -24,6 +25,7 @@ public sealed class ShowTextUseCase
     public ShowTextUseCase(
         IGameTimesService gameTimesService,
         DialogueUiTweensData dialogueUiTweensData,
+        DialoguePlayingData dialoguePlayingData,
         RichTextLabel dialogueLabel, 
         Control dialogueShownIndicatorControl, 
         AnimationPlayer dialogueShownIndicatorAnimationPlayer, 
@@ -31,6 +33,7 @@ public sealed class ShowTextUseCase
     {
         _gameTimesService = gameTimesService;
         _dialogueUiTweensData = dialogueUiTweensData;
+        _dialoguePlayingData = dialoguePlayingData;
         _dialogueLabel = dialogueLabel;
         _dialogueShownIndicatorControl = dialogueShownIndicatorControl;
         _dialogueShownIndicatorAnimationPlayer = dialogueShownIndicatorAnimationPlayer;
@@ -44,7 +47,12 @@ public sealed class ShowTextUseCase
         _dialogueUiTweensData.CurrentDialogueTween?.Kill();
         
         _dialogueUiTweensData.CurrentDialogueTween = GTweenSequenceBuilder.New()
-            .AppendCallback(() => _dialogueShownIndicatorControl.Visible = false)
+            .AppendCallback(() =>
+            {
+                _dialoguePlayingData.IsShowingText = true;
+                
+                _dialogueShownIndicatorControl.Visible = false;
+            })
             .Append(_dialogueLabel.TweenDisplayedTextVisibleRatio(0f, 0f))
             .AppendCallback(() => _dialogueLabel.Text = $"[center]{text}")
             .Append(_dialogueLabel.TweenDisplayedTextVisibleRatio(1, duration).SetEasing(Easing.Linear))
@@ -53,6 +61,8 @@ public sealed class ShowTextUseCase
             {
                 _dialogueShownIndicatorAnimationPlayer.Reset();
                 _dialogueShownIndicatorAnimationPlayer.Play("Idle");
+
+                _dialoguePlayingData.IsShowingText = false;
             })
             .Build();
         

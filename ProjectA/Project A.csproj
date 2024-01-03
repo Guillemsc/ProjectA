@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Scripts\ServicesContext\General\" />
+    <Folder Include="GUtilsGodot\Source\NodeExecutables\Configurations\" />
   </ItemGroup>
 </Project>

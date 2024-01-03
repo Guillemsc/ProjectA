@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameDialoguesConfiguration" load_steps=8 format=3 uid="uid://c8g00v75oi7hs"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://c8g00v75oi7hs"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/GameDialoguesConfiguration.cs" id="1_3qee2"]
 [ext_resource type="Texture2D" uid="uid://bcpifmg84xwo2" path="res://Game/Textures/Player/Player-Portrait.png" id="1_kali6"]

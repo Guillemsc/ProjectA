@@ -29,11 +29,14 @@ public partial class GameDialogueUiInstaller : ControlInstaller
             .FromFunction(c => new DialogueUiInteractor(
                 c.Resolve<SetVisibleUseCase>(),
                 c.Resolve<ShowTextUseCase>(),
-                c.Resolve<SetupDialogueUseCase>()
+                c.Resolve<SetupDialogueUseCase>(),
+                c.Resolve<IsShowingTextUseCase>(),
+                c.Resolve<CompleteTextShowingUseCase>()
             ));
 
         builder.Bind<DialogueUiVisibilityData>().FromNew();
         builder.Bind<DialogueUiTweensData>().FromNew();
+        builder.Bind<DialoguePlayingData>().FromNew();
         
         builder.Bind<SetVisibleUseCase>()
             .FromFunction(c => new SetVisibleUseCase(
@@ -54,6 +57,7 @@ public partial class GameDialogueUiInstaller : ControlInstaller
             .FromFunction(c => new ShowTextUseCase(
                 c.Resolve<IGameTimesService>(),
                 c.Resolve<DialogueUiTweensData>(),
+                c.Resolve<DialoguePlayingData>(),
                 DialogueLabel!,
                 DialogueShownIndicatorControl!,
                 DialogueShownIndicatorAnimationPlayer!,
@@ -67,6 +71,16 @@ public partial class GameDialogueUiInstaller : ControlInstaller
                 RightDialoguePosition!,
                 LeftPortraitImage!,
                 RightPortraitImage!
+            ));
+
+        builder.Bind<IsShowingTextUseCase>()
+            .FromFunction(c => new IsShowingTextUseCase(
+                c.Resolve<DialoguePlayingData>()
+            ));
+
+        builder.Bind<CompleteTextShowingUseCase>()
+            .FromFunction(c => new CompleteTextShowingUseCase(
+                c.Resolve<DialogueUiTweensData>()
             ));
     }
 }

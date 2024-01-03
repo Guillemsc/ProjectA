@@ -8,4 +8,5 @@ public enum NpcAnimationState
     DoubleJump,
     Fall,
     Wall,
+    Sit,
 }

@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.Cinematics.Contexts;
 using Game.GameContext.Cinematics.Views;
+using Game.GameContext.Npcs.Enums;
 using Game.GameContext.Npcs.Views;
 using Game.GameContext.Players.Enums;
 using Game.GameContext.Players.Views;
@@ -28,8 +29,8 @@ public partial class IntroCinematicView : CinematicView
     [Export] public Node2D? JumpFallPosition;
     [Export] public Node2D? FallHeightPosition;
     
-    public override async Task PlayCinematic(
-        CinematicsContext context, 
+    public override async Task Play(
+        CinematicContext context, 
         CancellationToken skipToken,
         CancellationToken cancellationToken
         )
@@ -39,6 +40,7 @@ public partial class IntroCinematicView : CinematicView
         PlayerView playerView = context.PlayerView;
         
         SomeoneNpcView!.AnimatedSprite!.FlipH = true;
+        SomeoneNpcView.AnimatedSprite.Play(NpcAnimationState.Sit);
         
         playerView.CanUpdateMovement = false;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Disabled;

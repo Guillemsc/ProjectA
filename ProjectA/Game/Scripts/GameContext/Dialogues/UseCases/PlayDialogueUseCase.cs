@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Game.GameContext.Dialogues.Configurations;
 using Game.GameContext.Dialogues.Datas;
 using Game.GameContext.DialogueUi.Interactors;
+using GUtils.Extensions;
 using GUtils.Optionals;
 
 namespace Game.GameContext.Dialogues.UseCases;
@@ -83,9 +84,18 @@ public sealed class PlayDialogueUseCase
 
             previousDialogueEntry = dialogueEntry;
             
-            await _playDialogueEntryUseCase.Execute(dialogueEntry, allCancellationToken);
+            _playDialogueEntryUseCase.Execute(dialogueEntry, allCancellationToken).RunAsync();
             
             await _awaitDialogueContinueInputUseCase.Execute(allCancellationToken);
+
+            bool isShowingText = _dialogueUiInteractor.IsShowingText();
+
+            if (isShowingText)
+            {
+                _dialogueUiInteractor.CompleteTextShowing();
+                
+                await _awaitDialogueContinueInputUseCase.Execute(allCancellationToken);
+            }
 
             if (allCancellationToken.IsCancellationRequested) break;
         }

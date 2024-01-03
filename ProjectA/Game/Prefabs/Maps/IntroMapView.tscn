@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdf7ml70y4jua"]
+[gd_scene load_steps=17 format=3 uid="uid://cdf7ml70y4jua"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_livoh"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_phk75"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/IntroCinematicView.cs" id="9_asdl5"]
 [ext_resource type="AudioStream" uid="uid://08m8n338msfx" path="res://Game/Audio/Inspiration/Please Dont Leave.ogg" id="9_gpvqp"]
 [ext_resource type="Texture2D" uid="uid://xhwi8p5inmk0" path="res://Game/Textures/Props/Railing.png" id="11_ybadq"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/NodeExecutables/Nodes/NodeExecutableRunner.cs" id="12_wxc5c"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/NodeExecutables/Nodes/CanvasItemSetVisibleNodeExecutable.cs" id="13_u4ruq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_phk75")
@@ -148,7 +150,7 @@ libraries = {
 }
 
 [node name="SomeoneNpcView" parent="CinematicView" instance=ExtResource("6_k1ayi")]
-position = Vector2(-62, 14)
+position = Vector2(-63, 11)
 
 [node name="PositionBeforeJump" type="Node2D" parent="CinematicView"]
 position = Vector2(113, 0)
@@ -167,12 +169,21 @@ position = Vector2(-79, 28)
 texture = ExtResource("11_ybadq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CinematicView"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CinematicView/CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="NodeExecutable" type="Node2D" parent="." node_paths=PackedStringArray("NodeExecutables")]
+script = ExtResource("12_wxc5c")
+NodeExecutables = [NodePath("SetVisibleCanvasRect")]
+
+[node name="SetVisibleCanvasRect" type="Node2D" parent="NodeExecutable" node_paths=PackedStringArray("CanvasItem")]
+script = ExtResource("13_u4ruq")
+CanvasItem = NodePath("../../CinematicView/CanvasLayer/ColorRect")
+Visible = true

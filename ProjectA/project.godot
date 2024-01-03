@@ -15,6 +15,10 @@ run/main_scene="res://Game/Scenes/Bootstrap.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Misc/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Game/AudioBusses/DefaultBusLayout.tres"
+
 [autoload]
 
 GodotGTweensContextNode="*res://GTweensGodot/Godot/Source/Contexts/GodotGTweensContextNode.cs"

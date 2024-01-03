@@ -14,8 +14,8 @@ namespace Game.GameContext.Cinematics.Cinematics;
 
 public partial class TestCinematicView : CinematicView
 {
-    public override async Task PlayCinematic(
-        CinematicsContext context, 
+    public override async Task Play(
+        CinematicContext context, 
         CancellationToken skipToken,
         CancellationToken cancellationToken
         )

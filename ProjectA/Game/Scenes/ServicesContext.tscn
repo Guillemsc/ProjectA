@@ -57,4 +57,5 @@ Camera2D = NodePath("Camera2D")
 [node name="Camera2D" type="Camera2D" parent="CameraService"]
 
 [node name="UiFrameService" type="CanvasLayer" parent="."]
+layer = 2
 script = ExtResource("2_pnkxa")

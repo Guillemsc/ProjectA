@@ -52,7 +52,7 @@ public sealed class PlayCinematicUseCase
             return;
         }
 
-        CinematicsContext cinematicsContext = new(
+        CinematicContext cinematicContext = new(
             playerView,
             _gameConfiguration,
             _cinematicsMethods,
@@ -72,8 +72,8 @@ public sealed class PlayCinematicUseCase
 
             _currentCinematicData.CurrentCinematicSkipTokenSource = new CancellationTokenSource();
 
-            await cinematic.PlayCinematic(
-                cinematicsContext,
+            await cinematic.Play(
+                cinematicContext,
                 _currentCinematicData.CurrentCinematicSkipTokenSource.Token,
                 cancellationToken
             );

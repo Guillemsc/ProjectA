@@ -8,8 +8,8 @@ namespace Game.GameContext.Cinematics.Views;
 
 public partial class CinematicView : Node2D, ICinematic
 {
-    public virtual Task PlayCinematic(
-        CinematicsContext context, 
+    public virtual Task Play(
+        CinematicContext context, 
         CancellationToken skipToken,
         CancellationToken cancellationToken
         ) => Task.CompletedTask;
