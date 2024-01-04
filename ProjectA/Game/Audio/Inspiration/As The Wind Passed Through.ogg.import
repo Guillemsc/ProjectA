@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bv4aq0tcusnpf"
+path="res://.godot/imported/As The Wind Passed Through.ogg-0e561e342699026999425ad169b9f7ca.oggvorbisstr"
+
+[deps]
+
+source_file="res://Game/Audio/Inspiration/As The Wind Passed Through.ogg"
+dest_files=["res://.godot/imported/As The Wind Passed Through.ogg-0e561e342699026999425ad169b9f7ca.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

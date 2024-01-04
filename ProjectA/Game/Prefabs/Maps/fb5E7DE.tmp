@@ -172,7 +172,7 @@ position = Vector2(15, 33)
 position = Vector2(471, -122)
 script = ExtResource("8_cglcq")
 Bounds = NodePath("Bounds")
-Map = "res://Game/Prefabs/Maps/ebd9925aMapView.tscn"
+Map = "res://Game/Prefabs/Maps/0dd94e00MapView.tscn"
 SpawnId = "affc1051-980a-4257-bc5e-996ef9eb45ae"
 SpawnPosition = NodePath("SpawnPosition")
 

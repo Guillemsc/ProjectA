@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueConfiguration" load_steps=5 format=3 uid="uid://d32gs6oj1jflu"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueEntryConfiguration.cs" id="1_w6433"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueConfiguration.cs" id="2_1ollv"]
+
+[sub_resource type="Resource" id="Resource_3hjeh"]
+script = ExtResource("1_w6433")
+Text = "Wait [shake rate=20.0 level=5 connected=1]WHAT![/shake] That's amazing!"
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_ynt0o"]
+script = ExtResource("1_w6433")
+Text = "I [shake rate=20.0 level=5 connected=1]NEED[/shake] TO SEE IT FROM CLOSER."
+PortraitLocation = 1
+Speaker = 1
+
+[resource]
+script = ExtResource("2_1ollv")
+Entries = Array[Resource]([SubResource("Resource_3hjeh"), SubResource("Resource_ynt0o")])

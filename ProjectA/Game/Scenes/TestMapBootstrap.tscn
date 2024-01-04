@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bofn74ja56fmk"]
+
+[ext_resource type="Script" path="res://Game/Scripts/Bootstraps/TestMapBootstrap.cs" id="1_5hiqv"]
+[ext_resource type="Resource" uid="uid://cufvrpuk45yya" path="res://Game/Configuration/General/ContextsScenesConfiguration.tres" id="2_6w5uu"]
+[ext_resource type="Resource" uid="uid://772xfftx0442" path="res://Game/Configuration/Game/GameConfiguration.tres" id="3_uyirv"]
+
+[node name="Bootstrap" type="Node2D"]
+script = ExtResource("1_5hiqv")
+ContextsScenesConfiguration = ExtResource("2_6w5uu")
+GameConfiguration = ExtResource("3_uyirv")
+TestMap = "res://Game/Prefabs/Maps/0dd94e00MapView.tscn"

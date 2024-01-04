@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="3_itp4t"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_spf6i"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_r7lnc"]
-[ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/LetterCollectableView.tscn" id="6_s4juu"]
+[ext_resource type="PackedScene" uid="uid://crc117qgy3tha" path="res://Game/Prefabs/Views/FruitCollectableView.tscn" id="6_xqmjh"]
 [ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/Views/SpikesView.tscn" id="7_bbiil"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_4hg3i"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_nlo2n"]
@@ -21,19 +21,6 @@ shader_parameter/movementSpeed = 0.2
 script = ExtResource("1_n7egg")
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -2
-follow_viewport_scale = -1.245
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-z_index = -5
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.129412, 0.121569, 0.188235, 1)
 
 [node name="MapBackground" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_bx5qr")
@@ -52,26 +39,23 @@ position = Vector2(263, -125)
 script = ExtResource("5_r7lnc")
 Size = Vector2(695, 354)
 
-[node name="AppleCollectableView" parent="AreaView" instance=ExtResource("6_s4juu")]
-position = Vector2(92, -114)
+[node name="FruitCollectableView" parent="AreaView" instance=ExtResource("6_xqmjh")]
+position = Vector2(226, -125)
 
-[node name="AppleCollectableView2" parent="AreaView" instance=ExtResource("6_s4juu")]
-position = Vector2(226, -123)
+[node name="FruitCollectableView2" parent="AreaView" instance=ExtResource("6_xqmjh")]
+position = Vector2(203, -164)
 
-[node name="AppleCollectableView3" parent="AreaView" instance=ExtResource("6_s4juu")]
-position = Vector2(203, -162)
+[node name="FruitCollectableView3" parent="AreaView" instance=ExtResource("6_xqmjh")]
+position = Vector2(226, -203)
 
-[node name="AppleCollectableView7" parent="AreaView" instance=ExtResource("6_s4juu")]
-position = Vector2(226, -201)
+[node name="FruitCollectableView4" parent="AreaView" instance=ExtResource("6_xqmjh")]
+position = Vector2(463, -165)
 
-[node name="AppleCollectableView5" parent="AreaView" instance=ExtResource("6_s4juu")]
-position = Vector2(464, -163)
+[node name="FruitCollectableView5" parent="AreaView" instance=ExtResource("6_xqmjh")]
+position = Vector2(463, -138)
 
-[node name="AppleCollectableView4" parent="AreaView" instance=ExtResource("6_s4juu")]
-position = Vector2(464, -136)
-
-[node name="AppleCollectableView6" parent="AreaView" instance=ExtResource("6_s4juu")]
-position = Vector2(464, -108)
+[node name="FruitCollectableView6" parent="AreaView" instance=ExtResource("6_xqmjh")]
+position = Vector2(463, -110)
 
 [node name="SpikesView2" parent="AreaView" instance=ExtResource("7_bbiil")]
 position = Vector2(216, 24)

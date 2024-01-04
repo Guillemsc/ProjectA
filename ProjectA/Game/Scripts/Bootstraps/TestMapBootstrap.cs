@@ -1,9 +1,10 @@
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Game.Contexts.Configuration;
+using Game.GameContext.General.ApplicationContexts;
 using Game.GameContext.General.Configurations;
-using Game.MetaContext.General.ApplicationContexts;
 using Godot;
+using GUtils.Directions;
 using GUtils.Loading.Extensions;
 using GUtils.Loading.Services;
 using GUtils.Services.Locators;
@@ -11,10 +12,11 @@ using GUtilsGodot.Bootstraps;
 
 namespace Game.Bootstraps;
 
-public partial class MainBootstrap : Bootstrap
+public partial class TestMapBootstrap : Bootstrap
 {
     [Export] public ContextsScenesConfiguration? ContextsScenesConfiguration;
     [Export] public GameConfiguration? GameConfiguration;
+    [Export(PropertyHint.File, "*.tscn,*.scn")] public string? TestMap;
     
     protected override async Task Run(CancellationToken cancellationToken)
     {
@@ -27,20 +29,16 @@ public partial class MainBootstrap : Bootstrap
 
         ILoadingService loadingService = ServiceLocator.Get<ILoadingService>();
 
+        GameApplicationContextConfiguration contextConfiguration = new(
+            TestMap!,
+            string.Empty,
+            true,
+            HorizontalDirection.Right
+        );
+        
         await loadingService.New()
-            .EnqueueLoadAndStartApplicationContext(new MetaApplicationContext())
+            .RunBeforeLoadActionsInstantly()
+            .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(contextConfiguration))
             .Execute(cancellationToken);
-
-        // GameApplicationContextConfiguration contextConfiguration = new(
-        //     GameConfiguration!.MapsConfiguration!.TestMap!,
-        //     string.Empty,
-        //     true,
-        //     HorizontalDirection.Right
-        // );
-        //
-        // await loadingService.New()
-        //     .RunBeforeLoadActionsInstantly()
-        //     .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(contextConfiguration))
-        //     .Execute(cancellationToken);
     }
 }

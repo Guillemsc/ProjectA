@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="DialogueConfiguration" load_steps=9 format=3 uid="uid://beae10amts6ct"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueEntryConfiguration.cs" id="1_v8sgy"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueConfiguration.cs" id="2_i7ogo"]
+
+[sub_resource type="Resource" id="Resource_bnens"]
+script = ExtResource("1_v8sgy")
+Text = "Hey, this trail is amazing! I can't believe we've never explored this part of the woods before."
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_mr0i1"]
+script = ExtResource("1_v8sgy")
+Text = " I know, right? It's like a hidden gem."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_phk1y"]
+script = ExtResource("1_v8sgy")
+Text = "The birds chirping and the rustling leaves make it so peaceful."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_bcr0w"]
+script = ExtResource("1_v8sgy")
+Text = "Nature has its own rhythm, and being a part of it for a while is magical."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_ko8yv"]
+script = ExtResource("1_v8sgy")
+Text = "[wave amp=50.0 freq=5.0 connected=1]Couldn't agree more![/wave]"
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_5enqs"]
+script = ExtResource("1_v8sgy")
+Text = "By the way, look behind you! There is a deer that's scurrying across the path! "
+PortraitLocation = 0
+Speaker = 0
+
+[resource]
+script = ExtResource("2_i7ogo")
+Entries = Array[Resource]([SubResource("Resource_bnens"), SubResource("Resource_mr0i1"), SubResource("Resource_phk1y"), SubResource("Resource_bcr0w"), SubResource("Resource_ko8yv"), SubResource("Resource_5enqs")])

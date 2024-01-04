@@ -1,5 +1,6 @@
 using Game.GameContext.Cinematics.UseCases;
 using Game.GameContext.Pause.UseCases;
+using Godot;
 
 namespace Game.GameContext.PauseUi.UseCases;
 

@@ -42,20 +42,21 @@ public sealed class ShowTextUseCase
 
     public Task Execute(string text, CancellationToken cancellationToken)
     {
-        float duration = text.Length * _dialogueDurationPerWord;
+        _dialogueLabel.Text = $"[center]{text}";
+        _dialogueLabel.VisibleRatio = 0f;
+        
+        float duration = _dialogueLabel.GetParsedText().Length * _dialogueDurationPerWord;
         
         _dialogueUiTweensData.CurrentDialogueTween?.Kill();
-        
+
         _dialogueUiTweensData.CurrentDialogueTween = GTweenSequenceBuilder.New()
             .AppendCallback(() =>
             {
                 _dialoguePlayingData.IsShowingText = true;
-                
                 _dialogueShownIndicatorControl.Visible = false;
             })
-            .Append(_dialogueLabel.TweenDisplayedTextVisibleRatio(0f, 0f))
-            .AppendCallback(() => _dialogueLabel.Text = $"[center]{text}")
-            .Append(_dialogueLabel.TweenDisplayedTextVisibleRatio(1, duration).SetEasing(Easing.Linear))
+            .Append(_dialogueLabel.TweenDisplayedTextVisibleRatio(1, duration)
+                .SetEasing(Easing.Linear))
             .AppendCallback(() => _dialogueShownIndicatorControl.Visible = true)
             .AppendCallback(() =>
             {

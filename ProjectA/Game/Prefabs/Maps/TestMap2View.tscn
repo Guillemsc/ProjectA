@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8dxkf1gsihj1"]
+[gd_scene load_steps=10 format=3 uid="uid://iwauh8juvwf8"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_tt55o"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="2_bddhk"]
@@ -20,19 +20,6 @@ shader_parameter/movementSpeed = 0.2
 script = ExtResource("1_tt55o")
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -2
-follow_viewport_scale = -1.245
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-z_index = -5
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.129412, 0.121569, 0.188235, 1)
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 position = Vector2(41, 79)
