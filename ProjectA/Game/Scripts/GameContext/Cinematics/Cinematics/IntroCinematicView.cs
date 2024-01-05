@@ -91,8 +91,6 @@ public partial class IntroCinematicView : CinematicView
         
         await sequenceBuilder.Build().PlayAsync(skipToken, cancellationToken);
         
-        context.Services.MusicService.Stop();
-        
         playerView.CanUpdateMovement = true;
         playerView.AnimationPlayer!.ProcessMode = ProcessModeEnum.Inherit;
     }

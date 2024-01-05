@@ -1,0 +1,371 @@
+[gd_scene load_steps=12 format=3 uid="uid://hredcrvb4gef"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_upb70"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_3rlnj"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="3_b5xk0"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_7eojw"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_fsa07"]
+[ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/Views/TrampolineView.tscn" id="6_yte84"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/SpikesView.tscn" id="7_3fwuj"]
+[ext_resource type="PackedScene" uid="uid://b0ajai5npkpdk" path="res://Game/Prefabs/Views/TriggerPlayerKillerView.tscn" id="7_dr6d2"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_1cdxv"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_4dlpw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
+shader = ExtResource("2_3rlnj")
+shader_parameter/tilingScale = 1.341
+shader_parameter/movementX = 0.0
+shader_parameter/movementY = -1.0
+shader_parameter/movementSpeed = 0.2
+
+[node name="1ee0029bMapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+script = ExtResource("1_upb70")
+AreaViews = [NodePath("AreaView")]
+ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bx5qr")
+position = Vector2(277.5, -134)
+scale = Vector2(11.1719, 6.28125)
+texture = ExtResource("3_b5xk0")
+
+[node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
+script = ExtResource("4_7eojw")
+Bounds = NodePath("Bounds")
+CameraZoom = 2.3
+
+[node name="Bounds" type="Node2D" parent="AreaView"]
+z_index = 3
+position = Vector2(285, -153)
+script = ExtResource("5_fsa07")
+Size = Vector2(690, 360)
+
+[node name="TrampolineView" parent="AreaView" instance=ExtResource("6_yte84")]
+position = Vector2(136, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView2" parent="AreaView" instance=ExtResource("6_yte84")]
+position = Vector2(309, -14)
+BounceStrenght = 350.0
+
+[node name="TrampolineView3" parent="AreaView" instance=ExtResource("6_yte84")]
+position = Vector2(333, -14)
+BounceStrenght = 350.0
+
+[node name="SpikesView" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -104)
+rotation = 1.5708
+
+[node name="SpikesView59" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -105)
+rotation = -1.5708
+
+[node name="SpikesView60" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -121)
+rotation = -1.5708
+
+[node name="SpikesView61" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -137)
+rotation = -1.5708
+
+[node name="SpikesView62" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -153)
+rotation = -1.5708
+
+[node name="SpikesView63" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -169)
+rotation = -1.5708
+
+[node name="SpikesView64" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -185)
+rotation = -1.5708
+
+[node name="SpikesView65" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -201)
+rotation = -1.5708
+
+[node name="SpikesView66" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(72, -217)
+rotation = -1.5708
+
+[node name="SpikesView67" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(89, -232)
+
+[node name="SpikesView9" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -104)
+rotation = -1.5708
+
+[node name="SpikesView10" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -120)
+rotation = -1.5708
+
+[node name="SpikesView11" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -136)
+rotation = -1.5708
+
+[node name="SpikesView12" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -152)
+rotation = -1.5708
+
+[node name="SpikesView13" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -168)
+rotation = -1.5708
+
+[node name="SpikesView14" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -184)
+rotation = -1.5708
+
+[node name="SpikesView15" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -200)
+rotation = -1.5708
+
+[node name="SpikesView16" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(168, -216)
+rotation = -1.5708
+
+[node name="SpikesView31" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -217)
+rotation = -1.5708
+
+[node name="SpikesView41" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -233)
+rotation = -1.5708
+
+[node name="SpikesView42" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -249)
+rotation = -1.5708
+
+[node name="SpikesView43" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -265)
+rotation = -1.5708
+
+[node name="SpikesView44" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -281)
+rotation = -1.5708
+
+[node name="SpikesView45" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -297)
+rotation = -1.5708
+
+[node name="SpikesView46" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -313)
+rotation = -1.5708
+
+[node name="SpikesView47" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -329)
+rotation = -1.5708
+
+[node name="SpikesView48" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -345)
+rotation = -1.5708
+
+[node name="SpikesView49" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -360)
+rotation = -1.5708
+
+[node name="SpikesView50" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -376)
+rotation = -1.5708
+
+[node name="SpikesView32" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -201)
+rotation = -1.5708
+
+[node name="SpikesView51" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -57)
+rotation = -1.5708
+
+[node name="SpikesView52" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -73)
+rotation = -1.5708
+
+[node name="SpikesView53" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -89)
+rotation = -1.5708
+
+[node name="SpikesView54" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -105)
+rotation = -1.5708
+
+[node name="SpikesView55" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -121)
+rotation = -1.5708
+
+[node name="SpikesView56" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -137)
+rotation = -1.5708
+
+[node name="SpikesView57" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -153)
+rotation = -1.5708
+
+[node name="SpikesView58" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(424, -169)
+rotation = -1.5708
+
+[node name="SpikesView33" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -185)
+rotation = -1.5708
+
+[node name="SpikesView34" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -169)
+rotation = -1.5708
+
+[node name="SpikesView35" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -153)
+rotation = -1.5708
+
+[node name="SpikesView36" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -137)
+rotation = -1.5708
+
+[node name="SpikesView37" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(328, -121)
+rotation = -1.5708
+
+[node name="SpikesView38" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -41)
+rotation = -1.5708
+
+[node name="SpikesView39" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -25)
+rotation = -1.5708
+
+[node name="SpikesView40" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(344, -8)
+rotation = -1.5708
+
+[node name="SpikesView2" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -120)
+rotation = 1.5708
+
+[node name="SpikesView3" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -136)
+rotation = 1.5708
+
+[node name="SpikesView4" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -152)
+rotation = 1.5708
+
+[node name="SpikesView5" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -168)
+rotation = 1.5708
+
+[node name="SpikesView6" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -184)
+rotation = 1.5708
+
+[node name="SpikesView7" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -200)
+rotation = 1.5708
+
+[node name="SpikesView8" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(104, -216)
+rotation = 1.5708
+
+[node name="SpikesView17" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -216)
+rotation = 1.5708
+
+[node name="SpikesView18" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -200)
+rotation = 1.5708
+
+[node name="SpikesView19" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -184)
+rotation = 1.5708
+
+[node name="SpikesView20" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -168)
+rotation = 1.5708
+
+[node name="SpikesView21" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -152)
+rotation = 1.5708
+
+[node name="SpikesView22" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -136)
+rotation = 1.5708
+
+[node name="SpikesView23" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -120)
+rotation = 1.5708
+
+[node name="SpikesView24" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -104)
+rotation = 1.5708
+
+[node name="SpikesView25" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -88)
+rotation = 1.5708
+
+[node name="SpikesView26" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -72)
+rotation = 1.5708
+
+[node name="SpikesView27" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -56)
+rotation = 1.5708
+
+[node name="SpikesView28" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -40)
+rotation = 1.5708
+
+[node name="SpikesView29" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -24)
+rotation = 1.5708
+
+[node name="SpikesView30" parent="AreaView" instance=ExtResource("7_3fwuj")]
+position = Vector2(296, -8)
+rotation = 1.5708
+
+[node name="TriggerPlayerKillerView" parent="AreaView" instance=ExtResource("7_dr6d2")]
+position = Vector2(222, 32)
+scale = Vector2(10, 1)
+
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+position = Vector2(-65, -55)
+script = ExtResource("8_1cdxv")
+Bounds = NodePath("Bounds")
+Map = "res://Game/Prefabs/Maps/ebd9925aMapView.tscn"
+SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+SpawnPosition = NodePath("SpawnPosition")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView"]
+z_index = 3
+script = ExtResource("5_fsa07")
+Size = Vector2(10, 80)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
+position = Vector2(22, 20)
+
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+position = Vector2(528, 53)
+script = ExtResource("8_1cdxv")
+Bounds = NodePath("Bounds")
+Map = "res://Game/Prefabs/Maps/fb581aceMapView.tscn"
+SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+SpawnPosition = NodePath("SpawnPosition")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView2"]
+z_index = 3
+position = Vector2(33, -21)
+script = ExtResource("5_fsa07")
+Size = Vector2(80, 10)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView2"]
+position = Vector2(-8, -249)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("9_4dlpw")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = 2
+layer_0/tile_data = PackedInt32Array(-655364, 65536, 6, -655363, 131072, 6, 458748, 65536, 5, -524293, 131072, 5, -589829, 131072, 5, -655365, 196608, 4, -524294, 65536, 1, -589830, 65536, 1, -655366, 65536, 1, 458747, 65536, 5, 458746, 65536, 5, -917511, 65536, 1, -851975, 65536, 1, -786439, 65536, 1, -655367, 65536, 5, -589831, 65536, 1, -524295, 65536, 1, 589822, 65536, 1, 524284, 65536, 1, 524283, 65536, 1, 524282, 65536, 1, -458759, 65536, 1, -458758, 65536, 1, -393222, 65536, 6, -458757, 131072, 5, -393221, 131072, 6, 65530, 65536, 1, 262138, 65536, 1, 196602, 65536, 1, 131066, 65536, 1, -720903, 65536, 5, -720899, 131072, 5, -786435, 131072, 5, -720900, 65536, 5, -720901, 65536, 5, -720902, 65536, 5, -786438, 65536, 5, -786437, 65536, 5, -786436, 65536, 5, -851971, 196608, 4, -1, 786432, 5, -65536, 786432, 5, -65535, 786432, 5, -65534, 786432, 5, -65533, 786432, 5, -196604, 786432, 5, -196603, 786432, 5, -2, 786432, 5, -196605, 786432, 5, -131069, 786432, 5, -3, 786432, 5, -4, 786432, 5, -5, 786432, 5, -196602, 786432, 5, -196601, 786432, 5, -196600, 786432, 5, -917492, 786432, 5, -917491, 786432, 5, -917490, 786432, 5, -917489, 786432, 5, -917488, 786432, 5, -917487, 786432, 5, -917482, 786432, 5, -720879, 786432, 5, -655343, 786432, 5, -589807, 786432, 5, -524271, 786432, 5, -458735, 786432, 5, -393199, 786432, 5, -327663, 786432, 5, -262127, 786432, 5, -196591, 786432, 5, -131055, 786432, 5, -720874, 786432, 5, -655338, 786432, 5, -196586, 786432, 5, -131050, 786432, 5, -65519, 786432, 5, 17, 786432, 5, 18, 786432, 5, 19, 786432, 5, 20, 786432, 5, 21, 786432, 5, -589802, 786432, 5, -524266, 786432, 5, -65514, 786432, 5, 22, 786432, 5, -196585, 786432, 5, -196584, 786432, 5, -196583, 786432, 5, -196582, 786432, 5, -196581, 786432, 5, -786415, 786432, 5, -851951, 786432, 5, -851946, 786432, 5, -786410, 786432, 5, -917493, 786432, 5, -917499, 786432, 5, -851963, 786432, 5, -786427, 786432, 5, -720891, 786432, 5, -655355, 786432, 5, -589819, 786432, 5, -524283, 786432, 5, -458747, 786432, 5, -196598, 786432, 5, -851957, 786432, 5, -786421, 786432, 5, -720885, 786432, 5, -655349, 786432, 5, -589813, 786432, 5, -524277, 786432, 5, -458741, 786432, 5, -393205, 786432, 5, -327669, 786432, 5, -262133, 786432, 5, -196597, 786432, 5, -196599, 786432, 5, -524267, 786432, 5, -1114087, 786432, 5, -1114086, 786432, 5, -1114085, 786432, 5, -1114084, 786432, 5, -1114083, 786432, 5, -1114082, 786432, 5, -1114081, 786432, 5, -524261, 786432, 5, -589797, 786432, 5, -655333, 786432, 5, -720869, 786432, 5, -720868, 786432, 5, -720867, 786432, 5, -720866, 786432, 5, -720865, 786432, 5, -720864, 786432, 5, -1114088, 786432, 5, -1114089, 786432, 5, -1114090, 786432, 5, -1048554, 786432, 5, -983018, 786432, 5, -1114080, 786432, 5, -1114079, 786432, 5, -1114078, 786432, 5, -1114077, 786432, 5, -1114076, 786432, 5, -1114075, 786432, 5, -1048539, 786432, 5, -983003, 786432, 5, -917467, 786432, 5, -851931, 786432, 5, -786395, 786432, 5, -720859, 786432, 5, -655323, 786432, 5, -589787, 786432, 5, -524251, 786432, 5, -458715, 786432, 5, -393179, 786432, 5, -327643, 786432, 5, -655328, 786432, 5, -589792, 786432, 5, -524256, 786432, 5, -458720, 786432, 5, -393184, 786432, 5, -327648, 786432, 5, -262112, 786432, 5, -196576, 786432, 5, -131040, 786432, 5, -65504, 786432, 5, -262107, 786432, 5, -196571, 786432, 5, -131035, 786432, 5, -65499, 786432, 5, 32, 786432, 5, 65568, 786432, 5, 131104, 786432, 5, 37, 786432, 5, 65573, 786432, 5, 131109, 786432, 5, -1179626, 786432, 5, -1245162, 786432, 5, -1310698, 786432, 5, -1376234, 786432, 5, -1441770, 786432, 5, -1507306, 786432, 5, -1572842, 786432, 5, -262117, 786432, 5, -327653, 786432, 5, -393189, 786432, 5, -458725, 786432, 5)
+layer_1/name = "Content-2"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Content-1"
+layer_2/tile_data = PackedInt32Array()
