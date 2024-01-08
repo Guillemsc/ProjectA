@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Enums;
 using Game.GameContext.Players.Views;
@@ -7,6 +8,7 @@ using Godot;
 using GTweens.Easings;
 using GTweensGodot.Extensions;
 using GUtils.Tasks.Runners;
+using GUtilsGodot.Cameras.Behaviours;
 using GUtilsGodot.Extensions;
 
 namespace Game.GameContext.Players.UseCases;
@@ -14,12 +16,15 @@ namespace Game.GameContext.Players.UseCases;
 public sealed class KillPlayerUseCase
 {
     readonly PlayerViewData _playerViewData;
+    readonly ShakeCameraUseCase _shakeCameraUseCase;
 
     public KillPlayerUseCase(
-        PlayerViewData playerViewData
-    )
+        PlayerViewData playerViewData,
+        ShakeCameraUseCase shakeCameraUseCase
+        )
     {
         _playerViewData = playerViewData;
+        _shakeCameraUseCase = shakeCameraUseCase;
     }
 
     public async Task Execute(CancellationToken cancellationToken)
@@ -30,6 +35,8 @@ public sealed class KillPlayerUseCase
         {
             return;
         }
+        
+        _shakeCameraUseCase.Execute();
 
         playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Disabled;
         playerView.CanUpdateMovement = false;

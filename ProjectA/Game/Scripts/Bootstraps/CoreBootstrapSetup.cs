@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Game.Contexts.Configuration;
 using Game.GameContext.General.Configurations;
 using Game.LoadingScreenContext.General.ApplicationContexts;
 using Godot;
@@ -10,6 +9,7 @@ using GUtils.Loading.Extensions;
 using GUtils.Loading.Services;
 using GUtils.Services.Locators;
 using GUtilsGodot.Di.Loadables;
+using ContextsScenesConfiguration = Game.General.Contexts.Configuration.ContextsScenesConfiguration;
 
 namespace Game.Bootstraps;
 

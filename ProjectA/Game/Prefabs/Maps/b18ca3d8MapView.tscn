@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_spf6i"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_r7lnc"]
 [ext_resource type="PackedScene" uid="uid://crc117qgy3tha" path="res://Game/Prefabs/Views/FruitCollectableView.tscn" id="6_xqmjh"]
-[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/SpikesView.tscn" id="7_bbiil"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/Views/SpikesView.tscn" id="7_bbiil"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_4hg3i"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_nlo2n"]
 

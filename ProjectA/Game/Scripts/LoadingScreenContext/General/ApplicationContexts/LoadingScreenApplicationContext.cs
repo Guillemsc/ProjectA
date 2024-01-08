@@ -1,4 +1,3 @@
-using Game.Contexts.Configuration;
 using Game.LoadingScreenContext.General.Installers;
 using Game.LoadingScreenContext.General.Interactors;
 using GUtils.ApplicationContexts.Contexts;
@@ -7,6 +6,7 @@ using GUtils.Di.Installers;
 using GUtils.Services.Locators;
 using GUtilsGodot.Di.Loadables;
 using GUtilsGodot.Roots.Services;
+using ContextsScenesConfiguration = Game.General.Contexts.Configuration.ContextsScenesConfiguration;
 
 namespace Game.LoadingScreenContext.General.ApplicationContexts;
 

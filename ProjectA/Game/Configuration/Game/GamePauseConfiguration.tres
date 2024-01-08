@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GamePauseConfiguration" load_steps=2 format=3 uid="uid://cptvl1vh0tl4f"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Pause/Configurations/GamePauseConfiguration.cs" id="1_htsjk"]
+
+[resource]
+script = ExtResource("1_htsjk")
+PauseGameLogicSomeFramesDurationSeconds = 0.04

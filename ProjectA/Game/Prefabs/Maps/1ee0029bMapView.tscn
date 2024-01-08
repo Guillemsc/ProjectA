@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_7eojw"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_fsa07"]
 [ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/Views/TrampolineView.tscn" id="6_yte84"]
-[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/SpikesView.tscn" id="7_3fwuj"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/Views/SpikesView.tscn" id="7_3fwuj"]
 [ext_resource type="PackedScene" uid="uid://b0ajai5npkpdk" path="res://Game/Prefabs/Views/TriggerPlayerKillerView.tscn" id="7_dr6d2"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_1cdxv"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_4dlpw"]

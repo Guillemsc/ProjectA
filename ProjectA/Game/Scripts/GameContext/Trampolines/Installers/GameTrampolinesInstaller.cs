@@ -1,3 +1,4 @@
+using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Trampolines.UseCases;
 using GUtils.Di.Builder;
@@ -10,7 +11,8 @@ public static class GameTrampolinesInstaller
     {
         builder.Bind<WhenPlayerCollidedWithTrampolineUseCase>()
             .FromFunction(c => new WhenPlayerCollidedWithTrampolineUseCase(
-                c.Resolve<PlayerViewData>()
+                c.Resolve<PlayerViewData>(),
+                c.Resolve<ShakeCameraUseCase>()
             ));
     }
 }

@@ -50,9 +50,10 @@ public sealed class TickPlayerMovementUseCase
             return;
         }
         
+        float scale = _gameTimesService.PhysicsTimeContext.TimeScale;
         float delta = _gameTimesService.PhysicsTimeContext.DeltaTime;
         
-        Vector2 newVelocity = playerView.Velocity;
+        Vector2 newVelocity = playerView.MovementVelocity;
         
         newVelocity = HandleGravity(playerView, newVelocity, delta);
         newVelocity = HandleWall(playerView, newVelocity, delta);
@@ -61,9 +62,9 @@ public sealed class TickPlayerMovementUseCase
         
         HandleUncontrolledSpeed(playerView, delta);
 
-        Vector2 deltaNewVelocity = (newVelocity + playerView.UncontrolledSpeed) * delta;
+        playerView.MovementVelocity = newVelocity + playerView.UncontrolledSpeed;
         
-        playerView.Velocity = deltaNewVelocity / 0.01666f;
+        playerView.Velocity = playerView.MovementVelocity * scale;
         playerView.MoveAndSlide();
         
         _storePlayerPreviousPositionUseCase.Execute(playerView);
@@ -138,6 +139,8 @@ public sealed class TickPlayerMovementUseCase
 
     Vector2 HandleGravity(PlayerView playerView, Vector2 newVelocity, float delta)
     {
+        bool wasOnAir = playerView.AnimationPlayer!.OnAir;
+        
         if (!playerView.IsOnFloor())
         {
             float deltaGravity = _gamePlayersConfiguration.Gravity * delta;
@@ -148,6 +151,15 @@ public sealed class TickPlayerMovementUseCase
             {
                 newVelocity.Y = Mathf.Min(newVelocity.Y, _gamePlayersConfiguration.VerticalMaxFallSpeed);
             }
+        }
+        else if(wasOnAir)
+        {
+            newVelocity.Y = Mathf.Min(0, newVelocity.Y);
+        }
+
+        if (playerView.IsOnCeiling())
+        {
+            newVelocity.Y = Mathf.Max(0, newVelocity.Y);
         }
 
         playerView.AnimationPlayer!.OnAir = !playerView.IsOnFloor();

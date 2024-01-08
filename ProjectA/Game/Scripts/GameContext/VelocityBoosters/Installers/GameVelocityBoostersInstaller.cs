@@ -1,3 +1,5 @@
+using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.Pause.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.VelocityBoosters.UseCases;
 using GUtils.Di.Builder;
@@ -10,7 +12,9 @@ public static class GameVelocityBoostersInstaller
     {
         builder.Bind<WhenPlayerCollidedWithVelocityBoosterUseCase>()
             .FromFunction(c => new WhenPlayerCollidedWithVelocityBoosterUseCase(
-                c.Resolve<PlayerViewData>()
+                c.Resolve<PlayerViewData>(),
+                c.Resolve<ShakeCameraUseCase>(),
+                c.Resolve<PauseGameLogicSomeFramesUseCase>()
             ));
     }
 }

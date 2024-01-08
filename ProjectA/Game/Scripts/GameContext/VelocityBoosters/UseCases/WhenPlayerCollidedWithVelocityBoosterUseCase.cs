@@ -1,8 +1,9 @@
+using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.Pause.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Views;
 using Game.GameContext.VelocityBoosters.Views;
 using Godot;
-using GUtils.Extensions;
 using GUtilsGodot.Extensions;
 
 namespace Game.GameContext.VelocityBoosters.UseCases;
@@ -10,12 +11,18 @@ namespace Game.GameContext.VelocityBoosters.UseCases;
 public sealed class WhenPlayerCollidedWithVelocityBoosterUseCase
 {
     readonly PlayerViewData _playerViewData;
+    readonly ShakeCameraUseCase _shakeCameraUseCase;
+    readonly PauseGameLogicSomeFramesUseCase _pauseGameLogicSomeFramesUseCase;
 
     public WhenPlayerCollidedWithVelocityBoosterUseCase(
-        PlayerViewData playerViewData
-    )
+        PlayerViewData playerViewData, 
+        ShakeCameraUseCase shakeCameraUseCase, 
+        PauseGameLogicSomeFramesUseCase pauseGameLogicSomeFramesUseCase
+        )
     {
         _playerViewData = playerViewData;
+        _shakeCameraUseCase = shakeCameraUseCase;
+        _pauseGameLogicSomeFramesUseCase = pauseGameLogicSomeFramesUseCase;
     }
     
     public void Execute(VelocityBoosterView velocityBoosterView)
@@ -29,14 +36,15 @@ public sealed class WhenPlayerCollidedWithVelocityBoosterUseCase
         
         ActionExtensions.CallDeferred(() => velocityBoosterView.Area2D!.Monitorable = false);
         
-        Vector2 direction = GUtilsGodot.Extensions.MathExtensions.GetDirectionFromAngle(
+        Vector2 direction = MathExtensions.GetDirectionFromAngle(
             velocityBoosterView.GlobalRotationDegrees - 90
         );
         
         velocityBoosterView.AnimationPlayer!.NeedsToPlayCollected = true;
         
-        Vector2 newVelocity = playerView.Velocity;
-        newVelocity = direction * velocityBoosterView.BoostStrenght;
-        playerView.Velocity = newVelocity;
+        playerView.MovementVelocity = direction * velocityBoosterView.BoostStrenght;
+        
+        _shakeCameraUseCase.Execute();
+        _pauseGameLogicSomeFramesUseCase.Execute();
     }
 }

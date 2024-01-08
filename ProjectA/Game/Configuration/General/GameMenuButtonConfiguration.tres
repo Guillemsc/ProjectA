@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameMenuButtonConfiguration" load_steps=3 format=3 uid="uid://dvftjqbu7u3l2"]
+
+[ext_resource type="Script" path="res://Game/Scripts/General/Buttons/Configurations/GameMenuButtonConfiguration.cs" id="1_w7q8y"]
+
+[sub_resource type="Curve" id="Curve_ihmc1"]
+min_value = -1.0
+_data = [Vector2(0, 0.0166415), 0.0, 12.5222, 0, 0, Vector2(0.172764, 1), 0.0, 0.0, 0, 0, Vector2(0.365854, -0.829047), 0.0, 0.0, 0, 0, Vector2(0.617886, 0.606657), 0.0, 0.0, 0, 0, Vector2(0.835366, -0.268533), 0.0, 0.0, 0, 0, Vector2(1, -0.00302577), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[resource]
+script = ExtResource("1_w7q8y")
+Offset = 13.0
+Curve = SubResource("Curve_ihmc1")
+Duration = 0.4

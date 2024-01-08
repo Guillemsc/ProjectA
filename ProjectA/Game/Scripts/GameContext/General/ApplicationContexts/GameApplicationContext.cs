@@ -1,5 +1,4 @@
-﻿using Game.Contexts.Configuration;
-using Game.GameContext.Areas.Installers;
+﻿using Game.GameContext.Areas.Installers;
 using Game.GameContext.Cameras.Installers;
 using Game.GameContext.Cheats.Installers;
 using Game.GameContext.Cinematics.Installers;
@@ -25,6 +24,7 @@ using GUtils.Di.Installers;
 using GUtils.Services.Locators;
 using GUtilsGodot.Di.Loadables;
 using GUtilsGodot.Roots.Services;
+using ContextsScenesConfiguration = Game.General.Contexts.Configuration.ContextsScenesConfiguration;
 
 namespace Game.GameContext.General.ApplicationContexts;
 

@@ -37,9 +37,7 @@ public sealed class WhenPlayerCollidedWithCrateUseCase
         
         if (onTop)
         {
-            Vector2 newVelocity = playerView.Velocity;
-            newVelocity.Y = -crateView.BounceStrenght;
-            playerView.Velocity = newVelocity;
+            playerView.MovementVelocity.Y = -crateView.BounceStrenght;
 
             crateView.AnimationPlayer!.NeedsToPlayHit = true;
             isHit = true;

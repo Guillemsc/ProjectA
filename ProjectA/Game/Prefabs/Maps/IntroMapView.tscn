@@ -182,7 +182,6 @@ Dialogue2Configuration = ExtResource("17_ahivb")
 SomeoneNpcView = NodePath("SomeoneNpcView")
 AnimationPlayer = NodePath("AnimationPlayer")
 AudioStream = ExtResource("16_e1l6x")
-RunDuration = 3.0
 PositionToRun = NodePath("PositionToRun")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CinematicView"]

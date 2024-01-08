@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc1hagdlwsale"]
+[gd_scene load_steps=9 format=3 uid="uid://bc1hagdlwsale"]
 
 [ext_resource type="Script" path="res://Game/Scripts/MetaContext/MainMenuUi/Installers/MetaMainMenuUiInstaller.cs" id="1_1v5e5"]
 [ext_resource type="Texture2D" uid="uid://cmr474at7f1nh" path="res://Game/Textures/Logos/Logo.png" id="2_num82"]
 [ext_resource type="Theme" uid="uid://cl4my3r76dq3q" path="res://Game/Themes/MainMenuButton.tres" id="3_7ay38"]
+[ext_resource type="Script" path="res://Game/Scripts/General/Buttons/Nodes/GameMenuButton.cs" id="4_l1pqt"]
+[ext_resource type="Resource" uid="uid://dvftjqbu7u3l2" path="res://Game/Configuration/General/GameMenuButtonConfiguration.tres" id="5_xa0ae"]
 
 [sub_resource type="Animation" id="Animation_gtums"]
 resource_name = "Hide"
@@ -107,20 +109,34 @@ alignment = 1
 
 [node name="BeginButton" type="Button" parent="Pivot/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
 theme = ExtResource("3_7ay38")
 text = "Begin"
+script = ExtResource("4_l1pqt")
+Configuration = ExtResource("5_xa0ae")
 
 [node name="OptionsButton" type="Button" parent="Pivot/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../BeginButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
 theme = ExtResource("3_7ay38")
 text = "Options"
+script = ExtResource("4_l1pqt")
+Configuration = ExtResource("5_xa0ae")
 
 [node name="CreditsButton" type="Button" parent="Pivot/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_7ay38")
 text = "Credits"
+script = ExtResource("4_l1pqt")
+Configuration = ExtResource("5_xa0ae")
 
 [node name="ExitButton" type="Button" parent="Pivot/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../BeginButton")
 theme = ExtResource("3_7ay38")
 text = "Exit"
+script = ExtResource("4_l1pqt")
+Configuration = ExtResource("5_xa0ae")

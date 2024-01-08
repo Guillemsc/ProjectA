@@ -1,19 +1,22 @@
+using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Views;
 using Game.GameContext.Trampolines.Views;
-using Godot;
 
 namespace Game.GameContext.Trampolines.UseCases;
 
 public sealed class WhenPlayerCollidedWithTrampolineUseCase
 {
     readonly PlayerViewData _playerViewData;
+    readonly ShakeCameraUseCase _shakeCameraUseCase;
 
     public WhenPlayerCollidedWithTrampolineUseCase(
-        PlayerViewData playerViewData
+        PlayerViewData playerViewData, 
+        ShakeCameraUseCase shakeCameraUseCase
         )
     {
         _playerViewData = playerViewData;
+        _shakeCameraUseCase = shakeCameraUseCase;
     }
 
     public void Execute(TrampolineView trampolineView)
@@ -27,11 +30,11 @@ public sealed class WhenPlayerCollidedWithTrampolineUseCase
 
         trampolineView.AnimationPlayer!.NeedsToPlayJump = true;
         
-        Vector2 newVelocity = playerView.Velocity;
-        newVelocity.Y = -trampolineView.BounceStrenght;
-        playerView.Velocity = newVelocity;
+        playerView.MovementVelocity.Y = -trampolineView.BounceStrenght;
 
         playerView.CanJump = true;
         playerView.CanDoubleJump = true;
+        
+        _shakeCameraUseCase.Execute();
     }
 }

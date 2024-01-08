@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Game.Contexts.Configuration;
+namespace Game.General.Contexts.Configuration;
 
 [GlobalClass]
 public partial class ContextsScenesConfiguration : Resource

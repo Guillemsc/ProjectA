@@ -3,6 +3,7 @@ using Game.GameContext.Collectables.Configurations;
 using Game.GameContext.Crates.Configurations;
 using Game.GameContext.Dialogues.Configurations;
 using Game.GameContext.Maps.Configurations;
+using Game.GameContext.Pause.Configurations;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.VisualEffects.Configurations;
 using Godot;
@@ -19,4 +20,5 @@ public partial class GameConfiguration : Resource
     [Export] public GameCollectablesConfiguration? CollectablesConfiguration;
     [Export] public GameCratesConfiguration? CratesConfiguration;
     [Export] public GameDialoguesConfiguration? DialoguesConfiguration;
+    [Export] public GamePauseConfiguration? GamePauseConfiguration;
 }

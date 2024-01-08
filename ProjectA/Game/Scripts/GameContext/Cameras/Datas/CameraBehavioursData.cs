@@ -6,6 +6,7 @@ namespace Game.GameContext.Cameras.Datas;
 
 public sealed class CameraBehavioursData
 {
-    public Optional<BoundsConfinementCamera2dBehaviour> BoundsConfinement;
+    public Optional<ShakeCamera2dBehaviour> ShakeBehaviour;
+    public Optional<BoundsConfinementCamera2dBehaviour> BoundsConfinementBehaviour;
     public Optional<BoundsPosition2dProcessor> BoundsProcessor;
 }

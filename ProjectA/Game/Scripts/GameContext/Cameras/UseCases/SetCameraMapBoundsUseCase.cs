@@ -39,7 +39,7 @@ public sealed class SetCameraMapBoundsUseCase
             rect = rect.Merge(boundsRect);
         }
         
-        BoundsConfinementCamera2dBehaviour boundsConfinementCamera2dBehaviour = _cameraBehavioursData.BoundsConfinement.UnsafeGet();
+        BoundsConfinementCamera2dBehaviour boundsConfinementCamera2dBehaviour = _cameraBehavioursData.BoundsConfinementBehaviour.UnsafeGet();
         boundsConfinementCamera2dBehaviour.SetBounds(rect);
     }
 }

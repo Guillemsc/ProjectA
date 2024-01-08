@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmbl7o00hfta6"]
+[gd_scene load_steps=8 format=3 uid="uid://dmbl7o00hfta6"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/PauseUi/Installers/GamePauseUiInstaller.cs" id="1_pf6so"]
 [ext_resource type="Theme" uid="uid://cl4my3r76dq3q" path="res://Game/Themes/MainMenuButton.tres" id="2_jfhc8"]
+[ext_resource type="Script" path="res://Game/Scripts/General/Buttons/Nodes/GameMenuButton.cs" id="3_cyggh"]
+[ext_resource type="Resource" uid="uid://dvftjqbu7u3l2" path="res://Game/Configuration/General/GameMenuButtonConfiguration.tres" id="4_5gdqy"]
 
 [sub_resource type="Animation" id="Animation_2mrqu"]
 resource_name = "Hide"
@@ -133,8 +135,12 @@ grow_vertical = 2
 layout_mode = 2
 theme = ExtResource("2_jfhc8")
 text = "Resume"
+script = ExtResource("3_cyggh")
+Configuration = ExtResource("4_5gdqy")
 
 [node name="SkipCinematicButton" type="Button" parent="Pivot/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_jfhc8")
 text = "Skip Cutscene"
+script = ExtResource("3_cyggh")
+Configuration = ExtResource("4_5gdqy")

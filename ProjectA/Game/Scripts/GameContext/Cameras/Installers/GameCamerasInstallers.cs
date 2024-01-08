@@ -5,6 +5,7 @@ using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Maps.Datas;
 using Game.GameContext.Players.Datas;
 using GUtils.Di.Builder;
+using GUtils.Randomization.Generators;
 using GUtilsGodot.Cameras.Services;
 
 namespace Game.GameContext.Cameras.Installers;
@@ -17,6 +18,7 @@ public static class GameCamerasInstallers
 
         builder.Bind<SetupCameraUseCase>()
             .FromFunction(c => new SetupCameraUseCase(
+                c.Resolve<IRandomGenerator>(),
                 c.Resolve<ICameras2dService>(),
                 c.Resolve<CameraBehavioursData>(),
                 c.Resolve<GameCamerasConfiguration>()
@@ -51,6 +53,12 @@ public static class GameCamerasInstallers
             .FromFunction(c => new SetCameraAreaUseCase(
                 c.Resolve<ICameras2dService>(),
                 c.Resolve<CameraBehavioursData>()
+            ));
+
+        builder.Bind<ShakeCameraUseCase>()
+            .FromFunction(c => new ShakeCameraUseCase(
+                c.Resolve<CameraBehavioursData>(),
+                c.Resolve<GameCamerasConfiguration>()
             ));
     }
 }

@@ -4,6 +4,7 @@ using Game.GameContext.Crates.Configurations;
 using Game.GameContext.Dialogues.Configurations;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Configurations;
+using Game.GameContext.Pause.Configurations;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.VisualEffects.Configurations;
 using GUtils.Di.Builder;
@@ -27,5 +28,6 @@ public static class GameGeneralConfigurationsInstaller
         builder.Bind<GameCollectablesConfiguration>().FromInstance(gameConfiguration.CollectablesConfiguration!);
         builder.Bind<GameCratesConfiguration>().FromInstance(gameConfiguration.CratesConfiguration!);
         builder.Bind<GameDialoguesConfiguration>().FromInstance(gameConfiguration.DialoguesConfiguration!);
+        builder.Bind<GamePauseConfiguration>().FromInstance(gameConfiguration.GamePauseConfiguration!);
     }
 }

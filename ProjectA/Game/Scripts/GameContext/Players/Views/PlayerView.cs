@@ -13,6 +13,8 @@ public partial class PlayerView : CharacterBody2D
    [Export] public Area2D? LeftWallDetector;
    [Export] public Area2D? RightWallDetector;
    [Export] public Area2D? InteractionsDetector;
+
+   public Vector2 MovementVelocity;
    
    public bool CanUpdateMovement;
    public bool CanMove;

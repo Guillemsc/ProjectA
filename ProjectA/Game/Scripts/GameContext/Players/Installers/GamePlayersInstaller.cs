@@ -1,3 +1,4 @@
+using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Cinematics.UseCases;
 using Game.GameContext.Collectables.UseCases;
 using Game.GameContext.Connections.UseCases;
@@ -68,7 +69,8 @@ public static class GamePlayersInstaller
 
         builder.Bind<KillPlayerUseCase>()
             .FromFunction(c => new KillPlayerUseCase(
-                c.Resolve<PlayerViewData>()
+                c.Resolve<PlayerViewData>(),
+                c.Resolve<ShakeCameraUseCase>()
             ));
 
         builder.Bind<FreezePlayerUseCase>()

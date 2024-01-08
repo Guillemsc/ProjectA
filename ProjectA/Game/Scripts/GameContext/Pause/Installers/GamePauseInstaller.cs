@@ -1,3 +1,4 @@
+using Game.GameContext.Pause.Configurations;
 using Game.GameContext.Pause.Datas;
 using Game.GameContext.Pause.UseCases;
 using Game.GameContext.PauseUi.Interactors;
@@ -32,6 +33,13 @@ public static class GamePauseInstaller
             .FromFunction(c => new SetGameLogicPausedUseCase(
                 c.Resolve<IGameTimesService>(),
                 c.Resolve<PauseData>()
+            ));
+
+        builder.Bind<PauseGameLogicSomeFramesUseCase>()
+            .FromFunction(c => new PauseGameLogicSomeFramesUseCase(
+                c.Resolve<GamePauseConfiguration>(),
+                c.Resolve<IAsyncTaskRunner>(),
+                c.Resolve<SetGameLogicPausedUseCase>()
             ));
     }
 }
