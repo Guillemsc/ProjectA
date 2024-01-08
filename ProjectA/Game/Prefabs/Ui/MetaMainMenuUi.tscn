@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc1hagdlwsale"]
+[gd_scene load_steps=13 format=3 uid="uid://bc1hagdlwsale"]
 
 [ext_resource type="Script" path="res://Game/Scripts/MetaContext/MainMenuUi/Installers/MetaMainMenuUiInstaller.cs" id="1_1v5e5"]
 [ext_resource type="Texture2D" uid="uid://cmr474at7f1nh" path="res://Game/Textures/Logos/Logo.png" id="2_num82"]
@@ -42,7 +42,131 @@ _data = {
 "Show": SubResource("Animation_83e8t")
 }
 
-[node name="MainMenuUi" type="Control" node_paths=PackedStringArray("AnimationPlayer", "PlayButton")]
+[sub_resource type="Animation" id="Animation_xapd4"]
+resource_name = "Fold"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/PressButtonToContinueLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/ButtonsContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(524, 748)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/LogoImage:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(147, 140)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/PressButtonToContinueLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/ButtonsContainer:process_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_kg6bh"]
+resource_name = "Unfold"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/PressButtonToContinueLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/LogoImage:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(140, -0.25, 0, 0, -90, 30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/ButtonsContainer:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(748, -0.25, 0, 0, -292.931, 376, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/ButtonsContainer:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjwkx"]
+_data = {
+"Fold": SubResource("Animation_xapd4"),
+"Unfold": SubResource("Animation_kg6bh")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3rat"]
+font_size = 46
+font_color = Color(0.87451, 0.87451, 0.87451, 1)
+
+[node name="MainMenuUi" type="Control" node_paths=PackedStringArray("VisibilityAnimationPlayer", "FoldingAnimationPlayer", "PlayButton", "OptionsButton", "CreditsButton", "ExitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,12 +174,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1v5e5")
-AnimationPlayer = NodePath("AnimationPlayer")
-PlayButton = NodePath("Pivot/VBoxContainer/BeginButton")
+VisibilityAnimationPlayer = NodePath("VisibilityAnimationPlayer")
+FoldingAnimationPlayer = NodePath("FoldingAnimationPlayer")
+PlayButton = NodePath("Pivot/ButtonsContainer/BeginButton")
+OptionsButton = NodePath("Pivot/ButtonsContainer/OptionsButton")
+CreditsButton = NodePath("Pivot/ButtonsContainer/CreditsButton")
+ExitButton = NodePath("Pivot/ButtonsContainer/ExitButton")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="VisibilityAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1msad")
+}
+
+[node name="FoldingAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fjwkx")
 }
 
 [node name="Pivot" type="Control" parent="."]
@@ -75,7 +208,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.121569, 0.176471, 0.211765, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Pivot"]
+[node name="LogoImage" type="TextureRect" parent="Pivot"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,31 +216,32 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -493.0
-offset_top = -337.0
+offset_top = -220.0
 offset_right = 495.0
-offset_bottom = 41.0
+offset_bottom = 158.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_num82")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pivot"]
+[node name="ButtonsContainer" type="VBoxContainer" parent="Pivot"]
+process_mode = 4
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = 31.0
-offset_right = 96.0
-offset_bottom = 319.0
+offset_left = -116.0
+offset_top = 388.0
+offset_right = 75.0
+offset_bottom = 676.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="BeginButton" type="Button" parent="Pivot/VBoxContainer"]
+[node name="BeginButton" type="Button" parent="Pivot/ButtonsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../ExitButton")
 focus_neighbor_bottom = NodePath("../OptionsButton")
@@ -116,7 +250,7 @@ text = "Begin"
 script = ExtResource("4_l1pqt")
 Configuration = ExtResource("5_xa0ae")
 
-[node name="OptionsButton" type="Button" parent="Pivot/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Pivot/ButtonsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../BeginButton")
 focus_neighbor_bottom = NodePath("../CreditsButton")
@@ -125,14 +259,14 @@ text = "Options"
 script = ExtResource("4_l1pqt")
 Configuration = ExtResource("5_xa0ae")
 
-[node name="CreditsButton" type="Button" parent="Pivot/VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="Pivot/ButtonsContainer"]
 layout_mode = 2
 theme = ExtResource("3_7ay38")
 text = "Credits"
 script = ExtResource("4_l1pqt")
 Configuration = ExtResource("5_xa0ae")
 
-[node name="ExitButton" type="Button" parent="Pivot/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Pivot/ButtonsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../CreditsButton")
 focus_neighbor_bottom = NodePath("../BeginButton")
@@ -140,3 +274,20 @@ theme = ExtResource("3_7ay38")
 text = "Exit"
 script = ExtResource("4_l1pqt")
 Configuration = ExtResource("5_xa0ae")
+
+[node name="PressButtonToContinueLabel" type="Label" parent="Pivot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.0
+offset_top = 242.0
+offset_right = 281.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press a button to continue"
+label_settings = SubResource("LabelSettings_p3rat")
+horizontal_alignment = 1

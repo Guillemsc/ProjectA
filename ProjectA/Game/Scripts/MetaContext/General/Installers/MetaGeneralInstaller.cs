@@ -4,6 +4,7 @@ using Game.MetaContext.General.UseCases;
 using Game.MetaContext.IntroUi.Interactors;
 using Game.MetaContext.MainMenuUi.Interactors;
 using GUtils.Di.Builder;
+using GUtils.Tasks.Extensions;
 using GUtilsGodot.UiStack.Services;
 
 namespace Game.MetaContext.General.Installers;
@@ -24,5 +25,7 @@ public static class MetaGeneralInstaller
                 c.Resolve<IIntroUiInteractor>(),
                 c.Resolve<IMainMenuUiInteractor>()
             ));
+        
+        builder.InstallAsyncTaskRunner();
     }
 }
