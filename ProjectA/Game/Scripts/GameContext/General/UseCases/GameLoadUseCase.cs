@@ -43,7 +43,7 @@ public sealed class GameLoadUseCase
         _setupCameraUseCase.Execute();
         _setCameraMapBoundsUseCase.Execute();
         _setInitialCameraAreaUseCase.Execute();
-        _setPlayerAsCameraTargetUseCase.Execute();
+        _setPlayerAsCameraTargetUseCase.Execute(true);
         _showGameUiUseCase.Execute();
     }
 }

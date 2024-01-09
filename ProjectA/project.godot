@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project A"
-run/main_scene="res://Game/Scenes/Bootstrap.tscn"
+run/main_scene="res://Game/Scenes/TestMapBootstrap.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Misc/icon.svg"
 

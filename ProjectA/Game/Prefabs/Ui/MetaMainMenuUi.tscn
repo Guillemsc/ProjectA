@@ -72,38 +72,37 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/LogoImage:position")
+tracks/2/path = NodePath("Pivot/PressButtonToContinueLabel:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(147, 140)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/PressButtonToContinueLabel:modulate")
+tracks/3/path = NodePath("Pivot/ButtonsContainer:process_mode")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [4]
 }
-tracks/4/type = "value"
+tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/ButtonsContainer:process_mode")
+tracks/4/path = NodePath("Pivot/LogoImage:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(192, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_kg6bh"]
@@ -129,7 +128,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(140, -0.25, 0, 0, -90, 30, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(192, -0.25, 0, 0, -90, 70, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
@@ -215,10 +214,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -493.0
-offset_top = -220.0
-offset_right = 495.0
-offset_bottom = 158.0
+offset_left = -599.0
+offset_top = -290.0
+offset_right = 593.0
+offset_bottom = -34.0001
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_num82")
@@ -226,7 +225,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="Pivot"]
-process_mode = 4
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -234,9 +232,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -116.0
-offset_top = 388.0
+offset_top = 16.0
 offset_right = 75.0
-offset_bottom = 676.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -276,6 +274,7 @@ script = ExtResource("4_l1pqt")
 Configuration = ExtResource("5_xa0ae")
 
 [node name="PressButtonToContinueLabel" type="Label" parent="Pivot"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

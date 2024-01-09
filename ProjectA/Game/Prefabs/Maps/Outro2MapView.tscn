@@ -1,43 +1,33 @@
-[gd_scene load_steps=23 format=3 uid="uid://c28gl6rhe2w8l"]
+[gd_scene load_steps=20 format=3 uid="uid://c28gl6rhe2w8l"]
 
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_oeo7a"]
-[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_28iu5"]
-[ext_resource type="Texture2D" uid="uid://bg5addttpmcle" path="res://Game/Textures/Backgrounds/Background1.png" id="3_elkn7"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_qdrbm"]
-[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_6ci05"]
-[ext_resource type="Texture2D" uid="uid://cgtsoj3cgi5fm" path="res://Game/Textures/Props/TreeBackground1.png" id="6_scf8l"]
-[ext_resource type="Texture2D" uid="uid://cmcghup0nh726" path="res://Game/Textures/Props/TreeBackground2.png" id="7_htlc3"]
-[ext_resource type="Texture2D" uid="uid://bkqlakbw022wn" path="res://Game/Textures/Props/RockBackground1.png" id="7_tyakf"]
-[ext_resource type="Texture2D" uid="uid://qqmm67w7l8sj" path="res://Game/Textures/Props/Rock3.png" id="8_6jord"]
-[ext_resource type="Texture2D" uid="uid://di1rv2hg7kx5f" path="res://Game/Textures/Props/Tree1.png" id="8_hq3sh"]
-[ext_resource type="Texture2D" uid="uid://dvfohkkwkucas" path="res://Game/Textures/Props/Tree4.png" id="9_1pyd7"]
-[ext_resource type="Texture2D" uid="uid://fl0ybmxfk8n8" path="res://Game/Textures/Props/Rock2.png" id="9_exbiv"]
-[ext_resource type="Texture2D" uid="uid://bowfwgfe4qsta" path="res://Game/Textures/Props/Tree2.png" id="10_48msd"]
-[ext_resource type="Texture2D" uid="uid://cmoibn448np2l" path="res://Game/Textures/Props/Rock1.png" id="10_wyqn4"]
-[ext_resource type="Texture2D" uid="uid://ds43mrdiltixu" path="res://Game/Textures/Props/Tree3.png" id="11_okhla"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="12_8dn40"]
-[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="13_6u2e4"]
-[ext_resource type="PackedScene" uid="uid://cd3mdu6bgkny1" path="res://Game/Prefabs/Views/SomeoneNpcView.tscn" id="16_l0mjs"]
-[ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/OutroCinematicView.cs" id="18_54x2o"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_jxsqy"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_gq7lv"]
+[ext_resource type="Texture2D" uid="uid://bg5addttpmcle" path="res://Game/Textures/Backgrounds/Background1.png" id="3_uuvyv"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_7mc1v"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_n8c8b"]
+[ext_resource type="Texture2D" uid="uid://bowfwgfe4qsta" path="res://Game/Textures/Props/Tree2.png" id="6_dgxfo"]
+[ext_resource type="Texture2D" uid="uid://bkqlakbw022wn" path="res://Game/Textures/Props/RockBackground1.png" id="7_xarmn"]
+[ext_resource type="Texture2D" uid="uid://qqmm67w7l8sj" path="res://Game/Textures/Props/Rock3.png" id="8_ffsh0"]
+[ext_resource type="Texture2D" uid="uid://fl0ybmxfk8n8" path="res://Game/Textures/Props/Rock2.png" id="9_n8jff"]
+[ext_resource type="Texture2D" uid="uid://cmoibn448np2l" path="res://Game/Textures/Props/Rock1.png" id="10_mjq6c"]
+[ext_resource type="Texture2D" uid="uid://cgtsoj3cgi5fm" path="res://Game/Textures/Props/TreeBackground1.png" id="11_sfdti"]
+[ext_resource type="Texture2D" uid="uid://cmcghup0nh726" path="res://Game/Textures/Props/TreeBackground2.png" id="12_8q1gi"]
+[ext_resource type="Texture2D" uid="uid://di1rv2hg7kx5f" path="res://Game/Textures/Props/Tree1.png" id="13_a7khr"]
+[ext_resource type="Texture2D" uid="uid://dvfohkkwkucas" path="res://Game/Textures/Props/Tree4.png" id="14_qeucq"]
+[ext_resource type="Texture2D" uid="uid://ds43mrdiltixu" path="res://Game/Textures/Props/Tree3.png" id="15_qw71w"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="16_dfx8m"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="17_uj1p1"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/OutroCinematic2View.cs" id="18_j0d82"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
-shader = ExtResource("2_28iu5")
+shader = ExtResource("2_gq7lv")
 shader_parameter/tilingScale = 0.1
 shader_parameter/movementX = -1.0
 shader_parameter/movementY = 4.75e-08
 shader_parameter/movementSpeed = 0.01
 
-[sub_resource type="Animation" id="Animation_7cwl1"]
-resource_name = "Intro"
-length = 4.0
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jqrt2"]
-_data = {
-"Intro": SubResource("Animation_7cwl1")
-}
-
-[node name="OutroMapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews", "OptionalStartingCinematic")]
-script = ExtResource("1_oeo7a")
+[node name="Outro2MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews", "OptionalStartingCinematic")]
+script = ExtResource("1_jxsqy")
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView")]
 OptionalStartingCinematic = NodePath("CinematicView")
@@ -46,98 +36,99 @@ OptionalStartingCinematic = NodePath("CinematicView")
 material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(222.5, -159.5)
 scale = Vector2(1.045, 0.731667)
-texture = ExtResource("3_elkn7")
+texture = ExtResource("3_uuvyv")
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
-script = ExtResource("4_qdrbm")
+script = ExtResource("4_7mc1v")
 Bounds = NodePath("Bounds")
 CameraZoom = 2.7
 
 [node name="Bounds" type="Node2D" parent="AreaView"]
 z_index = 3
 position = Vector2(198, -103)
-script = ExtResource("5_6ci05")
+script = ExtResource("5_n8c8b")
 Size = Vector2(555, 324)
 
 [node name="Sprite2D4" type="Sprite2D" parent="AreaView"]
 position = Vector2(-69, -130)
-texture = ExtResource("10_48msd")
+texture = ExtResource("6_dgxfo")
 
 [node name="Sprite2D19" type="Sprite2D" parent="AreaView"]
 position = Vector2(-62, 9)
-texture = ExtResource("7_tyakf")
+texture = ExtResource("7_xarmn")
 flip_h = true
 
 [node name="Sprite2D18" type="Sprite2D" parent="AreaView"]
 position = Vector2(-62, -27)
-texture = ExtResource("8_6jord")
+texture = ExtResource("8_ffsh0")
 flip_h = true
 
 [node name="Sprite2D17" type="Sprite2D" parent="AreaView"]
 position = Vector2(-80, -43)
-texture = ExtResource("9_exbiv")
+texture = ExtResource("9_n8jff")
 flip_h = true
 
 [node name="Sprite2D16" type="Sprite2D" parent="AreaView"]
+z_index = 5
 position = Vector2(-95, -1)
-texture = ExtResource("10_wyqn4")
+texture = ExtResource("10_mjq6c")
 flip_h = true
 
 [node name="Sprite2D15" type="Sprite2D" parent="AreaView"]
 position = Vector2(451, -106)
-texture = ExtResource("6_scf8l")
+texture = ExtResource("11_sfdti")
 flip_h = true
 
 [node name="Sprite2D11" type="Sprite2D" parent="AreaView"]
 position = Vector2(140, -108)
-texture = ExtResource("6_scf8l")
+texture = ExtResource("11_sfdti")
 flip_h = true
 
 [node name="Sprite2D12" type="Sprite2D" parent="AreaView"]
 position = Vector2(324, -64)
-texture = ExtResource("7_htlc3")
+texture = ExtResource("12_8q1gi")
 
 [node name="Sprite2D9" type="Sprite2D" parent="AreaView"]
 position = Vector2(343, -18)
-texture = ExtResource("8_hq3sh")
+texture = ExtResource("13_a7khr")
 
 [node name="Sprite2D8" type="Sprite2D" parent="AreaView"]
 position = Vector2(111, -70)
-texture = ExtResource("9_1pyd7")
+texture = ExtResource("14_qeucq")
 
 [node name="Sprite2D3" type="Sprite2D" parent="AreaView"]
 position = Vector2(402, -123)
-texture = ExtResource("10_48msd")
+texture = ExtResource("6_dgxfo")
 
 [node name="Sprite2D6" type="Sprite2D" parent="AreaView"]
 position = Vector2(197, -141)
-texture = ExtResource("11_okhla")
+texture = ExtResource("15_qw71w")
 
 [node name="Sprite2D14" type="Sprite2D" parent="AreaView"]
 position = Vector2(507, -151)
-texture = ExtResource("11_okhla")
+texture = ExtResource("15_qw71w")
 
 [node name="Sprite2D7" type="Sprite2D" parent="AreaView"]
 position = Vector2(473, -68)
-texture = ExtResource("9_1pyd7")
+texture = ExtResource("14_qeucq")
 
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
 z_index = 3
 position = Vector2(-90, 7)
-script = ExtResource("12_8dn40")
+script = ExtResource("16_dfx8m")
 Bounds = NodePath("Bounds")
 SpawnId = "318bfa82-d6d9-46f3-b6c8-c82beef0c521"
 SpawnPosition = NodePath("SpawnPosition")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]
-script = ExtResource("5_6ci05")
+script = ExtResource("5_n8c8b")
 Size = Vector2(0, 0)
 DebugColor = Color(0, 0.54902, 0.921569, 1)
 
 [node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("13_6u2e4")
+tile_set = ExtResource("17_uj1p1")
 format = 2
 layer_0/name = "Background"
 layer_0/z_index = 2
@@ -148,27 +139,10 @@ layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
 
-[node name="CinematicView" type="Node2D" parent="." node_paths=PackedStringArray("SomeoneNpcView")]
+[node name="CinematicView" type="Node2D" parent="." node_paths=PackedStringArray("MovePosition1")]
 position = Vector2(101, 0)
-script = ExtResource("18_54x2o")
-SomeoneNpcView = NodePath("SomeoneNpcView")
+script = ExtResource("18_j0d82")
+MovePosition1 = NodePath("MovePosition")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CinematicView"]
-libraries = {
-"": SubResource("AnimationLibrary_jqrt2")
-}
-
-[node name="SomeoneNpcView" parent="CinematicView" instance=ExtResource("16_l0mjs")]
-position = Vector2(159, 16)
-
-[node name="PositionBeforeJump" type="Node2D" parent="CinematicView"]
-position = Vector2(113, 0)
-
-[node name="JumpHeightPosition" type="Node2D" parent="CinematicView"]
-position = Vector2(170, -40)
-
-[node name="JumpFallPosition" type="Node2D" parent="CinematicView"]
-position = Vector2(171, 22)
-
-[node name="FallHeightPosition" type="Node2D" parent="CinematicView"]
-position = Vector2(170, 103)
+[node name="MovePosition" type="Node2D" parent="CinematicView"]
+position = Vector2(-77, 0)

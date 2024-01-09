@@ -1,4 +1,5 @@
 using Game.GameContext.Cinematics.Views;
+using Godot;
 
 namespace Game.GameContext.Cinematics.UseCases;
 
@@ -15,6 +16,8 @@ public sealed class WhenPlayerCollidedWithCinematicTriggerUseCase
 
     public void Execute(CinematicTriggerView cinematicTriggerView)
     {
+        cinematicTriggerView.ProcessMode = Node.ProcessModeEnum.Disabled;
+        
         _playCinematicUseCase.Execute(cinematicTriggerView.CinematicView!);
     }
 }

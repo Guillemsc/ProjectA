@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogueConfiguration" load_steps=6 format=3 uid="uid://wisrh3s3cr6q"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueEntryConfiguration.cs" id="1_4gld8"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueConfiguration.cs" id="2_xt83m"]
+
+[sub_resource type="Resource" id="Resource_3d3vf"]
+script = ExtResource("1_4gld8")
+Text = "I..."
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_oauoo"]
+script = ExtResource("1_4gld8")
+Text = "I know I'm just running. Searching for something I know I won't find"
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_lrum3"]
+script = ExtResource("1_4gld8")
+Text = "But I just miss you so much"
+PortraitLocation = 0
+Speaker = 0
+
+[resource]
+script = ExtResource("2_xt83m")
+Entries = Array[Object]([SubResource("Resource_3d3vf"), SubResource("Resource_oauoo"), SubResource("Resource_lrum3")])

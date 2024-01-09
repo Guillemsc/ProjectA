@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="DialogueConfiguration" load_steps=12 format=3 uid="uid://8aflr5i35ahx"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueEntryConfiguration.cs" id="1_4gld8"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueConfiguration.cs" id="2_xt83m"]
+
+[sub_resource type="Resource" id="Resource_55kl1"]
+script = ExtResource("1_4gld8")
+Text = "You need to let go of me."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_6rqwa"]
+script = ExtResource("1_4gld8")
+Text = "It's time."
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_8v7mb"]
+script = ExtResource("1_4gld8")
+Text = "Wait what? "
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_mq2j4"]
+script = ExtResource("1_4gld8")
+Text = "What do you mean?"
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_bv1yw"]
+script = ExtResource("1_4gld8")
+Text = "You know I'm not real."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_uolr1"]
+script = ExtResource("1_4gld8")
+Text = "You need to continue with your life."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_m12dd"]
+script = ExtResource("1_4gld8")
+Text = "You can't just keep clinging to me, I've been gone for a long time."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_2eksb"]
+script = ExtResource("1_4gld8")
+Text = "And you are still here."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_f4fg1"]
+script = ExtResource("1_4gld8")
+Text = "Wait, no no no, JUST WAIT, WAIT!"
+PortraitLocation = 0
+Speaker = 0
+
+[resource]
+script = ExtResource("2_xt83m")
+Entries = Array[Object]([SubResource("Resource_55kl1"), SubResource("Resource_6rqwa"), SubResource("Resource_8v7mb"), SubResource("Resource_mq2j4"), SubResource("Resource_bv1yw"), SubResource("Resource_uolr1"), SubResource("Resource_m12dd"), SubResource("Resource_2eksb"), SubResource("Resource_f4fg1")])

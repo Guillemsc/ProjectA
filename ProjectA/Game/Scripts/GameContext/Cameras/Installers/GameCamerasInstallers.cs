@@ -42,11 +42,16 @@ public static class GameCamerasInstallers
                 c.Resolve<CameraBehavioursData>(),
                 c.Resolve<MapViewData>()
             ));
+
+        builder.Bind<SetCameraTargetUseCase>()
+            .FromFunction(c => new SetCameraTargetUseCase(
+                c.Resolve<ICameras2dService>()
+            ));
         
         builder.Bind<SetPlayerAsCameraTargetUseCase>()
             .FromFunction(c => new SetPlayerAsCameraTargetUseCase(
-                c.Resolve<ICameras2dService>(),
-                c.Resolve<PlayerViewData>()
+                c.Resolve<PlayerViewData>(),
+                c.Resolve<SetCameraTargetUseCase>()
             ));
 
         builder.Bind<SetCameraAreaUseCase>()

@@ -1,3 +1,4 @@
+using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Cinematics.Contexts;
 using Game.GameContext.Cinematics.Datas;
 using Game.GameContext.Cinematics.UseCases;
@@ -6,6 +7,7 @@ using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Datas;
 using Game.GameContext.Players.Datas;
 using Game.ServicesContext.Music.Services;
+using Game.ServicesContext.Time.Services;
 using GUtils.Di.Builder;
 using GUtils.Tasks.Runners;
 
@@ -19,13 +21,16 @@ public static class GameCinematicsInstaller
 
         builder.Bind<CinematicsServices>()
             .FromFunction(c => new CinematicsServices(
+                c.Resolve<IGameTimesService>(),
                 c.Resolve<IMusicService>()
             ));
         
         builder.Bind<CinematicsMethods>()
             .FromFunction(c => new CinematicsMethods(
                 c.Resolve<AwaitUntilPlayerIsOnTheGroundUseCase>(),
-                c.Resolve<PlayDialogueUseCase>()
+                c.Resolve<PlayDialogueUseCase>(),
+                c.Resolve<SetCameraTargetUseCase>(),
+                c.Resolve<SetPlayerAsCameraTargetUseCase>()
             ));
         
         builder.Bind<WhenPlayerCollidedWithCinematicTriggerUseCase>()

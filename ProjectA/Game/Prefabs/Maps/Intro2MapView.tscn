@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="13_oittv"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/Intro2CinematicView.cs" id="14_67db1"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="14_keg8x"]
-[ext_resource type="Resource" uid="uid://sj8vulak72a6" path="res://Game/Configuration/Dialogues/Intro2DialogueConfiguration.tres" id="15_gn1v8"]
+[ext_resource type="Resource" uid="uid://sj8vulak72a6" path="res://Game/Configuration/Dialogues/Intro2-1DialogueConfiguration.tres" id="15_gn1v8"]
 [ext_resource type="PackedScene" uid="uid://cd3mdu6bgkny1" path="res://Game/Prefabs/Views/SomeoneNpcView.tscn" id="17_n6y6g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]

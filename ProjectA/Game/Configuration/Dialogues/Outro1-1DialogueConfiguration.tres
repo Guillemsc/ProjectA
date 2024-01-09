@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="DialogueConfiguration" load_steps=9 format=3 uid="uid://bcj6y8t4kjbb1"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueConfiguration.cs" id="1_idn2q"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueEntryConfiguration.cs" id="1_vud2d"]
+
+[sub_resource type="Resource" id="Resource_lk4ra"]
+script = ExtResource("1_vud2d")
+Text = "Finally!"
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_nottt"]
+script = ExtResource("1_vud2d")
+Text = "I've been running all around trying to find you."
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_e7p4j"]
+script = ExtResource("1_vud2d")
+Text = "Where have you been? "
+PortraitLocation = 0
+Speaker = 0
+
+[sub_resource type="Resource" id="Resource_ga0wp"]
+script = ExtResource("1_vud2d")
+Text = "Stop."
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_6gf1k"]
+script = ExtResource("1_vud2d")
+Text = "STOP THIS!"
+PortraitLocation = 1
+Speaker = 1
+
+[sub_resource type="Resource" id="Resource_5s4e4"]
+script = ExtResource("1_vud2d")
+Text = "Stop lying to yourself."
+PortraitLocation = 1
+Speaker = 1
+
+[resource]
+script = ExtResource("1_idn2q")
+Entries = Array[Object]([SubResource("Resource_lk4ra"), SubResource("Resource_nottt"), SubResource("Resource_e7p4j"), SubResource("Resource_ga0wp"), SubResource("Resource_6gf1k"), SubResource("Resource_5s4e4")])

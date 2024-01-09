@@ -10,19 +10,19 @@ namespace Game.GameContext.Cameras.UseCases;
 
 public sealed class SetPlayerAsCameraTargetUseCase
 {
-    readonly ICameras2dService _cameras2dService;
     readonly PlayerViewData _playerViewData;
+    readonly SetCameraTargetUseCase _setCameraTargetUseCase;
 
     public SetPlayerAsCameraTargetUseCase(
-        ICameras2dService cameras2dService, 
-        PlayerViewData playerViewData
+        PlayerViewData playerViewData, 
+        SetCameraTargetUseCase setCameraTargetUseCase
         )
     {
-        _cameras2dService = cameras2dService;
         _playerViewData = playerViewData;
+        _setCameraTargetUseCase = setCameraTargetUseCase;
     }
     
-    public void Execute()
+    public void Execute(bool invalidateState)
     {
         bool hasPlayer = _playerViewData.PlayerView.TryGet(out PlayerView playerView);
 
@@ -31,9 +31,6 @@ public sealed class SetPlayerAsCameraTargetUseCase
             return;
         }
         
-        FollowTargetCamera2dBehaviour followTarget = _cameras2dService.GetBehaviour<FollowTargetCamera2dBehaviour>().UnsafeGet();
-        followTarget.SetTarget(playerView);
-        
-        _cameras2dService.InvalidateState();
+        _setCameraTargetUseCase.Execute(playerView, invalidateState);
     }
 }
