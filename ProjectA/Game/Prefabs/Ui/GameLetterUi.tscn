@@ -133,7 +133,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Overlay" type="ColorRect" parent="Pivot"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,18 +142,17 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
 [node name="Letter" type="Control" parent="Pivot"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 193.0
-offset_top = -130.0
+offset_top = 55.0
 offset_right = -154.0
-offset_bottom = -312.0
+offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = -0.059
+rotation = 0.0593412
 
 [node name="Background" type="ColorRect" parent="Pivot/Letter"]
 layout_mode = 1

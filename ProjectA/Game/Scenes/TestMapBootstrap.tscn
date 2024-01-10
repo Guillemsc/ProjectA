@@ -8,4 +8,4 @@
 script = ExtResource("1_5hiqv")
 ContextsScenesConfiguration = ExtResource("2_6w5uu")
 GameConfiguration = ExtResource("3_uyirv")
-TestMap = "res://Game/Prefabs/Maps/Outro1MapView.tscn"
+TestMap = "res://Game/Prefabs/Maps/9f258048MapView.tscn"

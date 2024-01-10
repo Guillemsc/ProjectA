@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogueConfiguration" load_steps=4 format=3 uid="uid://c5jppb1sro08u"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueEntryConfiguration.cs" id="1_v6awy"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Dialogues/Configurations/DialogueConfiguration.cs" id="2_73d73"]
+
+[sub_resource type="Resource" id="Resource_lrum3"]
+script = ExtResource("1_v6awy")
+Text = "Finally out hehehe"
+PortraitLocation = 0
+Speaker = 0
+
+[resource]
+script = ExtResource("2_73d73")
+Entries = Array[Object]([SubResource("Resource_lrum3")])

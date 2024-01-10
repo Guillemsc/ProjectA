@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using Game.MetaContext.BackgroundUI.Interactors;
 using Game.MetaContext.General.Configurations;
 using Game.MetaContext.IntroUi.Interactors;
@@ -6,41 +8,36 @@ using GUtilsGodot.UiStack.Services;
 
 namespace Game.MetaContext.General.UseCases;
 
-public sealed class MetaStartUseCase
+public sealed class MetaLoadUseCase
 {
     readonly MetaApplicationContextConfiguration _contextConfiguration;
     readonly IUiStackService _uiStackService;
     readonly IBackgroundUiInteractor _backgroundUiInteractor;
-    readonly IIntroUiInteractor _introUiInteractor;
     readonly IMainMenuUiInteractor _mainMenuUiInteractor;
 
-    public MetaStartUseCase(
-        MetaApplicationContextConfiguration contextConfiguration,
+    public MetaLoadUseCase(
+        MetaApplicationContextConfiguration contextConfiguration, 
         IUiStackService uiStackService, 
-        IBackgroundUiInteractor backgroundUiInteractor,
-        IIntroUiInteractor introUiInteractor, 
+        IBackgroundUiInteractor backgroundUiInteractor, 
         IMainMenuUiInteractor mainMenuUiInteractor
         )
     {
         _contextConfiguration = contextConfiguration;
         _uiStackService = uiStackService;
         _backgroundUiInteractor = backgroundUiInteractor;
-        _introUiInteractor = introUiInteractor;
         _mainMenuUiInteractor = mainMenuUiInteractor;
     }
 
-    public void Execute()
+    public Task Execute(CancellationToken cancellationToken)
     {
-        if (!_contextConfiguration.PlayIntro)
+        if (_contextConfiguration.PlayIntro)
         {
-            return;
+            return Task.CompletedTask;
         }
         
-        _uiStackService.New()
-            .Show(_backgroundUiInteractor)
-            .Show(_introUiInteractor)
-            .HideCurrent()
-            .Show(_mainMenuUiInteractor)
-            .ExecuteAsync();
+        return _uiStackService.New()
+            .Show(_backgroundUiInteractor, true)
+            .Show(_mainMenuUiInteractor, true)
+            .Execute(cancellationToken);
     }
 }

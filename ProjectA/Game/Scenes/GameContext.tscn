@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cw28dufk6rij8"]
+[gd_scene load_steps=7 format=3 uid="uid://cw28dufk6rij8"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/General/Installers/GameContextNodeInstaller.cs" id="1_exok8"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/GameUi/Installers/GameUiInstaller.cs" id="2_qywnc"]
 [ext_resource type="PackedScene" uid="uid://bi27mfqtopojb" path="res://Game/Prefabs/Ui/GameDialogueUi.tscn" id="3_45nbi"]
 [ext_resource type="PackedScene" uid="uid://cpgm24mfdxm4m" path="res://Game/Prefabs/Ui/GameLetterUi.tscn" id="4_52nuh"]
 [ext_resource type="PackedScene" uid="uid://dmbl7o00hfta6" path="res://Game/Prefabs/Ui/GamePauseUi.tscn" id="5_od1o5"]
+[ext_resource type="PackedScene" uid="uid://b4oswloffe4ga" path="res://Game/Prefabs/Ui/GameOutroUi.tscn" id="5_odbog"]
 
 [node name="GameContext" type="Node2D" node_paths=PackedStringArray("GameUi")]
 script = ExtResource("1_exok8")
@@ -12,7 +13,7 @@ GameUi = NodePath("CanvasLayer/GameUi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="GameUi" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DialogueUi", "LetterUi", "PauseUi")]
+[node name="GameUi" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("DialogueUi", "LetterUi", "PauseUi", "OutroUi")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,11 +24,15 @@ script = ExtResource("2_qywnc")
 DialogueUi = NodePath("GameDialogueUi")
 LetterUi = NodePath("GameLetterUi")
 PauseUi = NodePath("GamePauseUi")
+OutroUi = NodePath("GameOutroUi")
 
 [node name="GameDialogueUi" parent="CanvasLayer/GameUi" instance=ExtResource("3_45nbi")]
 layout_mode = 1
 
 [node name="GameLetterUi" parent="CanvasLayer/GameUi" instance=ExtResource("4_52nuh")]
+layout_mode = 1
+
+[node name="GameOutroUi" parent="CanvasLayer/GameUi" instance=ExtResource("5_odbog")]
 layout_mode = 1
 
 [node name="GamePauseUi" parent="CanvasLayer/GameUi" instance=ExtResource("5_od1o5")]

@@ -83,6 +83,8 @@ libraries = {
 }
 
 [node name="Pivot" type="Control" parent="."]
+process_mode = 4
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

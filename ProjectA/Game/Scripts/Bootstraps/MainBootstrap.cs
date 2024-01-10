@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.General.Configurations;
 using Game.MetaContext.General.ApplicationContexts;
+using Game.MetaContext.General.Configurations;
 using Godot;
 using GUtils.Loading.Extensions;
 using GUtils.Loading.Services;
@@ -27,8 +28,10 @@ public partial class MainBootstrap : Bootstrap
 
         ILoadingService loadingService = ServiceLocator.Get<ILoadingService>();
 
+        MetaApplicationContextConfiguration contextConfiguration = new(true);
+        
         await loadingService.New()
-            .EnqueueLoadAndStartApplicationContext(new MetaApplicationContext())
+            .EnqueueLoadAndStartApplicationContext(new MetaApplicationContext(contextConfiguration))
             .Execute(cancellationToken);
     }
 }

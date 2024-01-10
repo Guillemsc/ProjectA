@@ -1,3 +1,4 @@
+using Game.MetaContext.General.Configurations;
 using Game.MetaContext.General.Installers;
 using Game.MetaContext.General.Interactors;
 using GUtils.ApplicationContexts.Contexts;
@@ -12,6 +13,15 @@ namespace Game.MetaContext.General.ApplicationContexts;
 
 public sealed class MetaApplicationContext : DiApplicationContext<IMetaContextInteractor>
 {
+    readonly MetaApplicationContextConfiguration _contextConfiguration;
+
+    public MetaApplicationContext(
+        MetaApplicationContextConfiguration contextConfiguration
+        )
+    {
+        _contextConfiguration = contextConfiguration;
+    }
+
     protected override void Install(IDiContext<IMetaContextInteractor> context)
     {
         ContextsScenesConfiguration contextsScenesConfiguration = ServiceLocator.Get<ContextsScenesConfiguration>();
@@ -22,7 +32,7 @@ public sealed class MetaApplicationContext : DiApplicationContext<IMetaContextIn
         context.AddInstaller(new CallbackInstaller(
             b =>
             {
-                b.InstallMetaGeneralConfigurations();
+                b.InstallMetaGeneralConfigurations(_contextConfiguration);
                 b.InstallMetaGeneralServices();
                 b.InstallMetaGeneral();
             }));

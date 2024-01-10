@@ -6,15 +6,20 @@ namespace Game.MetaContext.General.Interactors;
 
 public sealed class MetaContextInteractor : IMetaContextInteractor
 {
+    readonly MetaLoadUseCase _metaLoadUseCase;
     readonly MetaStartUseCase _metaStartUseCase;
 
-    public MetaContextInteractor(MetaStartUseCase metaStartUseCase)
+    public MetaContextInteractor(
+        MetaLoadUseCase metaLoadUseCase, 
+        MetaStartUseCase metaStartUseCase
+        )
     {
         _metaStartUseCase = metaStartUseCase;
+        _metaLoadUseCase = metaLoadUseCase;
     }
 
     public Task Load(CancellationToken cancellationToken)
-        => Task.CompletedTask;
+        => _metaLoadUseCase.Execute(cancellationToken);
 
     public void Start()
         => _metaStartUseCase.Execute();

@@ -5,6 +5,7 @@ using Game.GameContext.Cinematics.UseCases;
 using Game.GameContext.Dialogues.UseCases;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.Maps.Datas;
+using Game.GameContext.Outro.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.ServicesContext.Music.Services;
 using Game.ServicesContext.Time.Services;
@@ -30,7 +31,8 @@ public static class GameCinematicsInstaller
                 c.Resolve<AwaitUntilPlayerIsOnTheGroundUseCase>(),
                 c.Resolve<PlayDialogueUseCase>(),
                 c.Resolve<SetCameraTargetUseCase>(),
-                c.Resolve<SetPlayerAsCameraTargetUseCase>()
+                c.Resolve<SetPlayerAsCameraTargetUseCase>(),
+                c.Resolve<PlayOutroUseCase>()
             ));
         
         builder.Bind<WhenPlayerCollidedWithCinematicTriggerUseCase>()

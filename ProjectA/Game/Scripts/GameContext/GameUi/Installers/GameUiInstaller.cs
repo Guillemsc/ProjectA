@@ -2,6 +2,7 @@ using Game.GameContext.DialogueUi.Installers;
 using Game.GameContext.GameUi.Interactors;
 using Game.GameContext.GameUi.UseCases;
 using Game.GameContext.LetterUi.Installers;
+using Game.GameContext.OutroUi.Installers;
 using Game.GameContext.PauseUi.Installers;
 using Godot;
 using GUtils.Di.Builder;
@@ -17,6 +18,7 @@ public partial class GameUiInstaller : ControlInstaller
     [Export] public GameDialogueUiInstaller? DialogueUi;
     [Export] public GameLetterUiInstaller? LetterUi;
     [Export] public GamePauseUiInstaller? PauseUi;
+    [Export] public GameOutroUiInstaller? OutroUi;
     
     public override void Install(IDiContainerBuilder builder)
     {
@@ -36,5 +38,6 @@ public partial class GameUiInstaller : ControlInstaller
         builder.Install(DialogueUi!);
         builder.Install(LetterUi!);
         builder.Install(PauseUi!);
+        builder.Install(OutroUi!);
     }
 }

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://khtk2n2ckl0x"]
+
+[ext_resource type="Texture2D" uid="uid://cuvrayhpqqapy" path="res://Game/Textures/Props/CeelingLantern.png" id="1_dqcv6"]
+[ext_resource type="Texture2D" uid="uid://cc1o7inlabkpt" path="res://Game/Textures/Lighting/RadialLightTexture.tres" id="2_yu1ab"]
+
+[node name="CeelingLanternView" type="Node2D"]
+position = Vector2(88, -112)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 14)
+texture = ExtResource("1_dqcv6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 24)
+color = Color(0.756863, 0.419608, 0.215686, 1)
+energy = 3.0
+texture = ExtResource("2_yu1ab")
+texture_scale = 2.0
+
+[node name="PlayerPointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(0, 24)
+color = Color(0.756863, 0.419608, 0.215686, 1)
+range_item_cull_mask = 4
+texture = ExtResource("2_yu1ab")
+texture_scale = 2.0
