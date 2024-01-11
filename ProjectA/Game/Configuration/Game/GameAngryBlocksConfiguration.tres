@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameAngryBlocksConfiguration" load_steps=2 format=3 uid="uid://ba8u8uv1tts83"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/AngryBlocks/Configurations/GameAngryBlocksConfiguration.cs" id="1_olfoh"]
+
+[resource]
+script = ExtResource("1_olfoh")
+MaxBlinkTimeSeconds = 3.0
+MinBlinkTimeSeconds = 0.0
+Acceleration = 20.0
+MaxSpeed = 200.0

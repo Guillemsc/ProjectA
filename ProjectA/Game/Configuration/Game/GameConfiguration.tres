@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameConfiguration" load_steps=10 format=3 uid="uid://772xfftx0442"]
+[gd_resource type="Resource" script_class="GameConfiguration" load_steps=11 format=3 uid="uid://772xfftx0442"]
 
 [ext_resource type="Resource" uid="uid://dbwfljal22msr" path="res://Game/Configuration/Game/GameCollectablesConfiguration.tres" id="1_1r7kj"]
 [ext_resource type="Resource" uid="uid://btlwmvi8u0lar" path="res://Game/Configuration/Game/GameCamerasConfiguration.tres" id="1_4i5m3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bclswhke5mjgn" path="res://Game/Configuration/Game/GameCratesConfiguration.tres" id="2_if4vl"]
 [ext_resource type="Resource" uid="uid://drbm8j5x1ujwr" path="res://Game/Configuration/Game/GameVisualEffectsConfiguration.tres" id="3_gb31t"]
 [ext_resource type="Resource" uid="uid://c8g00v75oi7hs" path="res://Game/Configuration/Game/GameDialoguesConfiguration.tres" id="4_v0yn5"]
+[ext_resource type="Resource" uid="uid://ba8u8uv1tts83" path="res://Game/Configuration/Game/GameAngryBlocksConfiguration.tres" id="5_lssm2"]
 [ext_resource type="Resource" uid="uid://cptvl1vh0tl4f" path="res://Game/Configuration/Game/GamePauseConfiguration.tres" id="5_r5rjq"]
 
 [resource]
@@ -20,3 +21,4 @@ CollectablesConfiguration = ExtResource("1_1r7kj")
 CratesConfiguration = ExtResource("2_if4vl")
 DialoguesConfiguration = ExtResource("4_v0yn5")
 GamePauseConfiguration = ExtResource("5_r5rjq")
+GameAngryBlocksConfiguration = ExtResource("5_lssm2")

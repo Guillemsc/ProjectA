@@ -26,7 +26,7 @@ public static class GamePlayersInstaller
     public static void InstallGamePlayers(this IDiContainerBuilder builder)
     {
         builder.Bind<PlayerViewData>().FromNew();
-        builder.Bind<PlayerCollidingNodesData>().FromNew();
+        builder.Bind<PlayerBodyCollidingNodesOnSidesData>().FromNew();
 
         builder.Bind<SpawnPlayerUseCase>()
             .FromFunction(c => new SpawnPlayerUseCase(
@@ -39,7 +39,7 @@ public static class GamePlayersInstaller
                 c.Resolve<WhenPlayerStartedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStoppedCollisionWithWallUseCase>(),
                 c.Resolve<WhenPlayerStartedInteractionCollisionWithAreaUseCase>(),
-                c.Resolve<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()
+                c.Resolve<WhenPlayerBodyStartedCollisionUseCase>()
             ));
 
         builder.Bind<EnablePlayerUseCase>()
@@ -94,6 +94,13 @@ public static class GamePlayersInstaller
             ))
             .LinkToTickablesService(o => o.Execute);
 
+        builder.Bind<TickPlayerSquishedTestUseCase>()
+            .FromFunction(c => new TickPlayerSquishedTestUseCase(
+                c.Resolve<PlayerViewData>(),
+                c.Resolve<KillPlayerAndReloadUseCase>()
+            ))
+            .LinkExecutableToTickablesService();
+
         builder.Bind<StorePlayerPreviousPositionUseCase>()
             .FromFunction(c => new StorePlayerPreviousPositionUseCase());
         
@@ -116,9 +123,20 @@ public static class GamePlayersInstaller
                 c.Resolve<WhenPlayerCollidedWithCinematicTriggerUseCase>()
             ));
 
-        builder.Bind<WhenPlayerStartedInteractionCollisionWithBodyUseCase>()
-            .FromFunction(c => new WhenPlayerStartedInteractionCollisionWithBodyUseCase(
+        builder.Bind<WhenPlayerBodyStartedCollisionUseCase>()
+            .FromFunction(c => new WhenPlayerBodyStartedCollisionUseCase(
+                c.Resolve<RegisterColliderCollidingWithPlayerBodySideUseCase>(),
                 c.Resolve<WhenPlayerCollidedWithCrateUseCase>()
+            ));
+
+        builder.Bind<WhenPlayerBodyStoppedCollisionUseCase>()
+            .FromFunction(c => new WhenPlayerBodyStoppedCollisionUseCase(
+                c.Resolve<PlayerBodyCollidingNodesOnSidesData>()
+            ));
+
+        builder.Bind<RegisterColliderCollidingWithPlayerBodySideUseCase>()
+            .FromFunction(c => new RegisterColliderCollidingWithPlayerBodySideUseCase(
+                c.Resolve<PlayerBodyCollidingNodesOnSidesData>()
             ));
     }
 }

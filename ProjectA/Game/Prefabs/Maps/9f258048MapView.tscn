@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="7_bmw4d"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_jgjs2"]
 [ext_resource type="PackedScene" uid="uid://khtk2n2ckl0x" path="res://Game/Prefabs/CeelingLanternView.tscn" id="9_nfejy"]
-[ext_resource type="Texture2D" uid="uid://brvqqochdeltw" path="res://Misc/icon.svg" id="11_tt51f"]
+[ext_resource type="PackedScene" uid="uid://fe6h15w823lv" path="res://Game/Prefabs/Views/AngryBlockView.tscn" id="11_34ove"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_k1h68")
@@ -106,7 +106,4 @@ position = Vector2(412, -157)
 position = Vector2(153, 2)
 rotation = 3.14159
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3, -7)
-scale = Vector2(0.1875, 0.203125)
-texture = ExtResource("11_tt51f")
+[node name="AngryBlockView" parent="." instance=ExtResource("11_34ove")]

@@ -1,3 +1,4 @@
+using Game.GameContext.AngryBlocks.Configurations;
 using Game.GameContext.Cameras.Configurations;
 using Game.GameContext.Collectables.Configurations;
 using Game.GameContext.Crates.Configurations;
@@ -21,4 +22,5 @@ public partial class GameConfiguration : Resource
     [Export] public GameCratesConfiguration? CratesConfiguration;
     [Export] public GameDialoguesConfiguration? DialoguesConfiguration;
     [Export] public GamePauseConfiguration? GamePauseConfiguration;
+    [Export] public GameAngryBlocksConfiguration? GameAngryBlocksConfiguration;
 }

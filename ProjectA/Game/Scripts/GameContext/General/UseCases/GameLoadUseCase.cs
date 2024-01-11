@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Game.GameContext.AngryBlocks.UseCases;
 using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.GameUi.UseCases;
 using Game.GameContext.Maps.UseCases;
@@ -15,6 +16,7 @@ public sealed class GameLoadUseCase
     readonly SetCameraMapBoundsUseCase _setCameraMapBoundsUseCase;
     readonly SetInitialCameraAreaUseCase _setInitialCameraAreaUseCase;
     readonly SetPlayerAsCameraTargetUseCase _setPlayerAsCameraTargetUseCase;
+    readonly LoadAngryBlocksUseCase _loadAngryBlocksUseCase;
     readonly ShowGameUiUseCase _showGameUiUseCase;
 
     public GameLoadUseCase(
@@ -24,6 +26,7 @@ public sealed class GameLoadUseCase
         SetCameraMapBoundsUseCase setCameraMapBoundsUseCase,
         SetInitialCameraAreaUseCase setInitialCameraAreaUseCase,
         SetPlayerAsCameraTargetUseCase setPlayerAsCameraTargetUseCase, 
+        LoadAngryBlocksUseCase loadAngryBlocksUseCase,
         ShowGameUiUseCase showGameUiUseCase
         )
     {
@@ -33,6 +36,7 @@ public sealed class GameLoadUseCase
         _setCameraMapBoundsUseCase = setCameraMapBoundsUseCase;
         _setPlayerAsCameraTargetUseCase = setPlayerAsCameraTargetUseCase;
         _showGameUiUseCase = showGameUiUseCase;
+        _loadAngryBlocksUseCase = loadAngryBlocksUseCase;
         _setInitialCameraAreaUseCase = setInitialCameraAreaUseCase;
     }
 
@@ -44,6 +48,7 @@ public sealed class GameLoadUseCase
         _setCameraMapBoundsUseCase.Execute();
         _setInitialCameraAreaUseCase.Execute();
         _setPlayerAsCameraTargetUseCase.Execute(true);
+        _loadAngryBlocksUseCase.Execute();
         _showGameUiUseCase.Execute();
     }
 }

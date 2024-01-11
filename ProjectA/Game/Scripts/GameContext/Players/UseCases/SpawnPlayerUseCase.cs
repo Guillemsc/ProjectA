@@ -23,7 +23,7 @@ public sealed class SpawnPlayerUseCase
     readonly WhenPlayerStartedCollisionWithWallUseCase _whenPlayerStartedCollisionWithWallUseCase;
     readonly WhenPlayerStoppedCollisionWithWallUseCase _whenPlayerStoppedCollisionWithWallUseCase;
     readonly WhenPlayerStartedInteractionCollisionWithAreaUseCase _whenPlayerStartedInteractionCollisionWithAreaUseCase;
-    readonly WhenPlayerStartedInteractionCollisionWithBodyUseCase _whenPlayerStartedInteractionCollisionWithBodyUseCase;
+    readonly WhenPlayerBodyStartedCollisionUseCase _whenPlayerBodyStartedCollisionUseCase;
 
     public SpawnPlayerUseCase(
         GameApplicationContextConfiguration contextConfiguration,
@@ -35,7 +35,7 @@ public sealed class SpawnPlayerUseCase
         WhenPlayerStartedCollisionWithWallUseCase whenPlayerStartedCollisionWithWallUseCase,
         WhenPlayerStoppedCollisionWithWallUseCase whenPlayerStoppedCollisionWithWallUseCase, 
         WhenPlayerStartedInteractionCollisionWithAreaUseCase whenPlayerStartedInteractionCollisionWithAreaUseCase,
-        WhenPlayerStartedInteractionCollisionWithBodyUseCase whenPlayerStartedInteractionCollisionWithBodyUseCase
+        WhenPlayerBodyStartedCollisionUseCase whenPlayerBodyStartedCollisionUseCase
         )
     {
         _contextConfiguration = contextConfiguration;
@@ -47,7 +47,7 @@ public sealed class SpawnPlayerUseCase
         _whenPlayerStartedCollisionWithWallUseCase = whenPlayerStartedCollisionWithWallUseCase;
         _whenPlayerStoppedCollisionWithWallUseCase = whenPlayerStoppedCollisionWithWallUseCase;
         _whenPlayerStartedInteractionCollisionWithAreaUseCase = whenPlayerStartedInteractionCollisionWithAreaUseCase;
-        _whenPlayerStartedInteractionCollisionWithBodyUseCase = whenPlayerStartedInteractionCollisionWithBodyUseCase;
+        _whenPlayerBodyStartedCollisionUseCase = whenPlayerBodyStartedCollisionUseCase;
     }
 
     public void Execute()
@@ -79,7 +79,8 @@ public sealed class SpawnPlayerUseCase
         playerView.RightWallDetector!.ConnectBodyExited(_ => _whenPlayerStoppedCollisionWithWallUseCase.Execute());
         
         playerView.InteractionsDetector!.ConnectAreaEntered(_whenPlayerStartedInteractionCollisionWithAreaUseCase.Execute);
-        playerView.CharacterBody2DCollisionCallbacks!.OnEnter += _whenPlayerStartedInteractionCollisionWithBodyUseCase.Execute;
+        
+        playerView.CharacterBody2DCollisionCallbacks!.OnEnter += _whenPlayerBodyStartedCollisionUseCase.Execute;
         
         _playerViewData.PlayerView = playerView;
     }

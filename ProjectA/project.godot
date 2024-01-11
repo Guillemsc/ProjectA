@@ -8,10 +8,27 @@
 
 config_version=5
 
+[addons]
+
+instance_dock/scenes=[{
+"name": "Props",
+"scenes": [{
+"scene": "res://Game/Prefabs/Views/SpikesView.tscn"
+}],
+"scroll": 0
+}, {
+"name": "Maps",
+"scenes": [{
+"scene": "res://Game/Prefabs/Maps/9f258048MapView.tscn"
+}],
+"scroll": 0
+}]
+instance_dock/preview_resolution=Vector2i(64, 64)
+
 [application]
 
 config/name="Project A"
-run/main_scene="res://Game/Scenes/Bootstrap.tscn"
+run/main_scene="res://Game/Scenes/TestMapBootstrap.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Misc/icon.svg"
 
@@ -35,7 +52,7 @@ project/assembly_name="Project A"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GTestsGodot/plugin.cfg")
+enabled=PackedStringArray("res://addons/GTestsGodot/plugin.cfg", "res://addons/InstanceDock/plugin.cfg")
 
 [input]
 
@@ -66,7 +83,7 @@ RestartCheat={
 2d_render/layer_3="Player"
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Map"
-2d_physics/layer_3="OneWayPlatforms"
+2d_physics/layer_3="Platforms"
 2d_physics/layer_4="Collectable"
 2d_physics/layer_5="Visuals"
 

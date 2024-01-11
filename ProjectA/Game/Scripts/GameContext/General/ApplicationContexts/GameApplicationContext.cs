@@ -1,4 +1,5 @@
-﻿using Game.GameContext.Areas.Installers;
+﻿using Game.GameContext.AngryBlocks.Installers;
+using Game.GameContext.Areas.Installers;
 using Game.GameContext.Cameras.Installers;
 using Game.GameContext.Cheats.Installers;
 using Game.GameContext.Cinematics.Installers;
@@ -6,6 +7,7 @@ using Game.GameContext.Collectables.Installers;
 using Game.GameContext.Connections.Installers;
 using Game.GameContext.Crates.Installers;
 using Game.GameContext.Dialogues.Installers;
+using Game.GameContext.Entities.Installers;
 using Game.GameContext.Fruits.Installers;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Installers;
@@ -70,6 +72,8 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGameLetters();
                 b.InstallGamePause();
                 b.InstallGameOutro();
+                b.InstallGameEntities();
+                b.InstallGameAngryBlocks();
                 
                 b.InstallGameCheats();
             }));

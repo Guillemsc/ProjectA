@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AngryBlockMovementConfiguration" load_steps=2 format=3 uid="uid://bxbytils4jcif"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/AngryBlocks/Configurations/AngryBlockMovementConfiguration.cs" id="1_7uk07"]
+
+[resource]
+script = ExtResource("1_7uk07")
+Acceleration = 90.0
+MaxSpeed = 150.0

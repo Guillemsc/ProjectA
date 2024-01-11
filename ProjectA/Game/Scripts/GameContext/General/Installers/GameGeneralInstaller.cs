@@ -1,4 +1,5 @@
-﻿using Game.GameContext.Cameras.UseCases;
+﻿using Game.GameContext.AngryBlocks.UseCases;
+using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Cinematics.UseCases;
 using Game.GameContext.GameUi.UseCases;
 using Game.GameContext.General.Interactors;
@@ -32,6 +33,7 @@ public static class GameGeneralInstaller
                 c.Resolve<SetCameraMapBoundsUseCase>(),
                 c.Resolve<SetInitialCameraAreaUseCase>(),
                 c.Resolve<SetPlayerAsCameraTargetUseCase>(),
+                c.Resolve<LoadAngryBlocksUseCase>(),
                 c.Resolve<ShowGameUiUseCase>()
             ));
 

@@ -1,3 +1,4 @@
+using Game.GameContext.AngryBlocks.Configurations;
 using Game.GameContext.Cameras.Configurations;
 using Game.GameContext.Collectables.Configurations;
 using Game.GameContext.Crates.Configurations;
@@ -29,5 +30,6 @@ public static class GameGeneralConfigurationsInstaller
         builder.Bind<GameCratesConfiguration>().FromInstance(gameConfiguration.CratesConfiguration!);
         builder.Bind<GameDialoguesConfiguration>().FromInstance(gameConfiguration.DialoguesConfiguration!);
         builder.Bind<GamePauseConfiguration>().FromInstance(gameConfiguration.GamePauseConfiguration!);
+        builder.Bind<GameAngryBlocksConfiguration>().FromInstance(gameConfiguration.GameAngryBlocksConfiguration!);
     }
 }
