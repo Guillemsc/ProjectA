@@ -18,6 +18,7 @@ using Game.GameContext.Outro.Installers;
 using Game.GameContext.Pause.Installers;
 using Game.GameContext.PlayerKillers.Installers;
 using Game.GameContext.Players.Installers;
+using Game.GameContext.Saws.Installers;
 using Game.GameContext.Trampolines.Installers;
 using Game.GameContext.VelocityBoosters.Installers;
 using Game.GameContext.VisualEffects.Installers;
@@ -74,6 +75,7 @@ public sealed class GameApplicationContext : DiApplicationContext<IGameContextIn
                 b.InstallGameOutro();
                 b.InstallGameEntities();
                 b.InstallGameAngryBlocks();
+                b.InstallGameSaws();
                 
                 b.InstallGameCheats();
             }));

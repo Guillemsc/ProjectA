@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://d22jb7encgi8w"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Letters/Views/LetterCollectableView.cs" id="1_f2x0e"]
-[ext_resource type="Resource" uid="uid://clq7wsmpiuf4e" path="res://Game/Configuration/TestLetterConfiguration.tres" id="2_hdjj6"]
+[ext_resource type="Resource" uid="uid://clq7wsmpiuf4e" path="res://Game/Configuration/Letters/TestLetterConfiguration.tres" id="2_8pt0j"]
 [ext_resource type="Texture2D" uid="uid://bkn25yl587ybv" path="res://Game/Textures/Leter-Idle.png" id="3_55fmd"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimationPlayer.cs" id="3_aaaw6"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="5_jk5hj"]
@@ -243,7 +243,7 @@ can_sleep = false
 lock_rotation = true
 freeze = true
 script = ExtResource("1_f2x0e")
-LetterConfiguration = ExtResource("2_hdjj6")
+LetterConfiguration = ExtResource("2_8pt0j")
 AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

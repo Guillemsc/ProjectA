@@ -125,17 +125,11 @@ public static class GamePlayersInstaller
 
         builder.Bind<WhenPlayerBodyStartedCollisionUseCase>()
             .FromFunction(c => new WhenPlayerBodyStartedCollisionUseCase(
-                c.Resolve<RegisterColliderCollidingWithPlayerBodySideUseCase>(),
                 c.Resolve<WhenPlayerCollidedWithCrateUseCase>()
             ));
 
         builder.Bind<WhenPlayerBodyStoppedCollisionUseCase>()
             .FromFunction(c => new WhenPlayerBodyStoppedCollisionUseCase(
-                c.Resolve<PlayerBodyCollidingNodesOnSidesData>()
-            ));
-
-        builder.Bind<RegisterColliderCollidingWithPlayerBodySideUseCase>()
-            .FromFunction(c => new RegisterColliderCollidingWithPlayerBodySideUseCase(
                 c.Resolve<PlayerBodyCollidingNodesOnSidesData>()
             ));
     }

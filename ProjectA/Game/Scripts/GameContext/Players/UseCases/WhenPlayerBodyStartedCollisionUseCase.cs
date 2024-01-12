@@ -8,22 +8,17 @@ namespace Game.GameContext.Players.UseCases;
 
 public sealed class WhenPlayerBodyStartedCollisionUseCase
 {
-    readonly RegisterColliderCollidingWithPlayerBodySideUseCase _registerColliderCollidingWithPlayerBodySideUseCase;
     readonly WhenPlayerCollidedWithCrateUseCase _whenPlayerCollidedWithCrateUseCase;
 
     public WhenPlayerBodyStartedCollisionUseCase(
-        RegisterColliderCollidingWithPlayerBodySideUseCase registerColliderCollidingWithPlayerBodySideUseCase,
         WhenPlayerCollidedWithCrateUseCase whenPlayerCollidedWithCrateUseCase
         )
     {
-        _registerColliderCollidingWithPlayerBodySideUseCase = registerColliderCollidingWithPlayerBodySideUseCase;
         _whenPlayerCollidedWithCrateUseCase = whenPlayerCollidedWithCrateUseCase;
     }
 
     public void Execute(Node2D node, KinematicCollision2D kinematicCollision2D)
     {
-        //_registerColliderCollidingWithPlayerBodySideUseCase.Execute(node, kinematicCollision2D);
-        
         Optional<CrateView> optionalCrateView = node.GetNodeOnParentHierarchy<CrateView>();
 
         bool hasCrateView = optionalCrateView.TryGet(out CrateView crateView);

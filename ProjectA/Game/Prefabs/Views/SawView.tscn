@@ -1,0 +1,112 @@
+[gd_scene load_steps=17 format=3 uid="uid://2t7lrktylk32"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Saws/Views/SawView.cs" id="1_bxo70"]
+[ext_resource type="Texture2D" uid="uid://bhcwxd73u553i" path="res://Game/Textures/Saw/Saw-Off.png" id="2_cs2bw"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Entities/Nodes/RegisterEntityNode.cs" id="2_sdw4v"]
+[ext_resource type="Texture2D" uid="uid://dto4ecc5mnxg3" path="res://Game/Textures/Saw/Saw-On.png" id="3_eo0mr"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Saws/AnimationGraphPlayers/SawAnimationGraphPlayerNode.cs" id="4_jbk1c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qoxbv"]
+radius = 19.0263
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ads1"]
+atlas = ExtResource("2_cs2bw")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj4vm"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(0, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04tem"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(38, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mopfs"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(76, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imgb2"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(114, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i51s"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(152, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2p1q"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(190, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvtxa"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(228, 0, 38, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15w0h"]
+atlas = ExtResource("3_eo0mr")
+region = Rect2(266, 0, 38, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqnlw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ads1")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj4vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04tem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mopfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imgb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i51s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2p1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvtxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15w0h")
+}],
+"loop": true,
+"name": &"On",
+"speed": 20.0
+}]
+
+[node name="SawView" type="PathFollow2D" node_paths=PackedStringArray("AnimationGraphPlayer")]
+position = Vector2(115, -6)
+rotation = -2.68475
+script = ExtResource("1_bxo70")
+AnimationGraphPlayer = NodePath("AnimationGraphPlayer")
+
+[node name="RegisterNode" type="Node2D" parent="." node_paths=PackedStringArray("ToRegister")]
+script = ExtResource("2_sdw4v")
+ToRegister = NodePath("..")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qoxbv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_jqnlw")
+animation = &"On"
+frame_progress = 0.0997553
+
+[node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
+script = ExtResource("4_jbk1c")
+AnimatedSprite2D = NodePath("../AnimatedSprite2D")

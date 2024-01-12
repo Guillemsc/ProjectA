@@ -1,4 +1,3 @@
-using Game.GameContext.AngryBlocks.Configurations;
 using Game.GameContext.AngryBlocks.Views;
 using Game.ServicesContext.Time.Services;
 using Godot;
@@ -11,15 +10,12 @@ namespace Game.GameContext.AngryBlocks.UseCases;
 public sealed class TickAngryBlockMovementUseCase
 {
     readonly IGameTimesService _gameTimesService;
-    readonly GameAngryBlocksConfiguration _gameAngryBlocksConfiguration;
 
     public TickAngryBlockMovementUseCase(
-        IGameTimesService gameTimesService, 
-        GameAngryBlocksConfiguration gameAngryBlocksConfiguration
+        IGameTimesService gameTimesService
         )
     {
         _gameTimesService = gameTimesService;
-        _gameAngryBlocksConfiguration = gameAngryBlocksConfiguration;
     }
 
     public void Execute(AngryBlockView angryBlockView)

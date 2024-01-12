@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpic3kcbxjteq"]
+
+[ext_resource type="Texture2D" uid="uid://dy2kry5w6nkvp" path="res://Game/Textures/Saw/Saw-Chain.png" id="1_vwugk"]
+
+[node name="SawLineView" type="Line2D"]
+position = Vector2(0, -3)
+points = PackedVector2Array(60, 42, 60, -30)
+width = 4.0
+texture = ExtResource("1_vwugk")
+texture_mode = 1

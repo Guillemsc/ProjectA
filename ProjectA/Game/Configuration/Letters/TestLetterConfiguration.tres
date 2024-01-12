@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LetterConfiguration" load_steps=2 format=3 uid="uid://clq7wsmpiuf4e"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Letters/Configurations/LetterConfiguration.cs" id="1_rgp8c"]
+
+[resource]
+script = ExtResource("1_rgp8c")
+Text = "I've always loved sweet things! If you ever find something sweet, please bring it to me.
+- Someone."

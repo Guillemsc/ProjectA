@@ -62,6 +62,7 @@ public sealed class WhenCurrentPlayerConnectionChangedUseCase
         _loadingService.New()
             .EnqueueUnloadApplicationContext<GameApplicationContext>()
             .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(contextConfiguration))
+            .EnqueueGCCollect()
             .ExecuteAsync();
     }
 }

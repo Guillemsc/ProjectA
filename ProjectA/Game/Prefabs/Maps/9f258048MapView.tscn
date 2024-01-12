@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ch63tbkd35fj2"]
+[gd_scene load_steps=17 format=3 uid="uid://ch63tbkd35fj2"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_lcu0i"]
 [ext_resource type="Environment" uid="uid://bxd08qaa6wc8d" path="res://Game/Environments/MapEnvironment.tres" id="2_cavco"]
@@ -11,6 +11,9 @@
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_jgjs2"]
 [ext_resource type="PackedScene" uid="uid://khtk2n2ckl0x" path="res://Game/Prefabs/CeelingLanternView.tscn" id="9_nfejy"]
 [ext_resource type="PackedScene" uid="uid://fe6h15w823lv" path="res://Game/Prefabs/Views/AngryBlockView.tscn" id="11_34ove"]
+[ext_resource type="PackedScene" uid="uid://2t7lrktylk32" path="res://Game/Prefabs/Views/SawView.tscn" id="12_1rsvr"]
+[ext_resource type="Resource" uid="uid://1i4cvgrmemne" path="res://Game/Configuration/Saws/NormalSawMovementConfiguration.tres" id="13_pguf0"]
+[ext_resource type="Texture2D" uid="uid://dy2kry5w6nkvp" path="res://Game/Textures/Saw/Saw-Chain.png" id="14_u4eno"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_k1h68")
@@ -18,6 +21,12 @@ shader_parameter/tilingScale = 1.341
 shader_parameter/movementX = 0.0
 shader_parameter/movementY = -1.0
 shader_parameter/movementSpeed = 0.2
+
+[sub_resource type="Curve2D" id="Curve2D_78x7l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 60, 39, 0, 0, 0, 0, 60, -29, 0, 0, 0, 0, 178, -29)
+}
+point_count = 3
 
 [node name="Map9f258048View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_lcu0i")
@@ -107,3 +116,30 @@ position = Vector2(153, 2)
 rotation = 3.14159
 
 [node name="AngryBlockView" parent="." instance=ExtResource("11_34ove")]
+position = Vector2(248, -119)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(12, -26)
+curve = SubResource("Curve2D_78x7l")
+
+[node name="SawView" parent="Path2D" instance=ExtResource("12_1rsvr")]
+position = Vector2(86.4741, -29)
+rotation = -1.5708
+progress = 94.4947
+rotates = false
+loop = false
+MovementConfiguration = ExtResource("13_pguf0")
+
+[node name="Line2D" type="Line2D" parent="Path2D"]
+position = Vector2(0, -3)
+points = PackedVector2Array(60, 42, 60, -30)
+width = 4.0
+texture = ExtResource("14_u4eno")
+texture_mode = 1
+
+[node name="Line2D2" type="Line2D" parent="Path2D"]
+position = Vector2(5, 0)
+points = PackedVector2Array(60, -29, 173, -29)
+width = 4.0
+texture = ExtResource("14_u4eno")
+texture_mode = 1

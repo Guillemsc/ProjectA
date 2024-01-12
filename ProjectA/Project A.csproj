@@ -15,6 +15,7 @@
     <PackageReference Include="NUnit" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="addons\" />
     <Folder Include="Game\Scripts\General\Contexts\" />
     <Folder Include="Game\Scripts\ServicesContext\General\" />
     <Folder Include="GUtilsGodot\Source\NodeExecutables\Configurations\" />

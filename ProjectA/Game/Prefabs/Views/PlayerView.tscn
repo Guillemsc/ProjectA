@@ -16,6 +16,7 @@ size = Vector2(8.5, 1)
 size = Vector2(16, 26)
 
 [node name="PlayerView" type="CharacterBody2D" node_paths=PackedStringArray("CharacterBody2DCollisionCallbacks", "AnimatedSprite", "AnimationPlayer", "LeftWallDetector", "RightWallDetector", "InteractionsDetector", "LeftSqushedRayCasts", "RightSqushedRayCasts", "TopSqushedRayCasts", "BottomSqushedRayCasts")]
+z_index = 5
 position = Vector2(3, 1)
 collision_mask = 6
 script = ExtResource("1_6jkvy")

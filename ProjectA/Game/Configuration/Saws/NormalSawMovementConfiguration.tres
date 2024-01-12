@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SawMovementConfiguration" load_steps=2 format=3 uid="uid://1i4cvgrmemne"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Saws/Configurations/SawMovementConfiguration.cs" id="1_y0q54"]
+
+[resource]
+script = ExtResource("1_y0q54")
+Speed = 100.0

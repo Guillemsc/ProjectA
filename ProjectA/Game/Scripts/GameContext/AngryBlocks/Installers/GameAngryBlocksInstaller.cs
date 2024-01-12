@@ -41,8 +41,7 @@ public static class GameAngryBlocksInstaller
 
         builder.Bind<TickAngryBlockMovementUseCase>()
             .FromFunction(c => new TickAngryBlockMovementUseCase(
-                c.Resolve<IGameTimesService>(),
-                c.Resolve<GameAngryBlocksConfiguration>()
+                c.Resolve<IGameTimesService>()
             ));
 
         builder.Bind<WhenAngryBlockCollidedUseCase>()
