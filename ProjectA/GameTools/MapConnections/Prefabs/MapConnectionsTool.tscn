@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://GameTools/MapConnections/Scripts/Installers/MapConnectionsToolsInstaller.cs" id="1_d1g2j"]
 [ext_resource type="PackedScene" uid="uid://capmbad7y3d8g" path="res://GameTools/MapConnections/Prefabs/GraphNode.tscn" id="2_hxhet"]
 [ext_resource type="Resource" uid="uid://65ru2gqwh41d" path="res://Game/Configuration/Game/GameMapsConfiguration.tres" id="3_48why"]
-[ext_resource type="Resource" uid="uid://dje1u3y7e8106" path="res://GameTools/MapConnections/Configurations/MapConnectionsToolNodeConfigurations.tres" id="3_xl7qh"]
+[ext_resource type="Resource" path="res://GameTools/MapConnections/Configurations/MapConnectionsToolNodeConfigurations.tres" id="3_xl7qh"]
 
-[node name="MapConnectionsTool" type="Control" node_paths=PackedStringArray("GraphEdit", "RefreshMapListButton", "RefreshMapNodesButton", "SaveStateButton")]
+[node name="MapConnectionsTool" type="Control" node_paths=PackedStringArray("GraphEdit", "RefreshMapListButton", "RefreshMapNodesButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,6 @@ script = ExtResource("1_d1g2j")
 GraphEdit = NodePath("GraphEdit")
 RefreshMapListButton = NodePath("RefreshMapListButton")
 RefreshMapNodesButton = NodePath("RefreshMapNodesButton")
-SaveStateButton = NodePath("SaveStateButton")
 NodeViewPrefab = ExtResource("2_hxhet")
 MapConnectionsToolNodeConfiguration = ExtResource("3_xl7qh")
 GameMapsConfiguration = ExtResource("3_48why")
@@ -46,11 +45,3 @@ offset_top = 13.0
 offset_right = 364.0
 offset_bottom = 54.0
 text = "Refresh map nodes"
-
-[node name="SaveStateButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 383.0
-offset_top = 13.0
-offset_right = 499.0
-offset_bottom = 54.0
-text = "Save"

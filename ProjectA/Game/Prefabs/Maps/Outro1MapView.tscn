@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://fqnmmovjfqq0"]
+[gd_scene load_steps=23 format=3 uid="uid://bpig3thv6l7vt"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_77oal"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_tfl54"]
@@ -97,7 +97,8 @@ position = Vector2(-65, 8)
 script = ExtResource("7_skbvm")
 ReadableName = "Left"
 Uid = "3deaaa43-ef56-4580-a6f7-82746f749b1f"
-SpawnId = "b5d60859-df84-42dd-bb31-f3232330c4ba"
+Map = "res://Game/Prefabs/Maps/ebd9925aMapView.tscn"
+SpawnId = "3a87dafb-463a-4338-9df9-4688c3a2f1f3"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 
@@ -116,7 +117,7 @@ ReadableName = "Right"
 ConnectionType = 1
 Uid = "401e5225-ed58-4a47-bad6-0e06cd294b3b"
 Map = "res://Game/Prefabs/Maps/Outro2MapView.tscn"
-SpawnId = "8104745a-c967-4019-9127-fdb05f0fef46"
+SpawnId = "69b5c613-68a9-41e2-b669-e01685b21a3f"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 

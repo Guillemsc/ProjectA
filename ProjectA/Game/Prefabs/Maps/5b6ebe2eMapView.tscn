@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfjymswgo0254"]
+[gd_scene load_steps=12 format=3 uid="uid://bh2e3hng2uvht"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_io13x"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_ih1js"]
@@ -20,6 +20,7 @@ shader_parameter/movementSpeed = 0.2
 
 [node name="5b6ebe2eMapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_io13x")
+ReadableName = "Booster medium"
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
@@ -93,8 +94,8 @@ position = Vector2(-50, -63)
 script = ExtResource("9_bds3w")
 ReadableName = "BottomLeft"
 Uid = "0c02cea7-b0a5-45ac-90b6-c15b569ee31f"
-Map = "res://Game/Prefabs/Maps/ebd9925aMapView.tscn"
-SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+Map = "res://Game/Prefabs/Maps/06b7bc55MapView.tscn"
+SpawnId = "33713330-d98b-43a6-b6a8-0d896ab94364"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 
@@ -114,8 +115,8 @@ script = ExtResource("9_bds3w")
 ReadableName = "UpRight"
 ConnectionType = 1
 Uid = "6d36e948-53bf-4948-a19c-1a2cba076d59"
-Map = "res://Game/Prefabs/Maps/fb581aceMapView.tscn"
-SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+Map = "res://Game/Prefabs/Maps/0dd94e00MapView.tscn"
+SpawnId = "9a66b720-9d93-41f8-85ed-39dbe4206f58"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 

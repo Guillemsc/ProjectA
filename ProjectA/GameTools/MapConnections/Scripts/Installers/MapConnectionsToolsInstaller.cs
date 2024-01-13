@@ -14,7 +14,6 @@ public partial class MapConnectionsToolsInstaller : AutoInstallControlDiContext
 	[Export] public GraphEdit? GraphEdit;
 	[Export] public Button? RefreshMapListButton;
 	[Export] public Button? RefreshMapNodesButton;
-	[Export] public Button? SaveStateButton;
 	[Export] public PackedScene? NodeViewPrefab;
 	[Export] public MapConnectionsToolNodeConfiguration? MapConnectionsToolNodeConfiguration;
 	[Export] public GameMapsConfiguration? GameMapsConfiguration;
@@ -29,7 +28,8 @@ public partial class MapConnectionsToolsInstaller : AutoInstallControlDiContext
 			.FromFunction(c => new LinkGraphEditUseCase(
 				GraphEdit!,
 				c.Resolve<WhenGraphEditConnectionRequestUseCase>(),
-				c.Resolve<WhenGraphEditDisconnectionRequestUseCase>()
+				c.Resolve<WhenGraphEditDisconnectionRequestUseCase>(),
+				c.Resolve<WhenGraphEditNodeEndMoveUseCase>()
 			))
 			.WhenInit(o => o.Execute)
 			.NonLazy();
@@ -47,6 +47,11 @@ public partial class MapConnectionsToolsInstaller : AutoInstallControlDiContext
 				c.Resolve<GetNodeByNameUseCase>(),
 				c.Resolve<DisconnectMapsUseCase>()
 			));
+
+		builder.Bind<WhenGraphEditNodeEndMoveUseCase>()
+			.FromFunction(c => new WhenGraphEditNodeEndMoveUseCase(
+				c.Resolve<SaveNodesStateUseCase>()
+			));
 		
 		builder.Bind<WhenRefreshMapListButtonPressedUseCase>()
 			.FromFunction(c => new WhenRefreshMapListButtonPressedUseCase(
@@ -59,12 +64,6 @@ public partial class MapConnectionsToolsInstaller : AutoInstallControlDiContext
 				c.Resolve<RefreshMapNodesUseCase>()
 			))
 			.LinkButtonPressed(RefreshMapNodesButton!);
-
-		builder.Bind<WhenSaveStateButtonUseCase>()
-			.FromFunction(c => new WhenSaveStateButtonUseCase(
-				c.Resolve<SaveNodesStateUseCase>()
-			))
-			.LinkButtonPressed(SaveStateButton!);
 
 		builder.Bind<GetAllMapViewsUseCase>()
 			.FromFunction(c => new GetAllMapViewsUseCase(

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3gwt0cuam8ly"]
+[gd_scene load_steps=13 format=3 uid="uid://d4dhmwq4eqn35"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_rkh4n"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_g5iob"]
@@ -21,6 +21,7 @@ shader_parameter/movementSpeed = 0.2
 
 [node name="fb581aceMapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_rkh4n")
+ReadableName = "Advanced box and trampoline"
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
@@ -155,8 +156,8 @@ position = Vector2(-89, -63)
 script = ExtResource("8_cglcq")
 ReadableName = "Left"
 Uid = "3f2419fa-d7e0-42d7-b1c2-2719e8285c9c"
-Map = "res://Game/Prefabs/Maps/b18ca3d8MapView.tscn"
-SpawnId = "711aeafd-c913-495b-864e-9977bb68120a"
+Map = "res://Game/Prefabs/Maps/0dd94e00MapView.tscn"
+SpawnId = "e31eaf16-c0c1-42c2-8266-0bedef1e3ebc"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 
@@ -176,8 +177,8 @@ script = ExtResource("8_cglcq")
 ReadableName = "Right"
 ConnectionType = 1
 Uid = "fa6b9288-f2e8-4235-9700-b6df708cb89f"
-Map = "res://Game/Prefabs/Maps/ebd9925aMapView.tscn"
-SpawnId = "affc1051-980a-4257-bc5e-996ef9eb45ae"
+Map = "res://Game/Prefabs/Maps/7fe11296MapView.tscn"
+SpawnId = "f8e3b73b-5d39-4d86-91d3-29fb7d7d0fc9"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 

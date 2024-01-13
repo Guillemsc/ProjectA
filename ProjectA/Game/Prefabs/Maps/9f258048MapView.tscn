@@ -29,7 +29,7 @@ _data = {
 }
 point_count = 3
 
-[node name="Map9f258048View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+[node name="9f258048MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_lcu0i")
 ReadableName = "Fist map after intro"
 AreaViews = [NodePath("AreaView")]
@@ -88,7 +88,7 @@ ReadableName = "Right"
 ConnectionType = 1
 Uid = "5228e542-c6b4-488f-89c3-85a0b3f538b5"
 Map = "res://Game/Prefabs/Maps/ac2259f6MapView.tscn"
-SpawnId = "8104745a-c967-4019-9127-fdb05f0fef46"
+SpawnId = "926382c7-2031-4a19-bc30-75a929ec663f"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 

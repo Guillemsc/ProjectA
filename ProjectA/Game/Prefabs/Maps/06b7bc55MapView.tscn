@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://67nlwgbsskcb"]
+[gd_scene load_steps=11 format=3 uid="uid://bo2fcqoi80bi2"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_7no8i"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_22jep"]
@@ -19,6 +19,7 @@ shader_parameter/movementSpeed = 0.2
 
 [node name="06b7bc55MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_7no8i")
+ReadableName = "Full wall jumps"
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
@@ -57,8 +58,8 @@ position = Vector2(-65, -55)
 script = ExtResource("8_jsrl3")
 ReadableName = "Left"
 Uid = "c3f58fb9-efa4-4bd8-9d84-3432cb1d0157"
-Map = "res://Game/Prefabs/Maps/ebd9925aMapView.tscn"
-SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+Map = "res://Game/Prefabs/Maps/1ee0029bMapView.tscn"
+SpawnId = "5505af9a-a603-46d2-8d86-960aeb809557"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 
@@ -77,8 +78,8 @@ script = ExtResource("8_jsrl3")
 ReadableName = "Right"
 ConnectionType = 1
 Uid = "33713330-d98b-43a6-b6a8-0d896ab94364"
-Map = "res://Game/Prefabs/Maps/fb581aceMapView.tscn"
-SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+Map = "res://Game/Prefabs/Maps/5b6ebe2eMapView.tscn"
+SpawnId = "0c02cea7-b0a5-45ac-90b6-c15b569ee31f"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 

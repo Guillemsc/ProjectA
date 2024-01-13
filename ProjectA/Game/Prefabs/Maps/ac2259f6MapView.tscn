@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://nnryi2bh703g"]
+[gd_scene load_steps=11 format=3 uid="uid://dvwfn62sxitr2"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_pp7mq"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_4trut"]
@@ -19,6 +19,7 @@ shader_parameter/movementSpeed = 0.2
 
 [node name="Mapac2259f6View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_pp7mq")
+ReadableName = "Second after intro"
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
@@ -84,7 +85,7 @@ script = ExtResource("8_2baip")
 ReadableName = "Left"
 Uid = "926382c7-2031-4a19-bc30-75a929ec663f"
 Map = "res://Game/Prefabs/Maps/9f258048MapView.tscn"
-SpawnId = "8104745a-c967-4019-9127-fdb05f0fef46"
+SpawnId = "5228e542-c6b4-488f-89c3-85a0b3f538b5"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 
@@ -104,7 +105,7 @@ ReadableName = "Right"
 ConnectionType = 1
 Uid = "ebd515d2-16c7-4e87-8584-ff90df7471cc"
 Map = "res://Game/Prefabs/Maps/b18ca3d8MapView.tscn"
-SpawnId = "4a93fddb-4962-4573-9559-cd028a8b7e17"
+SpawnId = "6d3f236e-1708-4058-92de-11dfd37696c8"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 

@@ -1,12 +1,12 @@
-using GUtils.Executables;
-
 namespace GameTools.MapConnections.Scripts.UseCases;
 
-public sealed class WhenSaveStateButtonUseCase : IExecutable
+public sealed class WhenGraphEditNodeEndMoveUseCase
 {
     readonly SaveNodesStateUseCase _saveNodesStateUseCase;
 
-    public WhenSaveStateButtonUseCase(SaveNodesStateUseCase saveNodesStateUseCase)
+    public WhenGraphEditNodeEndMoveUseCase(
+        SaveNodesStateUseCase saveNodesStateUseCase
+        )
     {
         _saveNodesStateUseCase = saveNodesStateUseCase;
     }

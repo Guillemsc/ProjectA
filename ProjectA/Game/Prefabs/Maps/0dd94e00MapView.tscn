@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://25h7b28sw8nq"]
+[gd_scene load_steps=11 format=3 uid="uid://nljsbesrqk8c"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_rfptq"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_360xi"]
@@ -19,6 +19,7 @@ shader_parameter/movementSpeed = 0.2
 
 [node name="0dd94e00MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_rfptq")
+ReadableName = "Use velocity boosters medium dif"
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
@@ -72,8 +73,8 @@ position = Vector2(-65, -55)
 script = ExtResource("10_a8w6s")
 ReadableName = "Left"
 Uid = "9a66b720-9d93-41f8-85ed-39dbe4206f58"
-Map = "res://Game/Prefabs/Maps/ebd9925aMapView.tscn"
-SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+Map = "res://Game/Prefabs/Maps/5b6ebe2eMapView.tscn"
+SpawnId = "6d36e948-53bf-4948-a19c-1a2cba076d59"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 
@@ -93,7 +94,7 @@ ReadableName = "Right"
 ConnectionType = 1
 Uid = "e31eaf16-c0c1-42c2-8266-0bedef1e3ebc"
 Map = "res://Game/Prefabs/Maps/fb581aceMapView.tscn"
-SpawnId = "e3b6236e-76c6-456f-ad80-9b160a846c8a"
+SpawnId = "3f2419fa-d7e0-42d7-b1c2-2719e8285c9c"
 SpawnPosition = NodePath("SpawnPosition")
 Bounds = NodePath("Bounds")
 
