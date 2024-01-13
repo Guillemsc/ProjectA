@@ -97,7 +97,7 @@ script = ExtResource("4_c70n5")
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")
 
 [node name="InteractionArea" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(-0.5, 8)

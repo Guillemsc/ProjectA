@@ -16,7 +16,8 @@ public static class GameAngryBlocksInstaller
         builder.Bind<LoadAngryBlocksUseCase>()
             .FromFunction(c => new LoadAngryBlocksUseCase(
                 c.Resolve<IGameEntitiesService>(),
-                c.Resolve<WhenAngryBlockCollidedUseCase>()
+                c.Resolve<WhenAngryBlockCollidedUseCase>(),
+                c.Resolve<RefreshAngryBlockActiveCollidersUseCase>()
             ));
         
         builder.Bind<TickAngryBlockViewsUseCase>()
@@ -46,6 +47,10 @@ public static class GameAngryBlocksInstaller
 
         builder.Bind<WhenAngryBlockCollidedUseCase>()
             .FromFunction(c => new WhenAngryBlockCollidedUseCase(
+                c.Resolve<RefreshAngryBlockActiveCollidersUseCase>()
             ));
+
+        builder.Bind<RefreshAngryBlockActiveCollidersUseCase>()
+            .FromFunction(c => new RefreshAngryBlockActiveCollidersUseCase());
     }
 }

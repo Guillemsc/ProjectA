@@ -14,12 +14,24 @@ instance_dock/scenes=[{
 "name": "Props",
 "scenes": [{
 "scene": "res://Game/Prefabs/Views/SpikesView.tscn"
+}, {
+"scene": "res://Game/Prefabs/Views/TrampolineView.tscn"
+}, {
+"scene": "res://Game/Prefabs/Views/VelocityBoosterView.tscn"
+}, {
+"scene": "res://Game/Prefabs/Views/AngryBlockView.tscn"
+}, {
+"scene": "res://Game/Prefabs/Views/SawView.tscn"
+}, {
+"scene": "res://Game/Prefabs/Views/SawLineView.tscn"
 }],
 "scroll": 0
 }, {
 "name": "Maps",
 "scenes": [{
 "scene": "res://Game/Prefabs/Maps/9f258048MapView.tscn"
+}, {
+"scene": "res://Game/Prefabs/Maps/0dd94e00MapView.tscn"
 }],
 "scroll": 0
 }]
@@ -28,7 +40,7 @@ instance_dock/preview_resolution=Vector2i(64, 64)
 [application]
 
 config/name="Project A"
-run/main_scene="res://GameTools/MapConnections/Prefabs/MapConnectionsTool.tscn"
+run/main_scene="res://Game/Scenes/TestMapBootstrap.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Misc/icon.svg"
 
@@ -84,8 +96,9 @@ RestartCheat={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Map"
 2d_physics/layer_3="Platforms"
-2d_physics/layer_4="Collectable"
+2d_physics/layer_4="Interactions"
 2d_physics/layer_5="Visuals"
+2d_physics/layer_6="MapNoSquish"
 
 [rendering]
 

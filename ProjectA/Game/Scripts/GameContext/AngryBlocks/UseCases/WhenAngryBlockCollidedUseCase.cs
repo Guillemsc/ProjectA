@@ -7,6 +7,15 @@ namespace Game.GameContext.AngryBlocks.UseCases;
 
 public sealed class WhenAngryBlockCollidedUseCase
 {
+    readonly RefreshAngryBlockActiveCollidersUseCase _refreshAngryBlockActiveCollidersUseCase;
+
+    public WhenAngryBlockCollidedUseCase(
+        RefreshAngryBlockActiveCollidersUseCase refreshAngryBlockActiveCollidersUseCase
+        )
+    {
+        _refreshAngryBlockActiveCollidersUseCase = refreshAngryBlockActiveCollidersUseCase;
+    }
+
     public void Execute(AngryBlockView angryBlockView)
     {
         bool couldGetCurrentDirection = angryBlockView.MovementSequence!.TryGet(
@@ -18,7 +27,7 @@ public sealed class WhenAngryBlockCollidedUseCase
         {
             return;
         }
-
+        
         switch (cardinalDirection)
         {
             case CardinalDirection.Left:
@@ -47,5 +56,7 @@ public sealed class WhenAngryBlockCollidedUseCase
         angryBlockView.CurrentMovementSequenceIndex = angryBlockView.MovementSequence!.GetNextOrSmallestIndex(
             angryBlockView.CurrentMovementSequenceIndex
         );
+        
+        _refreshAngryBlockActiveCollidersUseCase.Execute(angryBlockView);
     }
 }

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GameTools/MapConnections/Scripts/Installers/MapConnectionsToolsInstaller.cs" id="1_d1g2j"]
 [ext_resource type="PackedScene" uid="uid://capmbad7y3d8g" path="res://GameTools/MapConnections/Prefabs/GraphNode.tscn" id="2_hxhet"]
 [ext_resource type="Resource" uid="uid://65ru2gqwh41d" path="res://Game/Configuration/Game/GameMapsConfiguration.tres" id="3_48why"]
-[ext_resource type="Resource" path="res://GameTools/MapConnections/Configurations/MapConnectionsToolNodeConfigurations.tres" id="3_xl7qh"]
+[ext_resource type="Resource" uid="uid://bs75dch683upo" path="res://GameTools/MapConnections/Configurations/MapConnectionsToolNodeConfigurations.tres" id="3_xl7qh"]
 
 [node name="MapConnectionsTool" type="Control" node_paths=PackedStringArray("GraphEdit", "RefreshMapListButton", "RefreshMapNodesButton")]
 layout_mode = 3

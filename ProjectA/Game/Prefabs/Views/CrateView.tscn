@@ -282,7 +282,7 @@ AnimatedSprite2D = NodePath("../AnimatedSprite2D")
 AnimationPlayer = NodePath("../AnimationPlayer")
 
 [node name="Area2D" type="StaticBody2D" parent="."]
-collision_layer = 2
+collision_layer = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_ia58x")

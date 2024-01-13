@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvag5vd720vs8"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_yt1e5"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_pnfp2"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="3_yctv0"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_k7uvt"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_p01w8"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_janoj"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_88im4"]
+[ext_resource type="PackedScene" uid="uid://fe6h15w823lv" path="res://Game/Prefabs/Views/AngryBlockView.tscn" id="9_vhf8j"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/AngryBlocks/Configurations/AngryBlockMovementConfiguration.cs" id="10_t8fdi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
+shader = ExtResource("2_pnfp2")
+shader_parameter/tilingScale = 1.341
+shader_parameter/movementX = 0.0
+shader_parameter/movementY = -1.0
+shader_parameter/movementSpeed = 0.2
+
+[sub_resource type="Resource" id="Resource_6k7gh"]
+script = ExtResource("10_t8fdi")
+Acceleration = 100.0
+MaxSpeed = 300.0
+
+[node name="044d7be1MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+script = ExtResource("1_yt1e5")
+ReadableName = "Angry blocks mid"
+AreaViews = [NodePath("AreaView")]
+ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bx5qr")
+position = Vector2(360, -102.5)
+scale = Vector2(13.75, 5.29688)
+texture = ExtResource("3_yctv0")
+
+[node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
+script = ExtResource("4_k7uvt")
+Bounds = NodePath("Bounds")
+CameraZoom = 2.3
+
+[node name="Bounds" type="Node2D" parent="AreaView"]
+z_index = 3
+position = Vector2(364, -106)
+script = ExtResource("5_p01w8")
+Size = Vector2(860, 310)
+
+[node name="AngryBlockView3" parent="AreaView" instance=ExtResource("9_vhf8j")]
+position = Vector2(255, -82)
+MovementSequence = Array[int]([3, 0, 1, 2])
+
+[node name="AngryBlockView" parent="AreaView" instance=ExtResource("9_vhf8j")]
+position = Vector2(16, -192)
+
+[node name="AngryBlockView2" parent="AreaView" instance=ExtResource("9_vhf8j")]
+position = Vector2(544, -240)
+MovementSequence = Array[int]([3, 1])
+
+[node name="AngryBlockView4" parent="AreaView" instance=ExtResource("9_vhf8j")]
+position = Vector2(544, -80)
+MovementSequence = Array[int]([3, 1])
+
+[node name="AngryBlockView5" parent="AreaView" instance=ExtResource("9_vhf8j")]
+position = Vector2(96, -144)
+MovementSequence = Array[int]([1, 2, 3, 0])
+
+[node name="AngryBlockView6" parent="AreaView" instance=ExtResource("9_vhf8j")]
+position = Vector2(96, -32)
+MovementConfiguration = SubResource("Resource_6k7gh")
+
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
+position = Vector2(-65, -55)
+script = ExtResource("8_janoj")
+ReadableName = "Left"
+SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView"]
+z_index = 3
+script = ExtResource("5_p01w8")
+Size = Vector2(10, 80)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
+position = Vector2(22, 20)
+
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
+position = Vector2(766, -210)
+script = ExtResource("8_janoj")
+ReadableName = "Right"
+ConnectionType = 1
+SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView2"]
+z_index = 3
+position = Vector2(33, -21)
+script = ExtResource("5_p01w8")
+Size = Vector2(10, 80)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView2"]
+position = Vector2(17, 0)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("9_88im4")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = 2
+layer_0/tile_data = PackedInt32Array(-655364, 65536, 6, -655363, 131072, 6, 458748, 65536, 5, -524293, 131072, 5, -589829, 131072, 5, -655365, 196608, 4, -524294, 65536, 1, -589830, 65536, 1, -655366, 65536, 1, 458747, 65536, 5, 458746, 65536, 5, -917511, 65536, 1, -851975, 65536, 1, -786439, 65536, 1, -655367, 65536, 5, -589831, 65536, 1, -524295, 65536, 1, 589822, 65536, 1, 524284, 65536, 1, 524283, 65536, 1, 524282, 65536, 1, -458759, 65536, 1, -458758, 65536, 1, -393222, 65536, 6, -458757, 131072, 5, -393221, 131072, 6, 65530, 65536, 1, 262138, 65536, 1, 196602, 65536, 1, 131066, 65536, 1, -720903, 65536, 5, -720899, 131072, 5, -786435, 131072, 5, -720900, 65536, 5, -720901, 65536, 5, -720902, 65536, 5, -786438, 65536, 5, -786437, 65536, 5, -786436, 65536, 5, -851971, 196608, 4, -1, 786432, 5, -65536, 786432, 5, -65535, 786432, 5, -65534, 786432, 5, -65533, 786432, 5, -2, 786432, 5, -3, 786432, 5, -4, 786432, 5, -5, 786432, 5, -786386, 786432, 5, -786385, 786432, 5, -786384, 786432, 5, -786383, 786432, 5, -786382, 786432, 5, -786387, 786432, 5, -65532, 786432, 5, -131068, 786432, 5, -196604, 786432, 5, -262140, 786432, 5, -327676, 786432, 5, -393212, 786432, 5, -458748, 786432, 5, -524284, 786432, 5, -589820, 786432, 5, -655356, 786432, 5, -720892, 786432, 5, -393217, 786432, 5, -458753, 786432, 5, -524289, 786432, 5, -589825, 786432, 5, -655361, 786432, 5, -720897, 786432, 5, -786433, 786432, 5, -851969, 786432, 5, -917505, 786432, 5, -983041, 786432, 5, -1048577, 786432, 5, -1114112, 786432, 5, -1114111, 786432, 5, -1114110, 786432, 5, -1114109, 786432, 5, -1114108, 786432, 5, -1114107, 786432, 5, -1114106, 786432, 5, -1114105, 786432, 5, -1114104, 786432, 5, -1114103, 786432, 5, -1114102, 786432, 5, -1114101, 786432, 5, -1114100, 786432, 5, -1114099, 786432, 5, -1114098, 786432, 5, -1114097, 786432, 5, -1114096, 786432, 5, -1114095, 786432, 5, -1114094, 786432, 5, -1114093, 786432, 5, -1114092, 786432, 5, -1114091, 786432, 5, -1114090, 786432, 5, -1114089, 786432, 5, -1114088, 786432, 5, -1114087, 786432, 5, -1114086, 786432, 5, -1114085, 786432, 5, -1114084, 786432, 5, -1114083, 786432, 5, -1114082, 786432, 5, -1114081, 786432, 5, -1114080, 786432, 5, -1114079, 786432, 5, -1114078, 786432, 5, -1114077, 786432, 5, -1048541, 786432, 5, -983005, 786432, 5, -917469, 786432, 5, -851933, 786432, 5, -786397, 786432, 5, -720861, 786432, 5, -655325, 786432, 5, -589789, 786432, 5, -524253, 786432, 5, -720891, 786432, 5, -720890, 786432, 5, -720889, 786432, 5, -720888, 786432, 5, -720887, 786432, 5, -720886, 786432, 5, -720885, 786432, 5, -720884, 786432, 5, -720883, 786432, 5, -720882, 786432, 5, -720881, 786432, 5, -720880, 786432, 5, -720879, 786432, 5, -720878, 786432, 5, -720877, 786432, 5, -720876, 786432, 5, -720875, 786432, 5, -720874, 786432, 5, -720873, 786432, 5, -720872, 786432, 5, -720871, 786432, 5, -720870, 786432, 5, -458717, 786432, 5, -393181, 786432, 5, -327645, 786432, 5, -262109, 786432, 5, -262110, 786432, 5, -262111, 786432, 5, -262112, 786432, 5, -262113, 786432, 5, -262114, 786432, 5, -262115, 786432, 5, -262116, 786432, 5, -262117, 786432, 5, -262118, 786432, 5, -262119, 786432, 5, -262120, 786432, 5, -262121, 786432, 5, -262122, 786432, 5, -262123, 786432, 5, -262124, 786432, 5, -262125, 786432, 5, -262126, 786432, 5, -262127, 786432, 5, -262128, 786432, 5, -262129, 786432, 5, -262130, 786432, 5, -262131, 786432, 5, -262132, 786432, 5, -262133, 786432, 5, -720869, 786432, 5, -720868, 786432, 5, -720867, 786432, 5, -720866, 786432, 5, -655343, 786432, 5, -589807, 786432, 5, -524271, 786432, 5, -327659, 786432, 5, -393195, 786432, 5, -458731, 786432, 5, -65531, 786432, 5, -65530, 786432, 5, -65529, 786432, 5, -65528, 786432, 5, -65527, 786432, 5, -65526, 786432, 5, -65525, 786432, 5, -65524, 786432, 5, -65523, 786432, 5, -65522, 786432, 5, -65521, 786432, 5, -65520, 786432, 5, -65519, 786432, 5, 17, 786432, 5, 65553, 786432, 5, 65554, 786432, 5, 65555, 786432, 5, 65556, 786432, 5, 65557, 786432, 5, 65558, 786432, 5, 65559, 786432, 5, 65560, 786432, 5, 65561, 786432, 5, 65562, 786432, 5, 26, 786432, 5, -65510, 786432, 5, -65509, 786432, 5, -65508, 786432, 5, -65507, 786432, 5, -65506, 786432, 5, -65505, 786432, 5, -65504, 786432, 5, -65503, 786432, 5, -65502, 786432, 5, -65501, 786432, 5, -65500, 786432, 5, -65499, 786432, 5, -65498, 786432, 5, -65497, 786432, 5, -65496, 786432, 5, -65495, 786432, 5, -65494, 786432, 5, -65493, 786432, 5, -131033, 786432, 5, -196569, 786432, 5, -786393, 786432, 5, -720857, 786432, 5, -655321, 786432, 5, -589785, 786432, 5, -524249, 786432, 5, -458713, 786432, 5, -393177, 786432, 5, -327641, 786432, 5, -262105, 786432, 5, -786392, 786432, 5, -786391, 786432, 5, -786390, 786432, 5, -786389, 786432, 5, -786388, 786432, 5, -1114076, 786432, 5, -1114075, 786432, 5, -1114074, 786432, 5, -1114073, 786432, 5, -1114072, 786432, 5, -1114071, 786432, 5, -1114070, 786432, 5, -1114069, 786432, 5, -1114068, 786432, 5, -1114067, 786432, 5, -1114066, 786432, 5, -1114065, 786432, 5, -1114064, 786432, 5, -1114063, 786432, 5, -1114062, 786432, 5)
+layer_1/name = "Content-2"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Content-1"
+layer_2/tile_data = PackedInt32Array()

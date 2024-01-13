@@ -18,7 +18,7 @@ size = Vector2(16, 26)
 [node name="PlayerView" type="CharacterBody2D" node_paths=PackedStringArray("CharacterBody2DCollisionCallbacks", "AnimatedSprite", "AnimationPlayer", "LeftWallDetector", "RightWallDetector", "InteractionsDetector", "LeftSqushedRayCasts", "RightSqushedRayCasts", "TopSqushedRayCasts", "BottomSqushedRayCasts")]
 z_index = 5
 position = Vector2(3, 1)
-collision_mask = 6
+collision_mask = 38
 script = ExtResource("1_6jkvy")
 CharacterBody2DCollisionCallbacks = NodePath("CharacterBody2DCollisionCallbacks")
 AnimatedSprite = NodePath("AnimatedSprite2D")
@@ -50,7 +50,7 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_si2w1")
 
 [node name="LeftWallDetector" type="Area2D" parent="."]
-collision_mask = 6
+collision_mask = 38
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWallDetector"]
 position = Vector2(-9, 7)
@@ -59,7 +59,7 @@ shape = SubResource("RectangleShape2D_oa40n")
 debug_color = Color(0.984314, 0, 0.337255, 0.419608)
 
 [node name="RightWallDetector" type="Area2D" parent="."]
-collision_mask = 6
+collision_mask = 38
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWallDetector"]
 position = Vector2(9, 7.25)
@@ -68,7 +68,7 @@ shape = SubResource("RectangleShape2D_oa40n")
 debug_color = Color(0.984314, 0, 0.337255, 0.419608)
 
 [node name="InteractionsDetector" type="Area2D" parent="."]
-collision_mask = 10
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionsDetector"]
 position = Vector2(0, 3)
@@ -81,58 +81,70 @@ debug_color = Color(0, 0.643137, 0.32549, 0.419608)
 position = Vector2(-5, 4)
 target_position = Vector2(-4, 0)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="LeftRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-5, -9)
+position = Vector2(-5, -6)
 target_position = Vector2(-4, 0)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="LeftRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-5, 15)
+position = Vector2(-5, 12)
 target_position = Vector2(-4, 0)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="RightRayCast2D" type="RayCast2D" parent="SquishedRays"]
 position = Vector2(5, 4)
 target_position = Vector2(4, 0)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="RightRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(5, -9)
+position = Vector2(5, -6)
 target_position = Vector2(4, 0)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="RightRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(5, 15)
+position = Vector2(5, 11)
 target_position = Vector2(4, 0)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="TopRayCast2D" type="RayCast2D" parent="SquishedRays"]
 position = Vector2(0, -7)
 target_position = Vector2(0, -4)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="TopRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-7, -7)
+position = Vector2(-6, -7)
 target_position = Vector2(0, -4)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="TopRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(7, -7)
+position = Vector2(6, -7)
 target_position = Vector2(0, -4)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="BottomRayCast2D" type="RayCast2D" parent="SquishedRays"]
 position = Vector2(0, 13)
 target_position = Vector2(0, 4)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="BottomRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-7, 13)
+position = Vector2(-6, 13)
 target_position = Vector2(0, 4)
 collision_mask = 6
+collide_with_areas = true
 
 [node name="BottomRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(7, 13)
+position = Vector2(6, 13)
 target_position = Vector2(0, 4)
 collision_mask = 6
+collide_with_areas = true

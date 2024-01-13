@@ -1,0 +1,121 @@
+[gd_scene load_steps=14 format=3 uid="uid://b1vs0gqn71uko"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_iyuty"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_qwsp0"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="3_d1ohx"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_fbntb"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_i2md7"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="7_2rf6k"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_jumyk"]
+[ext_resource type="PackedScene" uid="uid://fe6h15w823lv" path="res://Game/Prefabs/Views/AngryBlockView.tscn" id="9_6yodb"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/AngryBlocks/Configurations/AngryBlockMovementConfiguration.cs" id="10_eun3j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
+shader = ExtResource("2_qwsp0")
+shader_parameter/tilingScale = 1.341
+shader_parameter/movementX = 0.0
+shader_parameter/movementY = -1.0
+shader_parameter/movementSpeed = 0.2
+
+[sub_resource type="Resource" id="Resource_wjmlj"]
+script = ExtResource("10_eun3j")
+Acceleration = 200.0
+MaxSpeed = 400.0
+
+[sub_resource type="Resource" id="Resource_tt1eb"]
+script = ExtResource("10_eun3j")
+Acceleration = 200.0
+MaxSpeed = 150.0
+
+[sub_resource type="Resource" id="Resource_yx8j2"]
+script = ExtResource("10_eun3j")
+Acceleration = 250.0
+MaxSpeed = 200.0
+
+[node name="68a8535bMapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+script = ExtResource("1_iyuty")
+ReadableName = "Angry blocks mid"
+AreaViews = [NodePath("AreaView")]
+ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bx5qr")
+position = Vector2(360, -102.5)
+scale = Vector2(13.75, 5.29688)
+texture = ExtResource("3_d1ohx")
+
+[node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
+script = ExtResource("4_fbntb")
+Bounds = NodePath("Bounds")
+CameraZoom = 2.3
+
+[node name="Bounds" type="Node2D" parent="AreaView"]
+z_index = 3
+position = Vector2(281, -90)
+script = ExtResource("5_i2md7")
+Size = Vector2(680, 220)
+
+[node name="AngryBlockView" parent="AreaView" instance=ExtResource("9_6yodb")]
+position = Vector2(127, -112)
+MovementSequence = Array[int]([2, 0])
+
+[node name="AngryBlockView2" parent="AreaView" instance=ExtResource("9_6yodb")]
+position = Vector2(224, -144)
+MovementSequence = Array[int]([2, 0])
+MovementConfiguration = SubResource("Resource_wjmlj")
+
+[node name="AngryBlockView3" parent="AreaView" instance=ExtResource("9_6yodb")]
+position = Vector2(323, -32)
+MovementSequence = Array[int]([0, 2])
+MovementConfiguration = SubResource("Resource_tt1eb")
+
+[node name="AngryBlockView4" parent="AreaView" instance=ExtResource("9_6yodb")]
+position = Vector2(464, -80)
+MovementSequence = Array[int]([2, 0])
+MovementConfiguration = SubResource("Resource_yx8j2")
+
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
+position = Vector2(-65, -55)
+script = ExtResource("7_2rf6k")
+ReadableName = "Left"
+SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView"]
+z_index = 3
+script = ExtResource("5_i2md7")
+Size = Vector2(10, 80)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
+position = Vector2(22, 20)
+
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
+position = Vector2(594, -70)
+script = ExtResource("7_2rf6k")
+ReadableName = "Right"
+ConnectionType = 1
+SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView2"]
+z_index = 3
+position = Vector2(33, -21)
+script = ExtResource("5_i2md7")
+Size = Vector2(10, 160)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView2"]
+position = Vector2(15, 32)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("8_jumyk")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = 2
+layer_0/tile_data = PackedInt32Array(-655364, 65536, 6, -655363, 131072, 6, 458748, 65536, 5, -524293, 131072, 5, -589829, 131072, 5, -655365, 196608, 4, -524294, 65536, 1, -589830, 65536, 1, -655366, 65536, 1, 458747, 65536, 5, 458746, 65536, 5, -917511, 65536, 1, -851975, 65536, 1, -786439, 65536, 1, -655367, 65536, 5, -589831, 65536, 1, -524295, 65536, 1, 589822, 65536, 1, 524284, 65536, 1, 524283, 65536, 1, 524282, 65536, 1, -458759, 65536, 1, -458758, 65536, 1, -393222, 65536, 6, -458757, 131072, 5, -393221, 131072, 6, 65530, 65536, 1, 262138, 65536, 1, 196602, 65536, 1, 131066, 65536, 1, -720903, 65536, 5, -720899, 131072, 5, -786435, 131072, 5, -720900, 65536, 5, -720901, 65536, 5, -720902, 65536, 5, -786438, 65536, 5, -786437, 65536, 5, -786436, 65536, 5, -851971, 196608, 4, -1, 786432, 5, -65536, 786432, 5, -65535, 786432, 5, -65534, 786432, 5, -65533, 786432, 5, -2, 786432, 5, -3, 786432, 5, -4, 786432, 5, -5, 786432, 5, -65532, 786432, 5, -65531, 786432, 5, -65530, 786432, 5, -65529, 786432, 5, -65528, 786432, 5, -65527, 786432, 5, -65526, 786432, 5, -65525, 786432, 5, -65524, 786432, 5, -65523, 786432, 5, -65522, 786432, 5, -65521, 786432, 5, -65520, 786432, 5, -65519, 786432, 5, -655362, 786432, 5, -655361, 786432, 5, -720896, 786432, 5, -720895, 786432, 5, -720894, 786432, 5, -720893, 786432, 5, -720892, 786432, 5, -720891, 786432, 5, -720890, 786432, 5, -720889, 786432, 5, -720888, 786432, 5, -720887, 786432, 5, -720886, 786432, 5, -720885, 786432, 5, -720884, 786432, 5, -720883, 786432, 5, -720882, 786432, 5, -720881, 786432, 5, -720880, 786432, 5, -720879, 786432, 5, -720878, 786432, 5, -720877, 786432, 5, -65518, 786432, 5, -65517, 786432, 5, -65516, 786432, 5, -65515, 786432, 5, -65514, 786432, 5, -65513, 786432, 5, -65512, 786432, 5, -65511, 786432, 5, -65510, 786432, 5, -65509, 786432, 5, -65508, 786432, 5, -655341, 786432, 5, -589805, 786432, 5, -524269, 786432, 5, -458733, 786432, 5, -458732, 786432, 5, -458731, 786432, 5, -458730, 786432, 5, -458729, 786432, 5, -458728, 786432, 5, -458727, 786432, 5, -458726, 786432, 5, -458725, 786432, 5, -458724, 786432, 5, -458723, 786432, 5, -524259, 786432, 5, -589795, 786432, 5, -655331, 786432, 5, -720867, 786432, 5, -720866, 786432, 5, -720865, 786432, 5, -720864, 786432, 5, -720863, 786432, 5, -720862, 786432, 5, -720861, 786432, 5, -720860, 786432, 5, -720859, 786432, 5, -720858, 786432, 5, -65507, 786432, 5, -65506, 786432, 5, -65505, 786432, 5, -65504, 786432, 5, -65503, 786432, 5, -65502, 786432, 5, -65501, 786432, 5, -65500, 786432, 5, -65499, 786432, 5, -65498, 786432, 5, -655354, 786432, 5, -589818, 786432, 5, -589817, 786432, 5, -589816, 786432, 5, -589815, 786432, 5, -655351, 786432, 5)
+layer_1/name = "Content-2"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Content-1"
+layer_2/tile_data = PackedInt32Array()

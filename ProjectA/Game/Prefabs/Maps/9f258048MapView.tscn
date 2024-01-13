@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/LetterCollectableView.tscn" id="6_6i5mk"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="7_bmw4d"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_jgjs2"]
-[ext_resource type="PackedScene" uid="uid://khtk2n2ckl0x" path="res://Game/Prefabs/CeelingLanternView.tscn" id="9_nfejy"]
+[ext_resource type="PackedScene" uid="uid://khtk2n2ckl0x" path="res://Game/Prefabs/Props/CeelingLanternView.tscn" id="9_nfejy"]
 [ext_resource type="PackedScene" uid="uid://fe6h15w823lv" path="res://Game/Prefabs/Views/AngryBlockView.tscn" id="11_34ove"]
 [ext_resource type="PackedScene" uid="uid://2t7lrktylk32" path="res://Game/Prefabs/Views/SawView.tscn" id="12_1rsvr"]
 [ext_resource type="Resource" uid="uid://1i4cvgrmemne" path="res://Game/Configuration/Saws/NormalSawMovementConfiguration.tres" id="13_pguf0"]

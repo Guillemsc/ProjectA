@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameMapsConfiguration" load_steps=17 format=3 uid="uid://65ru2gqwh41d"]
+[gd_resource type="Resource" script_class="GameMapsConfiguration" load_steps=18 format=3 uid="uid://65ru2gqwh41d"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Configurations/GameMapsConfiguration.cs" id="1_42wxd"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Configurations/MapConfiguration.cs" id="1_fugkf"]
@@ -59,7 +59,11 @@ Map = "res://Game/Prefabs/Maps/Outro1MapView.tscn"
 script = ExtResource("1_fugkf")
 Map = "res://Game/Prefabs/Maps/Outro2MapView.tscn"
 
+[sub_resource type="Resource" id="Resource_vpf75"]
+script = ExtResource("1_fugkf")
+Map = "res://Game/Prefabs/Maps/044d7be1MapView.tscn"
+
 [resource]
 script = ExtResource("1_42wxd")
 TestMap = "res://Game/Prefabs/Maps/Intro1MapView.tscn"
-MapConfigurations = [SubResource("Resource_6v6sq"), SubResource("Resource_j37vf"), SubResource("Resource_ursjm"), SubResource("Resource_4mfyo"), SubResource("Resource_we4xx"), SubResource("Resource_wmsn4"), SubResource("Resource_qwlh2"), SubResource("Resource_rrjmy"), SubResource("Resource_fy8am"), SubResource("Resource_5y1v6"), SubResource("Resource_svuc2"), SubResource("Resource_acng6"), SubResource("Resource_y8tu4"), SubResource("Resource_6oar4")]
+MapConfigurations = [SubResource("Resource_6v6sq"), SubResource("Resource_j37vf"), SubResource("Resource_ursjm"), SubResource("Resource_4mfyo"), SubResource("Resource_we4xx"), SubResource("Resource_wmsn4"), SubResource("Resource_qwlh2"), SubResource("Resource_rrjmy"), SubResource("Resource_fy8am"), SubResource("Resource_5y1v6"), SubResource("Resource_svuc2"), SubResource("Resource_acng6"), SubResource("Resource_y8tu4"), SubResource("Resource_6oar4"), SubResource("Resource_vpf75")]
