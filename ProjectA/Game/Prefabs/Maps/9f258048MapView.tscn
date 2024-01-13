@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ch63tbkd35fj2"]
+[gd_scene load_steps=18 format=3 uid="uid://bj63dlqghdlan"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_lcu0i"]
 [ext_resource type="Environment" uid="uid://bxd08qaa6wc8d" path="res://Game/Environments/MapEnvironment.tres" id="2_cavco"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://fe6h15w823lv" path="res://Game/Prefabs/Views/AngryBlockView.tscn" id="11_34ove"]
 [ext_resource type="PackedScene" uid="uid://2t7lrktylk32" path="res://Game/Prefabs/Views/SawView.tscn" id="12_1rsvr"]
 [ext_resource type="Resource" uid="uid://1i4cvgrmemne" path="res://Game/Configuration/Saws/NormalSawMovementConfiguration.tres" id="13_pguf0"]
+[ext_resource type="PackedScene" uid="uid://dpic3kcbxjteq" path="res://Game/Prefabs/Views/SawLineView.tscn" id="14_60puj"]
 [ext_resource type="Texture2D" uid="uid://dy2kry5w6nkvp" path="res://Game/Textures/Saw/Saw-Chain.png" id="14_u4eno"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
@@ -30,6 +31,7 @@ point_count = 3
 
 [node name="Map9f258048View" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
 script = ExtResource("1_lcu0i")
+ReadableName = "Fist map after intro"
 AreaViews = [NodePath("AreaView")]
 ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
 
@@ -61,12 +63,15 @@ Size = Vector2(555, 224)
 [node name="LetterCollectableView" parent="AreaView" instance=ExtResource("6_6i5mk")]
 position = Vector2(272, -13)
 
-[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 position = Vector2(-32, -212)
 script = ExtResource("7_bmw4d")
-Bounds = NodePath("Bounds")
-SpawnId = "b5d60859-df84-42dd-bb31-f3232330c4ba"
+ReadableName = "Left"
+Uid = "7b7fc73c-0cdf-4917-8ff6-2a833dea59cf"
+Map = "res://Game/Prefabs/Maps/Intro2MapView.tscn"
+SpawnId = "74643ed7-f7be-4e5a-a293-37b77eeaa025"
 SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]
 script = ExtResource("5_kmnj6")
@@ -76,13 +81,16 @@ DebugColor = Color(0, 0.54902, 0.921569, 1)
 [node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
 position = Vector2(0, 4)
 
-[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 position = Vector2(479, -73)
 script = ExtResource("7_bmw4d")
-Bounds = NodePath("Bounds")
+ReadableName = "Right"
+ConnectionType = 1
+Uid = "5228e542-c6b4-488f-89c3-85a0b3f538b5"
 Map = "res://Game/Prefabs/Maps/ac2259f6MapView.tscn"
 SpawnId = "8104745a-c967-4019-9127-fdb05f0fef46"
 SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView2"]
 position = Vector2(1, -7)
@@ -123,19 +131,14 @@ position = Vector2(12, -26)
 curve = SubResource("Curve2D_78x7l")
 
 [node name="SawView" parent="Path2D" instance=ExtResource("12_1rsvr")]
-position = Vector2(86.4741, -29)
+position = Vector2(86.4742, -29)
 rotation = -1.5708
 progress = 94.4947
 rotates = false
 loop = false
 MovementConfiguration = ExtResource("13_pguf0")
 
-[node name="Line2D" type="Line2D" parent="Path2D"]
-position = Vector2(0, -3)
-points = PackedVector2Array(60, 42, 60, -30)
-width = 4.0
-texture = ExtResource("14_u4eno")
-texture_mode = 1
+[node name="SawLineView" parent="Path2D" instance=ExtResource("14_60puj")]
 
 [node name="Line2D2" type="Line2D" parent="Path2D"]
 position = Vector2(5, 0)

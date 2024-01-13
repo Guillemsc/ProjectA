@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace Game.GameContext.Maps.Configurations;
 
@@ -6,4 +7,5 @@ namespace Game.GameContext.Maps.Configurations;
 public partial class GameMapsConfiguration : Resource
 {
     [Export(PropertyHint.File, "*.tscn,*.scn")] public string? TestMap;
+    [Export] public Array<MapConfiguration> MapConfigurations = new();
 }

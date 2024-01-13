@@ -83,12 +83,12 @@ target_position = Vector2(-4, 0)
 collision_mask = 6
 
 [node name="LeftRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-5, -10)
+position = Vector2(-5, -9)
 target_position = Vector2(-4, 0)
 collision_mask = 6
 
 [node name="LeftRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-5, 16)
+position = Vector2(-5, 15)
 target_position = Vector2(-4, 0)
 collision_mask = 6
 
@@ -98,12 +98,12 @@ target_position = Vector2(4, 0)
 collision_mask = 6
 
 [node name="RightRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(5, -10)
+position = Vector2(5, -9)
 target_position = Vector2(4, 0)
 collision_mask = 6
 
 [node name="RightRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(5, 16)
+position = Vector2(5, 15)
 target_position = Vector2(4, 0)
 collision_mask = 6
 
@@ -113,12 +113,12 @@ target_position = Vector2(0, -4)
 collision_mask = 6
 
 [node name="TopRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-8, -7)
+position = Vector2(-7, -7)
 target_position = Vector2(0, -4)
 collision_mask = 6
 
 [node name="TopRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(8, -7)
+position = Vector2(7, -7)
 target_position = Vector2(0, -4)
 collision_mask = 6
 
@@ -128,11 +128,11 @@ target_position = Vector2(0, 4)
 collision_mask = 6
 
 [node name="BottomRayCast2D2" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(-8, 13)
+position = Vector2(-7, 13)
 target_position = Vector2(0, 4)
 collision_mask = 6
 
 [node name="BottomRayCast2D3" type="RayCast2D" parent="SquishedRays"]
-position = Vector2(8, 13)
+position = Vector2(7, 13)
 target_position = Vector2(0, 4)
 collision_mask = 6

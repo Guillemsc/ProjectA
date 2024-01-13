@@ -21,6 +21,6 @@ public partial class GameConfiguration : Resource
     [Export] public GameCollectablesConfiguration? CollectablesConfiguration;
     [Export] public GameCratesConfiguration? CratesConfiguration;
     [Export] public GameDialoguesConfiguration? DialoguesConfiguration;
-    [Export] public GamePauseConfiguration? GamePauseConfiguration;
-    [Export] public GameAngryBlocksConfiguration? GameAngryBlocksConfiguration;
+    [Export] public GamePauseConfiguration? PauseConfiguration;
+    [Export] public GameAngryBlocksConfiguration? AngryBlocksConfiguration;
 }

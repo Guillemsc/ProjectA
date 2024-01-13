@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.General.ApplicationContexts;
@@ -39,7 +40,7 @@ public sealed class KillPlayerAndReloadUseCase
         {
             return;
         }
-
+        
         _playerKillersData.ReloadingBecauseOfPlayerKiller = true;
         
         async Task Play(CancellationToken cancellationToken)
@@ -52,6 +53,11 @@ public sealed class KillPlayerAndReloadUseCase
                 true,
                 _gameApplicationContextConfiguration.PlayerDirection
             );
+
+            if (_loadingService.IsLoading)
+            {
+                int i = 0;
+            }
             
             _loadingService.New()
                 .EnqueueUnloadApplicationContext<GameApplicationContext>()

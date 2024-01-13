@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://capmbad7y3d8g"]
+
+[ext_resource type="Script" path="res://GameTools/MapConnections/Scripts/Views/MapConnectionNodeView.cs" id="1_7o2tp"]
+
+[node name="GraphNode" type="GraphNode"]
+offset_right = 119.0
+offset_bottom = 85.0
+mouse_filter = 1
+resizable = true
+title = "Node"
+script = ExtResource("1_7o2tp")

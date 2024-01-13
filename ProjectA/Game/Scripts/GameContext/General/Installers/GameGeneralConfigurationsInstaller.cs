@@ -29,7 +29,7 @@ public static class GameGeneralConfigurationsInstaller
         builder.Bind<GameCollectablesConfiguration>().FromInstance(gameConfiguration.CollectablesConfiguration!);
         builder.Bind<GameCratesConfiguration>().FromInstance(gameConfiguration.CratesConfiguration!);
         builder.Bind<GameDialoguesConfiguration>().FromInstance(gameConfiguration.DialoguesConfiguration!);
-        builder.Bind<GamePauseConfiguration>().FromInstance(gameConfiguration.GamePauseConfiguration!);
-        builder.Bind<GameAngryBlocksConfiguration>().FromInstance(gameConfiguration.GameAngryBlocksConfiguration!);
+        builder.Bind<GamePauseConfiguration>().FromInstance(gameConfiguration.PauseConfiguration!);
+        builder.Bind<GameAngryBlocksConfiguration>().FromInstance(gameConfiguration.AngryBlocksConfiguration!);
     }
 }

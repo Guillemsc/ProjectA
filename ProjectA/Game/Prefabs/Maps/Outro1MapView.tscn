@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bmsl0ax2o2mpk"]
+[gd_scene load_steps=23 format=3 uid="uid://fqnmmovjfqq0"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_77oal"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_tfl54"]
@@ -92,12 +92,14 @@ position = Vector2(750, -387)
 script = ExtResource("5_yp6ta")
 Size = Vector2(1675, 900)
 
-[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 position = Vector2(-65, 8)
 script = ExtResource("7_skbvm")
-Bounds = NodePath("Bounds")
+ReadableName = "Left"
+Uid = "3deaaa43-ef56-4580-a6f7-82746f749b1f"
 SpawnId = "b5d60859-df84-42dd-bb31-f3232330c4ba"
 SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]
 script = ExtResource("5_yp6ta")
@@ -107,13 +109,16 @@ DebugColor = Color(0, 0.54902, 0.921569, 1)
 [node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
 position = Vector2(15, 4)
 
-[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 position = Vector2(1442, -837)
 script = ExtResource("7_skbvm")
-Bounds = NodePath("Bounds")
+ReadableName = "Right"
+ConnectionType = 1
+Uid = "401e5225-ed58-4a47-bad6-0e06cd294b3b"
 Map = "res://Game/Prefabs/Maps/Outro2MapView.tscn"
 SpawnId = "8104745a-c967-4019-9127-fdb05f0fef46"
 SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView2"]
 position = Vector2(1, -2)

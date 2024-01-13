@@ -28,7 +28,7 @@ instance_dock/preview_resolution=Vector2i(64, 64)
 [application]
 
 config/name="Project A"
-run/main_scene="res://Game/Scenes/TestMapBootstrap.tscn"
+run/main_scene="res://GameTools/MapConnections/Prefabs/MapConnectionsTool.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Misc/icon.svg"
 
@@ -52,7 +52,7 @@ project/assembly_name="Project A"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GTestsGodot/plugin.cfg", "res://addons/InstanceDock/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg")
 
 [input]
 

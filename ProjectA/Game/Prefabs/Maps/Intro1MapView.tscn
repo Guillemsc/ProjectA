@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cdf7ml70y4jua"]
+[gd_scene load_steps=26 format=3 uid="uid://bfwc3eslvy1dy"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_ei1bd"]
 [ext_resource type="Environment" uid="uid://bxd08qaa6wc8d" path="res://Game/Environments/MapEnvironment.tres" id="2_4f2rh"]
@@ -134,12 +134,13 @@ texture = ExtResource("12_ifota")
 position = Vector2(-39, -68)
 texture = ExtResource("10_5bfs5")
 
-[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 z_index = 3
 position = Vector2(5, 7)
 script = ExtResource("13_4832e")
-Bounds = NodePath("Bounds")
+Uid = "4e146837-b0fe-464d-8a7c-a7489cdddd7f"
 SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView"]
 script = ExtResource("5_nn7m0")
@@ -148,14 +149,17 @@ DebugColor = Color(0, 0.54902, 0.921569, 1)
 
 [node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
 
-[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("Bounds", "SpawnPosition")]
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 z_index = 3
 position = Vector2(476, 27)
 script = ExtResource("13_4832e")
-Bounds = NodePath("Bounds")
+ReadableName = "Left"
+ConnectionType = 1
+Uid = "318bfa82-d6d9-46f3-b6c8-c82beef0c521"
 Map = "res://Game/Prefabs/Maps/Intro2MapView.tscn"
-SpawnId = "318bfa82-d6d9-46f3-b6c8-c82beef0c521"
+SpawnId = "b13cfe71-bb2e-439a-8775-5cbce5b1b157"
 SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
 
 [node name="Bounds" type="Node2D" parent="ConnectionView2"]
 position = Vector2(5, -65)

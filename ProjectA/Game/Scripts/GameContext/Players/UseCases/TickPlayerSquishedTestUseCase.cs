@@ -28,6 +28,11 @@ public sealed class TickPlayerSquishedTestUseCase : IExecutable
         {
             return;
         }
+        
+        if (!playerView.CanUpdateMovement)
+        {
+            return;
+        }
 
         bool leftCollision = playerView.LeftSqushedRayCasts.IsAnyColliding();
         bool rightCollision = playerView.RightSqushedRayCasts.IsAnyColliding();

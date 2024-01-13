@@ -54,11 +54,15 @@ public sealed class KillPlayerUseCase
                 .SetEasing(Easing.OutCubic)
                 .PlayAsync(cancellationToken);
         }
+        
+        if(cancellationToken.IsCancellationRequested) return;
 
         playerView.Modulate = new Color(1, 1, 1);
             
         playerView.AnimatedSprite!.Play(PlayerAnimationState.Disappear);
         await playerView.AnimatedSprite!.AwaitCompletition(cancellationToken);
+        
+        if(cancellationToken.IsCancellationRequested) return;
             
         playerView.AnimatedSprite!.Visible = false;
     }

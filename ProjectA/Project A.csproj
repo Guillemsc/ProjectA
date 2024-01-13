@@ -12,6 +12,7 @@
     <DefineConstants>GODOT;GODOT_WINDOWS;GODOT_PC;GODOT4;GODOT4_2;GODOT4_2_0;GODOT4_OR_GREATER;GODOT4_0_OR_GREATER;GODOT4_1_OR_GREATER;GODOT4_2_OR_GREATER;GODOT4_2_0_OR_GREATER;TRACE;TOOLS;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NUnit" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>
