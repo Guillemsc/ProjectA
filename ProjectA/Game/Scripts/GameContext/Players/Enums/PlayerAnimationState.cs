@@ -10,5 +10,8 @@ public enum PlayerAnimationState
     DoubleJump,
     Fall,
     Wall,
+    Crouch,
+    Uncrouch,
+    LookUp,
     Sit,
 }

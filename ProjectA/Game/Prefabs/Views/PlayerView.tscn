@@ -38,7 +38,7 @@ CharacterBody2D = NodePath("..")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 4
 sprite_frames = ExtResource("3_8aajx")
-animation = &"Sit"
+animation = &"LookUp"
 script = ExtResource("4_ov08i")
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]

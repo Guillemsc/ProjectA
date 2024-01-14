@@ -60,6 +60,7 @@ public sealed class TickPlayerMovementUseCase
         newVelocity = HandleJump(playerView, newVelocity, delta);
         newVelocity = HandleHorizontalMovement(playerView, newVelocity, delta);
         
+        HandleCrouchAndLookUp(playerView);
         HandleUncontrolledSpeed(playerView, delta);
 
         playerView.MovementVelocity = newVelocity + playerView.UncontrolledSpeed;
@@ -170,22 +171,32 @@ public sealed class TickPlayerMovementUseCase
 
     Vector2 HandleHorizontalMovement(PlayerView playerView, Vector2 newVelocity, float delta)
     {
-        Vector2 movementDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        int horizontalDirection = 0;
 
-        bool thereWasHorizontalMovement = movementDirection.X != 0f && playerView.CanMove;
+        if (Input.IsActionPressed("ui_left"))
+        {
+            horizontalDirection -= 1;
+        }
+        
+        if (Input.IsActionPressed("ui_right"))
+        {
+            horizontalDirection += 1;
+        }
+
+        bool thereWasHorizontalMovement = horizontalDirection != 0 && playerView.CanMove;
 
         float velocityToAdd = 0f;
 
         if (thereWasHorizontalMovement)
         {
             bool changedDirection =
-                playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Right && movementDirection.X < 0f
+                playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Right && horizontalDirection < 0
                 || playerView.AnimationPlayer!.HorizontalDirection == HorizontalDirection.Left &&
-                movementDirection.X > 0f;
+                horizontalDirection > 0;
 
             float deltaHorizontalAcceleration = _gamePlayersConfiguration.HorizontalAcceleration * delta;
             
-            velocityToAdd = movementDirection.X * deltaHorizontalAcceleration;
+            velocityToAdd = horizontalDirection * deltaHorizontalAcceleration;
             float finalVelocity = newVelocity.X + velocityToAdd;
 
             float horizontalMaxSpeed = playerView.IsOnFloor()
@@ -194,7 +205,7 @@ public sealed class TickPlayerMovementUseCase
 
             if (Mathf.Abs(finalVelocity) > horizontalMaxSpeed)
             {
-                velocityToAdd = movementDirection.X * Mathf.Max(0, horizontalMaxSpeed - Mathf.Abs(newVelocity.X));
+                velocityToAdd = horizontalDirection * Mathf.Max(0, horizontalMaxSpeed - Mathf.Abs(newVelocity.X));
             }
 
             if (changedDirection && Mathf.Abs(finalVelocity) < horizontalMaxSpeed)
@@ -203,7 +214,7 @@ public sealed class TickPlayerMovementUseCase
             }
 
             playerView.AnimationPlayer!.HorizontalDirection =
-                movementDirection.X > 0f ? HorizontalDirection.Right : HorizontalDirection.Left;
+                horizontalDirection > 0 ? HorizontalDirection.Right : HorizontalDirection.Left;
         }
 
         if (velocityToAdd == 0)
@@ -219,6 +230,24 @@ public sealed class TickPlayerMovementUseCase
         playerView.AnimationPlayer!.MovingHorizontally = newVelocity.X != 0f;
 
         return newVelocity;
+    }
+
+    void HandleCrouchAndLookUp(PlayerView playerView)
+    {
+        int verticalDirection = 0;
+
+        if (Input.IsActionPressed("ui_up"))
+        {
+            verticalDirection += 1;
+        }
+        
+        if (Input.IsActionPressed("ui_down"))
+        {
+            verticalDirection -= 1;
+        }
+
+        playerView.AnimationPlayer!.Crouching = verticalDirection < 0;
+        playerView.AnimationPlayer!.LookingUp = verticalDirection > 0;
     }
     
     void HandleUncontrolledSpeed(PlayerView playerView, float delta)

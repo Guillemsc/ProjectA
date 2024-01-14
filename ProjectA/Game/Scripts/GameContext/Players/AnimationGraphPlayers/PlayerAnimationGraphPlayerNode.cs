@@ -20,6 +20,9 @@ public partial class PlayerAnimationGraphPlayerNode : AnimationGraphPlayerNode
    
     public bool MovingHorizontally;
     public HorizontalDirection HorizontalDirection;
+
+    public bool Crouching;
+    public bool LookingUp;
     
     public bool NeedsToPlayDoubleJump;
     
@@ -55,6 +58,21 @@ public partial class PlayerAnimationGraphPlayerNode : AnimationGraphPlayerNode
             PlayerAnimationState.Wall.ToString()
         ));
         
+        AnimationGraphNode crouch = new AnimationGraphNode(new AnimatedSprite2DAnimationGraphBehaviour(
+            AnimatedSprite2D!,
+            PlayerAnimationState.Crouch.ToString()
+        ));
+        
+        AnimationGraphNode uncrouch = new AnimationGraphNode(new AnimatedSprite2DAnimationGraphBehaviour(
+            AnimatedSprite2D!,
+            PlayerAnimationState.Uncrouch.ToString()
+        ));
+        
+        AnimationGraphNode lookUp = new AnimationGraphNode(new AnimatedSprite2DAnimationGraphBehaviour(
+            AnimatedSprite2D!,
+            PlayerAnimationState.LookUp.ToString()
+        ));
+        
         AnimationGraphConnection idleToRun = idle.ConnectToUnsafe(run);
         idleToRun.Conditions.Add(new CallbackPredicate(() => MovingHorizontally));
         idleToRun.Conditions.Add(new CallbackPredicate(() => !OnAir));
@@ -68,6 +86,16 @@ public partial class PlayerAnimationGraphPlayerNode : AnimationGraphPlayerNode
         idleToFall.Conditions.Add(new CallbackPredicate(() => !MovingHorizontally));
         idleToFall.Conditions.Add(new CallbackPredicate(() => OnAir));
         idleToFall.Conditions.Add(new CallbackPredicate(() => OnAirState == PlayerOnAirState.Fall));
+        
+        AnimationGraphConnection idleToCrouch = idle.ConnectToUnsafe(crouch);
+        idleToCrouch.Conditions.Add(new CallbackPredicate(() => Crouching));
+        idleToCrouch.Conditions.Add(new CallbackPredicate(() => !MovingHorizontally));
+        idleToCrouch.Conditions.Add(new CallbackPredicate(() => !OnAir));
+        
+        AnimationGraphConnection idleToLookUp = idle.ConnectToUnsafe(lookUp);
+        idleToLookUp.Conditions.Add(new CallbackPredicate(() => LookingUp));
+        idleToLookUp.Conditions.Add(new CallbackPredicate(() => !MovingHorizontally));
+        idleToLookUp.Conditions.Add(new CallbackPredicate(() => !OnAir));
         
         AnimationGraphConnection runToIdle = run.ConnectToUnsafe(idle);
         runToIdle.Conditions.Add(new CallbackPredicate(() => !MovingHorizontally));
@@ -154,6 +182,42 @@ public partial class PlayerAnimationGraphPlayerNode : AnimationGraphPlayerNode
         AnimationGraphConnection wallToJump = wall.ConnectToUnsafe(jump);
         wallToJump.Conditions.Add(new CallbackPredicate(() => !OnWall));
         wallToJump.Conditions.Add(new CallbackPredicate(() => OnAir));
+        
+        AnimationGraphConnection crouchToUncrouch = crouch.ConnectToUnsafe(uncrouch);
+        crouchToUncrouch.Conditions.Add(new CallbackPredicate(() => !Crouching));
+        
+        AnimationGraphConnection crouchToRun = crouch.ConnectToUnsafe(run);
+        crouchToRun.CopyConditions(idleToRun);
+        
+        AnimationGraphConnection crouchToJump = crouch.ConnectToUnsafe(jump);
+        crouchToJump.CopyConditions(idleToJump);
+        
+        AnimationGraphConnection crouchToFall = crouch.ConnectToUnsafe(fall);
+        crouchToFall.CopyConditions(idleToFall);
+        
+        AnimationGraphConnection uncrouchToIdle = uncrouch.ConnectToUnsafe(idle);
+        uncrouchToIdle.WaitForFullExecution = true;
+        
+        AnimationGraphConnection uncrouchToRun = uncrouch.ConnectToUnsafe(run);
+        uncrouchToRun.CopyConditions(idleToRun);
+        
+        AnimationGraphConnection uncrouchToJump = uncrouch.ConnectToUnsafe(jump);
+        uncrouchToJump.CopyConditions(idleToJump);
+        
+        AnimationGraphConnection uncrouchToFall = uncrouch.ConnectToUnsafe(fall);
+        uncrouchToFall.CopyConditions(idleToFall);
+        
+        AnimationGraphConnection lookUpToIdle = lookUp.ConnectToUnsafe(idle);
+        lookUpToIdle.Conditions.Add(new CallbackPredicate(() => !LookingUp));
+        
+        AnimationGraphConnection lookUpToRun = lookUp.ConnectToUnsafe(run);
+        lookUpToRun.CopyConditions(idleToRun);
+        
+        AnimationGraphConnection lookUpToJump = lookUp.ConnectToUnsafe(jump);
+        lookUpToJump.CopyConditions(idleToJump);
+        
+        AnimationGraphConnection lookUpToFall = lookUp.ConnectToUnsafe(fall);
+        lookUpToFall.CopyConditions(idleToFall);
         
         AnimationGraphPlayer animationGraphPlayer = new AnimationGraphPlayer(fall);
 

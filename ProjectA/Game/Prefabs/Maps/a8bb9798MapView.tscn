@@ -1,0 +1,271 @@
+[gd_scene load_steps=13 format=3 uid="uid://7cjhckgi7nw7"]
+
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_btdtj"]
+[ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_b3joy"]
+[ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="3_qc3ss"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_2vmk3"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_rg0tp"]
+[ext_resource type="PackedScene" uid="uid://cjmhkolmgxq53" path="res://Game/Prefabs/Views/VelocityBoosterView.tscn" id="6_o6ntm"]
+[ext_resource type="PackedScene" uid="uid://b0ajai5npkpdk" path="res://Game/Prefabs/Views/TriggerPlayerKillerView.tscn" id="7_21fbh"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_4pma8"]
+[ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/Views/TrampolineView.tscn" id="8_jjr02"]
+[ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_18fj4"]
+[ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/Views/SpikesView.tscn" id="10_ga5hp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
+shader = ExtResource("2_b3joy")
+shader_parameter/tilingScale = 1.341
+shader_parameter/movementX = 0.0
+shader_parameter/movementY = -1.0
+shader_parameter/movementSpeed = 0.2
+
+[node name="a8bb9798MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews")]
+script = ExtResource("1_btdtj")
+ReadableName = "Use velocity boosters medium dif"
+AreaViews = [NodePath("AreaView")]
+ConnectionViews = [NodePath("ConnectionView"), NodePath("ConnectionView2")]
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bx5qr")
+position = Vector2(570, -296.5)
+scale = Vector2(20.3125, 10.0781)
+texture = ExtResource("3_qc3ss")
+
+[node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
+script = ExtResource("4_2vmk3")
+Bounds = NodePath("Bounds")
+CameraZoom = 2.3
+
+[node name="Bounds" type="Node2D" parent="AreaView"]
+z_index = 3
+position = Vector2(557, -295)
+script = ExtResource("5_rg0tp")
+Size = Vector2(1230, 610)
+
+[node name="TrampolineView" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(57, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView2" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(80, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView3" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(103, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView4" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(126, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView5" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(149, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView6" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(172, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView7" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(195, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView8" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(218, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView9" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(241, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView10" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(264, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView11" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(287, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView12" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(310, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView13" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(333, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView14" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(356, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView15" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(379, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView16" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(402, -62)
+BounceStrenght = 500.0
+
+[node name="VelocityBoosterView" parent="AreaView" instance=ExtResource("6_o6ntm")]
+position = Vector2(424, -192)
+rotation = 1.5708
+BoostStrenght = 700.0
+
+[node name="TrampolineView17" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(617, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView18" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(640, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView19" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(663, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView20" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(686, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView21" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(709, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView22" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(732, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView23" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(755, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView24" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(778, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView25" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(801, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView26" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(824, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView27" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(847, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView28" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(870, -62)
+BounceStrenght = 500.0
+
+[node name="SpikesView" parent="AreaView" instance=ExtResource("10_ga5hp")]
+position = Vector2(793, -168)
+
+[node name="SpikesView2" parent="AreaView" instance=ExtResource("10_ga5hp")]
+position = Vector2(776, -153)
+rotation = -1.5708
+
+[node name="SpikesView3" parent="AreaView" instance=ExtResource("10_ga5hp")]
+position = Vector2(776, -137)
+rotation = -1.5708
+
+[node name="SpikesView4" parent="AreaView" instance=ExtResource("10_ga5hp")]
+position = Vector2(808, -136)
+rotation = 1.5708
+
+[node name="SpikesView5" parent="AreaView" instance=ExtResource("10_ga5hp")]
+position = Vector2(808, -152)
+rotation = 1.5708
+
+[node name="SpikesView6" parent="AreaView" instance=ExtResource("10_ga5hp")]
+position = Vector2(792, -120)
+rotation = -3.14159
+
+[node name="TrampolineView29" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(893, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView30" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(916, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView31" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(939, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView32" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(962, -62)
+BounceStrenght = 500.0
+
+[node name="TrampolineView33" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(990, -110)
+BounceStrenght = 900.0
+
+[node name="TrampolineView34" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(1013, -110)
+BounceStrenght = 900.0
+
+[node name="TrampolineView35" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(1036, -110)
+BounceStrenght = 900.0
+
+[node name="TrampolineView36" parent="AreaView" instance=ExtResource("8_jjr02")]
+position = Vector2(1059, -110)
+BounceStrenght = 900.0
+
+[node name="TriggerPlayerKillerView" parent="AreaView" instance=ExtResource("7_21fbh")]
+position = Vector2(466, 14)
+scale = Vector2(20, 1)
+
+[node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
+position = Vector2(-65, -55)
+script = ExtResource("8_4pma8")
+ReadableName = "Left"
+Uid = "9a66b720-9d93-41f8-85ed-39dbe4206f58"
+Map = "res://Game/Prefabs/Maps/5b6ebe2eMapView.tscn"
+SpawnId = "6d36e948-53bf-4948-a19c-1a2cba076d59"
+SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView"]
+z_index = 3
+script = ExtResource("5_rg0tp")
+Size = Vector2(10, 80)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView"]
+position = Vector2(22, 20)
+
+[node name="ConnectionView2" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
+position = Vector2(1145, -482)
+script = ExtResource("8_4pma8")
+ReadableName = "Right"
+ConnectionType = 1
+Uid = "e31eaf16-c0c1-42c2-8266-0bedef1e3ebc"
+Map = "res://Game/Prefabs/Maps/fb581aceMapView.tscn"
+SpawnId = "3f2419fa-d7e0-42d7-b1c2-2719e8285c9c"
+SpawnPosition = NodePath("SpawnPosition")
+Bounds = NodePath("Bounds")
+
+[node name="Bounds" type="Node2D" parent="ConnectionView2"]
+z_index = 3
+position = Vector2(33, -66)
+script = ExtResource("5_rg0tp")
+Size = Vector2(10, 180)
+DebugColor = Color(0, 0.568627, 0.839216, 1)
+
+[node name="SpawnPosition" type="Marker2D" parent="ConnectionView2"]
+position = Vector2(17, 0)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("9_18fj4")
+format = 2
+layer_0/name = "Background"
+layer_0/z_index = 2
+layer_0/tile_data = PackedInt32Array(-655364, 65536, 6, -655363, 131072, 6, 458748, 65536, 5, -524293, 131072, 5, -589829, 131072, 5, -655365, 196608, 4, -524294, 65536, 1, -589830, 65536, 1, -655366, 65536, 1, 458747, 65536, 5, 458746, 65536, 5, -917511, 65536, 1, -851975, 65536, 1, -786439, 65536, 1, -655367, 65536, 5, -589831, 65536, 1, -524295, 65536, 1, 589822, 65536, 1, 524284, 65536, 1, 524283, 65536, 1, 524282, 65536, 1, -458759, 65536, 1, -458758, 65536, 1, -393222, 65536, 6, -458757, 131072, 5, -393221, 131072, 6, 65530, 65536, 1, 262138, 65536, 1, 196602, 65536, 1, 131066, 65536, 1, -720903, 65536, 5, -720899, 131072, 5, -786435, 131072, 5, -720900, 65536, 5, -720901, 65536, 5, -720902, 65536, 5, -786438, 65536, 5, -786437, 65536, 5, -786436, 65536, 5, -851971, 196608, 4, -196583, 786432, 5, -131047, 786432, 5, -1, 786432, 5, -65536, 786432, 5, -65535, 786432, 5, -65534, 786432, 5, -65533, 786432, 5, -196604, 786432, 5, -196603, 786432, 5, -2, 786432, 5, -196605, 786432, 5, -131069, 786432, 5, -3, 786432, 5, -4, 786432, 5, -5, 786432, 5, -196602, 786432, 5, -196601, 786432, 5, -196600, 786432, 5, -196599, 786432, 5, -196598, 786432, 5, -196597, 786432, 5, -196596, 786432, 5, -196595, 786432, 5, -196594, 786432, 5, -196593, 786432, 5, -196592, 786432, 5, -196591, 786432, 5, -196590, 786432, 5, -196589, 786432, 5, -196588, 786432, 5, -196587, 786432, 5, -196586, 786432, 5, -196585, 786432, 5, -196584, 786432, 5, -983042, 786432, 5, -983041, 786432, 5, -1048576, 786432, 5, -1048575, 786432, 5, -1048574, 786432, 5, -1048573, 786432, 5, -1048572, 786432, 5, -1048571, 786432, 5, -1048570, 786432, 5, -1048569, 786432, 5, -1048568, 786432, 5, -1048567, 786432, 5, -1048566, 786432, 5, -1048565, 786432, 5, -1048564, 786432, 5, -1048563, 786432, 5, -1048562, 786432, 5, -1048561, 786432, 5, -1048560, 786432, 5, -1048559, 786432, 5, -1048558, 786432, 5, -1048557, 786432, 5, -1048556, 786432, 5, -1048555, 786432, 5, -1048554, 786432, 5, -1048553, 786432, 5, -1048552, 786432, 5, -1048551, 786432, 5, -1048550, 786432, 5, -1048549, 786432, 5, -1048548, 786432, 5, -1048547, 786432, 5, -1048546, 786432, 5, -1048545, 786432, 5, -1048544, 786432, 5, -1048543, 786432, 5, -1048542, 786432, 5, -1048541, 786432, 5, -1048540, 786432, 5, -1048539, 786432, 5, -1048538, 786432, 5, -1048537, 786432, 5, -1048536, 786432, 5, -1048535, 786432, 5, -1048534, 786432, 5, -1048533, 786432, 5, -1048532, 786432, 5, -1048531, 786432, 5, -196582, 786432, 5, -262118, 786432, 5, -327654, 786432, 5, -393190, 786432, 5, -458726, 786432, 5, -524262, 786432, 5, -589798, 786432, 5, -655334, 786432, 5, -196570, 786432, 5, -196569, 786432, 5, -196568, 786432, 5, -196567, 786432, 5, -196566, 786432, 5, -196565, 786432, 5, -196564, 786432, 5, -196563, 786432, 5, -196562, 786432, 5, -196561, 786432, 5, -196560, 786432, 5, -196559, 786432, 5, -196558, 786432, 5, -196557, 786432, 5, -196556, 786432, 5, -196555, 786432, 5, -196554, 786432, 5, -655311, 786432, 5, -589775, 786432, 5, -196553, 786432, 5, -196552, 786432, 5, -196551, 786432, 5, -196550, 786432, 5, -196549, 786432, 5, -196548, 786432, 5, -196547, 786432, 5, -393154, 786432, 5, -393153, 786432, 5, -393152, 786432, 5, -393151, 786432, 5, -393155, 786432, 5, -327619, 786432, 5, -262083, 786432, 5, -393150, 786432, 5, -327614, 786432, 5, -262078, 786432, 5, -196542, 786432, 5, -1048521, 786432, 5, -1048520, 786432, 5, -1048519, 786432, 5, -1048518, 786432, 5, -1048517, 786432, 5, -1048516, 786432, 5, -1114052, 786432, 5, -1179588, 786432, 5, -1245124, 786432, 5, -1310660, 786432, 5, -1376196, 786432, 5, -1441732, 786432, 5, -1507268, 786432, 5, -1572804, 786432, 5, -1638340, 786432, 5, -1703876, 786432, 5, -1769412, 786432, 5, -1834948, 786432, 5, -393149, 786432, 5, -458685, 786432, 5, -524221, 786432, 5, -589757, 786432, 5, -655293, 786432, 5, -720829, 786432, 5, -786365, 786432, 5, -851901, 786432, 5, -917437, 786432, 5, -982973, 786432, 5, -1048509, 786432, 5, -1114045, 786432, 5, -1179581, 786432, 5, -1245117, 786432, 5, -1310653, 786432, 5, -1376189, 786432, 5, -1441725, 786432, 5, -1507261, 786432, 5, -1572797, 786432, 5, -1638333, 786432, 5, -1703869, 786432, 5, -1769405, 786432, 5, -1834941, 786432, 5, -1900484, 786432, 5, -1966020, 786432, 5, -2031556, 786432, 5, -2097092, 786432, 5, -2162628, 786432, 5, -2228164, 786432, 5, -2293700, 786432, 5, -2359236, 786432, 5, -2424772, 786432, 5, -1900477, 786432, 5, -1900476, 786432, 5, -1900475, 786432, 5, -1900474, 786432, 5, -1900473, 786432, 5, -1900472, 786432, 5, -1900471, 786432, 5, -1114067, 786432, 5, -1179603, 786432, 5, -1245139, 786432, 5, -1245138, 786432, 5, -1245137, 786432, 5, -1245136, 786432, 5, -1245135, 786432, 5, -1245134, 786432, 5, -1245133, 786432, 5, -1245132, 786432, 5, -1245131, 786432, 5, -1245130, 786432, 5, -1245129, 786432, 5, -1179593, 786432, 5, -1114057, 786432, 5, -2424771, 786432, 5, -2424770, 786432, 5, -2424769, 786432, 5, -2424768, 786432, 5, -2424767, 786432, 5, -2424766, 786432, 5, -2424765, 786432, 5, -2424764, 786432, 5, -2424763, 786432, 5, -2424762, 786432, 5, -2424761, 786432, 5, -2424760, 786432, 5, -2424759, 786432, 5, -2424758, 786432, 5, -1900470, 786432, 5, -1900469, 786432, 5, -2424757, 786432, 5, -2359221, 786432, 5, -2293685, 786432, 5, -2228149, 786432, 5, -2162613, 786432, 5, -2097077, 786432, 5, -2031541, 786432, 5, -1966005, 786432, 5, -6, 786432, 5, -7, 786432, 5, -65543, 786432, 5, -131079, 786432, 5, -196615, 786432, 5, -262151, 786432, 5, -327687, 786432, 5, -393223, 786432, 5)
+layer_1/name = "Content-2"
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Content-1"
+layer_2/tile_data = PackedInt32Array()

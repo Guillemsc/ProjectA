@@ -19,6 +19,5 @@
     <Folder Include="addons\" />
     <Folder Include="Game\Scripts\General\Contexts\" />
     <Folder Include="Game\Scripts\ServicesContext\General\" />
-    <Folder Include="GUtilsGodot\Source\NodeExecutables\Configurations\" />
   </ItemGroup>
 </Project>

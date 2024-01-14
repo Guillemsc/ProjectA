@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bfwc3eslvy1dy"]
+[gd_scene load_steps=28 format=3 uid="uid://bfwc3eslvy1dy"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_ei1bd"]
 [ext_resource type="Environment" uid="uid://bxd08qaa6wc8d" path="res://Game/Environments/MapEnvironment.tres" id="2_4f2rh"]
@@ -61,6 +61,13 @@ tracks/1/keys = {
 _data = {
 "Intro": SubResource("Animation_7cwl1")
 }
+
+[sub_resource type="Gradient" id="Gradient_j2scu"]
+offsets = PackedFloat32Array(0, 0.0531309, 0.857685, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_pa1ey"]
+colors = PackedColorArray(0.203922, 0.337255, 0.301961, 1, 0.2, 0.203922, 0.196078, 1)
 
 [node name="Intro1MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews", "OptionalStartingCinematic")]
 script = ExtResource("1_ei1bd")
@@ -222,3 +229,21 @@ NodeExecutables = [NodePath("SetVisibleCanvasRect")]
 script = ExtResource("21_kl5v4")
 CanvasItem = NodePath("../../CinematicView/CanvasLayer/ColorRect")
 Visible = true
+
+[node name="LeavesParticle" type="CPUParticles2D" parent="."]
+position = Vector2(284, -286)
+amount = 15
+lifetime = 20.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(250, 0)
+direction = Vector2(0, 1)
+spread = 20.0
+gravity = Vector2(0, -0.05)
+initial_velocity_min = 15.45
+initial_velocity_max = 20.42
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_j2scu")
+color_initial_ramp = SubResource("Gradient_pa1ey")

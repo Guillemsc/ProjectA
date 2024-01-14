@@ -9,6 +9,7 @@ using GUtils.Services.Extensions;
 using GUtils.Tick.Services;
 using GUtilsGodot.Cameras.Services;
 using GUtilsGodot.Di.Installers;
+using GUtilsGodot.Quitting.Services;
 using GUtilsGodot.Roots.Services;
 using GUtilsGodot.Tick.Services;
 using GUtilsGodot.Time.TimeContexts;
@@ -25,6 +26,7 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
     [Export] public MusicService? MusicService;
     [Export] public Cameras2dServiceNode? Cameras2dService;
     [Export] public UiFrameService? UiFrameService;
+    [Export] public QuitServiceNode? QuitService;
     
     public override void Install(IDiContainerBuilder builder)
     {
@@ -68,6 +70,10 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
 
         builder.Bind<IMusicService>()
             .FromInstance(MusicService!)
+            .LinkToServiceLocator();
+
+        builder.Bind<IQuitService>()
+            .FromInstance(QuitService!)
             .LinkToServiceLocator();
     }
 }

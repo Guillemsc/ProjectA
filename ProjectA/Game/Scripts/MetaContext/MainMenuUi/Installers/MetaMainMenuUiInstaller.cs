@@ -9,6 +9,7 @@ using GUtils.Loading.Services;
 using GUtils.Tasks.Runners;
 using GUtils.Tick.Extensions;
 using GUtilsGodot.Extensions;
+using GUtilsGodot.Quitting.Services;
 using GUtilsGodot.UiStack.Entries;
 using GUtilsGodot.UiStack.Enums;
 using GUtilsGodot.UiStack.Extensions;
@@ -74,6 +75,12 @@ public partial class MetaMainMenuUiInstaller : Control, IInstaller
                 c.Resolve<IMainMenuUiInteractor>()
             ))
             .LinkButtonPressed(PlayButton!);
+
+        builder.Bind<WhenQuitButtonPressedUseCase>()
+            .FromFunction(c => new WhenQuitButtonPressedUseCase(
+                c.Resolve<IQuitService>()
+            ))
+            .LinkButtonPressed(ExitButton!);
 
         builder.Bind<TickForUnfoldInputUseCase>()
             .FromFunction(c => new TickForUnfoldInputUseCase(

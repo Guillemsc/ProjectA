@@ -143,7 +143,7 @@ layer_2/tile_data = PackedInt32Array()
 
 [node name="CinematicTrigger" type="Area2D" parent="." node_paths=PackedStringArray("CinematicView")]
 position = Vector2(779, -235)
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("9_bps50")
 CinematicView = NodePath("../CinematicView")
 

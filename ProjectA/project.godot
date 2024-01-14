@@ -42,6 +42,8 @@ instance_dock/preview_resolution=Vector2i(64, 64)
 config/name="Project A"
 run/main_scene="res://Game/Scenes/TestMapBootstrap.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://Misc/icon.svg"
 
 [audio]
