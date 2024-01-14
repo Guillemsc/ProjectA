@@ -1,15 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvnvrp7meu1gn"]
+[gd_scene load_steps=15 format=3 uid="uid://bvnvrp7meu1gn"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_upb70"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_3rlnj"]
 [ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="3_b5xk0"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_7eojw"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="4_l3own"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_fsa07"]
+[ext_resource type="Resource" uid="uid://l6m6s3qsqvjv" path="res://Game/Configuration/ZIndexOrdering/BackgroundZIndexConfiguration.tres" id="5_n81te"]
 [ext_resource type="PackedScene" uid="uid://dk72bacyyh58w" path="res://Game/Prefabs/Views/TrampolineView.tscn" id="6_yte84"]
 [ext_resource type="PackedScene" uid="uid://dpywsfib8moqs" path="res://Game/Prefabs/Views/SpikesView.tscn" id="7_3fwuj"]
 [ext_resource type="PackedScene" uid="uid://b0ajai5npkpdk" path="res://Game/Prefabs/Views/TriggerPlayerKillerView.tscn" id="7_dr6d2"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="8_1cdxv"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="9_4dlpw"]
+[ext_resource type="Resource" uid="uid://b6x20ic8tu4o2" path="res://Game/Configuration/ZIndexOrdering/TilemapZIndexConfiguration.tres" id="13_qt6ns"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_3rlnj")
@@ -29,6 +32,11 @@ material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(277.5, -134)
 scale = Vector2(11.1719, 6.28125)
 texture = ExtResource("3_b5xk0")
+
+[node name="ZIndexSetter" type="Node2D" parent="MapBackground" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("4_l3own")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("5_n81te")
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 script = ExtResource("4_7eojw")
@@ -375,3 +383,8 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
+
+[node name="ZIndexSetter" type="Node2D" parent="TileMap" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("4_l3own")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("13_qt6ns")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk72bacyyh58w"]
+[gd_scene load_steps=18 format=3 uid="uid://dk72bacyyh58w"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Trampolines/Views/TrampolineView.cs" id="1_gtkiu"]
 [ext_resource type="Texture2D" uid="uid://jq82g8dn6e3p" path="res://Game/Textures/Trampoline-Idle.png" id="2_flwub"]
 [ext_resource type="Texture2D" uid="uid://dww1i0c7v733p" path="res://Game/Textures/Trampoline-Jump.png" id="3_ww1cf"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="4_3p5ae"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Trampolines/AnimationGraphPlayers/TrampolineAnimationGraphPlayer.cs" id="4_c70n5"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="5_l6k4y"]
+[ext_resource type="Resource" uid="uid://0jfehbqlj2wi" path="res://Game/Configuration/ZIndexOrdering/PropsZIndexConfiguration.tres" id="6_ntfo8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vxcq"]
 atlas = ExtResource("3_ww1cf")
@@ -91,6 +93,11 @@ animation = &"Jump"
 frame = 7
 frame_progress = 1.0
 script = ExtResource("4_3p5ae")
+
+[node name="ZIndexSetter" type="Node2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("5_l6k4y")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("6_ntfo8")
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
 script = ExtResource("4_c70n5")

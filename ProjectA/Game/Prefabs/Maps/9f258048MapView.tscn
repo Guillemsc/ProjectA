@@ -1,20 +1,24 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj63dlqghdlan"]
+[gd_scene load_steps=22 format=3 uid="uid://bj63dlqghdlan"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_lcu0i"]
 [ext_resource type="Environment" uid="uid://bxd08qaa6wc8d" path="res://Game/Environments/MapEnvironment.tres" id="2_cavco"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_k1h68"]
 [ext_resource type="Texture2D" uid="uid://bow2eonymlxp0" path="res://Game/Textures/Backgrounds/ArrowBackground.png" id="3_3rxsn"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_wqjol"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="5_cp2n0"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_kmnj6"]
 [ext_resource type="PackedScene" uid="uid://d22jb7encgi8w" path="res://Game/Prefabs/Views/LetterCollectableView.tscn" id="6_6i5mk"]
+[ext_resource type="Resource" uid="uid://l6m6s3qsqvjv" path="res://Game/Configuration/ZIndexOrdering/BackgroundZIndexConfiguration.tres" id="6_pup0c"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="7_bmw4d"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="8_jgjs2"]
 [ext_resource type="PackedScene" uid="uid://khtk2n2ckl0x" path="res://Game/Prefabs/Props/CeelingLanternView.tscn" id="9_nfejy"]
 [ext_resource type="PackedScene" uid="uid://fe6h15w823lv" path="res://Game/Prefabs/Views/AngryBlockView.tscn" id="11_34ove"]
 [ext_resource type="PackedScene" uid="uid://2t7lrktylk32" path="res://Game/Prefabs/Views/SawView.tscn" id="12_1rsvr"]
+[ext_resource type="Resource" uid="uid://b6x20ic8tu4o2" path="res://Game/Configuration/ZIndexOrdering/TilemapZIndexConfiguration.tres" id="12_42xsn"]
 [ext_resource type="Resource" uid="uid://1i4cvgrmemne" path="res://Game/Configuration/Saws/NormalSawMovementConfiguration.tres" id="13_pguf0"]
 [ext_resource type="PackedScene" uid="uid://dpic3kcbxjteq" path="res://Game/Prefabs/Views/SawLineView.tscn" id="14_60puj"]
 [ext_resource type="Texture2D" uid="uid://dy2kry5w6nkvp" path="res://Game/Textures/Saw/Saw-Chain.png" id="14_u4eno"]
+[ext_resource type="PackedScene" uid="uid://b7xokx0xgko7u" path="res://Game/Prefabs/Particles/DustParticles.tscn" id="16_ywa7j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
 shader = ExtResource("2_k1h68")
@@ -43,6 +47,11 @@ material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(199, -71.5001)
 scale = Vector2(8.65625, 4.89062)
 texture = ExtResource("3_3rxsn")
+
+[node name="ZIndexSetter" type="Node2D" parent="MapBackground" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("5_cp2n0")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("6_pup0c")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(198, -58)
@@ -113,6 +122,11 @@ layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
 
+[node name="ZIndexSetter" type="Node2D" parent="TileMap" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("5_cp2n0")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("12_42xsn")
+
 [node name="CeelingLanternView" parent="." instance=ExtResource("9_nfejy")]
 position = Vector2(87, -127)
 
@@ -146,3 +160,5 @@ points = PackedVector2Array(60, -29, 173, -29)
 width = 4.0
 texture = ExtResource("14_u4eno")
 texture_mode = 1
+
+[node name="DustParticle" parent="." instance=ExtResource("16_ywa7j")]

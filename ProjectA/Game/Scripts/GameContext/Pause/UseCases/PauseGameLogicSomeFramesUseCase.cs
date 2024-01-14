@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Game.GameContext.Pause.Configurations;
+using Game.GameContext.Pause.Enums;
 using GUtils.Extensions;
 using GUtils.Pooling.Objects;
 using GUtils.Tasks.Runners;
@@ -34,9 +35,18 @@ public sealed class PauseGameLogicSomeFramesUseCase : IReturnablePooledObject
         _setGameLogicPausedUseCase = null;
     }
 
-    public void Execute()
+    public void Execute(PauseFramesDuration pauseFramesDuration)
     {
-        TimeSpan pauseDuration = _gamePauseConfiguration!.PauseGameLogicSomeFramesDurationSeconds.ToSeconds();
+        float seconds = pauseFramesDuration switch
+        {
+            PauseFramesDuration.Short => _gamePauseConfiguration!.PauseGameLogicSomeFramesShortDurationSeconds,
+            PauseFramesDuration.Medium => _gamePauseConfiguration!.PauseGameLogicSomeFramesMediumDurationSeconds,
+            PauseFramesDuration.Long => _gamePauseConfiguration!.PauseGameLogicSomeFramesLongDurationSeconds,
+            PauseFramesDuration.VeryLong => _gamePauseConfiguration!.PauseGameLogicSomeFramesVeryLongDurationSeconds,
+            _ => _gamePauseConfiguration!.PauseGameLogicSomeFramesShortDurationSeconds
+        };
+        
+        TimeSpan pauseDuration = seconds.ToSeconds();
 
         async Task Run(CancellationToken cancellationToken)
         {
@@ -44,10 +54,12 @@ public sealed class PauseGameLogicSomeFramesUseCase : IReturnablePooledObject
             
             ITimer timer = StopwatchTimer.FromStarted();
 
-            while (timer.Time < pauseDuration)
+            while (!cancellationToken.IsCancellationRequested && timer.Time < pauseDuration)
             {
                 await TaskExtensions.GodotYield();
             }
+            
+            if(cancellationToken.IsCancellationRequested) return;
             
             _setGameLogicPausedUseCase.Execute(false, this);
         }

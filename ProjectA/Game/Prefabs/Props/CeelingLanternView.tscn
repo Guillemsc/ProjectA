@@ -1,10 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://khtk2n2ckl0x"]
+[gd_scene load_steps=8 format=3 uid="uid://khtk2n2ckl0x"]
 
 [ext_resource type="Texture2D" uid="uid://cuvrayhpqqapy" path="res://Game/Textures/Props/CeelingLantern.png" id="1_dqcv6"]
 [ext_resource type="Texture2D" uid="uid://cc1o7inlabkpt" path="res://Game/Textures/Lighting/RadialLightTexture.tres" id="2_yu1ab"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/NodeExecutables/Nodes/NodeExecutableRunner.cs" id="3_va44e"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Lanterns/NodeExecutables/LightIntensitySwayNodeExecutable.cs" id="4_7bdwx"]
+
+[sub_resource type="Animation" id="Animation_p3wuv"]
+resource_name = "Idle"
+length = 5.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyttn"]
+_data = {
+"Idle": SubResource("Animation_p3wuv")
+}
+
+[sub_resource type="Curve" id="Curve_51c2h"]
+min_value = -1.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.190476, -0.277311), 0.0, 0.0, 0, 0, Vector2(0.402116, 0.445378), 0.0, 0.0, 0, 0, Vector2(0.670194, -0.226891), 0.0, 0.0, 0, 0, Vector2(0.850088, 0.647059), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
 
 [node name="CeelingLanternView" type="Node2D"]
 position = Vector2(88, -112)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vyttn")
+}
+autoplay = "Idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 14)
@@ -17,9 +40,21 @@ energy = 3.0
 texture = ExtResource("2_yu1ab")
 texture_scale = 2.0
 
-[node name="PlayerPointLight2D2" type="PointLight2D" parent="."]
+[node name="ObjectsPointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 24)
 color = Color(0.756863, 0.419608, 0.215686, 1)
+energy = 0.7
 range_item_cull_mask = 4
 texture = ExtResource("2_yu1ab")
 texture_scale = 2.0
+
+[node name="Executables" type="Node2D" parent="." node_paths=PackedStringArray("NodeExecutables")]
+script = ExtResource("3_va44e")
+NodeExecutables = [NodePath("LightIntensitySway")]
+
+[node name="LightIntensitySway" type="Node2D" parent="Executables" node_paths=PackedStringArray("Light2D")]
+script = ExtResource("4_7bdwx")
+Light2D = NodePath("../../PointLight2D")
+Duration = 8.0
+Strenght = 1.0
+Curve = SubResource("Curve_51c2h")

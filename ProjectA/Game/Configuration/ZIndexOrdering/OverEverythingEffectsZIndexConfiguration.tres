@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ZIndexSetterConfiguration" load_steps=2 format=3 uid="uid://qi1kuds4fxy1"]
+
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Configurations/ZIndexSetterConfiguration.cs" id="1_fbusn"]
+
+[resource]
+script = ExtResource("1_fbusn")
+ZIndex = 400

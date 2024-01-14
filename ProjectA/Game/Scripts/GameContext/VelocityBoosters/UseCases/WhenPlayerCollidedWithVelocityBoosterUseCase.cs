@@ -1,4 +1,6 @@
+using Game.GameContext.Cameras.Enums;
 using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.Pause.Enums;
 using Game.GameContext.Pause.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Views;
@@ -44,7 +46,7 @@ public sealed class WhenPlayerCollidedWithVelocityBoosterUseCase
         
         playerView.MovementVelocity = direction * velocityBoosterView.BoostStrenght;
         
-        _shakeCameraUseCase.Execute();
-        _pauseGameLogicSomeFramesUseCase.Execute();
+        _shakeCameraUseCase.Execute(ShakeCameraStrenght.Low);
+        _pauseGameLogicSomeFramesUseCase.Execute(PauseFramesDuration.Short);
     }
 }

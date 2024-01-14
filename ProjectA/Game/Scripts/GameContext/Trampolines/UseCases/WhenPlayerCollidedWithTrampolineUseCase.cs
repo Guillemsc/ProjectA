@@ -1,3 +1,4 @@
+using Game.GameContext.Cameras.Enums;
 using Game.GameContext.Cameras.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Views;
@@ -35,6 +36,6 @@ public sealed class WhenPlayerCollidedWithTrampolineUseCase
         playerView.CanJump = true;
         playerView.CanDoubleJump = true;
         
-        _shakeCameraUseCase.Execute();
+        _shakeCameraUseCase.Execute(ShakeCameraStrenght.Low);
     }
 }

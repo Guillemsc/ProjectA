@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_htsjk")
-PauseGameLogicSomeFramesDurationSeconds = 0.04
+PauseGameLogicSomeFramesShortDurationSeconds = 0.04
+PauseGameLogicSomeFramesMediumDurationSeconds = 0.08
+PauseGameLogicSomeFramesLongDurationSeconds = 0.12
+PauseGameLogicSomeFramesVeryLongDurationSeconds = 0.16

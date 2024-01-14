@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7xokx0xgko7u"]
+
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="1_suah5"]
+[ext_resource type="Resource" uid="uid://b6x20ic8tu4o2" path="res://Game/Configuration/ZIndexOrdering/TilemapZIndexConfiguration.tres" id="2_3h3rj"]
+
+[sub_resource type="Gradient" id="Gradient_lutpp"]
+offsets = PackedFloat32Array(0, 0.0531309, 0.857685, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.54902, 1, 1, 1, 0.682353, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_ai6mu"]
+colors = PackedColorArray(0.462745, 0.533333, 0.74902, 1, 0.462745, 0.533333, 0.74902, 1)
+
+[node name="DustParticle" type="CPUParticles2D"]
+position = Vector2(198, -58)
+amount = 40
+lifetime = 20.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(277.5, 112)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0.2)
+initial_velocity_min = 1.45
+initial_velocity_max = 3.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_lutpp")
+color_initial_ramp = SubResource("Gradient_ai6mu")
+
+[node name="ZIndexSetter" type="Node2D" parent="." node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("1_suah5")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("2_3h3rj")
+Offset = -1

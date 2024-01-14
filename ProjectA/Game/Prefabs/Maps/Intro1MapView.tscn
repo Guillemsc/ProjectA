@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bfwc3eslvy1dy"]
+[gd_scene load_steps=31 format=3 uid="uid://bfwc3eslvy1dy"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_ei1bd"]
 [ext_resource type="Environment" uid="uid://bxd08qaa6wc8d" path="res://Game/Environments/MapEnvironment.tres" id="2_4f2rh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bg5addttpmcle" path="res://Game/Textures/Backgrounds/Background1.png" id="3_57ut3"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_uoy4l"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_nn7m0"]
+[ext_resource type="Resource" uid="uid://l6m6s3qsqvjv" path="res://Game/Configuration/ZIndexOrdering/BackgroundZIndexConfiguration.tres" id="6_65c00"]
 [ext_resource type="Texture2D" uid="uid://cgtsoj3cgi5fm" path="res://Game/Textures/Props/TreeBackground1.png" id="6_vvcos"]
 [ext_resource type="Texture2D" uid="uid://cmcghup0nh726" path="res://Game/Textures/Props/TreeBackground2.png" id="7_8duct"]
 [ext_resource type="Texture2D" uid="uid://di1rv2hg7kx5f" path="res://Game/Textures/Props/Tree1.png" id="8_rx4dj"]
@@ -17,7 +18,9 @@
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="14_556sa"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/IntroCinematicView.cs" id="15_82g24"]
 [ext_resource type="Resource" uid="uid://beae10amts6ct" path="res://Game/Configuration/Dialogues/Intro1-1DialogueConfiguration.tres" id="16_asand"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="16_p5aj3"]
 [ext_resource type="Resource" uid="uid://d32gs6oj1jflu" path="res://Game/Configuration/Dialogues/Intro1-2DialogueConfiguration.tres" id="17_6ddyu"]
+[ext_resource type="Resource" uid="uid://b6x20ic8tu4o2" path="res://Game/Configuration/ZIndexOrdering/TilemapZIndexConfiguration.tres" id="17_8mwm0"]
 [ext_resource type="AudioStream" uid="uid://bv4aq0tcusnpf" path="res://Game/Audio/Inspiration/As The Wind Passed Through.ogg" id="18_xdxlf"]
 [ext_resource type="PackedScene" uid="uid://cd3mdu6bgkny1" path="res://Game/Prefabs/Views/SomeoneNpcView.tscn" id="19_q8l1f"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/NodeExecutables/Nodes/NodeExecutableRunner.cs" id="20_7sy11"]
@@ -29,6 +32,13 @@ shader_parameter/tilingScale = 0.1
 shader_parameter/movementX = -1.0
 shader_parameter/movementY = 4.75e-08
 shader_parameter/movementSpeed = 0.01
+
+[sub_resource type="Gradient" id="Gradient_6tw8v"]
+offsets = PackedFloat32Array(0, 0.0531309, 0.857685, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_pa1ey"]
+colors = PackedColorArray(0.203922, 0.337255, 0.301961, 1, 0.2, 0.203922, 0.196078, 1)
 
 [sub_resource type="Animation" id="Animation_7cwl1"]
 resource_name = "Intro"
@@ -62,13 +72,6 @@ _data = {
 "Intro": SubResource("Animation_7cwl1")
 }
 
-[sub_resource type="Gradient" id="Gradient_j2scu"]
-offsets = PackedFloat32Array(0, 0.0531309, 0.857685, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="Gradient" id="Gradient_pa1ey"]
-colors = PackedColorArray(0.203922, 0.337255, 0.301961, 1, 0.2, 0.203922, 0.196078, 1)
-
 [node name="Intro1MapView" type="Node2D" node_paths=PackedStringArray("AreaViews", "ConnectionViews", "OptionalStartingCinematic")]
 script = ExtResource("1_ei1bd")
 AreaViews = [NodePath("AreaView")]
@@ -83,6 +86,11 @@ material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(222.5, -159.5)
 scale = Vector2(1.045, 0.731667)
 texture = ExtResource("3_57ut3")
+
+[node name="ZIndexSetter" type="Node2D" parent="MapBackground" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("16_p5aj3")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("6_65c00")
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 script = ExtResource("4_uoy4l")
@@ -141,6 +149,60 @@ texture = ExtResource("12_ifota")
 position = Vector2(-39, -68)
 texture = ExtResource("10_5bfs5")
 
+[node name="LeavesParticle" type="CPUParticles2D" parent="AreaView"]
+position = Vector2(167, -276)
+amount = 10
+lifetime = 20.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(100, 0)
+direction = Vector2(0, 1)
+spread = 20.0
+gravity = Vector2(0, -0.05)
+initial_velocity_min = 15.45
+initial_velocity_max = 20.42
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_6tw8v")
+color_initial_ramp = SubResource("Gradient_pa1ey")
+
+[node name="LeavesParticle2" type="CPUParticles2D" parent="AreaView"]
+position = Vector2(417, -276)
+amount = 10
+lifetime = 20.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(100, 0)
+direction = Vector2(0, 1)
+spread = 20.0
+gravity = Vector2(0, -0.05)
+initial_velocity_min = 15.45
+initial_velocity_max = 20.42
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_6tw8v")
+color_initial_ramp = SubResource("Gradient_pa1ey")
+
+[node name="LeavesParticle3" type="CPUParticles2D" parent="AreaView"]
+position = Vector2(-75, -168)
+amount = 5
+lifetime = 20.0
+preprocess = 100.0
+emission_shape = 3
+emission_rect_extents = Vector2(100, 0)
+direction = Vector2(0, 1)
+spread = 20.0
+gravity = Vector2(0, -0.05)
+initial_velocity_min = 15.45
+initial_velocity_max = 20.42
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_6tw8v")
+color_initial_ramp = SubResource("Gradient_pa1ey")
+
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 z_index = 3
 position = Vector2(5, 7)
@@ -189,6 +251,11 @@ layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
 
+[node name="ZIndexSetter" type="Node2D" parent="TileMap" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("16_p5aj3")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("17_8mwm0")
+
 [node name="CinematicView" type="Node2D" parent="." node_paths=PackedStringArray("SomeoneNpcView", "AnimationPlayer", "PositionToRun")]
 position = Vector2(101, 0)
 script = ExtResource("15_82g24")
@@ -229,21 +296,3 @@ NodeExecutables = [NodePath("SetVisibleCanvasRect")]
 script = ExtResource("21_kl5v4")
 CanvasItem = NodePath("../../CinematicView/CanvasLayer/ColorRect")
 Visible = true
-
-[node name="LeavesParticle" type="CPUParticles2D" parent="."]
-position = Vector2(284, -286)
-amount = 15
-lifetime = 20.0
-preprocess = 100.0
-emission_shape = 3
-emission_rect_extents = Vector2(250, 0)
-direction = Vector2(0, 1)
-spread = 20.0
-gravity = Vector2(0, -0.05)
-initial_velocity_min = 15.45
-initial_velocity_max = 20.42
-orbit_velocity_min = -0.01
-orbit_velocity_max = 0.01
-scale_amount_max = 5.0
-color_ramp = SubResource("Gradient_j2scu")
-color_initial_ramp = SubResource("Gradient_pa1ey")

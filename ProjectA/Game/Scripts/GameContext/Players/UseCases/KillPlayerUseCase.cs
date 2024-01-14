@@ -1,6 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Game.GameContext.Cameras.Enums;
 using Game.GameContext.Cameras.UseCases;
+using Game.GameContext.Pause.Enums;
+using Game.GameContext.Pause.UseCases;
 using Game.GameContext.Players.Datas;
 using Game.GameContext.Players.Enums;
 using Game.GameContext.Players.Views;
@@ -17,14 +20,17 @@ public sealed class KillPlayerUseCase
 {
     readonly PlayerViewData _playerViewData;
     readonly ShakeCameraUseCase _shakeCameraUseCase;
+    readonly PauseGameLogicSomeFramesUseCase _pauseGameLogicSomeFramesUseCase;
 
     public KillPlayerUseCase(
         PlayerViewData playerViewData,
-        ShakeCameraUseCase shakeCameraUseCase
+        ShakeCameraUseCase shakeCameraUseCase, 
+        PauseGameLogicSomeFramesUseCase pauseGameLogicSomeFramesUseCase
         )
     {
         _playerViewData = playerViewData;
         _shakeCameraUseCase = shakeCameraUseCase;
+        _pauseGameLogicSomeFramesUseCase = pauseGameLogicSomeFramesUseCase;
     }
 
     public async Task Execute(CancellationToken cancellationToken)
@@ -36,7 +42,8 @@ public sealed class KillPlayerUseCase
             return;
         }
         
-        _shakeCameraUseCase.Execute();
+        _shakeCameraUseCase.Execute(ShakeCameraStrenght.Strong);
+        _pauseGameLogicSomeFramesUseCase.Execute(PauseFramesDuration.VeryLong);
 
         playerView.AnimationPlayer!.ProcessMode = Node.ProcessModeEnum.Disabled;
         playerView.CanUpdateMovement = false;

@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://bj43u4hjrd1xs"]
+[gd_scene load_steps=23 format=3 uid="uid://bj43u4hjrd1xs"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_si05d"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_e4hak"]
 [ext_resource type="Texture2D" uid="uid://bg5addttpmcle" path="res://Game/Textures/Backgrounds/Background1.png" id="3_5nv6d"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_5eifc"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_l5evj"]
+[ext_resource type="Resource" uid="uid://l6m6s3qsqvjv" path="res://Game/Configuration/ZIndexOrdering/BackgroundZIndexConfiguration.tres" id="5_tek0l"]
 [ext_resource type="Texture2D" uid="uid://cgtsoj3cgi5fm" path="res://Game/Textures/Props/TreeBackground1.png" id="6_j43xs"]
 [ext_resource type="Texture2D" uid="uid://cmcghup0nh726" path="res://Game/Textures/Props/TreeBackground2.png" id="7_3own4"]
 [ext_resource type="Texture2D" uid="uid://di1rv2hg7kx5f" path="res://Game/Textures/Props/Tree1.png" id="8_rp7dy"]
@@ -14,6 +15,8 @@
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="13_oittv"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/Intro2CinematicView.cs" id="14_67db1"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="14_keg8x"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="14_wn0kx"]
+[ext_resource type="Resource" uid="uid://b6x20ic8tu4o2" path="res://Game/Configuration/ZIndexOrdering/TilemapZIndexConfiguration.tres" id="15_46efc"]
 [ext_resource type="Resource" uid="uid://sj8vulak72a6" path="res://Game/Configuration/Dialogues/Intro2-1DialogueConfiguration.tres" id="15_gn1v8"]
 [ext_resource type="PackedScene" uid="uid://cd3mdu6bgkny1" path="res://Game/Prefabs/Views/SomeoneNpcView.tscn" id="17_n6y6g"]
 
@@ -44,6 +47,11 @@ material = SubResource("ShaderMaterial_bx5qr")
 position = Vector2(222.5, -159.5)
 scale = Vector2(1.045, 0.731667)
 texture = ExtResource("3_5nv6d")
+
+[node name="ZIndexSetter" type="Node2D" parent="MapBackground" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("14_wn0kx")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("5_tek0l")
 
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 script = ExtResource("4_5eifc")
@@ -155,6 +163,11 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
+
+[node name="ZIndexSetter" type="Node2D" parent="TileMap" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("14_wn0kx")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("15_46efc")
 
 [node name="CinematicView" type="Node2D" parent="." node_paths=PackedStringArray("SomeoneNpcView", "PositionBeforeJump", "JumpHeightPosition", "JumpFallPosition", "FallHeightPosition")]
 position = Vector2(101, 0)

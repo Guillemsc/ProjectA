@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpic3kcbxjteq"]
+[gd_scene load_steps=4 format=3 uid="uid://dpic3kcbxjteq"]
 
 [ext_resource type="Texture2D" uid="uid://dy2kry5w6nkvp" path="res://Game/Textures/Saw/Saw-Chain.png" id="1_vwugk"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="2_kdoa4"]
+[ext_resource type="Resource" uid="uid://l6m6s3qsqvjv" path="res://Game/Configuration/ZIndexOrdering/BackgroundZIndexConfiguration.tres" id="3_f7xbi"]
 
 [node name="SawLineView" type="Line2D"]
 position = Vector2(0, -3)
@@ -8,3 +10,9 @@ points = PackedVector2Array(60, 42, 60, -30)
 width = 4.0
 texture = ExtResource("1_vwugk")
 texture_mode = 1
+
+[node name="ZIndexSetter" type="Node2D" parent="." node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("2_kdoa4")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("3_f7xbi")
+Offset = 1

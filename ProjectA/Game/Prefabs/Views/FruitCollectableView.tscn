@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://crc117qgy3tha"]
+[gd_scene load_steps=15 format=3 uid="uid://crc117qgy3tha"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Fruits/Views/FruitCollectableView.cs" id="1_vu6dd"]
 [ext_resource type="Texture2D" uid="uid://cjj6g5hoow8cf" path="res://Game/Textures/Candy.png" id="3_wa0xl"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimationPlayer.cs" id="3_yxjyi"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="5_feyk7"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="5_pj3n8"]
+[ext_resource type="Resource" uid="uid://dahhot5s51w31" path="res://Game/Configuration/ZIndexOrdering/CollectableZIndexConfiguration.tres" id="6_tei0i"]
 
 [sub_resource type="Animation" id="Animation_rgx81"]
 resource_name = "Collected"
@@ -150,6 +152,11 @@ animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 1.0
 script = ExtResource("5_feyk7")
+
+[node name="ZIndexSetter" type="Node2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("5_pj3n8")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("6_tei0i")
 
 [node name="MapCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_thc0k")

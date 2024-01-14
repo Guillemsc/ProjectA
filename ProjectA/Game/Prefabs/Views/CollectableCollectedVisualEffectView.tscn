@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwir57qg56ye2"]
+[gd_scene load_steps=13 format=3 uid="uid://dwir57qg56ye2"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/VisualEffects/Views/AnimatedSprite2DOneShotVisualEffectView.cs" id="1_qfeuj"]
 [ext_resource type="Texture2D" uid="uid://c8wwmdp3xw3g1" path="res://Game/Textures/CollectableCollectedVisualEffect.png" id="2_n0pmj"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="3_vpdcy"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="4_s0mov"]
+[ext_resource type="Resource" uid="uid://dahhot5s51w31" path="res://Game/Configuration/ZIndexOrdering/CollectableZIndexConfiguration.tres" id="5_2gomq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3swqd"]
 atlas = ExtResource("2_n0pmj")
@@ -64,3 +66,9 @@ sprite_frames = SubResource("SpriteFrames_xt1eu")
 frame = 5
 frame_progress = 1.0
 script = ExtResource("3_vpdcy")
+
+[node name="ZIndexSetter" type="Node2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("4_s0mov")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("5_2gomq")
+Offset = -1

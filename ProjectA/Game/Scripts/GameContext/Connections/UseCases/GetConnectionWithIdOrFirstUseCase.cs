@@ -27,7 +27,7 @@ public sealed class GetConnectionWithIdOrFirstUseCase
         
         foreach (ConnectionView connectionView in mapView.ConnectionViews!)
         {
-            bool isId = string.Equals(connectionView.SpawnId, id);
+            bool isId = string.Equals(connectionView.Uid, id);
 
             if (isId)
             {

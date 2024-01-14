@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://xytolcxvv17g"]
+[gd_scene load_steps=20 format=3 uid="uid://xytolcxvv17g"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Crates/Views/CrateView.cs" id="1_ulhai"]
 [ext_resource type="Texture2D" uid="uid://c5r26uqbqqoqq" path="res://Game/Textures/Crate-Idle.png" id="2_g7v4m"]
 [ext_resource type="Texture2D" uid="uid://clw46s8lyh5iw" path="res://Game/Textures/Crate-Hit.png" id="2_s50rd"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexArraySetterNode.cs" id="2_xg8r8"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Crates/AnimationGraphPlayers/CrateAnimationGraphPlayer.cs" id="3_fk5m4"]
 [ext_resource type="Texture2D" uid="uid://bur3mjdu323yf" path="res://Game/Textures/Crate-Break.png" id="5_o7fay"]
 
@@ -265,6 +266,10 @@ size = Vector2(8, 9)
 [node name="CrateView" type="Node2D" node_paths=PackedStringArray("AnimationPlayer")]
 script = ExtResource("1_ulhai")
 AnimationPlayer = NodePath("AnimationGraphPlayer")
+
+[node name="ZIndexSetter" type="Node2D" parent="." node_paths=PackedStringArray("NodesToSet")]
+script = ExtResource("2_xg8r8")
+NodesToSet = [NodePath("../AnimatedSprite2D"), NodePath("../DestroyedPieces/CratePiece1/Sprite2D"), NodePath("../DestroyedPieces/CratePiece2/Sprite2D"), NodePath("../DestroyedPieces/CratePiece3/Sprite2D"), NodePath("../DestroyedPieces/CratePiece4/Sprite2D")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_he5rq")

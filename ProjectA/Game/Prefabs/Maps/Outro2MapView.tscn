@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://chpnlpyteu4ng"]
+[gd_scene load_steps=28 format=3 uid="uid://chpnlpyteu4ng"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Maps/Views/MapView.cs" id="1_jxsqy"]
 [ext_resource type="Shader" path="res://GUtilsGodot/Shaders/BackgroundScroll.gdshader" id="2_gq7lv"]
 [ext_resource type="Texture2D" uid="uid://bg5addttpmcle" path="res://Game/Textures/Backgrounds/Background1.png" id="3_uuvyv"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Areas/Views/AreaView.cs" id="4_7mc1v"]
+[ext_resource type="Resource" uid="uid://l6m6s3qsqvjv" path="res://Game/Configuration/ZIndexOrdering/BackgroundZIndexConfiguration.tres" id="5_61djt"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Rects/Nodes/Rect2dNode.cs" id="5_n8c8b"]
 [ext_resource type="Texture2D" uid="uid://bowfwgfe4qsta" path="res://Game/Textures/Props/Tree2.png" id="6_dgxfo"]
 [ext_resource type="Texture2D" uid="uid://bkqlakbw022wn" path="res://Game/Textures/Props/RockBackground1.png" id="7_xarmn"]
@@ -12,12 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://cmoibn448np2l" path="res://Game/Textures/Props/Rock1.png" id="10_mjq6c"]
 [ext_resource type="Texture2D" uid="uid://cgtsoj3cgi5fm" path="res://Game/Textures/Props/TreeBackground1.png" id="11_sfdti"]
 [ext_resource type="Texture2D" uid="uid://cmcghup0nh726" path="res://Game/Textures/Props/TreeBackground2.png" id="12_8q1gi"]
+[ext_resource type="Resource" uid="uid://5xfglbq5vvpc" path="res://Game/Configuration/ZIndexOrdering/PlayerZIndexConfiguration.tres" id="12_rrpxm"]
 [ext_resource type="Texture2D" uid="uid://di1rv2hg7kx5f" path="res://Game/Textures/Props/Tree1.png" id="13_a7khr"]
 [ext_resource type="Texture2D" uid="uid://dvfohkkwkucas" path="res://Game/Textures/Props/Tree4.png" id="14_qeucq"]
 [ext_resource type="Texture2D" uid="uid://ds43mrdiltixu" path="res://Game/Textures/Props/Tree3.png" id="15_qw71w"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Connections/Views/ConnectionView.cs" id="16_dfx8m"]
 [ext_resource type="TileSet" uid="uid://dqxd4lrp1afor" path="res://Game/Tilesets/MainTileset.tres" id="17_uj1p1"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="18_85f71"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Cinematics/Cinematics/OutroCinematic2View.cs" id="18_j0d82"]
+[ext_resource type="Resource" uid="uid://b6x20ic8tu4o2" path="res://Game/Configuration/ZIndexOrdering/TilemapZIndexConfiguration.tres" id="19_6w5m1"]
 [ext_resource type="Resource" uid="uid://c5jppb1sro08u" path="res://Game/Configuration/Dialogues/Outro2-1DialogueConfiguration.tres" id="19_bknkx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx5qr"]
@@ -85,6 +89,11 @@ position = Vector2(222.5, -860)
 scale = Vector2(1.045, 3.06667)
 texture = ExtResource("3_uuvyv")
 
+[node name="ZIndexSetter" type="Node2D" parent="MapBackground" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("18_85f71")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("5_61djt")
+
 [node name="AreaView" type="Node2D" parent="." node_paths=PackedStringArray("Bounds")]
 script = ExtResource("4_7mc1v")
 Bounds = NodePath("Bounds")
@@ -120,6 +129,12 @@ z_index = 5
 position = Vector2(-95, -1)
 texture = ExtResource("10_mjq6c")
 flip_h = true
+
+[node name="ZIndexSetter" type="Node2D" parent="AreaView/Sprite2D16" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("18_85f71")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("12_rrpxm")
+Offset = 1
 
 [node name="Sprite2D15" type="Sprite2D" parent="AreaView"]
 position = Vector2(451, -106)
@@ -187,6 +202,11 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Content-1"
 layer_2/tile_data = PackedInt32Array()
+
+[node name="ZIndexSetter" type="Node2D" parent="TileMap" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("18_85f71")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("19_6w5m1")
 
 [node name="CinematicView" type="Node2D" parent="." node_paths=PackedStringArray("AnimationPlayer", "MovePosition1", "CameraFocusPosition")]
 position = Vector2(101, 0)

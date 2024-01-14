@@ -5,6 +5,7 @@ using Game.GameContext.Connections.UseCases;
 using Game.GameContext.Crates.UseCases;
 using Game.GameContext.General.Configurations;
 using Game.GameContext.General.Datas;
+using Game.GameContext.Pause.UseCases;
 using Game.GameContext.PlayerKillers.UseCases;
 using Game.GameContext.Players.Configurations;
 using Game.GameContext.Players.Datas;
@@ -70,7 +71,8 @@ public static class GamePlayersInstaller
         builder.Bind<KillPlayerUseCase>()
             .FromFunction(c => new KillPlayerUseCase(
                 c.Resolve<PlayerViewData>(),
-                c.Resolve<ShakeCameraUseCase>()
+                c.Resolve<ShakeCameraUseCase>(),
+                c.Resolve<PauseGameLogicSomeFramesUseCase>()
             ));
 
         builder.Bind<FreezePlayerUseCase>()

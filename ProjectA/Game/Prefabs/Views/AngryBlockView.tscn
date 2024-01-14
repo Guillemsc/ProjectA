@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://fe6h15w823lv"]
+[gd_scene load_steps=44 format=3 uid="uid://fe6h15w823lv"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/AngryBlocks/Views/AngryBlockView.cs" id="1_y61p8"]
 [ext_resource type="Resource" uid="uid://bxbytils4jcif" path="res://Game/Configuration/AngryBlocks/NormalAngryBlockMovementConfiguration.tres" id="2_cj5o0"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dtsm6a5uonaix" path="res://Game/Textures/AngryBlock/AngryBlock-RightHit.png" id="8_27y30"]
 [ext_resource type="Texture2D" uid="uid://bsfionvd5uup8" path="res://Game/Textures/AngryBlock/AngryBlock-TopHit.png" id="9_pb2ua"]
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/AngryBlocks/AnimationGraphPlayers/AngryBlockAnimationGraphPlayerNode.cs" id="10_bxabm"]
+[ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="10_njfur"]
+[ext_resource type="Resource" uid="uid://0jfehbqlj2wi" path="res://Game/Configuration/ZIndexOrdering/PropsZIndexConfiguration.tres" id="11_gfcsm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16857"]
 atlas = ExtResource("4_4xbjp")
@@ -240,8 +242,14 @@ script = ExtResource("3_7lkas")
 ToRegister = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 4
 sprite_frames = SubResource("SpriteFrames_mwjyd")
 animation = &"Blink"
+
+[node name="ZIndexSetter" type="Node2D" parent="AnimatedSprite2D" node_paths=PackedStringArray("NodeToSet")]
+script = ExtResource("10_njfur")
+NodeToSet = NodePath("..")
+Configuration = ExtResource("11_gfcsm")
 
 [node name="AnimationGraphPlayer" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D")]
 script = ExtResource("10_bxabm")
