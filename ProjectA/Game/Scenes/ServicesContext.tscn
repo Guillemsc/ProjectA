@@ -52,6 +52,7 @@ volume_db = -0.46
 
 [node name="CameraService" type="Node2D" parent="." node_paths=PackedStringArray("Camera2D")]
 script = ExtResource("5_cddpm")
+ProcessMode = 1
 Camera2D = NodePath("Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="CameraService"]
