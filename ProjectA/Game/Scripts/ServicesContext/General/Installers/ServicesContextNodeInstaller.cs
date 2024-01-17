@@ -1,5 +1,6 @@
 ﻿using Game.ServicesContext.LoadingScreen.Services;
 using Game.ServicesContext.Music.Services;
+using Game.ServicesContext.Saves.Services;
 using Game.ServicesContext.Time.Services;
 using Godot;
 using GUtils.ApplicationContexts.Services;
@@ -74,6 +75,10 @@ public partial class ServicesContextNodeInstaller : NodeInstaller
 
         builder.Bind<IQuitService>()
             .FromInstance(QuitService!)
+            .LinkToServiceLocator();
+
+        builder.Bind<IGameSavesService>()
+            .FromInstance(new GameSavesService())
             .LinkToServiceLocator();
     }
 }

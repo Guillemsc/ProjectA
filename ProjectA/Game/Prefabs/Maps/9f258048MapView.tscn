@@ -71,6 +71,7 @@ Size = Vector2(555, 224)
 
 [node name="LetterCollectableView" parent="AreaView" instance=ExtResource("6_6i5mk")]
 position = Vector2(272, -13)
+Uid = "8b05f427-1e10-4819-ac70-b2aa1857e0d1"
 
 [node name="ConnectionView" type="Node2D" parent="." node_paths=PackedStringArray("SpawnPosition", "Bounds")]
 position = Vector2(-32, -212)

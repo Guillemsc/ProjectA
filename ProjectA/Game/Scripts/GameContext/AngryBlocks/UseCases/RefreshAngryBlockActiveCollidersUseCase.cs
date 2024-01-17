@@ -2,11 +2,17 @@ using Game.GameContext.AngryBlocks.Views;
 using Godot;
 using GUtils.Directions;
 using GUtils.Extensions;
+using GUtils.Pooling.Objects;
 
 namespace Game.GameContext.AngryBlocks.UseCases;
 
-public sealed class RefreshAngryBlockActiveCollidersUseCase
+public sealed class RefreshAngryBlockActiveCollidersUseCase : IReturnablePooledObject
 {
+    public void PooledObjectReturned()
+    {
+        
+    }
+    
     public void Execute(AngryBlockView angryBlockView)
     {
         bool couldGetCurrentDirection = angryBlockView.MovementSequence!.TryGet(

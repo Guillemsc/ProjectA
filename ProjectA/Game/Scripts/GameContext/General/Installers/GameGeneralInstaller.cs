@@ -4,8 +4,10 @@ using Game.GameContext.Cinematics.UseCases;
 using Game.GameContext.GameUi.UseCases;
 using Game.GameContext.General.Interactors;
 using Game.GameContext.General.UseCases;
+using Game.GameContext.Letters.UseCases;
 using Game.GameContext.Maps.UseCases;
 using Game.GameContext.Players.UseCases;
+using Game.GameContext.Saves.UseCases;
 using GUtils.Di.Builder;
 using GUtils.Extensions;
 using GUtils.Randomization.Generators;
@@ -22,11 +24,13 @@ public static class GameGeneralInstaller
         builder.Bind<IGameContextInteractor>()
             .FromFunction(c => new GameContextInteractor(
                 c.Resolve<GameLoadUseCase>(),
-                c.Resolve<GameStartUseCase>()
+                c.Resolve<GameStartUseCase>(),
+                c.Resolve<GameDisposeUseCase>()
             ));
 
         builder.Bind<GameLoadUseCase>()
             .FromFunction(c => new GameLoadUseCase(
+                c.Resolve<LoadGameMapSaveDataUseCase>(),
                 c.Resolve<SpawnMapUseCase>(),
                 c.Resolve<SpawnPlayerUseCase>(),
                 c.Resolve<SetupCameraUseCase>(),
@@ -34,6 +38,7 @@ public static class GameGeneralInstaller
                 c.Resolve<SetInitialCameraAreaUseCase>(),
                 c.Resolve<SetPlayerAsCameraTargetUseCase>(),
                 c.Resolve<LoadAngryBlocksUseCase>(),
+                c.Resolve<LoadLettersUseCase>(),
                 c.Resolve<ShowGameUiUseCase>()
             ));
 
@@ -41,6 +46,11 @@ public static class GameGeneralInstaller
             .FromFunction(c => new GameStartUseCase(
                 c.Resolve<StartPlayerUseCase>(),
                 c.Resolve<TryPlayStartingMapCinematicUseCase>()
+            ));
+
+        builder.Bind<GameDisposeUseCase>()
+            .FromFunction(c => new GameDisposeUseCase(
+                c.Resolve<SaveGameMapSaveDataUseCase>()
             ));
 
         builder.InstallAsyncTaskRunner();

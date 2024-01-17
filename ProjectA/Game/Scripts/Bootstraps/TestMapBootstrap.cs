@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Game.GameContext.General.ApplicationContexts;
 using Game.GameContext.General.Configurations;
+using Game.ServicesContext.Saves.Services;
 using Godot;
 using GUtils.Directions;
 using GUtils.Loading.Extensions;
@@ -38,6 +39,7 @@ public partial class TestMapBootstrap : Bootstrap
         
         await loadingService.New()
             .RunBeforeLoadActionsInstantly()
+            .Enqueue(ServiceLocator.Get<IGameSavesService>())
             .EnqueueLoadAndStartApplicationContext(new GameApplicationContext(contextConfiguration))
             .Execute(cancellationToken);
     }

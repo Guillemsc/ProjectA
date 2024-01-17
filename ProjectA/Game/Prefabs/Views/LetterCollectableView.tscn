@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://d22jb7encgi8w"]
+[gd_scene load_steps=35 format=3 uid="uid://d22jb7encgi8w"]
 
 [ext_resource type="Script" path="res://Game/Scripts/GameContext/Letters/Views/LetterCollectableView.cs" id="1_f2x0e"]
 [ext_resource type="Resource" uid="uid://clq7wsmpiuf4e" path="res://Game/Configuration/Letters/TestLetterConfiguration.tres" id="2_8pt0j"]
 [ext_resource type="Texture2D" uid="uid://bkn25yl587ybv" path="res://Game/Textures/Leter-Idle.png" id="3_55fmd"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimationPlayer.cs" id="3_aaaw6"]
+[ext_resource type="Script" path="res://Game/Scripts/GameContext/Entities/Nodes/RegisterEntityNode.cs" id="3_po8lo"]
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Time/Nodes/GameTimeAnimatedSprite2D.cs" id="5_jk5hj"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Ordernings/Nodes/ZIndexSetterNode.cs" id="6_d0ogv"]
 [ext_resource type="Texture2D" uid="uid://cc1o7inlabkpt" path="res://Game/Textures/Lighting/RadialLightTexture.tres" id="6_luodp"]
@@ -278,6 +279,10 @@ freeze = true
 script = ExtResource("1_f2x0e")
 LetterConfiguration = ExtResource("2_8pt0j")
 AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="RegisterEntity" type="Node2D" parent="." node_paths=PackedStringArray("ToRegister")]
+script = ExtResource("3_po8lo")
+ToRegister = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

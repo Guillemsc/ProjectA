@@ -6,5 +6,6 @@ namespace Game.GameContext.Letters.Views;
 
 public partial class LetterCollectableView : CollectableView
 {
+    [Export] public string Uid;
     [Export] public LetterConfiguration? LetterConfiguration;
 }

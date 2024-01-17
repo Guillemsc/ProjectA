@@ -1,5 +1,6 @@
 using Game.ServicesContext.LoadingScreen.Services;
 using Game.ServicesContext.Music.Services;
+using Game.ServicesContext.Saves.Services;
 using Game.ServicesContext.Time.Services;
 using GUtils.Di.Builder;
 using GUtils.Loading.Services;
@@ -21,5 +22,6 @@ public static class GameGeneralServicesInstaller
         builder.Bind<ICameras2dService>().FromServiceLocator();
         builder.Bind<ILoadingScreenService>().FromServiceLocator();
         builder.Bind<IMusicService>().FromServiceLocator();
+        builder.Bind<IGameSavesService>().FromServiceLocator();
     }
 }

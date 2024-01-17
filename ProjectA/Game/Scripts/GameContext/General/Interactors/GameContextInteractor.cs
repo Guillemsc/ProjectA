@@ -8,14 +8,17 @@ public sealed class GameContextInteractor : IGameContextInteractor
 {
     readonly GameLoadUseCase _gameLoadUseCase;
     readonly GameStartUseCase _gameStartUseCase;
+    readonly GameDisposeUseCase _gameDisposeUseCase;
 
     public GameContextInteractor(
         GameLoadUseCase gameLoadUseCase, 
-        GameStartUseCase gameStartUseCase
+        GameStartUseCase gameStartUseCase, 
+        GameDisposeUseCase gameDisposeUseCase
         )
     {
         _gameLoadUseCase = gameLoadUseCase;
         _gameStartUseCase = gameStartUseCase;
+        _gameDisposeUseCase = gameDisposeUseCase;
     }
 
     public Task Load(CancellationToken cancellationToken)
@@ -25,7 +28,5 @@ public sealed class GameContextInteractor : IGameContextInteractor
         => _gameStartUseCase.Execute();
 
     public Task Dispose(CancellationToken cancellationToken)
-    {
-        return Task.CompletedTask;
-    }
+        => _gameDisposeUseCase.Execute(cancellationToken);
 }
