@@ -126,4 +126,24 @@ public static class DebugActionsSectionExtensions
     {
         return section.AddFloat(name, 0.1f, setAction, getAction);
     }
+
+    public static IDebugAction AddEnum<T>(this IDebugActionsSection section, string name, Action<T> setAction, Func<T> getAction)
+        where T : Enum
+    {
+        void Set(object value) => setAction.Invoke((T)value);
+        object Get() => getAction.Invoke();
+
+        Type enumType = typeof(T);
+        
+        IDebugAction debugAction = new EnumDebugAction(name, enumType, Set, Get);
+        section.Add(debugAction);
+        return debugAction;
+    }
+    
+    public static IDebugAction AddEnum(this IDebugActionsSection section, string name, Type enumType, Action<object> setAction, Func<object> getAction)
+    {
+        IDebugAction debugAction = new EnumDebugAction(name, enumType, setAction, getAction);
+        section.Add(debugAction);
+        return debugAction;
+    }
 }

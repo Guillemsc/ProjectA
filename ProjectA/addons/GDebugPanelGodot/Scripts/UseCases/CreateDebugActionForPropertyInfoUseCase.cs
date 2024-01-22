@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using GDebugPanelGodot.DebugActions.Containers;
 using GDebugPanelGodot.Extensions;
@@ -45,6 +46,15 @@ public static class CreateDebugActionForPropertyInfoUseCase
                     propertyInfo.Name,
                     val => propertyInfo.SetValue(optionsObject, val),
                     () => (float)propertyInfo.GetValue(optionsObject)!
+                );
+            }
+            else if(propertyInfo.PropertyType.IsAssignableTo(typeof(Enum)))
+            {
+                section.AddEnum(
+                    propertyInfo.Name,
+                    propertyInfo.PropertyType,
+                    val => propertyInfo.SetValue(optionsObject, val),
+                    () => propertyInfo.GetValue(optionsObject)!
                 );
             }
             
