@@ -127,6 +127,16 @@ public static class DebugActionsSectionExtensions
         return section.AddFloat(name, 0.1f, setAction, getAction);
     }
 
+    /// <summary>
+    /// Adds an enum debug action with the provided name, and actions for setting
+    /// and getting the enum value.
+    /// </summary>
+    /// <typeparam name="T">The enum type.</typeparam>
+    /// <param name="section">The debug actions section to add the enum action to.</param>
+    /// <param name="name">The name of the enum action.</param>
+    /// <param name="setAction">The action to set the enum value.</param>
+    /// <param name="getAction">The function to get the current enum value.</param>
+    /// <returns>The added enum debug action.</returns>
     public static IDebugAction AddEnum<T>(this IDebugActionsSection section, string name, Action<T> setAction, Func<T> getAction)
         where T : Enum
     {
@@ -140,6 +150,16 @@ public static class DebugActionsSectionExtensions
         return debugAction;
     }
     
+    /// <summary>
+    /// Adds an enum debug action with the provided name, and actions for setting
+    /// and getting the enum value.
+    /// </summary>
+    /// <param name="section">The debug actions section to add the enum action to.</param>
+    /// <param name="name">The name of the enum action.</param>
+    /// <param name="enumType">The type of the enum to use.</param>
+    /// <param name="setAction">The action to set the enum value.</param>
+    /// <param name="getAction">The function to get the current enum value.</param>
+    /// <returns>The added enum debug action.</returns>
     public static IDebugAction AddEnum(this IDebugActionsSection section, string name, Type enumType, Action<object> setAction, Func<object> getAction)
     {
         IDebugAction debugAction = new EnumDebugAction(name, enumType, setAction, getAction);
