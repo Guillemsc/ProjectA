@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://os30dycrhvs0"]
+
+[ext_resource type="Script" path="res://addons/GDebugPanelGodot/Scripts/Views/DebugPanelView.cs" id="1_3o12x"]
+[ext_resource type="FontFile" uid="uid://s3os5vbnjky3" path="res://addons/GDebugPanelGodot/Fonts/SpaceMono-Bold.ttf" id="1_3wdhi"]
+[ext_resource type="PackedScene" uid="uid://dast33no0qax8" path="res://addons/GDebugPanelGodot/Scenes/ButtonDebugActionWidget.tscn" id="3_r5431"]
+[ext_resource type="PackedScene" uid="uid://hy0wr7qtm7vx" path="res://addons/GDebugPanelGodot/Scenes/GDebugPanelSection.tscn" id="3_rmsxo"]
+
+[sub_resource type="Curve" id="Curve_ktxtq"]
+_data = [Vector2(0.608696, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_sp1a7"]
+width = 32
+curve = SubResource("Curve_ktxtq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_htfk8"]
+font = ExtResource("1_3wdhi")
+font_size = 45
+
+[node name="GDebugPanel" type="Control" node_paths=PackedStringArray("ContentVBox")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3o12x")
+ContentVBox = NodePath("Content/ScrollContainer/MarginContainer/ContentVBox")
+DebugPanelSection = ExtResource("3_rmsxo")
+ButtonDebugActionWidget = ExtResource("3_r5431")
+
+[node name="TopBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="BackgroundTexture" type="TextureRect" parent="TopBar"]
+modulate = Color(0.152941, 0.152941, 0.152941, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CurveTexture_sp1a7")
+
+[node name="TitleLabel" type="Label" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 11.0
+offset_right = 207.0
+offset_bottom = -12.0
+grow_vertical = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_htfk8")
+vertical_alignment = 1
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTexture" type="TextureRect" parent="Content"]
+modulate = Color(0.0980392, 0.0980392, 0.0980392, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CurveTexture_sp1a7")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="ContentVBox" type="VBoxContainer" parent="Content/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10

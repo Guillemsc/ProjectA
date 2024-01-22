@@ -1,10 +1,9 @@
 using Godot;
-using System;
 
 namespace GDebugPanelGodot
 {
     [Tool]
-    public partial class GDebugPanelGodotPlugin : EditorPlugin
+    public partial class Plugin : EditorPlugin
     {
         public override void _EnterTree()
         {

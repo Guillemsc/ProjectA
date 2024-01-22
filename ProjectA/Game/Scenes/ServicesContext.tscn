@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3td2vlgbqfxy"]
+[gd_scene load_steps=11 format=3 uid="uid://b3td2vlgbqfxy"]
 
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/General/Installers/ServicesContextNodeInstaller.cs" id="1_xfwga"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Tick/Services/TickablesServiceNode.cs" id="2_7s3yh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Game/Scripts/ServicesContext/Music/Services/MusicService.cs" id="5_jayg0"]
 [ext_resource type="AudioStream" uid="uid://b67m6hbs2gmco" path="res://Game/Audio/Inspiration/Think Of Me Once In A While Take Care.ogg" id="6_w2kf7"]
 [ext_resource type="Script" path="res://GUtilsGodot/Source/Quitting/Services/QuitServiceNode.cs" id="9_mnrbr"]
+[ext_resource type="Script" path="res://addons/GDebugPanelGodot/Scripts/Nodes/OpenGDebugPanelNode.cs" id="10_dgq1p"]
 
 [node name="ServicesContext" type="Node2D" node_paths=PackedStringArray("TickablesService", "TimeContext", "PhysicsTimeContext", "MusicService", "Cameras2dService", "UiFrameService", "QuitService")]
 script = ExtResource("1_xfwga")
@@ -65,3 +66,8 @@ script = ExtResource("9_mnrbr")
 [node name="UiFrameService" type="CanvasLayer" parent="."]
 layer = 2
 script = ExtResource("2_pnkxa")
+
+[node name="DebugPanel" type="CanvasLayer" parent="."]
+layer = 128
+script = ExtResource("10_dgq1p")
+Action = "ToggleDebugPanel"
