@@ -19,5 +19,7 @@ public static class RemoveDebugActionsSectionUseCase
         {
             RemoveDebugActionWidgetUseCase.Execute(debugActionsData, debugAction);
         }
+        
+        section.Dispose();
     }
 }

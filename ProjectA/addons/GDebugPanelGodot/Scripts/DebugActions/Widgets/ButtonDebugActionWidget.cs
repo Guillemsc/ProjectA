@@ -4,10 +4,14 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class ButtonDebugActionWidget : Button
+public partial class ButtonDebugActionWidget : Control
 {
-    public void Init(Action action)
+    [Export] public Label? Label;
+    [Export] public Button? Button;
+    
+    public void Init(string name, Action action)
     {
-       this.ConnectButtonPressed(action);
+        Label!.Text = name;
+        Button!.ConnectButtonPressed(action);
     }
 }

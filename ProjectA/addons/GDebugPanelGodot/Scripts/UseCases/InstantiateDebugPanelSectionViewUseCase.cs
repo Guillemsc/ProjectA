@@ -24,8 +24,14 @@ public static class InstantiateDebugPanelSectionViewUseCase
         DebugPanelSectionView debugPanelSectionView = instancesData.DebugPanelView!.DebugPanelSection!.Instantiate<DebugPanelSectionView>();
         debugPanelSectionView.SetParent(instancesData.DebugPanelView.ContentVBox!);
 
-        debugPanelSectionView.NameLabel!.Text = section.Name;
+        void Toggle() => ToggleSectionViewCollapsedUseCase.Execute(debugPanelSectionView);
+
+        debugPanelSectionView.Section = section;
+        debugPanelSectionView.SectionButton!.ConnectButtonPressed(Toggle);
         
         debugActionsData.SectionsViews.Add(section, debugPanelSectionView);
+        
+        RefreshSectionViewNameUseCase.Execute(debugPanelSectionView);
+        SetSectionViewCollapsedUseCase.Execute(debugPanelSectionView, section.Collapsed);
     }
 }

@@ -7,17 +7,19 @@ namespace GDebugPanelGodot.DebugActions.Actions;
 
 public sealed class ButtonDebugAction : IDebugAction
 {
+    public string Name { get; }
     public Action Action { get; }
 
-    public ButtonDebugAction(Action action)
+    public ButtonDebugAction(string name, Action action)
     {
+        Name = name;
         Action = action;
     }
 
     public Control InstantiateWidget(DebugPanelView debugPanelView)
     {
         ButtonDebugActionWidget widget = debugPanelView.ButtonDebugActionWidget!.Instantiate<ButtonDebugActionWidget>();
-        widget.Init(Action);
+        widget.Init(Name, Action);
         return widget;
     }
 }

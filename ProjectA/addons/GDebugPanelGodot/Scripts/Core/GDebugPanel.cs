@@ -21,6 +21,8 @@ namespace GDebugPanelGodot.Core
 
         public static DebugActionsSection AddSection(string name) => Instance.AddSectionInternal(name);
         public static void RemoveSection(DebugActionsSection section) => Instance.RemoveSectionInternal(section);
+        
+        public static DebugActionsSection AddSection(string name, object optionsObject) => Instance.AddSectionInternal(name, optionsObject);
 
         void ShowInternal(Node parent)
         {
@@ -47,6 +49,13 @@ namespace GDebugPanelGodot.Core
         void RemoveSectionInternal(DebugActionsSection section)
         {
             RemoveDebugActionsSectionUseCase.Execute(_debugActionsData, section);
+        }
+        
+        DebugActionsSection AddSectionInternal(string name, object optionsObject)
+        {
+            DebugActionsSection section = AddDebugActionsSectionUseCase.Execute(_instancesData, _debugActionsData, name);
+            PopulateDebugActionsSectionFromOptionsObjectUseCase.Execute(section, optionsObject);
+            return section;
         }
     }   
 }

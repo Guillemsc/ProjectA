@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://os30dycrhvs0"]
+[gd_scene load_steps=13 format=3 uid="uid://os30dycrhvs0"]
 
 [ext_resource type="Script" path="res://addons/GDebugPanelGodot/Scripts/Views/DebugPanelView.cs" id="1_3o12x"]
 [ext_resource type="FontFile" uid="uid://s3os5vbnjky3" path="res://addons/GDebugPanelGodot/Fonts/SpaceMono-Bold.ttf" id="1_3wdhi"]
+[ext_resource type="PackedScene" uid="uid://cb1ukmkhnqqee" path="res://addons/GDebugPanelGodot/Scenes/DynamicInfoDebugActionWidget.tscn" id="3_c1kvk"]
+[ext_resource type="PackedScene" uid="uid://bqkowvmnlkmt8" path="res://addons/GDebugPanelGodot/Scenes/InfoDebugActionWidget.tscn" id="3_es4am"]
 [ext_resource type="PackedScene" uid="uid://dast33no0qax8" path="res://addons/GDebugPanelGodot/Scenes/ButtonDebugActionWidget.tscn" id="3_r5431"]
 [ext_resource type="PackedScene" uid="uid://hy0wr7qtm7vx" path="res://addons/GDebugPanelGodot/Scenes/GDebugPanelSection.tscn" id="3_rmsxo"]
+[ext_resource type="PackedScene" uid="uid://ct2p5jkatd6p4" path="res://addons/GDebugPanelGodot/Scenes/ToggleDebugActionWidget.tscn" id="4_lwilv"]
+[ext_resource type="PackedScene" uid="uid://b2wgwoerjooqf" path="res://addons/GDebugPanelGodot/Scenes/IntDebugActionWidget.tscn" id="7_vbj6r"]
+[ext_resource type="PackedScene" uid="uid://chrq3yyve2gwu" path="res://addons/GDebugPanelGodot/Scenes/FloatDebugActionWidget.tscn" id="8_ubasg"]
 
 [sub_resource type="Curve" id="Curve_ktxtq"]
 _data = [Vector2(0.608696, 1), 0.0, 0.0, 0, 0]
@@ -27,7 +32,12 @@ grow_vertical = 2
 script = ExtResource("1_3o12x")
 ContentVBox = NodePath("Content/ScrollContainer/MarginContainer/ContentVBox")
 DebugPanelSection = ExtResource("3_rmsxo")
+InfoDebugActionWidget = ExtResource("3_es4am")
+DynamicInfoDebugActionWidget = ExtResource("3_c1kvk")
 ButtonDebugActionWidget = ExtResource("3_r5431")
+ToggleDebugActionWidget = ExtResource("4_lwilv")
+IntDebugActionWidget = ExtResource("7_vbj6r")
+FloatDebugActionWidget = ExtResource("8_ubasg")
 
 [node name="TopBar" type="Control" parent="."]
 layout_mode = 1

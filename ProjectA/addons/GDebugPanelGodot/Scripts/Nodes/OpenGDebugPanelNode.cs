@@ -1,6 +1,8 @@
+using System.Diagnostics;
 using GDebugPanelGodot.Core;
 using GDebugPanelGodot.DebugActions.Containers;
 using GDebugPanelGodot.Extensions;
+using GDebugPanelGodot.OptionsObjects;
 using Godot;
 
 namespace GDebugPanelGodot.Nodes;
@@ -8,6 +10,12 @@ namespace GDebugPanelGodot.Nodes;
 public partial class OpenGDebugPanelNode : Node
 {
     [Export] public string Action = "ui_accept";
+
+    DebugActionsSection? section;
+    DebugActionsSection? section2;
+    DebugActionsSection? section3;
+    
+    Stopwatch Stopwatch = Stopwatch.StartNew();
     
     public override void _Process(double delta)
     {
@@ -25,13 +33,22 @@ public partial class OpenGDebugPanelNode : Node
         }
         else
         {
-            DebugActionsSection section = GDebugPanel.AddSection("1");
-            section.AddButton(() => GD.Print("A"));
-            
             GDebugPanel.Show(this);
             
-            DebugActionsSection section2 = GDebugPanel.AddSection("2");
-            section2.AddButton(() => GD.Print("B"));
+            if (section == null)
+            {
+                section = GDebugPanel.AddSection("1");
+                section.AddButton("God", () => GD.Print("A"));
+                section.AddToggle("Toggle 1", val => { }, () => false);
+                section.AddInfo("Lorem ipsum deca ago dero");
+                section.AddInfoDynamic(() => Stopwatch.Elapsed.ToString());
+            
+                section2 = GDebugPanel.AddSection("2");
+                section2.AddButton("God 2", () => GD.Print("B"));
+                section2.AddToggle("Toggle 2", val => { }, () => true);
+            
+                section3 = GDebugPanel.AddSection("3", new ExampleOptionsObject());
+            }
         }
     }
 }
