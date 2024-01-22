@@ -4,7 +4,7 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class FloatDebugActionWidget : Control
+public partial class FloatDebugActionWidget : DebugActionWidget
 {
     [Export] public Label? Label;
     [Export] public SpinBox? SpinBox;
@@ -25,6 +25,12 @@ public partial class FloatDebugActionWidget : Control
         SpinBox.Value = getAction.Invoke();
         SpinBox.Rounded = false;
         SpinBox.ConnectSpinBoxValueChanged(Changed);
+    }
+    
+    public override bool Focus()
+    {
+        SpinBox!.GrabFocus();
+        return true;
     }
 
     void Changed(float value)

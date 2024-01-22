@@ -16,7 +16,7 @@ public sealed class ButtonDebugAction : IDebugAction
         Action = action;
     }
 
-    public Control InstantiateWidget(DebugPanelView debugPanelView)
+    public DebugActionWidget InstantiateWidget(DebugPanelView debugPanelView)
     {
         ButtonDebugActionWidget widget = debugPanelView.ButtonDebugActionWidget!.Instantiate<ButtonDebugActionWidget>();
         widget.Init(Name, Action);

@@ -43,3 +43,4 @@ vertical_alignment = 1
 layout_mode = 2
 theme = ExtResource("3_lrccj")
 alignment = 1
+select_all_on_focus = true

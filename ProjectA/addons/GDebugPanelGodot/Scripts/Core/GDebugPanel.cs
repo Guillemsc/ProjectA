@@ -12,14 +12,17 @@ namespace GDebugPanelGodot.Core
         static GDebugPanel Instance => _instance ??= new GDebugPanel();
 
         readonly CacheData _cacheData = new();
-        readonly InstancesData _instancesData = new();
+        readonly DebugPanelData _debugPanelData = new();
         readonly DebugActionsData _debugActionsData = new();
+        readonly FocusData _focusData = new();
         
         /// <summary>
         /// Shows the debug actions UI with the specified parent node.
         /// </summary>
         /// <param name="parent">The parent node to attach the debug UI to.</param>
-        public static void Show(Node parent) => Instance.ShowInternal(parent);
+        /// <param name="grabFocus">If set to true, first item of the debug UI will grab focus.
+        /// When the panel is closed, it will try to return the focus to the previous element.</param>
+        public static void Show(Node parent, bool grabFocus = true) => Instance.ShowInternal(parent, grabFocus);
         
         /// <summary>
         /// Hides the debug actions UI.
@@ -101,27 +104,36 @@ namespace GDebugPanelGodot.Core
         public static void RemoveSection(IDebugActionsSection section) 
             => Instance.RemoveSectionInternal(section);
         
-        void ShowInternal(Node parent)
+        void ShowInternal(Node parent, bool grabFocus)
         {
-            InstantiateDebugPanelViewUseCase.Execute(_cacheData, _instancesData, parent);
-            CreateDebugActionsWidgetsUseCase.Execute(_instancesData, _debugActionsData);
+            InstantiateDebugPanelViewUseCase.Execute(_cacheData, _debugPanelData, parent);
+            ConnectSearchTextUseCase.Execute(_debugPanelData, _debugActionsData);
+            ConnectClearSearchTextUseCase.Execute(_debugPanelData, _debugActionsData);
+            InstantiateDebugActionsWidgetsUseCase.Execute(_debugPanelData, _debugActionsData);
+
+            if (grabFocus)
+            {
+                StorePreviouslyFocusedControlUseCase.Execute(_debugPanelData, _focusData);
+                TryGrabFocusOnFirstDebugActionWidgetUseCase.Execute(_debugActionsData);   
+            }
         }
         
         void HideInternal()
         {
             ClearDebugActionsWidgetsUseCase.Execute(_debugActionsData);
-            DestroyDebugPanelViewUseCase.Execute(_instancesData);
+            DestroyDebugPanelViewUseCase.Execute(_debugPanelData);
+            TryReturnFocusToPreviouslyFocusedControlUseCase.Execute(_focusData);
         }
         
         bool IsVisibleInternal()
         {
-            return HasDebugPanelViewInstanceUseCase.Execute(_instancesData);
+            return HasDebugPanelViewInstanceUseCase.Execute(_debugPanelData);
         }
 
         IDebugActionsSection AddSectionInternal(string name, bool collapsed, int priority)
         {
             return AddDebugActionsSectionUseCase.Execute(
-                _instancesData,
+                _debugPanelData,
                 _debugActionsData,
                 name,
                 true,
@@ -133,7 +145,7 @@ namespace GDebugPanelGodot.Core
         IDebugActionsSection AddNonCollapsableSectionInternal(string name, int priority)
         {
             return AddDebugActionsSectionUseCase.Execute(
-                _instancesData,
+                _debugPanelData,
                 _debugActionsData,
                 name,
                 false,
@@ -145,7 +157,7 @@ namespace GDebugPanelGodot.Core
         IDebugActionsSection AddSectionInternal(string name, object optionsObject, bool collapsed, int priority)
         {
             DebugActionsSection section = AddDebugActionsSectionUseCase.Execute(
-                _instancesData,
+                _debugPanelData,
                 _debugActionsData,
                 name,
                 true,
@@ -161,7 +173,7 @@ namespace GDebugPanelGodot.Core
         IDebugActionsSection AddNonCollapsableSectionInternal(string name, object optionsObject, int priority)
         {
             DebugActionsSection section = AddDebugActionsSectionUseCase.Execute(
-                _instancesData,
+                _debugPanelData,
                 _debugActionsData,
                 name,
                 false,

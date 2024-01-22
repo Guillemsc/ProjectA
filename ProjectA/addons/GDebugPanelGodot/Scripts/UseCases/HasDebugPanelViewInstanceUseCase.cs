@@ -4,8 +4,8 @@ namespace GDebugPanelGodot.UseCases;
 
 public static class HasDebugPanelViewInstanceUseCase
 {
-    public static bool Execute(InstancesData instancesData)
+    public static bool Execute(DebugPanelData debugPanelData)
     {
-        return instancesData.DebugPanelView != null;
+        return debugPanelData.DebugPanelView != null;
     }
 }

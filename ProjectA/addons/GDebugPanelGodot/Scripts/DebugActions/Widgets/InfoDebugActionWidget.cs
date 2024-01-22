@@ -2,7 +2,7 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class InfoDebugActionWidget : Control
+public partial class InfoDebugActionWidget : DebugActionWidget
 {
     [Export] public Label? Label;
 

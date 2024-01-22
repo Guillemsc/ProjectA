@@ -18,7 +18,7 @@ public sealed class ToggleDebugAction : IDebugAction
         GetAction = getAction;
     }
     
-    public Control InstantiateWidget(DebugPanelView debugPanelView)
+    public DebugActionWidget InstantiateWidget(DebugPanelView debugPanelView)
     {
         ToggleDebugActionWidget widget = debugPanelView.ToggleDebugActionWidget!.Instantiate<ToggleDebugActionWidget>();
         widget.Init(Name, SetAction, GetAction);

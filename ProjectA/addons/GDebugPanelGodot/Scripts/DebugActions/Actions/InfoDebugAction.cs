@@ -6,17 +6,17 @@ namespace GDebugPanelGodot.DebugActions.Actions;
 
 public sealed class InfoDebugAction : IDebugAction
 {
-    public string Info { get; }
+    public string Name { get; }
     
     public InfoDebugAction(string info)
     {
-        Info = info;
+        Name = info;
     }
     
-    public Control InstantiateWidget(DebugPanelView debugPanelView)
+    public DebugActionWidget InstantiateWidget(DebugPanelView debugPanelView)
     {
         InfoDebugActionWidget widget = debugPanelView.InfoDebugActionWidget!.Instantiate<InfoDebugActionWidget>();
-        widget.Init(Info);
+        widget.Init(Name);
         return widget;
     }
 }

@@ -4,7 +4,7 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class ToggleDebugActionWidget : Control
+public partial class ToggleDebugActionWidget : DebugActionWidget
 {
     [Export] public Label? Label;
     [Export] public Button? Button;
@@ -22,6 +22,12 @@ public partial class ToggleDebugActionWidget : Control
         Button!.ConnectButtonPressed(Toggle);
         CheckButton!.ToggleMode = true;
         CheckButton!.ButtonPressed = _getAction!.Invoke();
+    }
+    
+    public override bool Focus()
+    {
+        CheckButton!.GrabFocus();
+        return true;
     }
 
     void Toggle()

@@ -2,7 +2,7 @@ using GDebugPanelGodot.Views;
 
 namespace GDebugPanelGodot.Datas;
 
-public sealed class InstancesData
+public sealed class DebugPanelData
 {
     public DebugPanelView? DebugPanelView;
 }

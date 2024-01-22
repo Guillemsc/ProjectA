@@ -21,7 +21,7 @@ public sealed class EnumDebugAction : IDebugAction
         GetAction = getAction;
     }
     
-    public Control InstantiateWidget(DebugPanelView debugPanelView)
+    public DebugActionWidget InstantiateWidget(DebugPanelView debugPanelView)
     {
         EnumDebugActionWidget widget = debugPanelView.EnumDebugActionWidget!.Instantiate<EnumDebugActionWidget>();
         

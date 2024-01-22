@@ -71,3 +71,5 @@ script = ExtResource("2_pnkxa")
 layer = 128
 script = ExtResource("10_dgq1p")
 Action = "ToggleDebugPanel"
+
+[node name="PopupPanel" type="PopupPanel" parent="."]

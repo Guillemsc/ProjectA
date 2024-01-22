@@ -8,9 +8,9 @@ namespace GDebugPanelGodot.UseCases;
 
 public static class InstantiateDebugPanelSectionViewUseCase
 {
-    public static void Execute(InstancesData instancesData, DebugActionsData debugActionsData, DebugActionsSection section)
+    public static void Execute(DebugPanelData debugPanelData, DebugActionsData debugActionsData, DebugActionsSection section)
     {
-        if (instancesData.DebugPanelView == null)
+        if (debugPanelData.DebugPanelView == null)
         {
             return;
         }
@@ -22,8 +22,8 @@ public static class InstantiateDebugPanelSectionViewUseCase
             return;
         }
 
-        DebugPanelSectionView debugPanelSectionView = instancesData.DebugPanelView!.DebugPanelSection!.Instantiate<DebugPanelSectionView>();
-        debugPanelSectionView.SetParent(instancesData.DebugPanelView.ContentVBox!);
+        DebugPanelSectionView debugPanelSectionView = debugPanelData.DebugPanelView!.DebugPanelSection!.Instantiate<DebugPanelSectionView>();
+        debugPanelSectionView.SetParent(debugPanelData.DebugPanelView.ContentVBox!);
 
         void Toggle() => ToggleSectionViewCollapsedUseCase.Execute(debugPanelSectionView);
 

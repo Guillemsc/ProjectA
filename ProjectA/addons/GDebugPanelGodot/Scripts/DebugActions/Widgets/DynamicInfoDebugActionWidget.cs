@@ -3,7 +3,7 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class DynamicInfoDebugActionWidget : Control
+public partial class DynamicInfoDebugActionWidget : DebugActionWidget
 {
     [Export] public Label? Label;
     

@@ -4,7 +4,7 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class ButtonDebugActionWidget : Control
+public partial class ButtonDebugActionWidget : DebugActionWidget
 {
     [Export] public Label? Label;
     [Export] public Button? Button;
@@ -13,5 +13,11 @@ public partial class ButtonDebugActionWidget : Control
     {
         Label!.Text = name;
         Button!.ConnectButtonPressed(action);
+    }
+
+    public override bool Focus()
+    {
+        Button!.GrabFocus();
+        return true;
     }
 }

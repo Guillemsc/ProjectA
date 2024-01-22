@@ -4,7 +4,7 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class IntDebugActionWidget : Control
+public partial class IntDebugActionWidget : DebugActionWidget
 {
     [Export] public Label? Label;
     [Export] public SpinBox? SpinBox;
@@ -23,6 +23,12 @@ public partial class IntDebugActionWidget : Control
         SpinBox.MaxValue = int.MaxValue;
         SpinBox.Value = getAction.Invoke();
         SpinBox.ConnectSpinBoxValueChanged(Changed);
+    }
+    
+    public override bool Focus()
+    {
+        SpinBox!.GrabFocus();
+        return true;
     }
 
     void Changed(float value)

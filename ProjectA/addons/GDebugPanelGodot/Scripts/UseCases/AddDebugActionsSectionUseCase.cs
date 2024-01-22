@@ -7,7 +7,7 @@ namespace GDebugPanelGodot.UseCases;
 public static class AddDebugActionsSectionUseCase
 {
     public static DebugActionsSection Execute(
-        InstancesData instancesData, 
+        DebugPanelData debugPanelData, 
         DebugActionsData debugActionsData, 
         string name,
         bool collapsable,
@@ -16,7 +16,13 @@ public static class AddDebugActionsSectionUseCase
         )
     {
         void Add(DebugActionsSection debugActionSection, IDebugAction debugAction)
-            => CreateDebugActionWidgetUseCase.Execute(instancesData, debugActionsData, debugActionSection, debugAction);
+            => CreateDebugActionWidgetUseCase.Execute(
+                debugPanelData,
+                debugActionsData,
+                debugActionSection,
+                debugAction,
+                true
+            );
 
         void Remove(IDebugAction debugAction)
             => RemoveDebugActionWidgetUseCase.Execute(debugActionsData, debugAction);
@@ -25,7 +31,7 @@ public static class AddDebugActionsSectionUseCase
         
         debugActionsData.Sections.Add(section);
         
-        InstantiateDebugPanelSectionViewUseCase.Execute(instancesData, debugActionsData, section);
+        InstantiateDebugPanelSectionViewUseCase.Execute(debugPanelData, debugActionsData, section);
         ReorderSectionViewsByPriorityUseCase.Execute(debugActionsData);
 
         return section;

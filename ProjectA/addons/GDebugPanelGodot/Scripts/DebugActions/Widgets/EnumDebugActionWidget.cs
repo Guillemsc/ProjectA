@@ -5,7 +5,7 @@ using Godot;
 
 namespace GDebugPanelGodot.DebugActions.Widgets;
 
-public partial class EnumDebugActionWidget : Control
+public partial class EnumDebugActionWidget : DebugActionWidget
 {
     [Export] public Label? Label;
     [Export] public OptionButton? OptionButton;
@@ -28,6 +28,12 @@ public partial class EnumDebugActionWidget : Control
         }
 
         OptionButton!.ConnectOptionButtonItemSelected(Selected);
+    }
+    
+    public override bool Focus()
+    {
+        OptionButton!.GrabFocus();
+        return true;
     }
 
     void Selected(int index)

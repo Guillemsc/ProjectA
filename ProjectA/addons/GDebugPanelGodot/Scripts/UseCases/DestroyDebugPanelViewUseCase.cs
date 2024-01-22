@@ -5,16 +5,16 @@ namespace GDebugPanelGodot.UseCases;
 
 public static class DestroyDebugPanelViewUseCase
 {
-    public static void Execute(InstancesData instancesData)
+    public static void Execute(DebugPanelData debugPanelData)
     {
-        if (instancesData.DebugPanelView == null)
+        if (debugPanelData.DebugPanelView == null)
         {
             return;
         }
         
-        instancesData.DebugPanelView.RemoveParent();
-        instancesData.DebugPanelView.QueueFree();
+        debugPanelData.DebugPanelView.RemoveParent();
+        debugPanelData.DebugPanelView.QueueFree();
 
-        instancesData.DebugPanelView = null;
+        debugPanelData.DebugPanelView = null;
     }
 }

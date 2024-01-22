@@ -9,4 +9,9 @@ public static class CanvasItemExtensions
         canvasItem.ProcessMode = active ? Node.ProcessModeEnum.Inherit : Node.ProcessModeEnum.Disabled;
         canvasItem.Visible = active;
     }
+    
+    public static bool IsActiveCanvasItem(this CanvasItem canvasItem)
+    {
+        return canvasItem.ProcessMode == Node.ProcessModeEnum.Inherit && canvasItem.Visible;
+    }
 }

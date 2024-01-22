@@ -9,9 +9,9 @@ namespace GDebugPanelGodot.UseCases;
 
 public static class InstantiateDebugPanelViewUseCase
 {
-    public static void Execute(CacheData cacheData, InstancesData instancesData, Node parent)
+    public static void Execute(CacheData cacheData, DebugPanelData debugPanelData, Node parent)
     {
-        if (instancesData.DebugPanelView != null)
+        if (debugPanelData.DebugPanelView != null)
         {
             return;
         }
@@ -28,6 +28,6 @@ public static class InstantiateDebugPanelViewUseCase
         DebugPanelView debugPanelView = cacheData.DebugPanelViewScene.Instantiate<DebugPanelView>();
         debugPanelView.SetParent(parent);
 
-        instancesData.DebugPanelView = debugPanelView;
+        debugPanelData.DebugPanelView = debugPanelView;
     }
 }

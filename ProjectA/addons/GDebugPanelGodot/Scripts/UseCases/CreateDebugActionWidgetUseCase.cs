@@ -1,22 +1,23 @@
 using GDebugPanelGodot.Datas;
 using GDebugPanelGodot.DebugActions.Actions;
 using GDebugPanelGodot.DebugActions.Containers;
+using GDebugPanelGodot.DebugActions.Widgets;
+using GDebugPanelGodot.Extensions;
 using GDebugPanelGodot.Views;
-using Godot;
-using GUtilsGodot.Extensions;
 
 namespace GDebugPanelGodot.UseCases;
 
 public static class CreateDebugActionWidgetUseCase
 {
     public static void Execute(
-        InstancesData instancesData, 
+        DebugPanelData debugPanelData, 
         DebugActionsData debugActionsData, 
         DebugActionsSection section,
-        IDebugAction debugAction
+        IDebugAction debugAction,
+        bool tryFindFocus = false
         )
     {
-        bool hasInstance = instancesData.DebugPanelView != null;
+        bool hasInstance = debugPanelData.DebugPanelView != null;
 
         if (!hasInstance)
         {
@@ -37,9 +38,14 @@ public static class CreateDebugActionWidgetUseCase
             return;
         }
 
-        Control widget = debugAction.InstantiateWidget(instancesData.DebugPanelView!);
+        DebugActionWidget widget = debugAction.InstantiateWidget(debugPanelData.DebugPanelView!);
         widget.SetParent(sectionView!.ContentParent!);
         
         debugActionsData.Widgets.Add(debugAction, widget);
+
+        if (tryFindFocus)
+        {
+            TryGrabFocusOnFirstDebugActionWidgetUseCase.Execute(debugActionsData);   
+        }
     }
 }

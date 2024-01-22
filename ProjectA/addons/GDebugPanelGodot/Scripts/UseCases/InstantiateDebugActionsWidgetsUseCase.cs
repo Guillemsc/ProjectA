@@ -4,17 +4,17 @@ using GDebugPanelGodot.DebugActions.Containers;
 
 namespace GDebugPanelGodot.UseCases;
 
-public static class CreateDebugActionsWidgetsUseCase
+public static class InstantiateDebugActionsWidgetsUseCase
 {
-    public static void Execute(InstancesData instancesData, DebugActionsData debugActionsData)
+    public static void Execute(DebugPanelData debugPanelData, DebugActionsData debugActionsData)
     {
         foreach (DebugActionsSection section in debugActionsData.Sections)
         {
-            InstantiateDebugPanelSectionViewUseCase.Execute(instancesData, debugActionsData, section);
+            InstantiateDebugPanelSectionViewUseCase.Execute(debugPanelData, debugActionsData, section);
             
             foreach (IDebugAction debugAction in section.Actions)
             {
-                CreateDebugActionWidgetUseCase.Execute(instancesData, debugActionsData, section, debugAction);
+                CreateDebugActionWidgetUseCase.Execute(debugPanelData, debugActionsData, section, debugAction);
             }
         }
         

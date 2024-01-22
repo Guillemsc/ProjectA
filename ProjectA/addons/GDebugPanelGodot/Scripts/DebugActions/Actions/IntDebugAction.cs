@@ -20,7 +20,7 @@ public sealed class IntDebugAction : IDebugAction
         GetAction = getAction;
     }
     
-    public Control InstantiateWidget(DebugPanelView debugPanelView)
+    public DebugActionWidget InstantiateWidget(DebugPanelView debugPanelView)
     {
         IntDebugActionWidget widget = debugPanelView.IntDebugActionWidget!.Instantiate<IntDebugActionWidget>();
         widget.Init(Name, Step, SetAction, GetAction);
