@@ -20,7 +20,7 @@ curve = SubResource("Curve_ktxtq")
 
 [sub_resource type="LabelSettings" id="LabelSettings_htfk8"]
 font = ExtResource("1_3wdhi")
-font_size = 45
+font_size = 35
 
 [node name="GDebugPanel" type="Control" node_paths=PackedStringArray("ContentVBox")]
 layout_mode = 3
@@ -52,6 +52,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CurveTexture_sp1a7")
@@ -60,10 +61,9 @@ texture = SubResource("CurveTexture_sp1a7")
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 11.0
-offset_right = 207.0
-offset_bottom = -12.0
+offset_left = 24.0
+offset_right = 220.0
+offset_bottom = -24.0
 grow_vertical = 2
 text = "Options"
 label_settings = SubResource("LabelSettings_htfk8")
@@ -74,7 +74,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 88.0
+offset_top = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 

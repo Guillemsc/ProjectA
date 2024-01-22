@@ -2,6 +2,7 @@ using GDebugPanelGodot.Datas;
 using GDebugPanelGodot.DebugActions.Containers;
 using GDebugPanelGodot.Extensions;
 using GDebugPanelGodot.Views;
+using Godot;
 
 namespace GDebugPanelGodot.UseCases;
 
@@ -28,6 +29,7 @@ public static class InstantiateDebugPanelSectionViewUseCase
 
         debugPanelSectionView.Section = section;
         debugPanelSectionView.SectionButton!.ConnectButtonPressed(Toggle);
+        debugPanelSectionView.SectionButton!.SetActiveCanvasItem(section.Collapsable);
         
         debugActionsData.SectionsViews.Add(section, debugPanelSectionView);
         

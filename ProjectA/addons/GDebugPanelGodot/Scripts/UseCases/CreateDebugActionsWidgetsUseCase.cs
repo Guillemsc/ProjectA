@@ -17,5 +17,7 @@ public static class CreateDebugActionsWidgetsUseCase
                 CreateDebugActionWidgetUseCase.Execute(instancesData, debugActionsData, section, debugAction);
             }
         }
+        
+        ReorderSectionViewsByPriorityUseCase.Execute(debugActionsData);
     }
 }

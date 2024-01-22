@@ -4,7 +4,7 @@ using GDebugPanelGodot.DebugActions.Actions;
 
 namespace GDebugPanelGodot.DebugActions.Containers;
 
-public sealed class DebugActionsSection : IDisposable
+public sealed class DebugActionsSection : IDebugActionsSection, IDisposable
 {
     readonly List<IDebugAction> _actions = new();
     
@@ -12,18 +12,23 @@ public sealed class DebugActionsSection : IDisposable
     Action<IDebugAction>? _removeAction;
     
     public string Name { get; }
+    public bool Collapsable { get; }
+    public bool Collapsed { get; set; }
     public int Priority { get; }
     public IReadOnlyList<IDebugAction> Actions => _actions;
-    public bool Collapsed { get; set; }
     
     public DebugActionsSection(
         string name, 
+        bool collapsable,
+        bool collapsed,
         int priority,
         Action<DebugActionsSection, IDebugAction> addAction, 
         Action<IDebugAction> removeAction
         )
     {
         Name = name;
+        Collapsable = collapsable;
+        Collapsed = collapsed;
         Priority = priority;
         _addAction = addAction;
         _removeAction = removeAction;

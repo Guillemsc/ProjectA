@@ -7,10 +7,21 @@ public static class RefreshSectionViewNameUseCase
 {
     public static void Execute(DebugPanelSectionView sectionView)
     {
-        string arrowChar = sectionView.Section!.Collapsed
-            ? CharactersConstants.MenuFoldedChar
-            : CharactersConstants.MenuUnfoldedChar;
+        string name;
+        
+        if (!sectionView.Section!.Collapsable)
+        {
+            name = sectionView.Section!.Name; 
+        }
+        else
+        {
+            string arrowChar = sectionView.Section!.Collapsed
+                ? CharactersConstants.MenuFoldedChar
+                : CharactersConstants.MenuUnfoldedChar;
 
-        sectionView.SectionLabel!.Text = $"{arrowChar} {sectionView.Section!.Name}";
+            name = $"{arrowChar} {sectionView.Section!.Name}";   
+        }
+        
+        sectionView.SectionLabel!.Text = name;   
     }
 }

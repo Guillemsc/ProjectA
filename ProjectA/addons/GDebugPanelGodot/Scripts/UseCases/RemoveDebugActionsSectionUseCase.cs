@@ -6,20 +6,25 @@ namespace GDebugPanelGodot.UseCases;
 
 public static class RemoveDebugActionsSectionUseCase
 {
-    public static void Execute(DebugActionsData debugActionsData, DebugActionsSection section)
+    public static void Execute(DebugActionsData debugActionsData, IDebugActionsSection section)
     {
-        bool found = debugActionsData.Sections.Remove(section);
+        if (section is not DebugActionsSection debugActionsSection)
+        {
+            return;
+        }
+        
+        bool found = debugActionsData.Sections.Remove(debugActionsSection);
 
         if (!found)
         {
             return;
         }
         
-        foreach (IDebugAction debugAction in section.Actions)
+        foreach (IDebugAction debugAction in debugActionsSection.Actions)
         {
             RemoveDebugActionWidgetUseCase.Execute(debugActionsData, debugAction);
         }
         
-        section.Dispose();
+        debugActionsSection.Dispose();
     }
 }

@@ -10,7 +10,9 @@ public static class AddDebugActionsSectionUseCase
         InstancesData instancesData, 
         DebugActionsData debugActionsData, 
         string name,
-        int priority = 0
+        bool collapsable,
+        bool collapsed,
+        int priority
         )
     {
         void Add(DebugActionsSection debugActionSection, IDebugAction debugAction)
@@ -19,11 +21,12 @@ public static class AddDebugActionsSectionUseCase
         void Remove(IDebugAction debugAction)
             => RemoveDebugActionWidgetUseCase.Execute(debugActionsData, debugAction);
         
-        DebugActionsSection section = new(name, priority, Add, Remove);
+        DebugActionsSection section = new(name, collapsable, collapsed, priority, Add, Remove);
         
         debugActionsData.Sections.Add(section);
         
         InstantiateDebugPanelSectionViewUseCase.Execute(instancesData, debugActionsData, section);
+        ReorderSectionViewsByPriorityUseCase.Execute(debugActionsData);
 
         return section;
     }

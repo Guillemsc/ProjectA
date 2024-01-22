@@ -11,9 +11,9 @@ public partial class OpenGDebugPanelNode : Node
 {
     [Export] public string Action = "ui_accept";
 
-    DebugActionsSection? section;
-    DebugActionsSection? section2;
-    DebugActionsSection? section3;
+    IDebugActionsSection? section;
+    IDebugActionsSection? section2;
+    IDebugActionsSection? section3;
     
     Stopwatch Stopwatch = Stopwatch.StartNew();
     
@@ -37,7 +37,7 @@ public partial class OpenGDebugPanelNode : Node
             
             if (section == null)
             {
-                section = GDebugPanel.AddSection("1");
+                section = GDebugPanel.AddNonCollapsableSection("1");
                 section.AddButton("God", () => GD.Print("A"));
                 section.AddToggle("Toggle 1", val => { }, () => false);
                 section.AddInfo("Lorem ipsum deca ago dero");

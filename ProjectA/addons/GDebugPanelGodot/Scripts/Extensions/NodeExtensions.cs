@@ -21,4 +21,19 @@ public static class NodeExtensions
         node.RemoveParent();
         parent.AddChild(node);
     }
+    
+    public static void SetSiblingIndex(this Node node, int index)
+    {
+        Node parent = node.GetParent();
+
+        if (parent == null)
+        {
+            return;
+        }
+
+        int childsCount = parent.GetChildren().Count;
+        int finalIndex = GUtils.Extensions.MathExtensions.Clamp(index, 0, childsCount);
+        
+        parent.MoveChild(node, finalIndex);
+    }
 }

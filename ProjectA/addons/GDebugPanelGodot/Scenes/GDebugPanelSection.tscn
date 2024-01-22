@@ -18,8 +18,8 @@ font_size = 30
 custom_minimum_size = Vector2(100, 0)
 theme_override_styles/panel = SubResource("StyleBoxFlat_xsj5w")
 script = ExtResource("1_wxa1s")
-SectionButton = NodePath("VBoxContainer/PanelContainer/SectionButton")
-SectionLabel = NodePath("VBoxContainer/PanelContainer/SectionTile/SectionLabel")
+SectionButton = NodePath("VBoxContainer/TitlePanelContainer/SectionButton")
+SectionLabel = NodePath("VBoxContainer/TitlePanelContainer/SectionTile/SectionLabel")
 CollapsableControl = NodePath("VBoxContainer/SectionContent")
 ContentParent = NodePath("VBoxContainer/SectionContent/FlowContainer")
 
@@ -27,23 +27,23 @@ ContentParent = NodePath("VBoxContainer/SectionContent/FlowContainer")
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="TitlePanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_egash")
 
-[node name="SectionButton" type="Button" parent="VBoxContainer/PanelContainer"]
+[node name="SectionButton" type="Button" parent="VBoxContainer/TitlePanelContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qgjd2")
 
-[node name="SectionTile" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+[node name="SectionTile" type="MarginContainer" parent="VBoxContainer/TitlePanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 0
 
-[node name="SectionLabel" type="Label" parent="VBoxContainer/PanelContainer/SectionTile"]
+[node name="SectionLabel" type="Label" parent="VBoxContainer/TitlePanelContainer/SectionTile"]
 layout_mode = 2
 text = "Section"
 label_settings = SubResource("LabelSettings_6q68v")
@@ -52,7 +52,7 @@ clip_text = true
 [node name="SectionContent" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 0
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
