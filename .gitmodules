@@ -7,3 +7,6 @@
 [submodule "ProjectA/GTweensGodot"]
 	path = ProjectA/GTweensGodot
 	url = https://github.com/Guillemsc/GTweensGodot
+[submodule "ProjectA/addons/GDebugPanelGodot"]
+	path = ProjectA/addons/GDebugPanelGodot
+	url = https://github.com/Guillemsc/GDebugPanelGodot
